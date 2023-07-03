@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>논리연산자.</h1>
+<hr>
+<h2>AND 연산자 "&&"</h2>
+    <p>x=6 / y=3</p>
+    <p>AND 연산자는 좌 우측의 값이 2개가 true 일 때만 true 를 출력합니다.</p>
+    <p id="logic"></p>
+        <script>
+            {
+            let x = 6; // 초기값
+            let y = 3; // 
+            document.getElementById("logic").innerHTML = 
+            "x는 10보다 작고, y는 1 보다 큰가요? : " + (x < 10 && y > 1) 
+            // true + true = true
+            + "<br>" + 
+            "x는 10보다 작고, y는 1보다 작은가요? : "+ (x < 10 && y < 1);
+            // true + false = false
+            }
+        </script>
+<hr>
+        <h2>OR 연산자 "||"</h2>
+        <p>x=6 / y=3</p>
+        <p>OR 연산자는 좌 우측의 값 중 둘 중 하나만 true 일 경우에도 true 를 출력합니다.</p>
+        <p>또한 값 2개가 모두 false일 경우 false를 출력합니다.</p>
+        <p id="logic1"></p>
+            <script>
+                {
+                let x = 6; // 초기값
+                let y = 3; 
+                document.getElementById("logic1").innerHTML = 
+                "x는 10보다 작고, y는 1 보다 큰가요? : " + (x < 10 || y > 1) 
+                // true || true = true
+                + "<br>" + 
+                "x는 10보다 작고, y는 1보다 작은가요? : "+ (x < 10 || y < 1)
+                // true || false = true
+                +"<br>" + 
+                " x는 10 보다 크고 y는 1보다 작은가요? :" + (x > 10 || y < 1)
+                // false || false = false
+                +"<br>" + 
+                " x는 5 이고 y는 5 인가요? : " + (x == 10 || y == 1)
+                // false || false = false
+                +"<br>" + 
+                " x는 0 이고 y는 3 인가요? : " + (x == 0 || y == 3);
+                // false || true = true
+                }
+            </script>
+    <hr>
+        <h2>NOT 연산자 "!"</h2>
+        <p>x=6 / y=3</p>
+        <p>NOT 연산자는 true 와 false의 값을 반대로 출력합니다.</p>
+        <p></p>
+        <p id="logic2"></p>
+            <script>
+                {
+                let x = 6; // 초기값
+                let y = 3; 
+                document.getElementById("logic2").innerHTML = 
+                " x는 y와 데이터타입 + 값 모두 동일한가요? : " + (x === y) 
+                // false -> true
+                + "<br>" + 
+                " x는 y보다 큰가요? : "+ (x > y)
+                // true -> false
+                +"<br>";
+                
+                }
+        </script>
+    
+    
+</body>
+</html>

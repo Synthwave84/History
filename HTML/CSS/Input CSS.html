@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    /*Input에 CSS속성 적용을 위해선 속성을 대괄호로 묶어주어야함*/
+    input[type=text]
+    {
+        color:blue
+    }
+    input[type=text]:focus
+    {
+    background-color: aquamarine;
+    }
+    input[name=userid]
+    {
+        color: blueviolet;
+    }
+    input::placeholder {
+        color:darkgray;
+    }
+</style>
+</head>
+    <label>Textbox1</label><br>
+        <input type="text" placeholder="blue"><br>
+    <label>Textbox2</label><br>
+        <input name="userid" type="text" placeholder="purple">
+
+</body>
+</html>

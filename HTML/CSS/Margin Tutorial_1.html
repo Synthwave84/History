@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*기본 브라우저의 폰트 사이즈는 16px이다.*/
+        /*기본 폰트에서 백분율로 지정하는 방법은 0.0em 이다. 1.0=100%*/
+    div 
+    {
+            background-color: aqua;
+            text-align: center;
+    }
+    h2.base
+    {
+            width:300px; 
+            margin:auto; 
+            background-color: cadetblue; 
+            color: aliceblue; 
+            border: 1px solid red;
+    }
+    div.pad 
+    {
+        border: 1px solid black;
+        background-color: lightblue;
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+    }
+    div.ex1 
+    {
+        width: 300px;
+        background-color: yellow;
+    }
+
+    div.ex2 /*패딩으로 인해 양쪽 25px 추가되어 width는 총 350이 된다.*/
+    {
+        width: 300px;
+        padding: 25px;
+        background-color: lightblue;
+    }
+    div.ex3 /*borderbox 를 추가하면 width 값 안에 padding 값이 포함된다. 즉 총 width는 300이 그대로 된다*/
+    {
+        width: 300px;
+        padding: 25px;
+        background-color: lightblue;
+        box-sizing: border-box;
+    }
+
+    div.ex4 
+    {
+        width: 50%;
+        height: 120px;
+        background-color: yellow;
+    }
+    div.ex5 
+    {
+        background-color: lightgrey;
+        width: 25%;
+        border: 15px solid green;
+        padding: 50px;
+        margin: 20px;
+        box-sizing: border-box;
+    }
+    div.ex6 
+    {
+        background-color: cadetblue; width: 250px; 
+        padding:10px; box-sizing:border-box;
+    }   
+    img.a 
+    {
+        vertical-align: baseline;
+    }   
+    p.shad
+    {
+        text-shadow: 2px 2px;
+    }
+    p.vw
+    {
+        font-size: 5vw;
+    }
+    </style>
+</head>
+
+<body>
+<h1>Margin : 바깥여백</h1> 
+<div>풀스택 자바웹개발자과정</div>      
+<h2 class="base">마진 테스트 입니다.</h2>
+<div class="pad">패딩테스트입니다.</div>
+<h2>Padding and element width</h2>
+
+<div class="ex1">This div is 300px wide.</div>
+<br>
+
+<div class="ex2">The width of this div is 350px, even though it is defined as 300px in the CSS.</div>
+<br>
+<div class="ex3">The width of this div is 250px, because it contains padding value into the width</div> 
+<br>
+<div class="ex4">Much more easy way to control the width is define width value with a percentage. </div> 
+<br>
+<div class="ex5">This is an example of combined alltogether</div>
+<br>
+<img src="Image/bger.jfif" width="250px">
+<div class="ex6">This is an image example</div>
+<br>
+<h2>버티컬 얼라인</h2>
+<p><img class="a" src="Image/bger.jfif" width="20px">이미지랑 사이즈가 맞게?</p>
+<br>
+<h2>그림자</h2>
+<p class="shad">그림자효과입니다.</p>
+<h2>브라우저 크기에 따라 글자 크기 조정</h2>
+<p class="vw">안녕하세요</p>
+</body>
+</html>

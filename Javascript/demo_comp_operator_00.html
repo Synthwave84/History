@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>비교연산자</h1>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <script>
+        {
+            // ASCII 코드값으로 비교가 이루어진다. 0~127 범위
+            // UNICODE(ASCII vhgka) 값으로도 비교가 가능하다. 0~65535 범위
+            let text1 = "A"; // ASCII=65
+            let text2 = "B"; // ASCII=66
+            let result = text1 < text2;
+            document.getElementById("demo").innerHTML 
+            = "A가 B보다 작나요? " + result;
+            // true 또는 false 로 출력된다.
+            
+            // 때문에 이런것도 가능하다.
+            let text3 = "20"; //  문자열로 표시가 되었기 때문에 ASCII/UNICODE의 숫자로 해석한다.
+            let text4 = "5"; 
+            let result2 = text3 < text4;
+            document.getElementById("demo1").innerHTML 
+            = "텍스트 20은 텍스트 5 보다 작나요?"+ result2;
+
+        
+            let text5 = 20; //데이터타입이 정상적으로 숫자일 경우 그냥 숫자로 비교한다.
+            let text6 = 5; 
+            let result3 = text5 < text6;
+            document.getElementById("demo2").innerHTML 
+            = "20은 5 보다 작나요?"+ result3;
+        }
+        </script>
+<hr>
+        <script>
+            {
+                // 비교시 문자열이 숫자로 자동 변환된다.
+                
+                let text1 = "2"; // "10" -> 10 
+            let text2 = 5;
+            let result = text1 < text2;
+            document.getElementById("demo3").innerHTML 
+            = "텍스트 2가 5보다 작나요? " + result;
+            }
+        </script>
+
+        
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 재 사용 목적으로 함수 문법을 사용한다.
+        // 함수명 지정시 method 처럼 () 가 꼭 사용되어야한다.
+        // 함수 선언(정의)
+        function print() 
+        {
+            // 실행 될 코드.
+            // 실행 될 코드는 대괄호 {} 로 감싼다.
+            document.writeln("<h3>자바스크립트를 배워보자<h3>");
+            document.writeln("<h3>자바를 배우자 배워보자<h3>");
+            document.writeln("<h3>스프링을 배워보자<h3>");
+        }
+    </script>
+</head>
+<body>
+    <h1>함수 사용 및 목적</h1>
+    <script>
+        // 함수 호출 (실행)
+        print();
+    </script>
+<hr>
+    <h2>함수 정의 : 매개변수와 리턴값</h2>
+    <p id="calc"></p>
+    <p id="calc1"></p>
+        <script>
+        // x , y = 인수 or 매개변수 또는 파라미터
+        function add( x , y )
+        {
+            return x + y;
+        }
+        // x와 y에 각각 10 , 20 전달
+        let result = add(10, 20) 
+        document.getElementById("calc").innerHTML 
+        = "add(10,20) : " +result; // 비 효율적인 코드.
+        
+        // 효율적인 코드
+        document.getElementById("calc1").innerHTML 
+        = "add(100 , 200) : " + add( 100 , 200);
+        </script>
+    <h2>온도 화씨를 섭씨로 변환하는 함수</h2>
+    <p>화씨 70도를 변환 한 식의 예시 입니다.</p>
+    <p id="calc2"></p>
+    <p id="calc3"></p>
+    <p id="calc4"></p>
+        <script>
+            function toCelsius(f)
+            {
+            /* 
+                (f) 값에 사용될 계산식을 제공.
+                대괄호 {}에 묶여있는것은 f에 특정한 값이 들어갔을때 실행 될 코드의 명령줄이다.
+                즉 function toCelsius(f) 괄호안의 f에 들어갈 값은, 
+                return 항목에 있는 계산식이 끝난 이후의 변환된 (return된) 값이다.
+            */
+                return (5/9) * (f-32) 
+            }
+            document.getElementById("calc2").innerHTML 
+            ="정상적인 동작 : " + toCelsius(70);
+            /* 풀이 
+            1. f에 70이 대입되면 return에 있는 f에 값이 먼저 대입됨.
+            2. return 단에 있는 f에 70이 대입되고 수식 계산. 
+            3. return은 돌려주는 함수이므로 상단 function 쪽에 표기될 f 값에 계산된 값을 전달.
+        */
+
+            // 매개변수에 값을 제공하지 않아도 사용이 가능하다.
+            document.getElementById("calc3").innerHTML 
+            ="함수 뒤에 매개변수 제공을 안 했을 때 : " + toCelsius(); //  NaN 넘버가 아님 을 출력한다.
+        
+            document.getElementById("calc4").innerHTML 
+            // 함수호출에서 toCelsius에 "()"괄호가 빠졌다. 이럴 경우 함수의 내용을 호출해버린다.
+            ="함수 뒤에 괄호를 빼먹었을때" + toCelsius;
+        </script>
+<hr>
+        <h2>국 영 수 3개의 과목에 대한 합계, 평균을 구하는 함수생성하기.</h2>
+        <p>첫번째 학생의 점수는 국어 : 79점 / 영어 : 85점 / 수학 : 78점 입니다.</p>
+        <p id="total"></p>
+        <p id="avg_1"></p>
+        <p id="avg_2"></p>
+        <script>
+            function tot(kor,eng,mat)
+            {
+                // 세 과목의 합산
+                return kor + eng + mat;
+            }
+            function avg1(kor,eng,mat)
+            {
+                // 세 과목의 평균.
+                return (kor + eng +mat) /3;
+            }
+            function avg2(kor,eng,mat)
+            {
+                // total을 상단의 합산을 구하는 함수로 지정.
+                let total = tot(kor,eng,mat) // tot 함수를 재사용 하였다.
+                // 상단의 tot(kor, eng,mat) 값을 호출 후 3으로 나눔.
+                return  total /3;
+            }
+            // 1번째 학생.
+            let kor, eng, mat;
+            kor = 79;
+            eng = 85;
+            mat = 78;
+            document.getElementById("total").innerHTML 
+            ="총합 입니다 : " + tot(kor,eng,mat);
+            
+            document.getElementById("avg_1").innerHTML 
+            ="평균 입니다 : " + avg1(kor,eng,mat);
+            
+            document.getElementById("avg_2").innerHTML 
+            ="평균 입니다 2: " + avg2(kor,eng,mat);
+        </script>
+
+        <p>두번째 학생의 점수는 국어 : 90점 / 영어 : 87점 / 수학 : 87점 입니다.</p>
+        <p id="total1_1"></p>
+        <p id="avg1_1"></p>
+        <p id="avg1_2"></p>
+        <script>
+        let kor2, eng2, mat2;
+            kor2 = 90;
+            eng2 = 87;
+            mat2 = 87;
+            // 매개변수를 바꾸면 함수 내에 계산식에 사용되는 수식도 자동으로 변경된다.
+            document.getElementById("total1_1").innerHTML 
+            ="총합 입니다 : " + tot(kor2,eng2,mat2);
+            
+            document.getElementById("avg1_1").innerHTML 
+            ="평균 입니다 : " + avg1(kor2,eng2,mat2);
+            
+            document.getElementById("avg1_2").innerHTML 
+            ="평균 입니다 2: " + avg2(kor2,eng2,mat2);
+        </script>
+<hr>
+<h2>함수 안의 로컬변수(지역변수)</h2>
+<p id="local"></p>
+<script>
+    function myFunction() 
+    {
+        let carName = "Volvo"
+        let text = "차이름은 " + carName + "입니다";
+        document.getElementById("local").innerHTML = text;
+    }
+    myFunction()
+</script>
+
+
+
+</body>
+</html>

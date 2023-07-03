@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>var 키워드로 동일한 변수를 재선언한 경우.</h1>
+    <p id="demo"></p>
+    
+        <script>
+            var carName = "Volvo";
+            var carName = "BMW";
+            var carName; //재선언을 하여도, 에러가 발생하지 않고 값을 읽어온다.
+            // var 키워드는 재선언이 가능하다. 때문에 큰 혼선이 발생할 우려가 있으므로 let 키워드를 권장한다.
+            document.getElementById("demo").innerHTML = carName;
+        </script>
+        <hr>
+        <h1>let 키워드로 동일한 변수를 재선언한 경우</h1>
+        <p id="demo1"></p>
+        <script>
+            let carName2 = "Volvo";
+            /*let carName2 = "BMW";
+            let carName2;*/            //<< 활성화시 에러 발생. 
+            
+            // let 키워드는 재선언을 하게되면 바로 에러를 발생시키게된다.
+            document.getElementById("demo1").innerHTML = carName2;
+        </script>
+</body>
+</html>

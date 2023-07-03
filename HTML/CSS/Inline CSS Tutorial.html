@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*Class 사용시 사용하고자 하는 단어에 "."을 붙여주어야 함.*/
+        /*class 사용시 적용되야할 모든 태그를 한번에 적어주어도 상관 없음
+        ex) h1 h2 p {something}*/
+        
+        /*ID 사용시 앞에 "#" 붙일것.*/
+        
+        p.center {
+            text-align: center;
+            color: red;
+        }
+        
+        p.large {
+            font-size: 150%;
+        }
+        #para1{
+            text-align: center; 
+            color: blueviolet;
+        }
+        </style>
+        </head>
+        <body>
+        <!--현재 h1태그는 상단 스타일의 p태그가 접두사로 지정되어있어 영향을 받지 않으며,
+        3번째 줄의 p 태그는 위의 CSS스타일을 이중으로 적용함. 허나, 중간에 쉼표 등의 구분 없음.-->
+        
+        <!--id 태그는 절대 중복되지 않도록 할것.-->
+        
+        <h1 class="center">이 헤드라인은 영향을 받지 않아요.</h1>
+        <p class="center">이 문단은 폰트컬러 레드에 중간 정렬이 적용됩니다.</p>
+        <p class="center large">이 문단은 위의 문단과 동일하나 추가로 폰트 크기 확대가 적용됩니다.</p> 
+        <p id="para1">이것도 이런식으로 하면 적용이 됩니다.</p>
+        <p style="text-align: center;">이렇게 하나씩 따로 적용 시킬 수도 있습니다.</p>
+        </body>
+        </html>

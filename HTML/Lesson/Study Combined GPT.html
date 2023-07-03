@@ -1,0 +1,396 @@
+<!DOCTYPE html><!----> 
+<html> 
+    <head>
+        <meta charset="UTF-8" viewport="width=device-width, initial-scale=1.0">
+<!--윈도우 창 제목-->
+        <title>Study Combined</title> 
+    </head>
+    
+    <!--홈페이지 배경색-->
+    <body style="background-color: cornflowerblue;">
+        
+<!--제목 Headline-->
+        <h1 id="Top">Study Combined</h1> 
+        
+<!--글자색 및 Paragraph-->    
+        <h2>글자색 및 Paragraph</h2>
+        <p style="color: aliceblue;">HTML5</p>
+        
+
+<!--구분선-->
+    <hr> 
+
+<!--글 꾸미기 및 스타일-->
+<h2>글 꾸미기 및 스타일</h2>
+    <hr>
+        <!--폰트사이즈-->
+        <p style="font-size: 35px; color: cornsilk; text-align: center;">몬생긴 테스트용 페이지</p>
+        <hr>
+
+        <!--문서형태유지 및 글씨체, 글자 배열방식-->
+        <h2 style="text-align: center;">문자 형태 유지</h2>
+        <pre style="color: beige; font-size: 35px; font-family:Courier; text-align: right;">
+
+        <!--글꼴 효과-->   
+        <em>I Feel Better , I Feel Better</em> 
+        <b>Now you've Gone</b>
+        <i> I Got<sub> Better</sub>, I Got <sup>Better</sup> </i>
+        <mark>I Got a Strong, I <q>Feel Better</q></mark>
+        </pre>
+    <hr>
+
+<!--Anchors-->
+<h2>하이퍼링크 관련</h2>   
+
+    <!--타겟 (링크 클릭시 창 띄우는 방식 설정)-->       
+    <h3> The Target Attribute</h3>
+    <a href="https://www.w3schools.com" target="_blank"> Blank Target</a>
+    <a href="https://www.w3schools.com" target="_self"> Self Target</a>
+    <a href="https://www.w3schools.com" target="_parent"> Parent Target</a>
+    <a href="https://www.w3schools.com" target="_top"> Top Target</a>
+    
+    <hr>
+
+<!--줄바꿈-->
+    <br>
+
+<!--절대주소(홈 디렉토리)-->   
+    
+    <h3>절대주소</h3> 
+    <p><a href="https://www.w3.org/">W3C</a></p>
+    <p><a href="https://www.google.com/">Google</a></p>
+
+<!--상대주소 *기반 파일은 접속한 절대주소 기준(홈 디랙토리)-->
+    
+    <h3>상대주소</h3> 
+    <p><a href="html_images.asp">HTML Images</a></p>
+    <p><a href="/css/default.asp">CSS Tutorial</a></p>
+    <hr>
+    
+<!--이미지 연계 하이퍼링크-->
+    <h3>이미지 연계 하이퍼링크</h3>
+        <a href="https://www.w3schools.com" target="_blank">
+        <!--alt태그는 이미지가 깨졌을 시 표기할 글-->
+        <img src="https://www.w3schools.com/html/smiley.gif"
+        alt="Smile">
+        </a><br> 
+
+<!--이메일 전송-->
+    <a href="mailto:wjddnd877@naver.com">Send email</a><br> 
+
+<!--버튼-->    
+    <h3>버튼</h3>
+    <!--홈페이지이동-->
+    <button onclick="document.location='https://www.naver.com'">Naver</button>
+    <!--알림창-->
+    <button onclick="alert('작동함')">작동테스트</button>
+    
+<!--문서 내 링크기능-->
+    
+    <!--이동 위치 설정시 목표 위치명 앞에 #-->
+    <a href="#Top">Top</a>
+
+    <!--버튼화-->
+    <a href="#Top">
+        <button style="background-color: aqua;">Top</button>
+    </a>
+    <br>
+    
+<!--이미지 매핑-->
+<h2>이미지 매핑</h2>
+
+    <!--#workmap=사용할 좌표-->
+    <img src="https://www.w3schools.com/html/workplace.jpg" alt="Workplace" 
+    usemap="#workmap" width="400" height="379">
+    
+    <!--이미지맵-->>
+    <map name="workmap">
+    
+    <!--구역설정-->
+    <area shape="rect" coords="34,44,270,350" alt="Computer" href="https://www.w3schools.com/html/computer.htm">
+    <area shape="rect" coords="290,172,333,250" alt="Phone" href="https://www.w3schools.com/html/phone.htm">
+    <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="https://www.w3schools.com/html/coffee.htm">
+    </map><hr>
+
+<!--표만들기-->
+<h2>표 만들기</h2>
+    
+    <!--기본 표-->
+    <p>기본 표</p>
+    <table border="1">
+        <tr>
+            <td>1</td><td>2</td><td>3</td>
+        </tr>
+        <tr>
+            <td>4</td><td>5</td><td>6</td>
+        </tr>
+    </table><hr>
+    
+    <!--행 합치기-->
+    <p>행 합치기</p>
+    <table border="1">
+        <tr>
+            <td colspan="2" style="background-color: blueviolet; color: aliceblue; text-align: center;">1</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td><td>5</td><td>6</td>
+        </tr>
+    </table><hr>
+    
+    <!--열 합치기-->
+    <p>열 합치기</p>
+    <table border="1">
+        <tr>
+            <td rowspan="2" style="background-color: brown; color:aliceblue">1</td>
+            <td>2</td><td>3</td>
+        </tr>
+        <tr>
+            <td>5</td><td>6</td>
+        </tr>
+    </table><hr>
+    
+    <!--복합-->
+    <p>복합</p>
+    <table border="1">
+        <tr>
+            <th colspan="3" style="background-color:darkgreen; color:aliceblue">1</th>
+        </tr>
+        <tr>
+            <td>1</td><td>2</td><td>3</td>
+        </tr>
+        <tr>
+            <th colspan="2" rowspan="2" style="background-color: darkblue; color: aliceblue;">1</th>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>1</td><td>2</td><td>3</td>
+        </tr>
+    </table><hr>
+
+    <!--표 크기 조정-->
+    <p>표 크기조절</p>
+    <table border="1" style="width: 50%;">
+        <tr style="text-align: center;">
+            <td>1</td><td>2</td><td>3</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td>4</td><td>5</td><td>6</td>
+        </tr>
+    </table><hr>
+    
+    <!--표 단일줄 크기 조절-->
+    <p>단일줄 크기조절</p>
+    <table border="1" style="text-align: center; width:50%">
+        <tr style="height: 55px;">
+            <td>1</td><td>2</td><td>3</td>
+        </tr>
+        <tr>
+            <td>4</td><td>5</td><td>6</td>
+        </tr>
+    </table><hr>
+
+    <!--표 콜그룹-->
+    <p>콜그룹</p>
+    <table border="1" style="width: 50%; text-align: center;">
+        <colgroup>
+           <col style="background-color: aquamarine;">
+           <col span="2" style="background-color:burlywood;">
+        </colgroup>
+        <tr>
+            <td>1</td><td>2</td><td>3</td>
+        </tr>
+        <tr>
+            <td>4</td><td>5</td><td>6</td>
+        </tr>
+    </table><hr>
+
+<!--리스트-->
+
+    <!--비순차적 리스트-->
+    <h2>비순차 리스트</h2>
+    <ui>
+        <li>가</li>
+        <li>나</li>
+        <li>다</li>
+    </ui>
+    <!--순차적 리스트-->
+    <h2>순차 리스트</h2>
+    <ol>
+        <li>가</li>
+        <li>나</li>
+        <li>다</li>
+    </ol>
+    <!--설명형 리스트-->
+    <h2>설명 리스트</h2>
+    <dl>
+        <dt>테스트</dt>
+        <dd>테스트 항목입니다.</dd>
+    </dl>
+    <!--복합 리스트-->
+    <h2>복합 리스트</h2>
+    <ul>
+        <li>술</li>
+        <li>담배</li>
+            <ul>
+                <li>전자담배</li>
+                <li>궐련</li>
+            </ul>
+        </li>
+        <li>음료</li>
+    </ul>
+
+<!--블록 및 인라인 태그의 차이-->
+<h2>블록레벨,인라인 태그의 차이</h2>    
+    <!--블록형 태그는 길이에 상관없이 웹브라우저의 한 줄 전체를 차지함.-->
+    <h3>블록레벨 태그</h3>
+    <p>1</p><p>1</p>
+    <!--인라인형 태그는 정확히 작성된 양 만큼만 공간을 차지함-->
+    <h3>인라인 태그</h3>
+    <span>1</span><span>1</span>
+    <h3>관리영역 차이</h3>
+    <h4>블록레벨 태그</h4>
+    <p style="background-color: aliceblue;">1</p>
+    <h4>인라인 태그</h4>
+    <!--span태그는 p태그 등 블록레벨 태그의 문장 일부에 효과를 주기 위해 주로 사용됨-->
+    <span style="background-color: aliceblue;">1</span>
+
+    
+    
+    
+    
+<div style="background-color: brown;color: azure;">
+    <h2>div태그</h2>
+    <p>
+        블록레벨 태그를 사용 할 시 창 크기를 조절하여도 자동으로 창 크기에 맞춰 문자 배열이 재조절된다. 
+        그렇기 때문에, 아무리 길게 작성하여도 자동적으로 창에 맞게 배열이 조절되는 것이 아닌가 싶다.
+        아직은 정확히 알 수 없지만, 일부러 긴 문장을 사용하여 테스트 한다. div 태그는 <span style="text-decoration: underline;">차일드 영역에 있는 모든
+        효과</span>를 낼 수 있다.  
+    </p>
+</div>
+    <hr>
+    
+<!-- 특수문자는 &로 입력 할 수 있다.-->
+    <h3>특수문자</h3>
+    <p>&lt; &gt; &hearts; &heartsuit;</p>
+    <hr>
+
+<!--인라인프레임 문서 내 다른 사이트를 보여줄때 사용-->
+    <h3>인라인 프레임 테스트</h3>
+    <iframe 
+    src="https://www.daum.net" title="아이프레임 테스트" width="1250" height="150" border="none" name="MZ">
+    </iframe>
+    <p><a href="https://www.minuszerodegrees.net/" target="MZ">Site Change</a></p>
+    <p><a href="https://www.daum.net" target="MZ">Reset Change</a></p>
+    <hr>
+    
+    
+<!--폼태그-->
+        <h2>인풋 테스트</h2>
+        
+        <!--필드셋으로 감싸기 필드셋은 구역설정 같은 것.-->
+<fieldset style="border-color:aliceblue; border: width 1px;">
+    <legend style="font-size: 30px;">버튼장난들</legend>
+    <form>
+            <!--작성 후 리셋-->
+            <input type="text"> 아무거나 써보세요<br>
+            <input type="reset"> 또 써보세요 <br>
+    </form>
+        <hr>
+    <form>
+            <!--라디오 버튼. 사용시 name 태그가 체크하고자 하는 항목과 일치해야함.-->
+            <h2>라디오</h2>
+            <input type="radio" id="바보다" name="no" value="나는 바보다">
+            <label for="바보다">나는 바보다.</label><br>
+            <input type="radio" id="안바보다" name="no" value="나는 바보가 아니다">
+            <label for="안바보다">나는 바보가 아니다.</label><br>
+    </form> 
+        <hr>
+        <!--라디오 버튼 및 기타등등에서 id는 절대 중복된 단어를 사용해선 안된다.-->
+        <h2>체크박스</h2>
+    <form>    
+        <input type="checkbox" id="1" name="a" value="1">
+        <label for="1">1</label><br>
+        <input type="checkbox" id="2" name="a" value="1">
+        <label for="1">2</label><br>
+        <input type="checkbox" id="3" name="a" value="1">
+        <label for="1">3</label><br>
+        <input type="reset">
+    </form>
+    <hr>
+<!--action기능. action기능은 보통 데이터 수집이 목적이다. method는 데이터 수집의 방식을 의미한다.
+    get방식 post 방식으로 나뉘는데, get의 경우 데이터값이 링크에 노출이 되고, 4KB 미만의 데이터만
+    전송이 가능하나, post방식은 크게 제약이 없어 대부분의 상황에선 post방식이 적합하다.-->
+    
+    <!--유효성검사-->
+    <h2>유효성검사</h2><br>
+    <h3>정상적인놈</h3>
+    <form>
+        <label>이메일 형식만 적어주세요.</label> 
+        <input type="email" placeholder="example@example.aaa"><br>
+        <input type="submit">
+        <input type="reset"><br>
+    </form>
+    <br>
+    <!--novalidate 옵션 사용시 인풋 타입이 이메일이어도 형식확인절차를 무시함.-->
+    <h3>멍청이</h3>
+    <form novalidate>
+        <label>이메일 형식만 적어주든가말든가.</label>
+        <input type="email"placeholder="afasdfasdf"><br>
+        <input type="submit">
+        <input type="reset"><br>
+        <hr>
+    </form>
+        <!--텍스트박스.인풋은  value를 사용하지 않음.-->
+    <form>
+        <h2>텍스트박스</h2>
+            <textarea name="message" rows="10" cols="30">아무거나 써보세요.</textarea><br>
+            <input type="reset">
+        <hr>
+        <h3>목록리스트</h3>
+        당신은 바보입니까?
+        <input list="answer" name="answer">
+        <datalist id="answer">
+            <option value="네">
+            <option value="아니오">
+            <option value="아닐거에요">    
+        </datalist>
+    </form>
+    <hr>
+    <form>
+        <h3>사용 가능/ 불가능 버튼</h3>
+            <input type="button" value="사용 가능한 버튼"> 사용 가능
+            <input type="button" value="못 쓰는 버튼" disabled> 비활성화
+    </form>
+            <hr>
+    <form>
+        <h3>텍스트박스 옵션</h3>
+            
+        <input type="text" value="20글자가 최대에요." maxlength="20"> 최대 글자수
+            <br>
+            <br>
+            <><input type="text" value ="이건 감히 수정 못 할걸요?" readonly> 읽기전용
+            <br>
+            <br>
+    </form>
+    <form>
+        <input type="text" required placeholder="뭐라도 쳐야함">뭐라도 적어야 전송 할 수 있어요
+        <input type="submit">
+    </form>
+    <br>
+    <!--레이블 기능은 id,name 등으로 지정된 인풋 타입에 바로 엑세스 가능하게해줌-->
+    <h3>레이블 기능</h3>
+    <form>
+        <label for="remote">여길 눌러도 바로 넘어갈 수 있어요</label><br><br><br>
+        <input type="text" id="remote" name="remote">
+    </form>  
+
+</fieldset>
+
+
+
+</body>
+</html>

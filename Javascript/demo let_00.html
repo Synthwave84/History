@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수의 초기값 : undefined</h1>
+    <p id="demo"></p>
+    
+    <script>
+        let carName;
+        carName = "Volvo";
+        document.getElementById("demo").innerHTML = carName;
+    </script>
+    <p id="demo1"></p>
+    <script>
+//  변수를 선언(정의) 하고, 값을 대입하지 않으면, undefined 이란 값을 출력한다
+        let carName2;
+        // carName2 = "Volvo";
+        document.getElementById("demo1").innerHTML = carName2; 
+    </script>
+
+    <h1>let 에서 문자와 숫자 인식 방식</h1>
+    <p>수식은 "5"+2 +3</p> 
+    <p id="demo2"></p>
+    <script>
+        // 문자열(spring) 형변환 발생 타입이String (문자열)로 자동 일치된다  [****매우 중요****]. 
+        let x = "5" +2 +3; // 1) "5" + "2" +2 => "52" + 3 => "52"+"3" => "523" 
+        document.getElementById("demo2").innerHTML = x;
+    </script>
+    
+    <p>수식은 2+3 +"5"</p> 
+    <p id="demo3"></p>
+    <script>
+        // 문자열(spring) 형변환 발생하지 않음.. 
+        // 계산은 좌측에서 우측으로 계산이 진행되기 때문에 '데이터일치'가 발생하지 않았다.
+        let y = 2+3 + "5"; // 2+3+"5"=> 5 +"5" = 55
+        document.getElementById("demo3").innerHTML = y;
+    </script>

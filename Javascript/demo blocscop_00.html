@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수선언 Block Scope</h1>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    
+    <script>
+        // 일반적인 언어는 let과 같은 방식의 작동을 함.
+        { 
+        //   let x = 10 ; // let 변수선언은 블록 범위를 벗어나 사용 불가능. 때문에 에러 발생.
+            var y = 10 ; // var 변수선언은 블록 범위를 벗어나도 사용가능.
+        }
+       // document.getElementById("demo").innerHTML = x; => 에러 발생.
+        document.getElementById("demo").innerHTML = y;
+    </script>
+    <script>
+        var x = 1000 ;
+        { 
+            var x = 10 ; // {} 무시함.
+        }    
+        // var 명령어는 변수재선언이 가능하여 아래의 값인 10을 출력한다
+        // 심지어 Block Scope{}로 제한을 두어도 작동한다. 사실상 무의미하다.
+        document.getElementById("demo1").innerHTML = x;
+    </script>
+    <script>
+        let z = 1000 ;
+        { 
+            let z = 10 ; // 중괄호 내 영역에서만 z 값이 10으로 작동하여 출력값은 맨 위의 1000이 된다.
+        }    
+        // 일반 프로그래밍 언어에서는 let처럼 동작하는게 정상이기 때문에 
+        // 변수 설정시 가급적 let 키워드를 사용토록 한다.
+        document.getElementById("demo2").innerHTML = z;
+    </script>
+</body>
+</html>

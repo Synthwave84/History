@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 변수와 대입연산자</h1>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <script>
+        // 변수
+        // 변수명의 경우 필수적으로 알파벳, $사인, _ 언더바 등으로 시작해야한다.
+        // 3개의 기억장소 생성, 기억장소를 변수라고 칭한다.
+        // 또한 대 소문자를 구분한다. 자바스크립트의 코드는 소문자여야한다. 
+        // ex) let=ok LET=wrong
+        let x, y, z; 
+        x = 5;
+        y = 6;
+        /* 대입연산자 = 를 기준으로 우측의 코드를 값으로 해석하고, 좌측의 기억장소에 
+        우측의 값을 대입한다.*/ 
+        z = x + y;
+        document.getElementById("demo").innerHTML = z;
+        /* 자바스크립트 코드는 엔터나 띄어쓰기를 인식하지 않아 세미콜론으로 구분만 해주면
+        길게 작성해도 문제 없다. */
+        let a, b, c; a=5; b=3; c=a+b;
+        document.getElementById("demo1").innerHTML = c;
+        // 즉 위 아래 모두 형태는 다르나 동일한 기능을 한다.
+
+        // 다른 방식
+        let person;
+        person ="정웅";
+        // 두 코드는 동일한 기능을 한다.
+        let person2 ="김정웅"; 
+        // 대소문자 구분의 예시
+        // 대소문자의 구분을 하기 때문에, 비슷한 변수명은 절대적으로 피해야 한다.
+        // 현재 lastname 변수명과 lastName 변수명이 다른것을 합치하여 김정웅 을 표현한다.
+        let lastname, lastName;
+        lastname= "김";
+        lastName= "정웅";
+        document.getElementById("demo2").innerHTML= lastname + lastName;
+        /* 직접 var, let, const 등의 키워드가 없이도 동작을 하긴 하나,
+            가급적이면 변수지정 키워드를 사용해야 한다.*/
+        e=3;
+        f=4;
+        g=e+f;
+        document.getElementById("demo3").innerHTML = g;
+        </script>
+        <h1>var키워드를 이용한 변수선언사용</h1>
+        <p id="demo4"></p>
+        <script>
+            // var 키워드는 구버전에서 변수를 정의할떄 사용한다. 현재 지원은 하나, 권장하지않는다.
+            var a1,b1,c1;
+            var a1=3;
+            var b1=4;
+            var c1=a1+b1;
+            document.getElementById("demo4").innerHTML=c1;
+        </script>
+        <h1>let 키워드를 이용한 변수선언사용</h1>
+        <p id="demo5"></p>
+        <script>
+            // var 키워드와 비슷한 기능을 한다.
+            let a2,b2,c2;
+            a2=5;
+            b2=7;
+            c2=a2+b2;
+            document.getElementById("demo5").innerHTML=c2;
+        </script>
+        <h1>const 키워드를 이용한 상수선언 사용</h1>
+        <p id="demo6"></p>
+        <script>
+            /* const 키워드는 절대적인 값에 이름을 부여하는데 쓰인다. 
+            즉 하단에 있는 주석처리된 b3=30은 상단의 b3=11로 선언이 되어있기때문에,
+            코드에러를 출력한다. 
+            즉 const로 선언된 상수는 값을 바꿀 수 없다. */
+            // 11 이라는 값에 b3라는 이름을 대입했다고 보면 된다.
+            const a3=9;
+            const b3=11;
+            //b3=30;
+            const c3=a3+b3;
+            document.getElementById("demo6").innerHTML=c3;
+
+            /*  - var, 구버젼 권장되지 아니함. 
+                - let 변수 사용시 주로 활용토록 함.
+                - const 상수 사용시 활용토록함. (불변의 값)*/
+        </script>
+</body>
+</html>

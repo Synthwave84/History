@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="demo"></p>
+    <script>
+        // https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures
+        // 상수선언. 값을 변경 할 수 없다.
+        // const 상수선언문 작성시 변수는 대문자로 써 주는것이 관례이다.
+        // const 는 아래처럼 2줄로 작성해선 안된다
+            /* 
+            ex) const PRICE1; 
+            PRICE1=5; 
+            */      
+        const PRICE1 = 5;
+        const PRICE2 = 6;
+        // total의 값은 상단의 PRICE1, PRICE2의 값에 따라 변화해야 하므로 변수로 지정한다.
+        let total = PRICE1 + PRICE2;
+        document.getElementById("demo").innerHTML ="총 합은:"+total;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>비교 연산자.</h1>
+    <p id="comp"></p>
+    <p id="comp1"></p>
+    <p id="comp2"></p>
+    <p id="comp3"></p>
+    <p id="comp4"></p>
+    <p id="comp5"></p>
+    <p id="comp6"></p>
+    <p id="comp7"></p>
+    <p id="comp8"></p>
+
+    <script>
+        {
+            let x=5;
+            document.getElementById("comp").innerHTML =
+            " == ( x는 8인가요? ) : " + (x == 8); 
+            // false
+            document.getElementById("comp1").innerHTML =
+            " == ( x는 5 인가요?) : "+ (x == 5); 
+            //true
+            document.getElementById("comp2").innerHTML =
+            " x==문자 5 ( x는 5 인가요?) : "+ (x == "5"); 
+            //true = "5" 를 숫자 5 로 자동 변환
+            document.getElementById("comp3").innerHTML =
+            " === ( x는 5 이며 데이터 타입도 동일한가요? ?) : "+ (x === "5"); 
+            // false
+            document.getElementById("comp4").innerHTML =
+            " != ( x는 8과 다른가요?) : " + (x !=8); 
+            // true
+            document.getElementById("comp5").innerHTML =
+            " != ( x는 문자 데이터 5와 다른가요?) : " + (x !="5"); 
+            // false = "5" 를 숫자 5로 자동변환.
+            document.getElementById("comp6").innerHTML =
+            " !== ( x는 5 이며 데이터 타입도 다른가요? ) : "+ (x !== "5"); 
+            // true = 숫자 데이터는 5 이나, 데이터 타입이 다르므로 true 를 출력한다.
+            document.getElementById("comp7").innerHTML =
+            " >= ( x는 8보다 크거나 8 인가요? ) : "+ (x >= "8");
+            // false 
+            document.getElementById("comp8").innerHTML =
+            " <= ( x는 8 보다 작거나 8 인가요? ) : "+ (x <= "8"); 
+            // true = x는 8이 아니지만 8보다는 작은것이 맞으므로 true 를 출력한다.
+        }
+    </script>
+</body>
+</html>

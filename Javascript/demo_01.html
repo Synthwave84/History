@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 자바스크립트 코드삽입
+        // 함수는 method와 같다. 괄호 표기가 필수이다.펑션의 기본 구문 function A(){;}
+        function myFunction() {
+    document.getElementById("demo").innerHTML = "Paragraph changed.";
+}
+    </script>
+</head>
+<body>
+    <!--자바스크립트는 script 태그를 이용해 작성 할 수 있으며,
+    태그의 id지정보다 아래에 있어야 세팅이 가능하므로, 꼭 순서를 지킬 수 있도록 한다.-->
+    <p id="mat1">Test No.1</p>
+    <script>
+    // 자바스크립트를 설정하는 스크립트 태그 내에서는 슬래시 두개로 주석 처리를 한다. 
+    // 또한 기본 구조를 숙지 할 필요가 있다. 
+    // method 의 경우 () 가 사용되며, property의 경우에는 아무것도 사용되지 않고,
+    // 이후 세미콜론으로 꼭 종료되었다는 것을 알려 줄 필요가 있다
+        document.getElementById('mat1').innerHTML='Changed';
+    </script>
+    <h2>Demo JavaScript in Head</h2>
+
+    <p id="demo">A Paragraph.</p>
+    
+    <button type="button" onclick="myFunction()">Try it</button>
+</body>
+</html>

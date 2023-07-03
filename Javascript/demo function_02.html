@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function hello(name)
+        {
+        // writeln은 웹브라우저 화면에 출력하는 기능을 가지고 있음.
+        document.writeln(name + "님 안녕하세요");
+        }
+    </script>
+</head>
+<body>
+    <h1>함수정의 : 매개변수와 리턴 값</h1>
+    <script>
+        hello("홍길동");
+    </script>
+    <br>
+    <script>
+        hello("손흥민");
+    </script>
+    <button onclick="hello('이순신')">이순신</button>
+</body>
+</html>

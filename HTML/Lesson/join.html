@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+    div
+    {
+        border-style: solid; border-width: 1px;
+    }
+    table
+    {
+        border-collapse: collapse; width:100%;
+        margin:auto;
+        padding:auto;
+    }
+    th
+    {
+        background-color: darkgray; 
+        color: white; 
+        font-size: 15px; 
+        text-align: center;
+        padding: 10px 10px 10px 10px;
+    }
+    td
+    {
+        font-size: 15px;
+    }
+    input
+    {
+        height:10px;
+        width: 120px;
+    }
+    input:hover
+    {
+        background-color: aquamarine;
+    }
+  
+    .inside
+    {
+        font-size: 10px;
+    }
+</style>
+
+</head>
+<body>
+<div><p class="inside">기본정보 </p>
+    <table border="1">
+        <colgroup>
+            <col span="1" style="background-color: aqua;"
+        </colgroup>
+        <tr>
+            <th>이름</th><td><input type="text"><p class="inside">이름을 적어주세요</p></td>
+        </tr>
+        <tr>
+            <th>아이디</th><td><input type="text"><p class="inside">6~16자 영문(대소문자),숫자 및 특수문자 사용 가능합니다.<br>
+            3자리 연속 또는 같은 문자,아이디는 사용 하실 수 없습니다.</p></td>
+        </tr>
+        <tr>
+            <th>비밀번호</th><td><input type="password"></td>
+        </tr>
+        <tr>
+            <th>비밀번호 확인</th><td><input type="password"></td>
+        </tr>
+        <tr>
+            <th>생년월일,성별</th><td><input type="date"><p class="inside">
+                <input type="radio">남
+                <input type="radio">여</p>
+            </td>
+        </tr>
+        <tr>
+            <th>이메일</th><td>
+            <form action="#">
+                <input type="text">@<input list="mailad">
+                <datalist id="mailad" name="mailad">
+                    <option value="naver.com"></option>
+                    <option value="gmail.com"></option>
+                    <option value="daum.net"></option>
+                </datalist>
+                <input type="submit" style="height: auto;font-size: 10px;"> 
+                <p class="inside"><input type="text"><input type="submit" style="height: auto;font-size: 10px;"> 인증코드 확인</p>
+            </form>
+            </td>
+        </tr>
+        <tr>
+            <th>연락처</th><td><input type="tel"></td>
+        </tr>
+        <tr>
+            <th>우편번호</th><td><input type="text"></td>
+        </tr>
+        <tr>
+            <th>주소</th><td><input type="text"></td>
+        </tr>
+        <tr>
+            <th>정보수신 여부</th><td><p class="inside">서비스 및 이벤트 소식을
+                <input type="checkbox">email로 수신하겠습니다<br>
+            <input type="checkbox">SMS로 수신하겠습니다.</p></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

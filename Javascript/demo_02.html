@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 자바스크립트 코드삽입
+        // 함수는 method와 같다. 괄호 표기가 필수이다.펑션의 기본 구문 function A(){;}
+        function myFunction() {
+    document.getElementById("demo").innerHTML = "Paragraph changed.";
+}
+    </script>
+</head>
+<body>
+    <script>
+        // 자바스크립트 코드삽입
+        // 함수는 method와 같다. 괄호 표기가 필수이다.펑션의 기본 구문 function A(){;}
+        // 자바스크립트 구문이 함수로 작성되어있으면, <head> ,<body>태그
+        // 의 어떤 위치에 존재해도 상관 없다.
+        function myFunction() 
+        {
+        document.getElementById("demo").
+        innerHTML = "Paragraph changed.";
+        }
+    </script>
+    <button type="button" onclick="myFunction()">Try it</button>
+    <p id="demo">A Paragraph.</p>
+    
+</body>
+</html>

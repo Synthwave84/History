@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.relative 
+{
+  position: relative;
+  width: 400px;
+  height: 200px;
+  border: 3px solid #73AD21;
+} 
+
+div.absolute 
+{
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 200px;
+  height: 100px;
+  border: 3px solid #73AD21;
+}
+/*부모 div태그가 position: relative; 이면, 자식 div 태그의
+position:absolute의 top or left 속성 그리고 부모의 크기에 결정된다.*/
+/*/*부모 div태그가 position: STATIC; 이면, 자식 div 태그의
+position:absolute의 top or left 속성 그리고 body의 크기에 결정된다.*/
+</style>
+</head>                                                
+<body>
+
+<h2>position: absolute;</h2>
+
+<p>An element with position: absolute; is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed):</p>
+
+<div class="relative">This div element has position: relative;
+  <div class="absolute">This div element has position: absolute;</div>
+</div>
+
+</body>
+</html>

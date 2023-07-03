@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수선언 Block Scope</h1>
+    <p id="demo1"></p>
+    <script>
+        { 
+            var y = 10 ; // var 변수선언은 블록 범위를 벗어나도 사용가능.
+        }
+        
+        document.getElementById("demo1").innerHTML = y;
+
+    </script>
+</body>
+</html>

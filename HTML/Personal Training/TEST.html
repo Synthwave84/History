@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+        }
+        header 
+        {
+            background-color: cadetblue; 
+            padding: 15px 0px 10px 15px;
+            text-align: center;
+        }
+        .container 
+        {
+            display: flex;
+        }
+
+        .sidebar 
+        {
+            flex-basis: 20%;
+            background-color: aqua;
+            min-width: 100px;
+            padding-right:20px;
+            flex-grow: 1;
+        
+            
+        }
+        .content 
+        {
+            flex-basis: 80%;
+            padding: 20px;
+            max-width: 100px;
+            word-break: break-all;
+        }
+        ul
+        {
+            position:sticky;
+            left:-30px;
+            top:10px;
+        }
+
+      </style>
+</head>
+<body>
+    <header>Headliner</header>    
+    <div class="container">
+        <div class="sidebar">
+          <ul style="list-style-type: none;">
+            <li><a href="#">링크 1</a></li>
+            <hr style="margin-left:-30px">
+            <li><a href="#">링크 2</a></li>
+            <li><a href="#">링크 3</a></li>
+            <li><a href="#">링크 4</a></li>
+            
+    </ul>
+
+        </div>
+            <div class="content">
+            <h1>제목</h1>
+            <p></p>
+            </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>자바스크립트로 멀 할 수 있는가</h2>
+    <p id="demo">자바스크립트로 태그의 내용 변경</p>
+    <button onclick="document.
+        getElementById('demo').innerHTML='Hello Javascript';">클릭!</button>
+        <br>
+    <button onclick="document.getElementById('myimg').
+                    src='img/Smile.PNG';">Smile</button>
+    <img id="myimg" src="Img/Smile.PNG" 
+        height="200px" width="250px">
+    <button onclick="document.getElementById('myimg').
+                    src='img/No smile.PNG';">No Smile</button>
+    <hr>
+    <h2>자바스크립트로 태그의 스타일을 변경</h2>
+    <p id="tchange">풀스택 자바 웹 개발자 과정</p>
+    <button onclick=
+    "document.getElementById('tchange').style.fontSize='50px';">
+    Larger</button>
+    <button onclick=
+    "document.getElementById('tchange').style.fontSize='18px';">
+    Smaller</button>
+    <hr>
+    <p id="erase">풀스택 자바 웹 개발자 과정</p>
+    <button onclick=
+    "document.getElementById('erase').style.display='none';">
+    eraser</button>
+    <button onclick=
+    "document.getElementById('erase').style.display='block';">
+    Reset</button>
+    <hr>
+    
+</body>
+</html>

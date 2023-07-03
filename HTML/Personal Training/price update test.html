@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button1">10000원</button>
+    <button id="button2">20000원</button>
+<p id="price"></p>
+<script>
+const DEFPRICE=1500;
+let price = 10000; // 초기 가격을 10000으로 설정
+
+const finalprice = price+ DEFPRICE;
+document.getElementById("button1").addEventListener("click", function() {
+  price = 10000; // 가격을 10000으로 변경
+  updatePrice();
+});
+
+document.getElementById("button2").addEventListener("click", function() {
+  price = 20000; // 가격을 20000으로 변경
+  updatePrice();
+});
+
+function updatePrice() {
+    let finalprice = price + DEFPRICE;
+    document.getElementById("price").textContent = "가격: " + finalprice + "원";
+}
+</script>
+</body>
+</html>
+</body>
+</html>
