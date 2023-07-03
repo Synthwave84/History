@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function selectInfo(obj)
+        {
+            // value는 일종의 포인터 값 같은 것이라고 보면 된다.
+            if(obj.value == 99)
+            {
+                alert("다른 언어를 선택해 주세요");
+            }
+            else
+            { 
+            alert(obj.value);
+            }
+            // if 오브젝트(ths)의 value가 99면 다른 언어를 선택하세요 팝업
+            // else 그렇지 않으면 그냥 값 출력.
+        }
+    </script>
+</head>
+<body>
+    <h1>이벤트 = onChange</h1>
+    <!-- onChange는 다른 값으로 변경 될 때만 동작하는 이벤트이다. -->
+    <p>현재 진행 되고 있는 프로그래밍 언어는?</p>
+    <!-- selectInfo안의 this는 목록의 옵션들을 의미한다. -->
+    <select onchange="selectInfo(this)">
+        <option value="99">언어를 선택 하세요.</option>
+        <!-- value값이 지정되어 있지 않으면, 내부의 값이 value 값으로 동작. -->
+        <option>HTML/CSS3</option>
+        <option>JavaScript</option>
+        <option>Java</option>
+        <option>Oracle</option>
+        <option>Spring</option>
+    </select>
+</body>
+</html>

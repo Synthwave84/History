@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getTime() 
+        {
+            document.getElementById('time_2').innerHTML = Date();
+        }
+    </script>
+</head>
+<body>
+    <h1>이벤트</h1>
+<hr>
+    <h2>시간 읽어오기 버튼</h2>
+    <p id="time"></p>
+    <p id="time_2"></p>
+    <!-- 자바 스크립트 호출을 위한 구문 -->
+    <!-- 큰따옴표로 구성이 되어있으므로 메서드 안은 작은 따옴표로 -->
+    <button type="button" onclick="document.getElementById('time').innerHTML = Date()"> 시간읽어오기</button>
+    <!-- 상단의 동일한 기능을 메서드 함수로 구현 -->
+    <button type="button" onclick="getTime()">시간 읽어오기 2</button>
+    <!-- this = 현재 버튼을 의미한다.  즉 값이 현재 버튼에 출력되게 된다.-->
+    <button type="button" onclick="this.innerHTML = Date()"> 시간읽어오기</button>
+</body>
+</html>
