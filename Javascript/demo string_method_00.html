@@ -104,8 +104,13 @@
                 {
                 // basetext를 id가 rep 인 곳에서 가져온다.= 안녕하세요 저는 홍길동 이에요
                 let basetext= document.getElementById("rep").innerHTML;
-                // replace는 대 소문자를 구분하므로, 대소문자가 일치해야한다.
-                // rep 에서 가져온 텍스트 중 "홍길동" 을 "김정웅" 으로 치환한다.
+            /*  replace는 대 소문자를 구분하므로, 대소문자가 일치해야한다.
+                rep 에서 가져온 텍스트 중 "홍길동" 을 "김정웅" 으로 치환한다.
+                대소문자를 구분하지 않기 위해선 /i를 입력하면 된다. 
+                ex->ABCD -> qwer 로 바꾸고 싶을 때
+                text,replace(abcd,qwer)로 하게 되면 대소문자 구분 때문에 동작하지 아니하나,
+                text.replace(abcd/i,qwer)로 하게 되면 대소문자 구분이 없이 바꿀 수 있다.
+            */
                 document.getElementById("replace").innerHTML = basetext.replace("홍길동", "김정웅");
                 }
             }
