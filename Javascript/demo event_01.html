@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div#div1
+        {
+            width : 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
     <script>
         function selectInfo(obj)
         {
@@ -21,7 +29,7 @@
         }
     </script>
 </head>
-<body>
+<body onload="alert('문서 로딩시')" onunload="alert('문서 닫기')">
     <h1>이벤트 = onChange</h1>
     <!-- onChange는 다른 값으로 변경 될 때만 동작하는 이벤트이다. -->
     <p>현재 진행 되고 있는 프로그래밍 언어는?</p>
@@ -35,5 +43,13 @@
         <option>Oracle</option>
         <option>Spring</option>
     </select>
+    <br>
+    <p>작성시 마다 이벤트 발생.</p>
+    <input type="test" onchange="alert('이벤트 발생')">
+    <br>
+    <p>박스를 벗어날 때 마다 이벤트 발생</p>
+    <div id="div1" onmouseover="alert('div태그 위에')" onmouseout="alert('div 태그의 영역을 벗어났을 때')"> 
+    </div>
+
 </body>
 </html>

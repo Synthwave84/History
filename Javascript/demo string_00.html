@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>문자열 길이 : length</h1>
+    <p id="length"></p>
+    <script>
+        {
+            // text 변수에 저장된 데이터 타입에 따라지원하는 명령어가 각각 달라진다.
+            /*
+                객체는 명령어로 속성과 메소드를 제공한다.
+                let text=100; <- number 객체 number 숫자 데이터타입 변수가 되어 관련된 명령어로 변경된다..
+                let text= true; <- boolean 객체 boolean 불리언 데이터타입 변수가 되어 관련된 명령어로 변경된다.
+                let text= "true" <- string 객체 string 스트링 데이터타입 변수가 되어 관련된 명령어로 변경된다.
+            */
+            let text = "0123456789"; //string 타입 데이터.
+            let length = text.length; // .length = 스트링의 문자길이를 재어준다. 즉 text("0~9")의 문자총 갯수를 세어준다.
+            // 다시 한번 강조하지만, 보라색 = method , 파란색 = 속성 
+            // method 는 꼭 맨 뒤에 괄호가 붙어야하고, 속성의 경우엔 괄호가 붙지 아니한다.
+            // method 는 보통 기능을 사용하는데 쓰고, 속성은 값을 나타낼때 쓰인다.
+            document.getElementById("length").innerHTML = length;
+        }
+    </script>
+<hr>
+    <h2>동적 글자 세기</h2>
+    <p id="length_1"></p>
+    <input type="text" id="userid">
+    <button type="button" onclick="check_length();">아이디 길이 확인.</button>
+    <script>
+        function check_length()
+        {
+            // userid를 input태그의 id="userid"에서 가져온다.
+            let userid = document.getElementById("userid"); // =<input type="text" id="userid">
+            // 변환된 userid의 값 중 길이를 잰다.
+            document.getElementById("length_1").innerHTML = userid.value.length;
+        }
+    </script>
+<hr>
+    <h2>Escape Sequence(Character)</h2>
+    <p id="esc"></p>
+    <p id="esc_1"></p>
+    <script>
+        /*
+        백슬래쉬(\) 뒤에 문자나 숫자조합이 오는 문자조합을 Escape Sequence 라고 한다.
+        줄 바꿈 문자, 작은따옴표, 역슬래쉬 문자 등등을 표현하기 위한 약속된 규칙이다.
+
+        ex -> let text = "We are the so-called "Vikings" from the north.";
+                이러한 경우에는 "We are the so-called" 까지만 인식이 된다. 
+        */
+        // 1번째 방법 = 따옴표를 다른 종류를 사용한다.
+        let text = "We are the so-called 'Vikings' from the north."
+        document.getElementById("esc").innerHTML = text;
+        // 2번쨰 방법 = 역슬래쉬를 사용한다. 역슬래쉬는 하단처럼 하나의 특수문자 앞에 사용한다.
+        // ex-> 'it's all right' => 'it\'s all right' 
+        let text1 = "We are the so-called \"Vikings\" from the north."
+        // 또한 \\ 두개를 이용할 경우 원화 표시가 가능하다. 
+        document.getElementById("esc_1").innerHTML = text1;
+        // \t = 화살표 , \n = 줄바꿈
+        alert("자바\t스프링\t오라클\n현재는 자바스크립트");
+        // 또한 코드가 긴 경우에 그냥 엔터가 아니라 이어진다는 의미로 \ 를 중간에 입력 할 수 있다.
+        // ex => document.getElementById("esc").innerHTML = \
+        // text; = 일반 엔터와 동일하나, 가독성에 이득을 주는 경우가 있다.가급적이면 꼭 사용하는 것이 좋다.
+        // 동일하게 \ 대신 + 를 사용해도 무방하다.
+    </script>
+</body>
+</html>

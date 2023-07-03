@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>string 메소드</h1>
+<hr>
+    <h2>slice()메소드 사용하기</h2>
+        <p id="total_length"></p>
+        <p id="slice_0"></p>
+        <p id="slice_1"></p>
+        <p id="slice_2"></p>
+    <script>
+    {
+    let text = "123456-12345678"; // 총 15자
+    
+    let total_length = text.length; //length는 메서드가 아니라 속성에 가깝다.
+    document.getElementById("total_length").innerHTML =
+    "문자의 길이를 출력합니다. : " + total_length;
+    // 첫번째 슬라이스는 0이다. 첫번째 문자 +1 을 출력한다.
+    // 두번째 슬라이스는 1 이다 두번째 숫자까지 출력한다..
+    let part = text.slice(7,14); // 7번째 다음 문자부터 출력  
+    document.getElementById("slice_0").innerHTML = 
+    "문자의 8(7+1)번 부터 14번 까지만 출력합니다. :" + part; 
+    
+    let part1 = text.slice(1); // 1번 (+1) 째 문자부터 출력. 
+    document.getElementById("slice_1").innerHTML =
+    "문자의 1번 부터 전부 출력합니다 : " + part1; 
+
+    let part2 = text.slice(-14);
+    document.getElementById("slice_2").innerHTML =
+    // 이 또한 첫번째 문자기 때문에 -14는 -(14+1) = -15번 문자뒤 부터 출력한다 
+    "14번 뒷 문자들을 출력합니다. : " + part2; 
+    }
+    </script>
+<hr>
+<h2>substring() 메소드 사용하기</h2>
+<p id="total_length"></p>
+        <p id="subst_0"></p>
+        <p id="subst_1"></p>
+        <p id="subst_2"></p>
+    <script>
+    {
+    let text = "123456-12345678"; // 총 15자
+    
+    let total_length = text.length; //length는 메서드가 아니라 속성에 가깝다.
+    document.getElementById("total_length").innerHTML =
+    "문자의 길이를 출력합니다. : " + total_length;
+    // substring은 거의 slice와 비슷하다.
+    let part = text.substring(7,14); 
+    document.getElementById("subst_0").innerHTML = 
+    "문자의 8(7+1)번 부터 14번 까지만 출력합니다. :" + part; 
+    
+    let part1 = text.substring(1);
+    document.getElementById("subst_1").innerHTML =
+    "문자의 1번 부터 전부 출력합니다 : " + part1; 
+    // 허나 큰 차이는 substring()메서드는 음수를 지원하지 아니한다.
+    let part2 = text.substring(-12);
+    document.getElementById("subst_2").innerHTML =
+    // 전체 문자가 모두 출력되어 버린다. 왜냐하면 음수를 지원하지 아니하기 때문이다.
+    "12번 뒷 문자들을 출력합니다. : " + part2; 
+    }
+    </script>
+    <hr>
+    <h2>substr() 메소드 사용하기</h2>
+    <p id="total_length"></p>
+            <p id="substr_0"></p>
+            <p id="substr_1"></p>
+            <p id="substr_2"></p>
+        <script>
+        {
+        let text = "123456-12345678"; // 총 15자
+        
+        let total_length = text.length; //length는 메서드가 아니라 속성에 가깝다.
+        document.getElementById("total_length").innerHTML =
+        "문자의 길이를 출력합니다. : " + total_length;
+        // substr은 지정한 문자 뒤에 있는 숫자의 자리까지만 표기한다. 
+        let part = text.substr(7,3); 
+        document.getElementById("substr_0").innerHTML = 
+        "문자의 8(7+1)번 뒤의 3자리까지만 출력합니다. :" + part; 
+        
+        let part1 = text.substr(1);
+        document.getElementById("substr_1").innerHTML =
+        "문자의 1(+1)번 뒤의 문자를 전부 출력합니다. : " + part1; 
+        // substr은 음수를 반대로 적용한다.
+        let part2 = text.substr(-12);
+        document.getElementById("substr_2").innerHTML =
+        // substr() 메서드의 경우 -12개의 문자를 출력한다.
+        "뒤 부터 12개의 문자까지 출력합니다.. : " + part2; 
+        }
+        </script>
+<hr>
+        <h2>text.replace() 사용해보기</h2>
+        <p id="rep"> 안녕하세요 저는 홍길동 이에요</p>
+        <!-- 버튼에 함수를 할당한다. 하단의 스크립트에 함수를 선언 -->
+        <button onclick="replacer()">변경하기</button>
+        <script>
+            {
+                // 함수 replacer()의 작동 원리.
+                function replacer()
+                {
+                // basetext를 id가 rep 인 곳에서 가져온다.= 안녕하세요 저는 홍길동 이에요
+                let basetext= document.getElementById("rep").innerHTML;
+                // replace는 대 소문자를 구분하므로, 대소문자가 일치해야한다.
+                // rep 에서 가져온 텍스트 중 "홍길동" 을 "김정웅" 으로 치환한다.
+                document.getElementById("replace").innerHTML = basetext.replace("홍길동", "김정웅");
+                }
+            }
+        </script>
+<hr>
+        <h2>대문자로 바꾸기</h2>
+</body>
+</html>

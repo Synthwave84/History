@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Type of 키워드로 데이터 타입 확인하기</h1>
+    <p id="type"></p>
+    <p id="type_1"></p>
+    <p id="type_2"></p>
+    <p id="type_3"></p>
+    <p id="type_4"></p>
+    <p id="type_5"></p>
+    <p id="type_6"></p>
+
+    <script>
+        {
+            let v1 = 10;
+            document.getElementById("type").innerHTML = typeof v1; // number
+            let v2 = "홍길동";
+            document.getElementById("type_1").innerHTML = typeof v2; // string
+            let v3 = true;
+            document.getElementById("type_2").innerHTML = typeof v3; // boolean
+            let v4;
+            document.getElementById("type_3").innerHTML = typeof v4; // unidentified
+            let v5 = 100; // 이 라인까진 넘버
+            // v5 = 명령어 숫자 기능에 해당 하는 명령어
+            v5 = "JAVA"; // 이 라인부턴 스트링 (변경되어버림)
+            // v5 = 문자 기능에 해당하는 명령어.
+            // 현재 상황 같이 데이터타입이 다시 바뀌는 경우는 자바 스크립트를 제외하곤 없다고 생각하면 된다.
+            document.getElementById("type_4").innerHTML = typeof v5; // string
+            let v6 = new String("김정웅");
+            // 예상 오브젝트 데이터타입은 메모리주소를 칸단위가 아닌 블록단위로 저장하기 떄문에, 
+            // 스트링 타입에 비해서 메모리 주소를 하나만 참조하면 되니 엑세스 속도가 빠를 것으로 기대.
+            document.getElementById("type_5").innerHTML = typeof v6; // object
+            let v7 = "String"
+            v7 = undefined;
+            // undefined 은 데이터 타입의 종류로도 사용 될 수 있고, 그냥 문자로 사용될 수도 있다.
+            document.getElementById("type_6").innerHTML = v7 + "<br>" + typeof v7; // undefined
+        }
+    </script>
+</body>
+</html>
