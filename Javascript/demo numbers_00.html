@@ -34,7 +34,7 @@
                     // 숫자 뒤에 n을 붙여도 BigInt() 로 동작한다.
                     // ex) 999999999999999999999n;
                     // 또한 BigInt화가 된 숫자는 일반 숫자와는 데이터타입이 달라진다.
-                    // 떄문에, 5n / 2 는 불가능해진다. 데이터타입을 꼭 일치시켜야한다. 답= Number(5) / 2;
+                    // 때문에, 5n / 2 는 불가능해진다. 데이터타입을 꼭 일치시켜야한다. 답= Number(5) / 2;
                     let x = 9999999999999999;
                     let y = BigInt("9999999999999999");
                     document.getElementById("bigint_0").innerHTML = 
@@ -44,5 +44,65 @@
                     "BigInt가 적용된 y의 타입은 무엇인가요? : "+typeof(y);
                 }
             </script>
-</body>
+<hr>
+        <h2>Number() 사용해보기</h2>
+        <p id="date_0"></p>
+        <p id="date_1"></p>
+        <p id="date_2"></p>
+            <script>
+                {
+                    // 1970 -01 -01 = 모든 날짜 계산의 기준점이 되는날짜.
+                    // 모든 시간개념은 1970-01-01 기준으로 돌아간다.
+                    // 날짜 계산시 Nuumber는 시점의 시간을 초 단위로 계산해준다.
+                    let x= new Date("1970-01-01")
+                    let y= new Date("1970-01-02")
+                    let z= new Date("1971-01-02")
+                    document.getElementById("date_0").innerHTML = 
+                    Number(x);
+                    document.getElementById("date_1").innerHTML = 
+                    Number(y);
+                    document.getElementById("date_2").innerHTML = 
+                    Number(z);
+                }
+            </script>
+<hr>
+        <h2>숫자 변환 parseInt(), parsefloat()</h2>
+        <p>parseInt() 미사용</p>
+        <input type="text" id="num_0"> + <input type="text" id="num_1"> =
+        <input type="text" id="result">
+        <br>
+        <button type="button" onclick="add()">더하기</button>
+            <script>
+                // 현재 하단의 식은 입력된 인풋의 타입이 "text" 여서 문자열로 인식하게된다.
+                {
+                    function add()
+                        {
+                        let num1= document.getElementById("num_0").value;
+                        let num2= document.getElementById("num_1").value;
+                        console.log(typeof num1);
+                        console.log(typeof num2);
+                        document.getElementById("result").value =num1+num2;
+                        }
+                }
+            </script>
+<hr>
+            <p>parseInt()사용</p>
+            <input type="text" id="num_2"> + <input type="text" id="num_3"> =
+            <input type="text" id="result_0">
+            <br>
+            <button type="button" onclick="add_0()">더하기</button>
+                <script>
+                    // parseInt()사용시 입력된 "text"데이터타입의 문자를 숫자 데이터 타입으로 변환해준다.
+                    {
+                        function add_0()
+                            {
+                            let num1= document.getElementById("num_2").value;
+                            let num2= document.getElementById("num_3").value;
+                            console.log(typeof num1);
+                            console.log(typeof num2);
+                            document.getElementById("result_0").value =parseInt(num1)+parseInt(num2);
+                            }
+                    }
+                </script>
+    </body>
 </html>
