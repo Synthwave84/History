@@ -6,6 +6,84 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+<h1>Arrays(배열) 사용하기</h1>
+    <h2>Arrays 기본 사용해보기</h2>
+        <p id="arr_0"></p>
+        <p id="arr_1"></p>
+        <p id="arr_2"></p>
+        <p id="arr_3"></p>
+        <p id="arr_4"></p>
+            <script>
+                {
+                    // 배열을 사용할때는 구분을 꼭 [] 대괄호로 하게 된다.
+                    // 각 배열의 요소를 불러오는 데에는 [] 후 불러올 목록의 숫자를 입력하면된다.
+                    // 0번은 1번째 요소를 불러온다 [0] = Volvo
+                    // 배열 내에 값이 존재하지 아니하더라도, 에러가 발생하지 않는다.
+                    const cars = [`Volvo`, `Fiat`, `BMW`]
+                    // cars [0] = Benz << 이럴 경우에는 Volvo의 값이 Benz로 변경된다.
+                    // cars [3] = 지정되어있지 않은 상수이나, 이렇게 추가할 경우 데이터에 추가된다.
+                    document.getElementById("arr_0").innerHTML = 
+                    cars; // 배열의 전체
+                    document.getElementById("arr_1").innerHTML = 
+                    cars[0]; // 배열 첫번째 요소
+                    document.getElementById("arr_2").innerHTML = 
+                    cars[1]; // 배열 두번째 요소
+                    document.getElementById("arr_3").innerHTML = 
+                    cars[2]; // 배열 세번째 요소
+                    // 목록에 존재하지 않기 때문에, undefined로 해석되게된다.
+                    document.getElementById("arr_4").innerHTML = 
+                    cars[3]; 
+                }
+            </script>
+<hr>
+
+    <h2>Arrays 기본 사용해보기2</h2>
+        <p id="arr1_0"></p>
+        <p id="arr1_1"></p>
+        <p id="arr1_2"></p>
+        <p id="arr1_3"></p>
+        <p id="arr1_4"></p>
+            <script>
+                {
+                    // 하단의 방법으로도 구현 할 수 있다.
+                    const cars = [] // 초기값
+                    cars [0] = "Volvo"
+                    cars [1] = "Fiat"
+                    cars [2] = "BMW"
+                    cars [3] =
+                    // 이런 경우엔 초기값이 지정되어있지 않다고 이야기 한다.
+                    document.getElementById("arr1_0").innerHTML = 
+                    cars; // 배열의 전체
+                    document.getElementById("arr1_1").innerHTML = 
+                    cars[0]; // 배열 첫번째 요소
+                    document.getElementById("arr1_2").innerHTML = 
+                    cars[1]; // 배열 두번째 요소
+                    document.getElementById("arr1_3").innerHTML = 
+                    cars[2]; // 배열 세번째 요소
+                    // 이럴경우에는 3번은 해당 항목 내에 있는 모든 요소를 출력하게된다.
+                    document.getElementById("arr1_4").innerHTML = 
+                    cars[3]; 
+                    console.log (typeof cars);
+                }
+            </script>
+<hr>
+    <h2>array의 길이 : length</h2>
+    <p id="arr2_0"></p>
+    <p id="arr2_1"></p>
+    <script>
+        {
+            const fruit = ["Melon","Orange","Apple","Mango"]
+            let arlength = fruit.length;
+            // array에 지정되어있는 목록의 갯수를 출력한다.
+            document.getElementById("arr2_0").innerHTML = 
+            arlength;
+            // 배열의 가장 마지막에 있는 것을 구하기 위해선 length함수를 이용 할 수 있다.
+            // 다시한번 `` 백틱 내에선 달러표시 $ +{}중괄호 + 내부에 들어갈 함수 [] 대괄호
+            document.getElementById("arr2_1").innerHTML = 
+            // 중괄호 내의 fruit=문자열이므로 뒷자리도 문자열로 출력해준다.
+            `배열의 마지막요소의 값 : ${fruit[fruit.length -1]}`; 
+        }
+    </script>
 </body>
 </html>
