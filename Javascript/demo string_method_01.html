@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>String 검색</h1>
+<hr>
+        <h2>IndexOf() 사용해보기</h2>
+        <p id="indexOf"></p>
+        <p id="indexOf_0"></p>
+            <script>
+                {
+                    let text = "Please Locate Where 'Locate' is!";
+                    // 대소문자를 구분한다.
+                    let index = text.indexOf("Locate");
+                    let index_0 = text.indexOf("Another");
+                    // 앞에서 부터 검색한다.
+                    document.getElementById("indexOf").innerHTML =
+                    "Locate란 단어가 어디 있는지 찾아주세요. : " + index;
+                    document.getElementById("indexOf_0").innerHTML =
+                    "Another 란 단어가 어디 있는지 찾아주세요. : " + index_0; // 결과가 없을 경우 -1을 출력한다.
+                }
+            </script>
+<hr>
+        <h2>lastIndexOf() 사용해보기</h2>
+        <p id="LindexOf"></p>
+            <script>
+                {
+                    let text = "Please Locate Where 'Locate' is!";
+                    // 대소문자를 구분한다.
+                    let index = text.lastIndexOf("Locate");
+                    // 앞에서 부터 검색한다.
+                    document.getElementById("LindexOf").innerHTML =
+                    "Locate란 단어를 뒤에서 부터 찾은 뒤 값을 알려주세요 : "+ index;
+                }
+            </script>
+<hr>       
+        <h2>includes() 사용해보기</h2>
+        <p id="include_0"></p>
+        <p id="include_1"></p>
+        <p id="include_2"></p>
+            <script>
+                {
+                    let text = "I feel better";
+                    // Include 타입은 Boolean 이다.
+                    document.getElementById("include_0").innerHTML = 
+                    "feel 이란 단어가 있나요 ? : "+ text.includes("feel");
+
+                    document.getElementById("include_1").innerHTML = 
+                    "fool 이란 단어가 있나요 ? :  " + text.includes("fool");
+                    // 대소문자를 구분한다.
+                    document.getElementById("include_2").innerHTML = 
+                    "Feel 이란 단어가 있나요 ? :  " + text.includes("Feel");
+                }
+            </script>
+<hr>
+        <h2>startsWith() 사용해보기</h2>
+        <p id="starts_0"></p>
+        <p id="starts_1"></p>
+        <p id="starts_2"></p>
+        <script>
+            {
+                let text = "I feel better"
+                document.getElementById("starts_0").innerHTML = 
+                "위 문장은 I로 시작하나요? "+ text.startsWith("I")
+                document.getElementById("starts_1").innerHTML = 
+                "위 문장은 L 로 시작하나요? "+ text.startsWith("L")
+                document.getElementById("starts_2").innerHTML = 
+                "위 문장은 i 로 시작하나요? "+ text.startsWith("i")
+            }
+        </script>
+<hr>
+        <h2>endsWith() 사용해보기</h2>
+        <p id="ends_0"></p>
+        <p id="ends_1"></p>
+        <p id="ends_2"></p>
+        <script>
+            {
+                let text = "I feel better"
+                document.getElementById("ends_0").innerHTML = 
+                "위 문장은 r로 끝나나요? "+ text.endsWith("r")
+                document.getElementById("ends_1").innerHTML = 
+                "위 문장은 b로 끝나나요? "+ text.endsWith("b")
+                document.getElementById("ends_2").innerHTML = 
+                "위 문장은 R로 끝나나요? "+ text.endsWith("R")
+            }
+        </script>
+<hr>
+        <h2>backtick "`" 사용</h2>
+        <p id="btick_0"></p>
+        <p id="btick_1"></p>
+        <p id="btick_2"></p>
+            <script>
+                {
+                    // 백틱(`) 기호안에 작은따옴표, 큰따옴표, 변수 및 연산이 가능하다. 
+                    
+                    let text = `It's "John"`
+                    document.getElementById("btick_0").innerHTML = text
+                    let firstName = "John";
+                    let lastName = "Doe";
+                    // backtick 안에는 ${} 중괄호 를 이용하여 변수를 넣어줄 수 있다.
+                    text = `Welcome ${firstName} , ${lastName} !`;
+                    // text2 = `Welcome` + firstName + `,` + lastName + `!`; 상단의 코드와 동일하다.
+                    document.getElementById("btick_1").innerHTML = text
+                    // 끝내준다....
+                    // 수식도 당연히 넣을 수 있다.
+                    let price = 10;
+                    let VAT = 0.25;
+                    let total = `Total : ${price* (1+VAT).toFixed(2)}` // toFixed() 소숫점 ()자리까지 표현하라.
+                    document.getElementById("btick_2").innerHTML = total;
+                }
+
+            </script>
+
+</body>
+</html>

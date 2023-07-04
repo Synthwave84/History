@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Numbers</h1>
+    <h2>숫자를 문자열로 변환</h2>
+        <p id="toStrnum_0"></p>
+        <p id="toStrnum_1"></p>
+        <p id="toStrnum_2"></p>
+        <p id="toStrnum_3"></p>
+            <script>
+                {
+                    let myNumber = 32;
+                    document.getElementById("toStrnum_0").innerHTML = 
+                    `2진수로 32를 표현해주세요. : `+myNumber.toString(2);
+                    document.getElementById("toStrnum_1").innerHTML = 
+                    `8진수로 32를 표현해주세요. : `+myNumber.toString(8);
+                    document.getElementById("toStrnum_2").innerHTML = 
+                    `10진수로 32를 표현해주세요. : `+myNumber.toString(10);
+                    document.getElementById("toStrnum_3").innerHTML = 
+                    `16진수로 32를 표현해주세요. : `+myNumber.toString(16);
+                }
+            </script>
+<hr>
+        <h2>BigInt 사용하기</h2>
+        <p id="bigint_0"></p>
+        <p id="bigint_1"></p>
+            <script>
+                {   
+                    // 숫자 뒤에 n을 붙여도 BigInt() 로 동작한다.
+                    // ex) 999999999999999999999n;
+                    // 또한 BigInt화가 된 숫자는 일반 숫자와는 데이터타입이 달라진다.
+                    // 떄문에, 5n / 2 는 불가능해진다. 데이터타입을 꼭 일치시켜야한다. 답= Number(5) / 2;
+                    let x = 9999999999999999;
+                    let y = BigInt("9999999999999999");
+                    document.getElementById("bigint_0").innerHTML = 
+                    `BigInt 미사용: ${x} , Biglnt 사용 : ${y} 
+                    <br> BigInt 메소드가 없으면 일반적으론 15자까지만 표현이 가능하다.`
+                    document.getElementById("bigint_1").innerHTML =
+                    "BigInt가 적용된 y의 타입은 무엇인가요? : "+typeof(y);
+                }
+            </script>
+</body>
+</html>
