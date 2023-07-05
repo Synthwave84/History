@@ -48,6 +48,9 @@
                 {
                     // 하단의 방법으로도 구현 할 수 있다.
                     const cars = [] // 초기값
+                    // 하단의 번호는 인덱스 라고 한다.
+                    // 인덱스는 꼭 숫자 자료 여야 한다.
+                    // ex) cars ["carName"] = "volvo" 이렇게 쓰게되면 값을 출력하지못한다.
                     cars [0] = "Volvo"
                     cars [1] = "Fiat"
                     cars [2] = "BMW"
@@ -69,21 +72,234 @@
             </script>
 <hr>
     <h2>array의 길이 : length</h2>
-    <p id="arr2_0"></p>
-    <p id="arr2_1"></p>
-    <script>
-        {
-            const fruit = ["Melon","Orange","Apple","Mango"]
-            let arlength = fruit.length;
-            // array에 지정되어있는 목록의 갯수를 출력한다.
-            document.getElementById("arr2_0").innerHTML = 
-            arlength;
-            // 배열의 가장 마지막에 있는 것을 구하기 위해선 length함수를 이용 할 수 있다.
-            // 다시한번 `` 백틱 내에선 달러표시 $ +{}중괄호 + 내부에 들어갈 함수 [] 대괄호
-            document.getElementById("arr2_1").innerHTML = 
-            // 중괄호 내의 fruit=문자열이므로 뒷자리도 문자열로 출력해준다.
-            `배열의 마지막요소의 값 : ${fruit[fruit.length -1]}`; 
+        <p id="arr2_0"></p>
+        <p id="arr2_1"></p>
+            <script>
+            {
+                const fruit = ["Melon","Orange","Apple","Mango"]
+                let arlength = fruit.length;
+                // array에 지정되어있는 목록의 갯수를 출력한다.
+                document.getElementById("arr2_0").innerHTML = 
+                arlength;
+                // 배열의 가장 마지막에 있는 것을 구하기 위해선 length함수를 이용 할 수 있다.
+                // 다시한번 `` 백틱 내에선 달러표시 $ +{}중괄호 + 내부에 들어갈 함수 [] 대괄호
+                document.getElementById("arr2_1").innerHTML = 
+                // 중괄호 내의 fruit=문자열이므로 뒷자리도 문자열로 출력해준다.
+                `배열의 마지막요소의 값 : ${fruit[fruit.length -1]}`; 
         }
     </script>
-</body>
+<hr>
+    <h2>Array Push</h2>
+        <p>배열에 데이터 추가하기 : 없는 인덱스를 이용하여 추가하기.</p>
+        <p id="push_0"></p>
+        <p id="push_1"></p>
+        <button type="button" onclick="fruit_add()">과일 추가</button>
+            <script>
+                {
+                    let fruit = ["사과", "배", "딸기"];
+                    document.getElementById("push_0").innerHTML = fruit;
+                    // 이렇게 내용표시에 밀어넣기를 할 경우 push메소드를 사용한
+                    // 하단의 함수는 추가된 데이터의 총 length 값을 출력한다.
+                    // document.getElementById("push_1").innerHTML = fruit.push("Kiwi");
+
+                    function fruit_add()
+                    {
+                        // push = 밀어넣기. 
+                        // 밀어넣기로 직접 끝에 데이터를 추가한다.
+                        fruit.push("앵두");
+                        document.getElementById("push_0").innerHTML = fruit;
+                    }
+                    
+                }
+            </script>
+        <p>배열에 데이터 추가하기 : 없는 인덱스를 이용하여 추가하기.</p>
+        <p id="push_1"></p>
+        <button type="button" onclick="fruit_add2()">과일 추가</button>
+            <script>
+                {
+                    let fruit = ["사과", "배", "딸기"];
+                    document.getElementById("push_1").innerHTML = fruit;
+    
+                    function fruit_add2()
+                        {
+                            
+                            // 두 함수는 동일한 결과를 나타낸다. fruit_add() 함수는 
+                            // push() 메서드를 사용하여 요소를 배열의 끝에 추가하는 반면, 
+                            // fruit_add2() 함수는 배열의 가장 마지막 인덱스에 
+                            // 직접 요소를 할당하는 방식으로 추가한다
+                            fruit[fruit.length] = "앵두";
+                            document.getElementById("push_1").innerHTML = fruit;
+                        }
+                    }
+            </script>
+    <h2>Array typeof: 배열의 타입</h2>
+        <p id="ar_type_0"></p>
+        <p id="ar_type_1"></p>
+        <p id="ar_type_2"></p>
+            <script>
+                {
+                    const fruits = ["apple","pear","strawberry"];
+                    console.log(typeof fruits);
+                    // 데이터의 타입을 알려준다.
+                    document.getElementById("ar_type_0").innerHTML = 
+                    typeof fruits;
+                    // 데이터의 타입이 Array가 맞는지 Boolean 으로 알려준다.
+                    document.getElementById("ar_type_1").innerHTML = 
+                    Array.isArray(fruits);
+                    // instanceof 로 Array인지 Boolean으로 확인해준다.
+                    document.getElementById("ar_type_2").innerHTML =
+                    fruits instanceof Array;
+                }
+            </script>
+<hr>
+    <h2>Join() 사용해보기</h2>
+        <p id="arr_join_0"></p>
+            <script>
+                {
+                    const gun=["AR15","M1911","G36"];
+                    document.getElementById("arr_join_0").innerHTML =
+                    // join은 사이사이에 구문을 추가해준다.
+                    gun.join("-"); 
+                }
+        </script>
+<hr>
+    <h2>Pop()사용해보기</h2>
+        <p>pop()은 배열에서 데이터를 제거 하는데 사용된다.</p>
+        <p id="arr_pop_0"></p>
+        <p id="arr_pop_1"></p>
+        <p id="arr_pop_2"></p>
+        <p id="arr_pop_3"></p>
+            <script>
+                {
+                    const gun = ["M1911","AR15","AKM","DSR","MDR"];
+                    document.getElementById("arr_pop_0").innerHTML =
+                    gun;
+                    // pop! 배열에서 MDR이 터져버렸다.
+                    gun.pop();
+                    document.getElementById("arr_pop_1").innerHTML =
+                    gun;
+                    // 제거 될 명령어를 보여준다.
+                    document.getElementById("arr_pop_2").innerHTML =
+                    gun.pop();
+                    let AKM = gun.pop();
+                    // 위의 기능과 동일하나, let 변수에 제거될 대상을 삽입했다는 점이 다르다
+                    document.getElementById("arr_pop_3").innerHTML =
+                    AKM;
+                }
+            </script>
+<hr>
+    <h2>shft()/unshift() 사용해보기</h2>
+    
+        <p>shift()는 맨 앞의 어레이를 제거한다.</p>
+        <p id="arr_shift_0"></p>
+            <script>
+                {
+                    const gun = ["M1911","AR15","AKM","DSR","MDR"];
+                    gun.shift();
+                    document.getElementById("arr_shift_0").innerHTML =
+                    gun;
+                }
+            </script>
+<hr>
+        <p>unshift()는 맨 앞의 어레이를 추가한다.</p>
+        <p id="arr_unshift_0"></p>
+            <script>
+                {
+                    const gun = ["M1911","AR15","AKM","DSR","MDR"];
+                    gun.unshift("G36"); // G36을 새 요소로 추가한다.
+                    document.getElementById("arr_unshift_0").innerHTML =
+                    gun;
+                }
+                </script>
+<hr>
+    <h2>배열요소안의 데이터 삭제하기.</h2>
+        <p id="arr_del_0"></p>
+        <script>
+            {
+                const gun = ["M1911","AR15","AKM","DSR","MDR"];
+                delete gun[0]; // 첫번째 요소의 기억장소는 유지되고, 데이터값만 제거한다.
+                // 때문에 Undefined 가 출력된다.
+                document.getElementById("arr_del_0").innerHTML =
+                gun[0];
+            }
+        </script>
+<hr>
+    <h2>배열 합치기</h2>
+        <p id="arr_conc_0"></p>   
+        <p id="arr_conc_1"></p>  
+        <p id="arr_conc_2"></p>  
+        <p id="arr_conc_3"></p>
+            <script>
+                {
+                    const rifle = ["AR15","AKM","G36"];
+                    const pistol = ["M92FS","Glock","BFR"];
+                    const manpads = ["RPG7","AT4","Stinger"]
+                    document.getElementById("arr_conc_0").innerHTML =
+                    rifle;
+                    document.getElementById("arr_conc_1").innerHTML =
+                    pistol;
+                    // concat 으로 rifle과 pistol을 합친다. 그리고 만약에 
+                    // 배열이 더 있다면 concat(a,b,c) 이렇게 추가 할 수 있다.
+                    const gun = [rifle.concat(pistol)];
+                    document.getElementById("arr_conc_2").innerHTML =
+                    gun;
+                    const firearms = [rifle.concat(pistol,manpads)];
+                    document.getElementById("arr_conc_3").innerHTML =
+                    firearms;
+                    // 또한 concat("a") 이런식으로 따로 값만 넣어줄 수도 있다.
+
+                }
+            </script>
+<hr>
+    <h2>splice()를 이용하여 데이터 추가 및 제거</h2>
+        <p id="arr_spl_0"></p>
+        <p id="arr_spl_1"></p>
+        <p id="arr_spl_2"></p>
+        <p id="arr_spl_3"></p>
+            <script>
+                {
+                    const gun = ["M1911","AR15","AKM",];
+                    document.getElementById("arr_spl_0").innerHTML =
+                    gun;
+                    // 2(3)번위치 부터 DSR과 G3A1 추가
+                    gun.splice(2,0,"DSR","G3A1");
+                    document.getElementById("arr_spl_1").innerHTML =
+                    gun;
+                    // 2(3)번 부터 뒤의 2개를 제거하고 
+                    // 3번 부터 2개의 데이터를 추가.
+                    // 2번 데이터인 DSR,G3A1 삭제 후 MDR, FAL추가
+                    let removed = gun.splice(2,2, "MDR","FAL"); // splice)start,deletecount,"1","2"...)
+                    document.getElementById("arr_spl_2").innerHTML =
+                    gun;
+                    document.getElementById("arr_spl_3").innerHTML =
+                    `제거된 항목 ${removed}`
+                    // splice(2,1) 이런식으로 뒤에 따로 항목이 없을경우, 데이터를 제거하는데 쓰인다.
+                }
+            </script>
+<hr>
+    <h2>부분배열</h2>
+        <p id="arr_spl_00"></p>
+        <p id="arr_spl_01"></p>
+        <p id="arr_spl_02"></p>
+            <script>
+                {                        
+                    const gun = ["M1911","AR15","AKM","MDR","DSR",];
+                    document.getElementById("arr_spl_00").innerHTML =
+                    "작업 전 : " + gun;
+                    // 1번 데이터 부터3번까지 쭉 뒤로 소총으로 구분한다.
+                    // 여기서 4가 아닌 이유는 뒷자리의 경우
+                    // 4 자신 즉 입력값은 포함하지 않기 때문이다.즉 4를 제외한 이전까지.
+                    // 즉 1 ~ 3 인 AR15,AKM,MDR 이 답이 된다.
+                    rifle = gun.slice(1,4);
+                    document.getElementById("arr_spl_01").innerHTML =
+                    rifle;
+                    // 상단처럼 슬라이싱 할 경우 기존 배열에 영향을 주지 아니한다.
+                    // 만일 rifle로 지정하지않고 gun.slice()로 진행을 할 경우엔 배열에 영향을 주게된다.
+                    document.getElementById("arr_spl_02").innerHTML =
+                    "작업 후: " + gun;
+
+                }
+            </script>
+
+    </body>
 </html>
