@@ -300,6 +300,47 @@
 
                 }
             </script>
+<hr>
+    <h2>배열 정렬 (sort)</h2>
+        <p>문자열 데이터 정리 예시</p>
+        <p id="arr_sort_0"></p>
+        <p id="arr_sort_1"></p>
+        <p id="arr_sort_2"></p>
+            <script>
+                {
+                    const gun = ["M1911","AR15","AKM","MDR","DSR"];
+                    document.getElementById("arr_sort_0").innerHTML =
+                    gun;
+                    // ASCII ,UNICODE 로 각각 순서 정렬이 가능.
+                    // 
+                    gun.sort(); // 오름차순 정렬. UNICODE 0~65535 표 순대로 정리한다.
+                    let gun2 = gun.sort()
+                    gun2 = gun.reverse();
+                    document.getElementById("arr_sort_1").innerHTML =
+                    gun;
+                    document.getElementById("arr_sort_2").innerHTML =
+                    gun2;
+                }
+            </script>
 
+    <br><p>숫자열 정리</p>
+        <p id="arr_sort_00"></p>
+        <p id="arr_sort_01"></p>
+        <p id="arr_sort_02"></p>
+            <script>
+                {
+                    const points =[40, 100, 1, 5, 25, 10];
+                    document.getElementById("arr_sort_00").innerHTML = 
+                    points;
+                    points.sort();
+                    // 문자열 적으로 정리하게됨.... 1 10 100 처럼...
+                    document.getElementById("arr_sort_01").innerHTML =
+                    points;
+                    // 하단의 함수는 대 소 비교작업을 해 주는 기능으로 쓰인다.
+                    points.sort(function(a, b) {return a-b})
+                    document.getElementById("arr_sort_02").innerHTML = 
+                    points;
+                }
+            </script>
     </body>
 </html>
