@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>날짜 시간 변경하기</h1>
+        <h2>set method이용</h2>
+        <p id="s_date_00"></p>
+        <p id="s_date_01"></p>
+        <p id="s_date_02"></p>
+            <script>
+                {
+                    const d= new Date();
+                    document.getElementById("s_date_00").innerHTML =
+                    d;
+                    d.setFullYear(2025,); // 2023 -> 2024
+                    // 12월. (0~11 표기이므로 +1을 한 값이 출력된다.)
+                    d.setMonth(7);
+                    d.setDate(10);
+                    d.setHours(10);
+                    d.setMinutes(50);
+                    // 위 항목에서 정상적으로 표기 하는 방법은 get~~~명령어를 이용하여
+                    // 각각 값을 가져오는 방법이 있다.
+                    document.getElementById("s_date_01").innerHTML=
+                `${d.getFullYear()}년 ${d.getMonth()+1} 월 
+                ${d.getDate()}일 ${d.getHours()} 시 
+                ${d.getMinutes()}분`;
+                }
+            </script>
+</body>
+</html>

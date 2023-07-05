@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>현재 날짜의 요일을 출력한다.</h1>
+    <p id="day"></p>
+    <script>
+        {
+            const day = ["Sun","Mon","Tue","Wed","Thur","Fri","Sat"];
+            const d = new Date();
+            let c_day = day[d.getDay()];
+            document.getElementById("day").innerHTML =
+            c_day;
+        }
+    </script>
+</body>
+</html>

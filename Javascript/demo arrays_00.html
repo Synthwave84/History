@@ -327,6 +327,7 @@
         <p id="arr_sort_00"></p>
         <p id="arr_sort_01"></p>
         <p id="arr_sort_02"></p>
+        <p id="arr_sort_03"></p>
             <script>
                 {
                     const points =[40, 100, 1, 5, 25, 10];
@@ -334,11 +335,17 @@
                     points;
                     points.sort();
                     // 문자열 적으로 정리하게됨.... 1 10 100 처럼...
+                    // 때문에 하단에 있는 function을 통해서 계산을 하게 해 주어야한다
                     document.getElementById("arr_sort_01").innerHTML =
                     points;
                     // 하단의 함수는 대 소 비교작업을 해 주는 기능으로 쓰인다.
-                    points.sort(function(a, b) {return a-b})
+                    // 안에 있는 데이터를 하나씩 비교하여 순서를 바꿔준다.
+                    points.sort(function(a, b) {return a-b});
                     document.getElementById("arr_sort_02").innerHTML = 
+                    points;
+                    // 위와 반대로 리턴값을 반대로 두면 내림차순으로 정렬한다.
+                    points.sort(function(a, b) {return b-a});
+                    document.getElementById("arr_sort_03").innerHTML = 
                     points;
                 }
             </script>

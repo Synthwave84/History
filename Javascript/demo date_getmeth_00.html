@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>현재 날짜,시간 정보 확인하기</h2>
+        <p id="n_date_00"></p>
+            <script>
+                {
+                    // 날짜를 표현할때는 new를 사용할것.
+                    // 현재 날짜, 시간을 읽어온다.
+                    // 사용자 PC의 시간을 읽어온다.
+                    const d = new Date();
+                    document.getElementById("n_date_00").innerHTML =
+                    d; 
+                }
+            </script>
+<hr>
+        <p id="s_date_00"></p>
+            <script>
+                {   
+                    // 날짜를 직접 표기할때 구분은 무조건 하이픈으로 한다.
+                    // YYYY/MM/DD는 오류를 발생시킨다.
+                    // 무조건 Y-MM-DD로 표현하도록 한다
+                    const d = new Date("1993-02-02")
+                    document.getElementById("s_date_00").innerHTML =
+                    d;
+                }
+            </script>
+    <p id="num_date_00"></p>
+            <script>
+                {   
+                    // 자바 스크립트에서는 달을 0~11로 저장한다. 즉 0 = 1월
+                    // 즉 현재 2018년으로 되어있으나 달 부분이 15 이므로 +1년 4월이 된다.
+                    // 2019년 4월 24일 10시 33분 30초
+                    // 즉 2019, 3, 24 ,10, 33, 30 ,0); 과 같다.
+                    // 적을 수 있는 숫자의 최대치는 7개이다. 
+                    // 각각 년,월,일,시,분,초,밀리초를 나타낸다
+                    const d = new Date(2018, 15, 24, 10, 33, 30, 0);
+                    document.getElementById("num_date_00").innerHTML = d;
+                }
+            </script>
+    <p id="mon_date_00"></p>
+            <script>
+                {
+                    const months =["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+                    const d = new Date();
+                    // 상단의 배열을 통해 배열에서 값을 가져올 수 있다.
+                    // 날짜가 아니라 무엇이든 상관없다. 즉 getMonth()코드는 
+                    // 0~11자리 중에서 픽업을 하므로, Array가 12자리이면 개중에서
+                    // 현재 날짜와 일치하는 값을 가져오게 된다.
+                    let month = months[d.getMonth()]
+                    document.getElementById("mon_date_00").innerHTML = 
+                    month;
+                }
+            </script>
+</body>
+</html>
