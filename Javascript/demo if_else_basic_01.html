@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<h1>제어문 : if문을 배우자</h1>
+  <h2>조건문 if-else</h2>
+  <p id="ifelse_00"></p>
+    <script>
+      {
+        const d = new Date();
+        let greeting = " "; // 문자열이 들어올 것이기 때문에 공백으로 둔다.
+        if(d.getHours() <18 )
+          {
+          greeting = "즐거운 하루되세요";
+          console.log(greeting);
+          }
+        else
+          {
+          greeting = "오늘도 수고하셨습니다."
+          console.log(greeting)
+          }
+        document.getElementById("ifelse_00").innerHTML =
+        greeting;
+      }
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>Boolean</h1>
+    <h2>값이 존재하면, true로 해석한다.</h2>
+    <p>콘솔로 확인하기.</p>
+      <script>
+        // 아래 해당하는 것은 모두 True
+        console.log(Boolean(100));
+        console.log(Boolean(3.14));
+        console.log(Boolean(-15));
+        console.log(Boolean("Hello"));
+        console.log(Boolean("False"));
+        console.log(Boolean(" ")); // 공백도 내부에 데이터가 있으므로 true가 된다.
+        console.log(Boolean(1+7+3.14));
+        // 아래 해당하는것들은 모두 false
+        console.log(Boolean(0));
+        console.log(Boolean(-0)); // 0은 0이다 false
+        let x;
+        console.log(Boolean(x)); // x=undefined 즉 값이 없으므로 false가 된다.
+        let y = null;
+        console.log(Boolean(y)); // null은 값이 없음을 이야기하므로 false 가 된다.
+        let z = 10*"Hello";
+        console.log(Boolean(z)); // 문자랑 숫자랑 곱해봐야 아무것도 없다. false 다
+        let a = "";
+        console.log(Boolean(a)); // 여백이없으므로 데이터가 없음으로 판단한다.false
+      </script>  
+</body>
+</html>

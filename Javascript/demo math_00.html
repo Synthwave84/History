@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>Math 객체</h1>
+    <p id="math_00"></p>
+      <script>
+        {
+          document.getElementById("math_00").innerHTML =
+          // 미리 약속된 값을 나타내는 명령어들은 값을 변경 할 수 없음.
+          // ex) Math.PI = 123; (X)
+          Math.PI;
+        }
+      </script>
+<hr>
+<h1>Math 메소드</h1>
+  <h2>Math.round() 사용해보기</h2>
+    <p id="math_round_00"></p>
+    <p id="math_round_01"></p>
+      <script>
+        {
+          document.getElementById("math_round_00").innerHTML =
+          Math.round(4.6); 
+          // round()메소드는 소수 첫째자리를 반올림한다.
+          document.getElementById("math_round_01").innerHTML =
+          Math.round(4.5);
+        }
+      </script>
+<hr>
+  <h2>Math.ceil()</h2>
+    <p id="math_ceil_00"></p>
+    <p id="math_ceil_01"></p>
+    <p id="math_ceil_02"></p>
+    <p id="math_ceil_03"></p>
+    <p id="math_ceil_04"></p>
+      <script>
+        {
+          // 올림함수. 가장 가까운 정수를 찾아 무조건 올림한다.
+          document.getElementById("math_ceil_00").innerHTML = 
+          Math.ceil(4.9);
+          document.getElementById("math_ceil_01").innerHTML = 
+          Math.ceil(4.7);
+          document.getElementById("math_ceil_02").innerHTML = 
+          Math.ceil(4.4);
+          document.getElementById("math_ceil_03").innerHTML = 
+          Math.ceil(4.2);
+          document.getElementById("math_ceil_04").innerHTML = 
+          Math.ceil(4.1);
+        }
+      </script>
+<hr>
+  <h2>Math.floor()</h2>
+    <p id="math_floor_00"></p>
+    <p id="math_floor_01"></p>
+    <p id="math_floor_02"></p>
+      <script>
+        {
+          // 내림함수. 가장 가까운 정수에서 내림 한다.
+          document.getElementById("math_floor_00").innerHTML = 
+          Math.floor(4.9);
+          document.getElementById("math_floor_01").innerHTML = 
+          Math.floor(4.72);
+          document.getElementById("math_floor_02").innerHTML = 
+          Math.floor(-4.4);
+        }
+      </script>
+<hr>
+  <h2>Math.trunc()</h2>
+    <p id="math_trunc_00"></p>
+    <p id="math_trunc_01"></p>
+    <p id="math_trunc_02"></p>
+      <script>
+        {
+          // 절삭함수. 소수부분을 제거한다.
+          document.getElementById("math_trunc_00").innerHTML = 
+          Math.trunc(4.9);
+          document.getElementById("math_trunc_01").innerHTML = 
+          Math.trunc(4.72);
+          document.getElementById("math_trunc_02").innerHTML = 
+          Math.trunc(-4.4);
+        }
+      </script>
+  <h2>Math.sign()</h2>
+    <p id="math_sign_00"></p>
+    <p id="math_sign_01"></p>
+      <script>
+        {
+          // 양수면 +1을 음수면 -1을 출력해준다.
+          document.getElementById("math_sign_00").innerHTML = 
+          Math.sign(4.9);
+          
+          document.getElementById("math_sign_01").innerHTML = 
+          Math.sign(-4.4);
+        }
+      </script>
+<hr>
+  <h2>Math.random()</h2>
+    <p id="math_rand_00"></p>
+    <p id="math_rand_01"></p>
+    <p id="math_rand_02"></p>
+      <script>
+        {
+          // 0.0이상 1.0미만의 무작위 실수값을 출력한다.
+          document.getElementById("math_rand_00").innerHTML =
+          Math.random();
+          document.getElementById("math_rand_01").innerHTML =
+          Math.random();
+          document.getElementById("math_rand_02").innerHTML =
+          Math.random();
+        }
+      </script>
+<hr>
+  <h2>Math.random() 메소드 간단응용</h2>
+    <p>console 에서 확인</p>
+    <p id="math_rand_03"></p>
+      <script>
+        {
+          // Math.random() : 0.0 <- 1.0
+          // Math.random() *10 = 0.0 <= x < 10.0
+          let x=Math.floor(Math.random() * 10);
+          console.log(x);
+          // 0~11의 랜덤 범위 숫자 가져오기
+          x= Math.floor(Math.random() * 11);
+          console.log(x);
+          // 0~100의 랜덤 범위 숫자 가져오기
+          x= Math.floor(Math.random() * 100);
+          console.log(x);
+          // 1~10까지의 숫자를 랜덤으로 가져오는 구문.
+          x= Math.floor(Math.random()*10)+1;
+          console.log(x);
+          x=Math.floor(Math.random()*100)+1;
+          console.log(x)
+        }
+      </script>
+<hr>
+  <h2>function()+random() 사용해보기</h2>
+    <p>특정 범위의 값을 랜덤으로 가져오기</p>
+    <p id="math_rand_04"></p>
+    <button onclick="document.getElementById('math_rand_04').innerHTML = 
+      getRndInteger(30,50)"> Click
+    </button>
+      <script>
+        {
+          function 
+            getRndInteger(min,max)
+            {
+              // min 변수에서 max 변수 범위의 값 중 랜덤으로 가져온다.
+              // 즉 30,50 사이의 랜덤 값을 반환한다. floor함수로 뒤 소숫점 자리는 폐기한다.
+
+            /*풀이
+              현재 주어진 값은 30,50 이다.
+              처음 max 값에 50이 대입되고 50에서 30을 뺀다. =20
+              그리고 random함수는 0~1을 출력하기 때문에 거기에 20을 곱한다.
+              그러면 20까지의 범위를 구하게된다.
+              Math.random()*20;이 되는것. 그럼 0~20의 범위값을 구하고,
+              거기에 min값인 30을 더한다. 그러면 0~20의 랜덤값이 먼저 생성되고
+              (10) 그리고 그 후에 min 값을 더하면 최종적으로 40이라는 값이 나오게 되는
+              원리이다.
+            */
+              return Math.floor(Math.random() * (max - min)+1) + min;
+            }
+        }
+      </script>
+</body>
+</html>

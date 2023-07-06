@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<h1>제어문 : if문을 배우자</h1>
+  <h2>조건문 if-else</h2>
+  <p id="ifelse_00"></p>
+    <script>
+      {
+        const d = new Date(); // 현재 d에 날짜와 시간이 배정되었다.
+         // 작성 시기의 시간이 대입된다. 현재시각 12시 21분이므로 12가 된다.
+         // 즉 값은 true가 되어 하단 중괄호의 코드가 실행된다.
+         // 값이 만약에 false일 경우 즉 18시 이상이 되어버리면 else 부분 코드가 실행된다.
+         // 만일 else가 없을 경우엔 단일 if문이다.
+        if(d.getHours()<18)
+          {
+          document.getElementById("ifelse_00").innerHTML = "좋은 하루 되세요";
+          console.log("좋은 하루 되세요");
+          }
+        else
+          {
+          document.getElementById("ifelse_00").innerHTML = "좋은 밤 되세요";
+          console.log("좋은 밤 되세요")
+          }
+      }
+    </script>
+  
+</body>
+</html>

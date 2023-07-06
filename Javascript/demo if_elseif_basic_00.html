@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>if~elseif~else 문 : 다중 if 문</h1>
+    <p id="elf_00"></p>
+      <script>
+    
+        // ㅈ건식을 사용할 경우, 범위를 최소화(상위조건)으로 구성해야한다.
+        
+        let d = new Date().getHours();
+        let greeting = " ";  
+        if(d<10){
+          greeting = "좋은 아침 입니다";  
+        }
+        else if(d<20){
+          greeting = "좋은 하루 입니다";
+
+        }
+        else{
+          greeting = "좋은 밤 입니다";
+        };
+        document.getElementById("elf_00").innerHTML =
+        greeting;
+
+      </script>
+</body>
+</html>
