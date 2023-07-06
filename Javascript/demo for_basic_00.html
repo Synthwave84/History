@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<h1>1~10까지의 합을 구하라</h1>
+  <p id="for_00"></p>
+  <script>
+    let sum = 0;
+//  풀이 sum=0이다.
+//  이제 for 구문에서 i 를 1로 지정한다.
+//  그리고  i가 10보다 작으면 sum에 i의 값을 더한다.
+//  현재 i의 값은 1 이므로 0+1을 시작하여 1이되고
+//  i가 아직 1 이므로 i++연산자가 1을 더해서 i는 2가되고
+// 1+2가 되고 이제 2가된 i는 여전히 작기 때문에 10이 될 때까지
+// 지속적으로 반복 계산을 하게된다.
+    for(let i=1; i<=10; i++) {
+      sum +=i;
+    }
+    document.getElementById("for_00").innerHTML =
+    `1~10까지의 합은 ${sum}`;
+  </script>
+</body>
+</html>
