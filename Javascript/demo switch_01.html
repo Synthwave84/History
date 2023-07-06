@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="sw_2"></p>
+  <script>
+    {
+      // 요일 의미 = new Date().getDay() = 0~6범위
+      // default 명령어는 케이스가 지정되지 않은 것을 제외한 나머지를 기본값으로 인식.
+      let day;
+      switch(new Date().getDay()){
+        case 0: day="주말";
+          break;
+        case 6:day= "주말";
+          break;
+      default : day = "평일"; // 1,2,3,4,5를 포함한다.
+      // default에서 끝나기때문에 break가 필요없다.
+      }
+    document.getElementById("sw_2").innerHTML =
+    `오늘은 ${day} 입니다.`
+    }
+  </script>
+<hr>
+  <h2>주민번호로 성별 확인하기.</h2>
+    <p id="gender"></p>
+      <script>
+        {
+          const ssn= "123456-1234567";
+          let numb= ssn.charAt(7); // 현재 스트링 문법이기때문에, "1" 즉 스트링이 출력되었다.
+          console.log(typeof numb); // String
+          console.log(numb);
+          let gender = " ";
+          switch(numb){
+            // 초기에 하단의 값을 " " 즉 따옴표를 쓰지 않고 
+            // 일반적인 숫자 데이터로 주었더니 작동하지 않았다.
+            // 즉 모든 데이터타입을 일치 시켜야 한다.
+            // 지속적으로 console.log 를 이용하여 값을 파악하도록한다.
+            case "1":
+            case "3":
+            case "5":
+              gender = " 남자";
+              break;
+            case "2":
+            case "4":
+            case "6":
+              gender = "여자";
+              break;
+          }
+          document.getElementById("gender").innerHTML =
+          `당신의 성별은 ${gender}입니다.`
+        }
+      </script>
+</body>
+</html>

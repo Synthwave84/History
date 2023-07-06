@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Switch 문</h1>
+    <h2>Switch문으로 홀,짝 확인하기</h2>  
+  <p id="sw_1"></p>
+      <script>
+        
+        let number = 3;
+        let msg = " "
+        // 스위치문은 case와 break로 나뉘며 case는 나올 수 있는 답의 수,
+        // break는 정지하고 다음 라인으로 넘어갈 때 쓰인다.
+        // 현재 구문은 2로 나누었을때 나머지값이 0 또는 1로 출력되므로
+        // 총 2가지의 답이 발생할 수 있다. 나머지가 0 일수도, 1 일수도.
+        switch(number % 2) {
+          case 0: msg= "짝수"
+          break;
+          case 1: msg= "홀수"
+          break;
+        }
+        document.getElementById("sw_1").innerHTML =
+        msg;
+      </script>
+<hr>
+  <h2>요일을 출력하자</h2>
+  <p id="sw_2"></p>
+  <script>
+    {
+      // 요일 의미 = new Date().getDay() = 0~6범위
+      let day;
+      switch(new Date().getDay()){
+        case 0: day="일요일";
+          break;
+        case 1:day="월요일";
+          break;
+        case 2:day="화요일";
+          break;
+        case 3:day= "수요일";
+          break;
+        case 4:day= "목요일";
+          break;
+        case 5:day="금요일";
+          break;
+        case 6:day= "토요일";
+          break;
+      }
+    document.getElementById("sw_2").innerHTML =
+    `오늘은 ${day} 입니다.`
+    }
+  </script>
+  <p id="ifelse_0"></p>
+    <script>
+      {
+        let day = new Date().getDay();
+        console.log(day);
+        msg = " "
+        if(day==0){
+          msg = "일요일";
+        }else if(day==1){
+          msg = "월요일"
+        }else if(day==2){
+          msg = "화요일"
+        }else if(day==3){
+          msg = "수요일"
+        }else if(day==4){
+          msg = "목요일"
+        }else if(day==5){
+          msg = "금요일"
+        }else if(day==6){
+          msg = "토요일"
+        }
+        document.getElementById("ifelse_0").innerHTML =
+        `오늘은 ${msg} 입니다.`
+      }
+    </script>
+</body>
+</html>
