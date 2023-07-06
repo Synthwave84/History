@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="fr"></p>
+  <p id="fr2"></p>
+  <script>
+    // 100까지의 짝수 모두 더하기 계산
+    let sum = 0
+    for(i=0; i<100; i=i+2){
+      console.log(i);
+      sum+=i;
+      console.log(sum);
+    } document.getElementById("fr").innerHTML =
+    sum;
+
+  </script>
+  <script>
+    // 100까지의 홀수 모두 더하기 계산
+    let sum2 = 0
+    for(a=1; a<100; a=a+2){
+      console.log(a);
+      sum2+=a;
+      console.log(sum2);
+    }
+    document.getElementById("fr2").innerHTML =
+    sum2;
+
+  </script>
+  <h2>별 5개 출력하기</h2>
+    <script>
+      for (let i=0; i<5; i++){
+        document.write("*")
+      }
+    </script>
+</body>
+</html>
