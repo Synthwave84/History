@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="gender"></p>
+    <script>
+      {
+        let ssn = "990000-3000000";
+        let msg = " "
+        let gnum = ssn.charAt(7)
+        console.log(gnum);
+      if(gnum=="1"){
+        msg="남자"
+      }else if(gnum=="2"){
+        msg="여자"
+      }else if(gnum=="3"){
+        msg="남자"
+      }else if(gnum=="4"){
+        msg="여자"
+      }else if(gnum=="5"){
+        msg="외국인 남자"
+      }
+      else{
+        msg="외국인 여자"
+      }
+      document.getElementById("gender").innerHTML =
+      `당신의 주민등록 성별 번호는 ${gnum}이며 당신의 성별은 ${msg}입니다.`;
+    }
+    </script>
+</body>
+</html>

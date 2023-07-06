@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>임의의 숫자를 짝,홀수로 출력하는법</h1>
+    <p id="numb"></p>
+      <script>
+        {
+          let number = 33;
+          let msg = "";
+          if(number %2 == 0 ){
+            msg = "짝수";
+          }else {
+            msg = "홀수";
+          }
+          document.getElementById("numb").innerHTML =
+          `${number}는(은) ${msg}입니다.`
+        }
+      </script>
+</body>
+</html>

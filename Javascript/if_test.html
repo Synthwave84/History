@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>점수계산해보기</h1>
+  <p id="score"></p>
+  <p id="score_1"></p>
+    <script>
+      { 
+        // 하단 대로 하면 새 항목 추가할 시에 모든 값을 전부 변경해 주어야하므로
+        // 반대로 작성 해 주는 것이 좋다.
+        let jumsu = 91;
+        let score = " "
+        if(jumsu <70){
+          score = "D";
+        }else if(jumsu<=80){
+          score = "C";
+        }else if(jumsu<=90){
+          score="B";
+        }else{
+          score="A"
+        }
+        document.getElementById("score").innerHTML =
+        score;
+      }
+    </script>
+    <script>
+    {
+      let jumsu2 =59;
+      let score2 = " ";
+      if(jumsu2 >= 90){
+        score2 = "A"
+      }else if(jumsu2 >=80){
+        score2 = "B"
+      }else if(jumsu2 >=70){
+        score= "C"
+      }else if(jumsu2 >=60){
+        score2="D"
+      }else {
+        score="F";
+      }
+      document.getElementById("score_1").innerHTML =
+      score2;
+    }
+    </script>
+</body>
+</html>

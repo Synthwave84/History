@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="age"></p>
+    <script>
+      let age = 19;
+      let msg = " 미성년자 입니다 ";
+      if(age>=18){
+        msg = "성인 입니다"
+      }
+      document.getElementById("age").innerHTML =
+      `당신은 ${msg}`
+    </script>
+</body>
+</html>
