@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>조건식의 값이 존재시 true로 처리</h1>
+    <p id="demo"></p>
+    <script>
+      {
+        // boolean_00 예제 참조.
+
+        const cars = ["BMW","Volvo","Saab","Ford"]
+
+        let i=0
+        let text = " ";
+        // for 문의 조건식에 값이 존재하면 true로 해석됨.
+        // 문법에서 조건식에 값을 사용하면, boolean 값으로 해석된다.
+        // i=0 0도 값이 존재하는 것으로 판정함.
+        for(;cars[i];){
+          text += cars[i] + "<br>";
+          i++;
+        }
+        document.getElementById("demo").innerHTML = 
+        text;
+      }
+    </script>
+</body>
+</html>

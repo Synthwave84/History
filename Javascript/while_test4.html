@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>while 구구단</h2>
+    <script>
+      
+      let gop = 0;
+      // document.write("<table border ='1>'")
+      while(gop<=9){
+          
+          let dan=2;
+          while(dan<=9){
+            if ( gop ==0 ) {
+                document.write ( `${dan}단<br> ` );
+            } else { 
+                document.write ( `${gop}*${dan}=${dan*gop}<br>` )
+            }
+          dan++;
+        }
+        gop++;
+      }
+      // document.write("</table>")
+    </script>
+</body>
+</html>

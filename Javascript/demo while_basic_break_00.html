@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <h1>while 반복문, break</h1>
+<hr>
+    <h2>While</h2>
+    <p id="while_00"></p>
+      <script>
+      {
+        let text= " ";
+        let i = 0;
+        // 무한 루프를 매우매우 유의해야한다.
+
+        while(i<10) {
+          if(i === 3) { break;}
+          text += "<br> 현재 숫자는" + i;
+          i++;
+        }
+        document.getElementById("while_00").innerHTML =
+        text;
+      }
+      </script>
+</body>
+</html>
