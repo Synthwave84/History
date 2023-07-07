@@ -19,7 +19,7 @@
   </script>
   <script>
   {
-    document.write("별삼각형으로 출력하기.<br>");
+    document.write("별 삼각형으로 출력하기.<br>");
     for (let i=0;i<5;i++){
       for(j=0;j<=i;j++){ // 별 그리기. 
         // j=0 이고 j가 i보다 작거나 같으면 그때마다 별을 하나씩 그려라.
@@ -31,7 +31,7 @@
   </script>
   <script>
     {
-      document.write("별삼각형으로 출력하기.<br>");
+      document.write("별 역삼각형으로 출력하기.<br>");
       for (let i=0;i<5;i++){
         console.log(i,"i 의 값");
         for(j=4;j>=i;j--){ // 별 그리기. 
@@ -42,6 +42,14 @@
           document.write("<br>");// i=0이고  i가 5보다 작으면 한칸씩 띄워라.
         }
     }
+    </script>
+    <script>
+      document.write("1~100까지의 합."+"<br>");
+      let j=0
+      let result = "";
+      for(let i=0;i<100;i++){
+        j+=i;
+      }document.write(j,"<br>");
     </script>
 </body>
 </html>
