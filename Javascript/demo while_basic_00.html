@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <h1>while 반복문</h1>
+<hr>
+    <h2>While</h2>
+    <p id="while_00"></p>
+      <script>
+      {
+        let text= " ";
+        let i = 0;
+        // 무한 루프를 매우매우 유의해야한다.
+
+        while(i<10) {
+          text += "<br> 현재 숫자는" + i;
+          i++;
+        }
+        document.getElementById("while_00").innerHTML =
+        text;
+      }
+      </script>
+      <h2>While</h2>
+      <p id="while_01"></p>
+        <script>
+        {
+          let text= " ";
+          let i = 0;
+          // 무한 루프를 매우매우 유의해야한다.
+          // do코드로 시작하게되면, 조건식이 위에 있어서 최소 한번은 무조건 코드를 실행한다.
+          // 그리고 한번 실행 뒤에, 조건식의 조건을 확인한다.
+          do {
+            text += "<br> 현재 숫자는" + i;
+            i++;
+          } while(i<0);
+          document.getElementById("while_01").innerHTML =
+          text;
+        }
+        </script>
+</body>
+</html>

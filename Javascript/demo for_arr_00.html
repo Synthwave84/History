@@ -7,16 +7,32 @@
 </head>
 <body>
   <h1>for~in : array(배열)</h1>
+  
   <p id="fin_arr_00"></p>
+  <p id="fin_arr_01"></p>
+
     <script>
       {
+        // 배열의 값을 하나씩 읽어와서 txt 변수에 문자열(string) 형태로 저장.
         const numbers = [45, 4, 9, 16, 25];
         let txt = " "; // string 데이터타입.
         for(let x in numbers) {
-          console.log(typeof numbers[x]);
-          txt += numbers[x]
+          console.log(typeof numbers[x]) ;
+          txt += numbers[x]+"<br>";
         }
         document.getElementById("fin_arr_00").innerHTML = txt;
+      }
+    </script>
+    <script>
+      {
+        // 배열의 값을 하나씩 읽어와서 txt 변수에 전체합계 저장.
+        const numbers = [45, 4, 9, 16, 25];
+        let txt = 0; // 숫자 데이터타입.
+        for(let x in numbers) {
+          console.log(typeof numbers[x]);
+          txt += numbers[x] // txt = txt + numbers[x]
+        }
+        document.getElementById("fin_arr_01").innerHTML = txt;
       }
     </script>
 </body>

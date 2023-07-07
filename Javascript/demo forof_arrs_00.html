@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>for~of : array</h1>
+    <p id="fof_arr_00"></p>
+    
+      <script>
+        {
+          const cars = ["BMW","Volvo","Saab"];
+          
+          let text = " ";
+          // in은 x값에 index 넘버를 대입하는것이고,
+          // of는 x 값에 목록의 값을 직접 넣는것이다.
+          // for in 문법과 혼돈하지 말 것.
+          for(let x of cars){
+            text+= x + "<br>";
+          }
+          document.getElementById("fof_arr_00").innerHTML = text;
+        }
+      </script>
+<hr>
+  <h2>for~of : string</h2>
+  <p id="fof_arr_01"></p>
+      <script>
+      {
+        let language="JavaScript";
+        let txt = " ";
+        // language변수의 문자열을 한 문자씩 읽어서 x 변수에 대입한다.
+        for(let x of language){
+          txt += x + "<br>" ;
+        }
+        document.getElementById("fof_arr_01").innerHTML =
+        txt;
+      }
+        
+      </script>
+</body>
+</html>
