@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>for문으로 구구단 만들기</h2>
+  <script>
+    document.write("<table border='1'>")
+    // gop= 곱셈 dan = 단 
+    for(let gop=0; gop<=9; gop++){
+      document.write(`<tr>`);
+        for(let dan=2; dan<=9 ;dan++){
+              if(gop==0){
+                document.write(`<td>${dan} 단</td>`);
+                }else{
+                document.write(`<td>${dan} * ${gop} = ${dan * gop}</td> `);
+                }
+              }
+              document.write(`</tr>`)
+            }
+    document.write("</table>");
+  </script>
+</body>
+</html>

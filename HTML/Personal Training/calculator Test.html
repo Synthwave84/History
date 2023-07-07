@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>계산기 만들어보기</h2>
+    <input type="number" id="numb_0" placeholder="숫자1">
+    <input type="text" id="numb_1" placeholder="연산자">
+    <input type="number" id="numb_2" placeholder="숫자2">
+    
+    
+    <script>
+      
+      function calculate(num0,num1,num2){
+        let num0 = document.getElementById("numb_0").value;
+        let num1 = document.getElementById("numb_1").value;
+        let num2 = document.getElementById("numb_2").value;
+        if(num1=="+")
+          return num0+num2;
+    
+      document.getElementById("result").innerHTML =
+      calculate();  }
+      
+    </script>
+    <button type="button" onclick="calcuate()">계산</button>
+    <p id="result"></p>
+</body>
+</html>

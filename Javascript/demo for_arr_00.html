@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>for~in : array(배열)</h1>
+  <p id="fin_arr_00"></p>
+    <script>
+      {
+        const numbers = [45, 4, 9, 16, 25];
+        let txt = " "; // string 데이터타입.
+        for(let x in numbers) {
+          console.log(typeof numbers[x]);
+          txt += numbers[x]
+        }
+        document.getElementById("fin_arr_00").innerHTML = txt;
+      }
+    </script>
+</body>
+</html>

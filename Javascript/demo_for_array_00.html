@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>for 문과 배열(array)의 조합</h1>
+    <p id="f_arr_0"></p>
+      <script>
+        {
+          const course = ["HTML5/CSS3","JavaScript","Java","Spring","Oracle","Node.js","React"];
+          let text = "<ul>";
+          
+            for(let i=0; i<course.length; i++){
+                // text에 "li+course목록" 을 추가한다.
+                text+="<li>" + course[i]+"</li>"
+            }
+              text += "</ul>";
+              console.log(text);
+              document.getElementById("f_arr_0").innerHTML = 
+              text;
+        } 
+      </script>
+</body>
+</html>

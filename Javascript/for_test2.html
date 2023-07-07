@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>정사각형 별 출력해보기</h2>
+  <!-- for구문을 중첩 시킬 수 있다.-->
+  <script>
+      for (let i=0; i<5; i++){
+        for(let j=0; j<5; j++){ 
+          document.write("*") 
+        }
+        document.write("<br>");
+      }
+      document.write("<h3>삼각형 별 출력</h3>")
+     
+      for(let i=0; i<5; i++){
+        for(let j=0; j<=i; j++){
+          document.write("*");
+        }
+        document.write("<br>");
+        
+      }document.write("<hr>")
+      for(let i=0; i<5; i++){
+        for(let j=5; j>i; j--){
+          document.write("*"); 
+        }
+        document.write("<br>");
+      }
+        
+  </script>
+</body>
+</html>

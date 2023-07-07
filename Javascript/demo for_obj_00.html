@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>for~in : object</h1>
+    <p id="fin_obj_00"></p>
+      <script>
+        {
+          // object 기억장소 
+          // object {key : value}
+          const person = {fname: "John", lname:"doe", age: 25};
+          let txt =" ";
+          // in 명령어는 object 항목에 있는 값들을 가져온다.
+          // x = person 안에(in) 있는 값들의 갯수가 된다. 현재는 최대 3개가 된다.
+          for(let x in person){
+
+            txt += person[x] + " "; // "John Doe 25" 
+          }
+          document.getElementById("fin_obj_00").innerHTML = txt;
+        }
+      </script>
+</body>
+</html>

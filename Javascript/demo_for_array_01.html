@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>for 문과 배열(array)의 조합</h1>
+    <p id="f_arr_0"></p>
+      <script>
+        {
+          const course = ["HTML5/CSS3","JavaScript","Java","Spring","Oracle","Node.js","React"];
+            // 한번에 세개의 변수를 지정하는 식으로도 사용 가능하다.
+            // 허나 text의 변수가 for문에서 정의가 되어 쓸 수가 없다.
+            // 때문에 사용을 하고 싶다면, for 문이 들어가기 전에 해야한다.
+            for(let i=0, len = course.length, text = " "; i<len; i++){
+                // text에 "li+course목록" 을 추가한다.
+                text+= course[i] + "<br>"
+                document.write(course[i]+"<br>")
+              }
+              // console.log(text); -> 동작하지 않는다. 왜냐면 중괄호에 작성되어
+              // for문 안에서만 작동해버린다.
+        }
+      </script>
+</body>
+</html>
