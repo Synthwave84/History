@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function myfunction(){
+      alert("경고 메시지");
+    }
+    function myfunction2(){
+      // confirm을 사용하면 Boolean값으로 출력된다.
+      // confirm = 예 . 아니오 를 만드는 팝업 이다.
+      if(confirm("게시물을 삭제 하시겠습니까?")){
+        txt = "삭제함";
+      }else{
+        txt = "삭제를 취소함";
+      }
+      document.getElementById("demo").innerHTML = txt;
+    }
+
+    function myfunction3(){
+      let txt="";
+      let person = prompt("이름을 입력하세요","김정웅");
+      if(person == null || person == ""){
+      "입력을 취소하셨습니다.";
+      }else{
+        txt ="안녕하세요 " + person + " 입니다.";
+      }
+
+      document.getElementById("demo1").innerHTML = txt;
+
+    }
+    
+  </script>
+</head>
+<body>
+  <h1>window 객체의 팝업메소드</h1>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+  <button type="button" onclick="myfunction();">팝업(alert)</button>
+  <button type="button" onclick="myfunction2();">삭제(confirm)</button>
+  <button type="button" onclick="myfunction3()">입력 팝업(prompt)</button>
+</body>
+</html>

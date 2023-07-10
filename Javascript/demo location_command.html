@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+
+    // 브라우저 인터넷 사이트 주소를 입력하면, 사이트에서 기본(페이지) 문서가 동작된다.
+    function btn_href() {
+      // 주소(페이지)로 이동 : 뒤로 버튼 활성화 = 이전 단계로 이동 가능.
+      location.href = "http://www.naver.com";
+    }
+    function btn_replace() {
+      // 주소(페이지)로 이동 : 뒤로 버튼 비활성화 = 이전 단계로 이동 불가.
+      location.replace("http://www.naver.com");
+
+    }
+  </script>
+</head>
+<body>
+  <h1>location객체 : 현재 활성화된 웹페이지의 URL정보를 포함</h1>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+  <p id="demo3"></p>
+  <p id="demo4"></p>
+
+    <script>
+      // 서버구동. 
+    document.getElementById("demo").innerHTML = 
+    "현재 페이지의 URL :" + location.href;
+    document.getElementById("demo1").innerHTML = 
+    "호스트이름 :" + location.host;
+    document.getElementById("demo2").innerHTML = 
+    "현재 페이지의 경로 :" + location.pathname;
+    document.getElementById("demo3").innerHTML = 
+    "프로토콜(Protocol) :" + location.protocol;
+    document.getElementById("demo4").innerHTML = 
+    "포트(Port) :" + location.port;
+    </script>
+    <button type="button" onclick="btn_replace()">버튼(replace)</button>
+    <button type="button" onclick="btn_href()">버튼(href)</button>
+</body>
+</html>

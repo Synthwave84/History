@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 버튼 클릭시 3초 후에 호출된다.
+    function myfunction(){
+        alert("방가방가");
+    }
+  </script>
+</head>
+<body>
+  <h1>window객체의 settimeout() 메소드</h1>
+  <!-- setTimeout시에는 함수를 호출할떄 절대 괄호를 넣지않는다.-->
+  <!-- setTimemout은 밀리세컨드를쓴다 즉 3000=3초 -->
+  <!-- 괄호 여닫이는 함수를 바로작동시키는 호출부호이다. () -->
+  <button type="button" onclick="myVar = setTimeout(myfunction, 3000)">클릭!(일회성함수)</button>
+  <button type="button" onclick="clearTimeout(myVar)">정지</button>
+  
+</body>
+</html>
