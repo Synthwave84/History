@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>dom access - getElementsbyClassName()</h1>
+  <p>자바</p>
+  <p class="no_1">스프링</p>
+  <p class="no_1">오라클</p>
+  <hr>
+  <p id="demo"></p>
+  <p id="demo2"></p>
+    <script>
+    
+      // 배열 (컬렉션) 형태로 참조. 
+      // p_elements 안에 p 태그 네개가 들어가게됨.
+      //
+      const p_elements = document.getElementsByClassName("no_1");
+      document.getElementById("demo").innerHTML = 
+      p_elements[0].innerHTML;
+      document.getElementById("demo2").innerHTML = 
+      p_elements.length
+    </script>
+</body>
+</html>

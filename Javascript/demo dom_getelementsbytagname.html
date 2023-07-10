@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>dom access - getelementsbytagname()</h1>
+  <p>자바</p>
+  <p>스프링</p>
+  <p>오라클</p>
+  <hr>
+  <p id="demo"></p>
+  <p id="demo2"></p>
+    <script>
+    
+      // 배열 (컬렉션) 형태로 참조. 
+      // p_elements 안에 p 태그 네개가 들어가게됨.
+      //
+      const p_elements = document.getElementsByTagName("p");
+      document.getElementById("demo").innerHTML = 
+      p_elements[0].innerHTML;
+      document.getElementById("demo2").innerHTML = 
+      p_elements.length
+    </script>
+<div id="main">
+  <p>자바</p>
+  <p>스프링</p>
+  <p>오라클</p>
+  <hr>
+  <p id="demo3"></p>
+  <p id="demo4"></p>
+</div>
+  <script>
+    // main 즉 div 태그로 묶여있는 것만 참조한다. 
+    const x = document.getElementById("main"); // div 태그 참조
+    const y = x.getElementsByTagName("p");
+    document.getElementById("demo3").innerHTML =y[0].innerHTML;
+    document.getElementById("demo4").innerHTML =y.length;
+  </script>
+</body>
+</html>
