@@ -17,8 +17,10 @@
     
       // 배열 (컬렉션) 형태로 참조. 
       // p_elements 안에 p 태그 네개가 들어가게됨.
-      // 브라우저 캐싱기능을 꼭 할것.
-      const p_elements = document.getElementsByClassName("no_1");
+      // 브라우저 캐싱기능을 꼭 끌것.
+      // const p_elements = document.querySelectorAll("css선택자")
+      // const p_elements = document.getElementsByClassName("no_1"); 클래스의 이름.
+      const p_elements = document.querySelectorAll("p.no_1");
       document.getElementById("demo").innerHTML = 
       p_elements[0].innerHTML;
       document.getElementById("demo2").innerHTML = 

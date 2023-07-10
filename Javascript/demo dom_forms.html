@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>form태그와 하위요소 : 입력양식 태그</h1>
+  <form id="joinFrm">
+    이름 : <input type="text" name="fname" value="김정웅"><br>
+    주소 : <input type="text" name="address" value="서울시 노원구"><br>
+    <!-- a태그는 form태그와 유기적으로 연결되어있지않아 콘솔 로그에 길이로 인식되지아니함.-->
+    <a href="http://www.naver.com">네이버</a>
+    <input type="submit" value="회원가입">
+  </form>
+  <p id="demo"></p>
+  <script>  // 폼 태그를 직접 참조. 그리고 [0] 하면 1번 을 참조. 또는 ["joinFrm"]
+            // 위 방식으로 직접 지정도 가능하다.
+            // form태그의 하위요소들 - input, select, textarea
+    const x = document.forms[0];
+    let text = " ";
+    console.log("form태그의 하위요소들", x.length);
+    // x.length = form 태그의 하위요소(태그)들.
+    for(let i=0; i<x.length; ㅑ++){
+      text+= x.elements[i].value +"<br>";
+    }
+
+    document.getElementById("demo").innerHTML = text;
+  </script>
+</body>
+</html>
