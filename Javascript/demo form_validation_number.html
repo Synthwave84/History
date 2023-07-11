@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>유효성검사</h1>
+  <h2>입력필드의  숫자 유효성 검사 1~10</h2>
+  <input type="text" id="num1">
+  <input type="button" value="전송" onclick="validation_num()">
+  <p id="demo"></p>
+  <script>
+    // 태그의 내용은 숫자가 아니라 전부 텍스트[string]이다
+    // 입력필드의 값도 string이다.
+
+    // 문자열(string)-> 숫자(number) 로 형변환(casting)
+
+    function validation_num(){
+      let x = document.getElementById("num1").value;
+      let text = "";
+      // isNaN(x) : x 매개변수가 숫자가 아닌지를 체크하는 기능. 숫자가 아니면 true 
+      // x가 string 데이터타입이지만, 비교시 1 때문에 number 데이터타입으로 자동 변환되긴한다.
+      // 숫자 형변환 = Number()/ parseInt() 
+      if(isNaN(x)|| Number(x) < 1 || Number(x) > 10){
+        text = "숫자가 아니거나 1~10 사이의 범위를 입력해주세요.";
+      }else {
+        text = "정상적인 값입니다.";
+      }
+      document.getElementById("demo").innerHTML= text;
+    }
+  </script>
+
+</body>
+</html>

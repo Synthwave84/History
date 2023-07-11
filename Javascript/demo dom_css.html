@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>dom css color 속성</h1>
+  <p id="demo1">Hello World!</p>
+  <p id="demo2">Hello World!</p>
+
+  <button type="button" onclick="dom_style()">스타일 적용하기</button>
+  <script>
+    function dom_style(){
+      let x = document.getElementById("demo1");
+      x.style.color = "blue";
+      x.style.fontFamily = "Arial";
+      x.style.fontSize = "20px";
+    }
+  </script>
+</body>
+</html>

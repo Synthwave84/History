@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function sendit(){
+      // 자바스크립트 전송 기능으로는 required 속성을 사용하지아니한다.
+      document.getElementById("loginFrm").submit();
+    }
+    function validate() {
+
+      alert();
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h1>form 하위태그의 required 속성 사용하기</h1>
+  <!-- required 속성을 사용시 자바스크립트와 혼합해서 사용하지 않음. -->
+  <form action="login_ok.html" method="post" id="loginFrm" onsubmit="return validate()">
+    아이디 : <input type="text" name="u_id" required><br>
+    비밀번호 : <input type="text" name="u_pw" required><br>
+    <input type="submit" value="로그인(submit)">
+    <input type="button" value="로그인(button_)" onclick="submit()">
+  
+
+  </form>
+</body>
+</html>

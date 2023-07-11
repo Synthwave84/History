@@ -84,7 +84,8 @@
 
       // 메일 수신 여부.
       // 트루 값을 주고 앞에 ! 를 붙임으로써 둘 다 false가 true로 처리가된다.
-      // 또한 &&는 logical AND 게이트 ( true true 일 때만 true 를 반환한다. )
+      // 또한 &&는 logical AND 게이트 ( true true 일 때만 true 를 반환한다.)
+      // 즉 현재 앞에 !(NOT)가 붙었으므로 값은 false + false = false로 반환되는것이다.
       if(!agree1.checked && !agree2.checked){
         alert("메일 수신 여부를 선택요망")
         return false;

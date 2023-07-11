@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>dom event</h1>
+  <h2 onclick="this.innerHTML='JAVA'">자바</h2>
+  <h2 id="Spring" onclick="changer(this)">스프링</h2>
+  <h2 id="Oracle" onclick="changer(this)">오라클</h2>
+
+  <script>
+    // 호출 시 this 를 이용하여 공통함수로 사용할 수가 있다.
+    // 매개변수를 이용한 this 사용법.  x = 변수
+    function changer(x){
+      // x = 클릭한태그를 참조한다
+      let color = "";
+      let name = "";
+      if(x.id === "Spring"){
+        name = "Spring"
+      }else if(x.id === "Oracle"){
+        color = "blue";
+        name = "Oracle";
+      }
+      x.style.color = color;
+      x.innerHTML = name;
+      console.log("obj", x.id);
+      // document.getElementById("demo").innerHTML = "Spring";
+      // x.innerHTML = "Spring";
+    }
+  </script>
+</body>
+</html>
