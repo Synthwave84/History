@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>p 태그에 날짜, 시간 출력하기</h1>
+    <p id="demo"></p>
+    <script>
+        function displayDate() {
+            document.getElementById("demo").innerHTML = "오늘의 날짜는?" + Date();
+        }
+        // 함수 작성을 어디에 하던지 가장 위로 인식.(자바스크립트 내) -> 함수 호스팅?
+    </script>
+    <button type="button" onclick="displayDate()">날짜 출력하기</button>
+</body>
+</html>

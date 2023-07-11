@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function validaton(){
+      let u_id = document.getElementById("u_id");
+      let u_pw = document.getElementById("u_pw");
+      let u_name = document.getElementById("u_name");
+      let u_addr = document.getElementById("u_addr");
+      
+      // 취미 체크 여부를 확인하기
+      
+      let u_hobby1 = document.getElementById("u_hobby1");
+      let u_hobby2 = document.getElementById("u_hobby2");
+      let u_hobby3 = document.getElementById("u_hobby3");
+      let u_hobby4 = document.getElementById("u_hobby4");
+
+      // 동의
+
+      let agree1 = document.getElementById("agree1");
+      let agree2 = document.getElementById("agree2");
+      
+      // 아이디 입력값 검사
+      if(u_id.value == "") {
+        alert("ID를 입력하세요.")
+        u_id.focus();
+        return false;
+      }
+      // 비밀번호 입력값 검사
+      if(u_pw.value == ""){
+        alert("비밀번호를 입력하세요.")
+        u_pw.focus();
+        return false;
+      }
+      // 이름 입력값 검사
+      if(u_name.value == "") {
+        alert("이름을 입력하세요.")
+        u_name.focus();
+        return false;
+      }
+      // 주소 입력값
+      if(u_addr.value == "") {
+        alert("주소를 입력하세요.")
+        u_addr.focus();
+        return false;
+      }
+      // 취미 체크 검사
+      let isHobbyChecked = true;
+      
+      console.log("length",document.getElementsByName("u_hobby").length)
+      
+      let u_hobby = document.getElementsByName("u_hobby").length
+      for(let i=0; i< u_hobby.length; i++)
+        if(u_hobby[i].checked == true){
+          isHobbyChecked = true;
+        }
+      // 취미가 1개라도 선택이 되어있지 않으면 = !isHobbyChecked
+      // ! = logical NOT 게이트 (반대로 출력) 즉 isHobbyChecked가 false 이면
+      // 으로 해석할 수 있다.
+      if(!isHobbyChecked){
+        alert("취미를 하나라도 선택해 주세요")
+        return false;
+      }
+      // 비효율적인 방식.
+    /*if(u_hobby1.checked == true){
+        isHobbyChecked =true;
+      }
+      if(u_hobby2.checked == false){
+        isHobbyChecked =true;
+      }
+      if(u_hobby3.checked == false){
+        isHobbyChecked =true;
+      }
+      if(u_hobby4.checked == false){
+        isHobbyChecked =true;
+      }
+      if(!isHobbyChecked){
+        alert("취미를 하나라도 선택해 주세요")
+        return false;
+      }*/
+
+      // 메일 수신 여부.
+      // 트루 값을 주고 앞에 ! 를 붙임으로써 둘 다 false가 true로 처리가된다.
+      // 또한 &&는 logical AND 게이트 ( true true 일 때만 true 를 반환한다. )
+      if(!agree1.checked && !agree2.checked){
+        alert("메일 수신 여부를 선택요망")
+        return false;
+      }
+
+
+      return false; // 전송이 중지된다.
+    }
+  </script>
+</head>
+<body>
+  <h1>회원가입</h1>
+  <!-- 꼭! onsubmit에는 return!!!!! -->
+<form id="joinFrm" action="join_ok.html" method="post" onsubmit="return validaton()">
+  ID : <input type="text" id="u_id" name="u_id"><br>
+  Password : <input type="password" id="u_pw" name="u_pw"><br>
+  Name : <input type="text" id="u_name" name="u_name"><br>
+  Addr : <input type="text" id="u_addr" name="u_addr"><br>
+    <!-- id는 동일하면 안되나 name은 동일해도 된다. -->
+  Hobby : <br><label for="u_hobby1">자바</label>
+              <input type="checkbox" id="u_hobby1" name="u_hobby" class="u_hobby">
+              <label for="u_hobby2">스프링</label>
+              <input type="checkbox" id="u_hobby2" name="u_hobby"class="u_hobby">
+              <label for="u_hobby3">오라클</label>
+              <input type="checkbox" id="u_hobby3" name="u_hobby"class="u_hobby">
+              <label for="u_hobby4">포트폴리오</label>
+              <input type="checkbox" id="u_hobby4" name="u_hobby"class="u_hobby"><br>
+              <label for="u_hobby5">react</label>
+              <input type="checkbox" id="u_hobby5" name="u_hobby" class="u_hobby">
+              <label for="u_hobby6">node.js</label>
+              <input type="checkbox" id="u_hobby6" name="u_hobby"class="u_hobby">
+              <label for="u_hobby7">mybaits</label>
+              <input type="checkbox" id="u_hobby7" name="u_hobby"class="u_hobby">
+              <label for="u_hobby8">log4bt</label>
+              <input type="checkbox" id="u_hobby8" name="u_hobby"class="u_hobby"><br>
+
+Mail agree : <br><label for="agree1">동의</label><input type="radio" id="agree1" name="agree">YES<br>
+                <label for="agree2">비동의</label><input type="radio" id="agree2" name="agree">NO<br>
+    <input type="submit" value="전송">
+  </form>
+</body>
+</html>

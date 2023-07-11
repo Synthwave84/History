@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>img태그를 참조하여, 이미지를 변경하자.</h1>
+    <img id="img1" src="Img/Smile.PNG">
+    <script>
+        // 태그를 참조할 경우 해당 태그에서 지원하는 속성, 메서드()를 사용해야 한다.
+        function fn_bull_on() {
+            document.getElementById("img1").src = "./Img/No smile.PNG";
+        } // .src : 이미지
+        //  .innerHTML : p태그 사용 시 사용(문자에 적합)
+    </script>
+
+    <button type="button" onclick="fn_bull_on()">불켜기</button>
+</body>
+</html>
