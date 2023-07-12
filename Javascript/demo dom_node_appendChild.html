@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>노드(Node) 추가하기</h1>
+  <div id="course">
+    <p>자바</p>
+    <p>스프링</p>
+  </div>
+    <button type="button" id="demo" onclick="childAppend()">엘리먼트 추가</button>
+    <script>
+      function childAppend(){
+      const para = document.createElement("p"); // <p></p> 가 메모라상에 만들어짐.
+      const node = document.createTextNode("mybatis"); // 문자열이 생성됨.
+      // appendchild() 차일드 추가 메소드
+      para.appendChild(node); // <p>mybatis</p> - 메모리 내에 생성됨.
+
+      const element = document.getElementById("course"); // div 태그 참조
+      element.appendChild(para); // 마지막으로 추가
+      }
+    </script>
+  </div>
+</body>
+</html>

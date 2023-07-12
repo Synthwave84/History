@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>body 태그에 엘리먼트 추가하기</h1>
+  <script>
+    /*
+      <div>
+        <p>자바</p>
+        <p>스프링</p>
+        <p>마이베티스</p>
+      </div>
+    */  
+
+    let div = document.createElement("div"); // <div></div>
+    let p1 = document.createElement("p"); // <p></p>
+    let text1 = document.createTextNode("자바"); //자바
+    p1.appendChild(text1); // <p>자바</p>
+
+    let p2 = document.createElement("p"); // <p></p>
+    let text2 = document.createTextNode("스프링"); // 스프링
+    p2.appendChild(text2); // <p>스프링</p>
+
+    let p3 = document.createElement("p"); // <p></p>
+    let text3 = document.createTextNode("마이베티스"); // 마이베티스
+    p3.appendChild(text3); // <p>마이베티스</p>
+
+    div.appendChild(p1);
+    div.appendChild(p2);
+    div.appendChild(p3);
+    
+    // 메모리상에 생성. 보이진 않음.
+
+    document.body.appendChild(div); // 바디 태그에 삽입.
+  </script>
+</body>
+</html>
