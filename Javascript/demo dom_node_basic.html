@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>DOM 개요</h1>
+<hr>
+  <!-- 태그 내의 내용 (DOM Node 제어)는 차일드 개념으로 가져간다. 
+  즉 퍼스트 차일드이다.
+  HTML DOM에서는 태그는 부모, 내용은 자식 이라고 생각하면 된다.-->
+  <h2 id="demo1">DOM Node 제어</h2>
+  <p id="demo2"></p>
+  <script>
+    {
+    // demo2의 내용을 demo1로 전달하기.
+    document.getElementById("demo2").innerHTML = 
+    document.getElementById("demo1").innerHTML;
+    }
+  </script>
+<hr>
+  <h2 id="demo3">DOM nodevalue</h2>
+  <p id="demo4"></p>
+  <script>
+    {
+    // 중요! Dom Node에서는 태그와 텍스트내용은 부모와 자식 관계로 구성되어있다.
+    // 상단의 기능과 동일하다. 허나 접근 방식이 dom의 node방식을 이용하였다.
+    document.getElementById("demo4").innerHTML =
+    document.getElementById("demo3").firstChild.nodeValue;
+    }
+  </script>
+<hr>
+  <h2 id="demo5">DOM childNodes의 속성</h2>
+  <p id="demo6"></p>
+  <script>
+    // document.getElementById("demo4").innerHTML =
+    // document.getElementById("demo3").firstChild.nodeValue;
+
+    document.getElementById("demo6").innerHTML = 
+    document.getElementById("demo5").childNodes[0].nodeValue;
+
+    // <p><b>자바는</b> 객체지향 언어이다</p>
+    // 여기서 firstChild는 "자바는" 이 되고 "객체지향 언어이다."는 secondChild가 된다.
+    // childNodes[0] = <b>자바는</b> , childNodes[1] = "객체지향 언어이다."
+    // firstChild = "자바는", secondChild = "객체지향 언어이다."
+    // 만일 구문이 <p><b>자바는</b><span>객체지향언어</span>이다.</p> 라면,
+    // 차일드는 세개가된다. F = 자바는 , S = 객체지향언어, T = 이다.
+  </script>
+</body>
+</html>

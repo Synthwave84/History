@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>매개변수 사용하기</h1>
+  <p id="demo"></p>
+  <button type="button" id="btn">클릭</button>
+  <script>
+    let p1 = 5;
+    let p2 = 7;
+    document.getElementById("btn").addEventListener("click" , function() {
+      myFunction(p1, p2);
+    });
+
+    function myFunction(a,b) { 
+      document.getElementById("demo").innerHTML = a + b;
+    }
+  </script>
+</body>
+</html>

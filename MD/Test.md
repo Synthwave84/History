@@ -152,3 +152,27 @@ https://velog.io/@kim_unknown_/JavaScript-Objects
 - navigator : 사용자의 브라우저 정보를 확인할 때 사용한다.
       쿠키지원 여부 확인 : navigator.cookieEnabled
       대부분의 브라우저는 쿠키기능을 지원한다.
+
+---------------------------------------------------------------------------------------------------
+
+이벤트 : 웹브라우저 화면에서 마우스 또는 키보드에 의한 행위를 이벤트 라고 칭한다. 
+
+이벤트 설정
+- 태그의 속성으로 이벤트 설정
+     <input type="button" onclick="함수();">
+- HTML DOM을 이용한 이벤트 설정
+     ex>  유형1 - <button onclick="자바스크립트 코드">버튼</button>
+          유형2 - <button id="btn">버튼</button>
+                  document.getElementById("btn").onclick =  자바스크립트 코드;
+          유형3 - 
+- 캡쳐링 : 버블링과 캡쳐링이 있다. 버블링은 각 요소를 클릭 우선으로 진행되고,
+          캡쳐링은 각 요소의 부모 객체부터 호출 후에, 이후 클릭된 요소가 순차적으로 실행된다.
+          기본값은 false로 구성이 되어있는데 false = 버블링 이다.
+          만약 맨 뒤로 이벤트내에서 true로 두면 ex) doc.adelistn("click",function,true);
+          부모 태그 부터 실행이 되는 것이다.
+스타일 설정
+- 태그의 속성으로 스타일 설정
+     <p style="color:red;">자바</p>
+
+- 선택자
+- css 파일

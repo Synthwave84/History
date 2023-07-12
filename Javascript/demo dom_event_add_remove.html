@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myDiv {
+      background-color: aquamarine;
+      border: 1px solid;
+      padding : 50px;
+      color : blue;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>이벤트 추가 및 제거</h1>
+  <div id="myDiv">
+    <p>자바스크립트는 예전에는 웹브라우저에서만 실행이 되었으나,
+      이제는 Node.js 런타임 환경을 통해 일반 환경에서도 실행이 가능하다.
+    </p>
+    <button type="button" id="remove" onclick="removeHandler()">클릭(이벤트제거)</button>
+  </div>
+  <p id="demo"></p>
+  <script>
+    
+    //이벤트 등록
+
+    document.getElementById("myDiv").addEventListener("mousemove", myFunction);
+    function myFunction(){
+      document.getElementById("demo").innerHTML = Math.random();
+    }
+    function removeHandler(){
+      // 제거할 대상과 동일해야한다.
+      document.getElementById("myDiv").removeEventListener("mousemove", myFunction);
+    }
+  </script>
+</body>
+</html>
