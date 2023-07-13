@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>정규식 메타인자</h1>
+<p id="demo"></p>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+<p id="demo5"></p>
+<p id="demo6"></p>
+<p id="demo7"></p>
+<p id="demo8"></p>
+<p id="demo9"></p>
+<p id="demo10"></p>
+<p id="demo11"></p>
+<p id="demo12"></p>
+<p id="demo13"></p>
+<p id="demo14"></p>
+<p id="demo15"></p>
+<p id="demo16"></p>
+<p id="demo17"></p>
+<p id="demo18"></p>
+<p id="demo19"></p>
+<p id="demo20"></p>
+  
+  <script>
+    // 정규식 표현 내에 .이 들어가면 중간에 아무런 문자나 들어가도 된다는 뜻이다.
+    // 정규식 표현 내에 \w가 들어가면 모든 문자(words)를 검색한다 총 63개의 문자가 되며, 특수문자는 제외된다.
+    // 대문자 \W일 경우에는 문자를 제외한 모든것을 찾는다. 심지어 스페이스바도 찾는다.
+    // \d는 숫자(digit)을 찾는다. 특정한 자릿수만 뽑아오고 싶을 경우, {}로 자릿수를 지정해준다.
+    // ex) \d{4} = 10000 1000 -> a.match(/\d{4}/) = 1000, 1000. 또한 쉼표로 범위를 넓힐 수 있다.
+    // 즉 숫자 길이가 {3,4} 면 3 이나 4를 가져온다.
+    // 그리고, 만약 {3,} 이렇게 쉼표를 주게되면 3자리 이상을 가져온다.
+    // \D는 위와 동일하게 숫자를 제외하고 찾는다.
+    // \s는 화이트스페이스를 찾는다. (키보드를 입력할 때 보이지 않는것들)
+    // 화이트스페이스에는 Tab,Space,Enter 등이 있다.
+    // 역시나 \S는 화이트 스페이스를 제외하고 찾는다.
+    // \b 는 찾고자 하는 문장으로 시작하는 위치를 출력한다.
+    // 만일 \b가 찾고자 하는 문장의 뒤로 갈 경우, 맨 뒤에서 부터 찾는다.
+    // \0은 null 값을 찾기도 하고, Null을 출력할 때도 쓸 수 있다.
+    // \t는 탭을 찾기도 하고, 탭을 사용하는데도 사용된다.
+    // \x 는 아스키코드 16진법으로 찾는다. \x57 = (W) hex
+    // +는 빈도수를 제어해준다 = 즉 +앞에있는 문자중 하나라도 들어간건 다 찾는다.
+    // 상단에서 쓰인 \w를 이용하면 알파벳 63개 모든것중 하나라도 사용된 것은 다 찾는다.
+    // *는 *앞에 있는 문자 하나를 생략해도 좋으니 뒤에 있는 것, 또는 앞과 뒤가 동시에 사용된 것을 모두 찾는다.
+    // 즉 앞의 문자가 붙은 것 중 뒤의 문자 갯수에 상관 없으니, 앞의 문자로 시작하는 것을 찾는다
+    // ? 는 앞의 문자가 뒤의 문자 뒤에 딱 한번까지만 찾는다 앞의 문자는 생략도 가능하다.
+    // 즉 앞의 문자 뒤에 붙는것은 생략은 할 수 있으나, 최대 1개 까지만 적용한다.
+    // 구문으로 찾기를 한 뒤, test메소드를 주면, 결과값이 Boolean으로 나온다.
+    
+    let text = "That's hot";
+    let text2 = "Give 100%!";
+    let text3 = "\nHello This Is \n IBM 5150";
+    let text4 = "HELLO! I LOVE YOU!!!!";
+    let text5 = "\0Where is\t Null?";
+    let text6 = "Hellooo World! Hello o o o o l lo ";
+    let text7 = "100, 10000, 1000, 100000";
+    
+    // exec메소드는 지정한 문자의 위치를 참조하고, 
+    // 찾은 문자의 위치값(index)로 반환하며 원 문장을 반환하며, 
+    // 찾은 문자열의 값 전체를 반환해준다.
+    const obj = /e/.exec("The best things in life are free!");
+    console.log("obj", obj);
+
+
+    let a = text.match(/h.t/g); // Array
+    let b = text2.match(/\w/g);
+    let c = text2.match(/\W/g);
+    let d = text2.match(/\d/g);
+    let e = text2.match(/\D/g);
+    let f = text3.match(/\s/gm);
+    let g = text3.match(/\S/gm);
+    let h = text4.search(/\bLO/); // String
+    let i = text4.search(/LO\b/);
+    let j = text5.search(/\0/);
+    let k = text5.search(/\t/g);
+    let l = text5.match(/e+/g);
+    let m = text5.match(/\w+/g);
+    let n = text6.match(/lo*/g);
+    let o = text6.match(/lo?/g);
+    let p = text7.match(/\d{3}/g);
+    let q = text7.match(/\d{2,4}/g);
+    let r = text7.match(/\d{3,}/g);
+    
+    const tester = /\e/;
+
+
+    
+    document.getElementById("demo").innerHTML = a; // hat,hot
+    document.getElementById("demo1").innerHTML = b; // G.i.v.e.1.0.0
+    document.getElementById("demo2").innerHTML = c; // ,%,! * 맨 앞의 쉼표안엔 띄어쓰기가 있는것. 즉 총 3개
+    document.getElementById("demo3").innerHTML = d; // 1.0.0
+    document.getElementById("demo4").innerHTML = e; // G,i,v,e, ,%,!
+    document.getElementById("demo5").innerHTML = f; // , , , , , ,
+    document.getElementById("demo6").innerHTML = g; // H,e,l,l,o,T,h,i,s,I,s,I,B,M,5,1,5,0
+    document.getElementById("demo7").innerHTML = h; // 9 LO로 시작하는 문자를 찾는다.
+    document.getElementById("demo8").innerHTML = i; // 3 LO로 끝나는 문자를 찾는다.
+    document.getElementById("demo9").innerHTML = j; // 0
+    document.getElementById("demo10").innerHTML = k; // 9
+    document.getElementById("demo11").innerHTML = l; // e,e
+    document.getElementById("demo12").innerHTML = m; // Where,is,Null
+    document.getElementById("demo13").innerHTML = n; // l,looo,l,l,lo
+    document.getElementById("demo14").innerHTML = o; // l,lo,l,l,lo,l,lo
+    document.getElementById("demo15").innerHTML = p; // 100,100,100,100,000
+    document.getElementById("demo16").innerHTML = q; // 100,1000,1000,1000,00
+    document.getElementById("demo17").innerHTML = r; // 100,10000,1000,100000
+    document.getElementById("demo18").innerHTML = /\e/.test(text); // Boolean
+    document.getElementById("demo19").innerHTML = tester.test(text); // 둘다 동일
+    document.getElementById("demo20").innerHTML = 
+      `obj[0] : ${obj[0]}, obj.index : ${obj.index}, text : ${obj.input}`
+
+
+  </script>
+</body>
+</html>

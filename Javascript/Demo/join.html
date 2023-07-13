@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 테스트</title>
+<style>
+body
+    {
+        margin:5px;
+    }
+h1
+    {
+        text-align: center;
+    }
+div
+    {
+        border-style: solid; 
+        border-width: 5px;
+        border-radius: 10px; 
+        border-color: greenyellow;
+        padding:10px 10px 10px 10px;
+    }
+
+table
+    {
+        border-collapse: collapse; width:100%;
+        margin:auto;
+        padding:auto;
+        border-style: none;
+    }
+
+th
+    {
+        background-color: rgb(1, 95, 173); 
+        color: white; 
+        font-size: 15px; 
+        text-align: center;
+        padding: 10px 10px 10px 10px;
+    }
+
+td
+    {
+        font-size: 15px;
+    }
+    
+
+input:hover
+    {
+        background-color: aquamarine;
+    }
+
+.inside
+    {
+        font-size: 10px;
+    }
+    
+</style>
+<script>
+    
+    //이벤트 리스너 작업
+    
+  function emailSelect(){
+    let email2 = document.getElementById("email2");
+    email2.value = document.getElementById("email3").value;
+  }
+  function sendit(){
+      // 정규식 사용 할 것을 미리 적용한다.
+    let reg_name = RegExp(/^[가-힣]{2,10}$/);
+    let reg_id = RegExp(/^[a-zA-Z]+[0-9a-zA-Z]{5,15}$/);
+    let reg_pw = RegExp(/^.*(?=^.{9,15}$)(?=.*\d)(?=.*[a-z])(?=.*[~!@#$%^&*()_+{}|:<>?]).*$/);
+    let reg_phone = RegExp(/^\d{3}-\d{4}-\d{4}$/);
+    let reg_email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+
+    // 입력필드 태그참조 변수 (target으로 갈 놈)
+    let u_name = document.getElementById("u_name");
+    let u_id = document.getElementById("u_id");
+    let u_pw = document.getElementById("u_pw");
+    let u_repw = document.getElementById("u_repw");
+    let u_birth = document.getElementById("u_birth");
+    let u_gender1 = document.getElementById("gender1");
+    let u_gender2 = document.getElementById("gender2");
+    let u_email1 = document.getElementById("email1");
+    let u_email2 = document.getElementById("email2");
+    let u_email3 = document.getElementById("email3");
+
+    if(!empty_validate(u_name, "이름 입력요망")) return;
+    if(!empty_validate(u_id, "아이디 입력요망")) return;
+    if(!empty_validate(u_pw, "비밀번호 입력요망")) return;
+    
+    
+    
+    // 비밀번호 확인
+    if(u_pw.value != u_repw.value){
+      alert("비밀번호가 일치하지 않습니다.");
+      u_repw.value = "";
+      u_repw.focus()
+      return;
+    }
+    if(!gender1.checked && !gender2.checked){
+      alert("성별을 체크해주세요");
+      return;
+    }
+
+    
+    email.value = email1.value +email2.value;
+    if(!empty_validate(email, "이메일 입력요망")) return;
+    return;
+  }
+  // 필드에 데이터 입력 유 무 체크.
+  // target : 필드검사대상 태그참조
+  // msg : 경고메세지, 예>이름 입력요망, 비밀번호 입력 요망.
+  function empty_validate(target, msg){
+    if(target.value == ""){
+      alert(msg);
+      target.focus();
+      return false;
+    }
+    return true
+  }
+
+  // 정규식 유효성 검사 함수
+  // re : 정규식개체, target: 정규식 검사필드 태그참조, data :필드의 값, msg : 유효성검사 메세지.
+  function reg_validate(re, target, data, msg ){
+    if(!re.test(target.value)) {
+      alert(msg);
+      target.focus();
+      return false;
+    }
+    
+  }
+</script>
+</head>
+<body>
+<div><p style="text-align: right; font-size: 10px;">표시항목은 필수 입력 사항입니다.</p>
+    <h1>기본정보</h1>
+  <form>
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <td>
+              <input type="text" id="u_name" name="u_name">
+              <p class="inside">이름을 적어주세요</p>
+            </td>
+        </tr>
+        <tr>
+            <th>아이디</th>
+            <td>
+              <input type="text" id="u_id" name="u_id">
+            <p class="inside" >
+              6~16자 영문(대소문자),숫자 및 특수문자 사용 가능합니다.>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <th>비밀번호</th>
+            <td>
+              <input type="password" id="u_pw">
+            </td>
+        </tr>
+        <tr>
+            <th>비밀번호 확인</th>
+            <td><input type="password" id="u_repw"></td>
+        </tr>
+        <tr>
+            <th>생년월일,성별</th>
+            
+            <td><input type="date" id="u_birth" name="u_birth">
+                <input type="radio" name="gender1" id="gender1">남
+                <input type="radio" name="gender2" id="gender2">여</td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+        
+            <td>
+            <form action="#">
+                <input type="text" id="email1">@
+                <input type="text" id="email2" >
+                <select id="email3" name="email3">
+                    <option value="naver.com">naver</option>
+                    <option value="gmail.com">gmail</option>
+                    <option value="daum.net">daum</option>
+                </select>
+                <input type="hidden" id="email"> <!-- 합친 메일을 하나로 관리 -->
+                <input type="submit" style="height: auto;font-size: 10px;"> 
+                <br>
+                <input type="text">인증코드 확인
+                <input type="submit" style="height: auto;font-size: 10px;"> 
+            </form>
+            </td>
+        </tr>
+        <tr>
+            <th>연락처</th>
+            <td>일반전화<input type="text" list="hnum" name="hnum">-
+              <input type="tel" maxlength="4">-
+              <input type="tel" maxlength="4">
+                <br>
+                <datalist id="hnum">
+                    <option value="02"></option>
+                    <option value="031"></option>
+                    <option value="032"></option>
+                </datalist>
+                휴대전화<input type="text" list="mnum" name="mnum">-
+                    <input type="tel" maxlength="4">-
+                    <input type="tel" maxlength="4">
+                <datalist id="mnum">
+                    <option value="010"></option>
+                    <option value="011"></option>
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <th>우편번호</th>
+            <td>
+                <input type="text" id="sample2_postcode">
+                <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
+            </td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td>
+                <input type="text" id="sample2_address">-
+                <input type="text" id="sample2_detailAddress">
+                <input type="hidden" id="sample2_extraAddress" placeholder="참고항목">
+            </td>
+        </tr>
+        <tr>
+            <th>정보수신 여부</th><td>
+              <p class="inside">서비스 및 이벤트 소식을
+                <input type="checkbox">email로 받겠습니다.
+                <input type="checkbox">SMS로 받겠습니다.
+              </p>
+            </td>
+        </tr>
+    </table>
+    <button type="button" value="전송" onclick="sendit()">전송</button>
+    <button type="reset" value="초기화">초기화</button>
+  </div>
+</form>
+<script>
+  // 이벤트 리스너
+  document.getElementById("email3").addEventListener("change",emailSelect)
+
+
+</script>
+
+
+
+<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+  <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+  </div>
+  
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+      // 우편번호 찾기 화면을 넣을 element
+      var element_layer = document.getElementById('layer');
+  
+      function closeDaumPostcode() {
+          // iframe을 넣은 element를 안보이게 한다.
+          element_layer.style.display = 'none';
+      }
+  
+      function sample2_execDaumPostcode() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+  
+                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var addr = ''; // 주소 변수
+                  var extraAddr = ''; // 참고항목 변수
+  
+                  //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                      addr = data.roadAddress;
+                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                      addr = data.jibunAddress;
+                  }
+  
+                  // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                  if(data.userSelectedType === 'R'){
+                      // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                      // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                      if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                          extraAddr += data.bname;
+                      }
+                      // 건물명이 있고, 공동주택일 경우 추가한다.
+                      if(data.buildingName !== '' && data.apartment === 'Y'){
+                          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                      }
+                      // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                      if(extraAddr !== ''){
+                          extraAddr = ' (' + extraAddr + ')';
+                      }
+                      // 조합된 참고항목을 해당 필드에 넣는다.
+                      document.getElementById("sample2_extraAddress").value = extraAddr;
+                  
+                  } else {
+                      document.getElementById("sample2_extraAddress").value = '';
+                  }
+  
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('sample2_postcode').value = data.zonecode;
+                  document.getElementById("sample2_address").value = addr;
+                  // 커서를 상세주소 필드로 이동한다.
+                  document.getElementById("sample2_detailAddress").focus();
+  
+                  // iframe을 넣은 element를 안보이게 한다.
+                  // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+                  element_layer.style.display = 'none';
+              },
+              width : '100%',
+              height : '100%',
+              maxSuggestItems : 5
+          }).embed(element_layer);
+  
+          // iframe을 넣은 element를 보이게 한다.
+          element_layer.style.display = 'block';
+  
+          // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+          initLayerPosition();
+      }
+  
+      // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+      // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+      // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+      function initLayerPosition(){
+          var width = 300; //우편번호서비스가 들어갈 element의 width
+          var height = 400; //우편번호서비스가 들어갈 element의 height
+          var borderWidth = 5; //샘플에서 사용하는 border의 두께
+  
+          // 위에서 선언한 값들을 실제 element에 넣는다.
+          element_layer.style.width = width + 'px';
+          element_layer.style.height = height + 'px';
+          element_layer.style.border = borderWidth + 'px solid';
+          // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+          element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+          element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+      }
+  </script>
+
+</body>
+
+</html>
