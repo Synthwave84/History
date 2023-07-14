@@ -136,14 +136,18 @@ input:hover
     
 
     if(!rev_mail.checked){
-      alert("메일 수신여부")
+      alert("메일 수신여부");
       return;
     }
     if(!rev_sns.checked){
-      alert("SNS수신 여부")
+      alert("SNS수신 여부");
       return;
     }
-    document.getElementById("join_form").submit();
+    alert("유효성 검사 성공");
+    // document.getElementById("join_form").submit(); <<인풋 버튼일 때만 사용 가능
+    // document.forms[0].submit();
+
+    // submit 버튼일경우 기능 자체가 submit 이기 때문에, 다른것을 추가 할 수없다.
   }
   // 필드에 데이터 입력 유 무 체크.
   // target : 필드검사대상 태그참조
@@ -233,19 +237,19 @@ input:hover
               <input type="text" id="sTel1">-
               <input type="text" id="sTel2">
                 <br>
-                <!-- <select id="hTel"> -->
-                    <!-- <option value="">선택</option> -->
-                    <!-- <option value="02"></option> -->
-                    <!-- <option value="031"></option> -->
-                    <!-- <option value="032"></option> -->
-                <!-- </select> -->
+                <!-- <select id="hTel">
+                    <option value="">선택</option>
+                    <option value="02"></option> 
+                    <option value="031"></option> 
+                    <option value="032"></option> 
+                </select> -->
                 휴대전화<input type="text" id="hTel1" name="hTel1">-
                     <input type="text" id="hTel2">-
                     <input type="text" id="htel3">
-                <select id="hTel">
-                    <option value="010"></option>
-                    <option value="011"></option>
-                </select>
+                <!-- <select id="hTel"> 
+                    <option value="010"></option> 
+                    <option value="011"></option> 
+                </select> -->
             </td>
         </tr>
         <tr>
@@ -279,9 +283,12 @@ input:hover
 </form>
 <script>
   // 이벤트 리스너
-  document.getElementById(email3.value).addEventListener("email2",email)
+  document.getElementById("email3").addEventListener("change",emailselect);
 
-
+  function emailselect(){
+    let email2 = document.getElementById("email2");
+    email2.value = document.getElementById("email3").value;
+  }
 </script>
 
 
