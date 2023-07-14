@@ -66,10 +66,11 @@ input:hover
   }
   function sendit(){
       // 정규식 사용 할 것을 미리 적용한다.
+      // /^~~~~~~$/ 는 필수적으로 시작, 필수적으로 끝나야한다는 의미이다.
+      // 즉, 가-힣 으로 끝나야 한다. 넣지않으면 무엇으로 시작되도, 무엇으로 끝나도 상관이 없게된다.
     let reg_name = RegExp(/^[가-힣]{2,10}$/);
     let reg_id = RegExp(/^[a-zA-Z]+[0-9a-zA-Z]{5,15}$/);
     let reg_pw = RegExp(/^.*(?=^.{9,15}$)(?=.*\d)(?=.*[a-z])(?=.*[~!@#$%^&*()_+{}|:<>?]).*$/);
-    let reg_phone = RegExp(/^\d{3}-\d{4}-\d{4}$/);
     let reg_email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 
     // 입력필드 태그참조 변수 (target으로 갈 놈)
@@ -80,13 +81,30 @@ input:hover
     let u_birth = document.getElementById("u_birth");
     let u_gender1 = document.getElementById("gender1");
     let u_gender2 = document.getElementById("gender2");
+    let u_email = document.getElementById("email");
     let u_email1 = document.getElementById("email1");
     let u_email2 = document.getElementById("email2");
-    let u_email3 = document.getElementById("email3");
+    let auth_confirm = document.getElementById("auth_confirm");
+    let sTel = document.getElementById("sTel");
+    let sTel1 = document.getElementById("sTel1");
+    let sTel2 = document.getElementById("sTel2");
+    let hTel1 = document.getElementById("hTel1");
+    let hTel2 = document.getElementById("hTel2");
+    let hTel3 = document.getElementById("hTel3");
+    let sample2_postcode = document.getElementById("sample2_postcode");
+    let sample2_address = document.getElementById("sample2_address");
+    let sample2_detailAddress = document.getElementById("sample2_detailAddress");
+    let rev_mail = document.getElementById("rev_mail");
+    let rev_sns = document.getElementById("rev_sns");
 
     if(!empty_validate(u_name, "이름 입력요망")) return;
+    if(!reg_validate(reg_name, u_name, "한글만 입력해주세요")) return;
+    
     if(!empty_validate(u_id, "아이디 입력요망")) return;
+    if(!reg_validate(reg_id, u_id, "아이디는 영문 및 숫자만 사용 가능")) return;
+    
     if(!empty_validate(u_pw, "비밀번호 입력요망")) return;
+    if(!reg_validate(reg_pw, u_pw, "영문 숫자 및 특수기호만 사용가능")) return;
     
     
     
@@ -102,10 +120,30 @@ input:hover
       return;
     }
 
+    if(!empty_validate(u_birth, "생년월일을 선택해주세요")) return;
+    email.value = email1.value+ "@" +email2.value;
+    if(!empty_validate(u_email, "이메일 입력요망")) return;
+    if(!empty_validate(email1, "이메일 입력요망")) return;
+    if(!empty_validate(email2, "이메일 입력요망")) return;
+    if(!reg_validate(reg_email, email, "이메일 형색이 다릅니다")) return;
+    if(!empty_validate(auth_confirm, "인증번호 확인 요망")) return;
+    if(!empty_validate(sTel, "일반 번호 입력요망")) return;
+    if(!empty_validate(sTel1, "일반 번호 입력요망")) return;
+    if(!empty_validate(sTel2, "일반 번호 입력요망")) return;
+    if(!empty_validate(sample2_postcode, "주소 입력요망")) return;
+    if(!empty_validate(sample2_address, "주소 입력요망")) return;
+    if(!empty_validate(sample2_detailAddress, "주소 입력요망")) return;
     
-    email.value = email1.value +email2.value;
-    if(!empty_validate(email, "이메일 입력요망")) return;
-    return;
+
+    if(!rev_mail.checked){
+      alert("메일 수신여부")
+      return;
+    }
+    if(!rev_sns.checked){
+      alert("SNS수신 여부")
+      return;
+    }
+    document.getElementById("join_form").submit();
   }
   // 필드에 데이터 입력 유 무 체크.
   // target : 필드검사대상 태그참조
@@ -121,20 +159,20 @@ input:hover
 
   // 정규식 유효성 검사 함수
   // re : 정규식개체, target: 정규식 검사필드 태그참조, data :필드의 값, msg : 유효성검사 메세지.
-  function reg_validate(re, target, data, msg ){
+  function reg_validate(re, target, msg ){
     if(!re.test(target.value)) {
       alert(msg);
       target.focus();
       return false;
     }
-    
+    return true;
   }
 </script>
 </head>
 <body>
 <div><p style="text-align: right; font-size: 10px;">표시항목은 필수 입력 사항입니다.</p>
     <h1>기본정보</h1>
-  <form>
+  <form id="join_form" action="./join_ok.html" method="post" enctype="application/x-www-form-urlencoded">
     <table border="1">
         <tr>
             <th>이름</th>
@@ -173,40 +211,41 @@ input:hover
             <th>이메일</th>
         
             <td>
-            <form action="#">
+          
                 <input type="text" id="email1">@
-                <input type="text" id="email2" >
-                <select id="email3" name="email3">
+                <input type="text" id="email2">
+                <select class="select1" id="email3" name="email3">
                     <option value="naver.com">naver</option>
                     <option value="gmail.com">gmail</option>
                     <option value="daum.net">daum</option>
                 </select>
                 <input type="hidden" id="email"> <!-- 합친 메일을 하나로 관리 -->
-                <input type="submit" style="height: auto;font-size: 10px;"> 
+                <input type="button" value="메일주소 확인" style="height: auto;font-size: 10px;"> 
                 <br>
-                <input type="text">인증코드 확인
-                <input type="submit" style="height: auto;font-size: 10px;"> 
-            </form>
+                <input type="text" id="auth_confirm">인증코드 확인
+                <input type="button" class="btn2" style="height: auto;font-size: 10px;"> 
+            
             </td>
         </tr>
         <tr>
             <th>연락처</th>
-            <td>일반전화<input type="text" list="hnum" name="hnum">-
-              <input type="tel" maxlength="4">-
-              <input type="tel" maxlength="4">
+            <td>일반전화<input type="text" id="sTel"name="sTel">-
+              <input type="text" id="sTel1">-
+              <input type="text" id="sTel2">
                 <br>
-                <datalist id="hnum">
-                    <option value="02"></option>
-                    <option value="031"></option>
-                    <option value="032"></option>
-                </datalist>
-                휴대전화<input type="text" list="mnum" name="mnum">-
-                    <input type="tel" maxlength="4">-
-                    <input type="tel" maxlength="4">
-                <datalist id="mnum">
+                <!-- <select id="hTel"> -->
+                    <!-- <option value="">선택</option> -->
+                    <!-- <option value="02"></option> -->
+                    <!-- <option value="031"></option> -->
+                    <!-- <option value="032"></option> -->
+                <!-- </select> -->
+                휴대전화<input type="text" id="hTel1" name="hTel1">-
+                    <input type="text" id="hTel2">-
+                    <input type="text" id="htel3">
+                <select id="hTel">
                     <option value="010"></option>
                     <option value="011"></option>
-                </datalist>
+                </select>
             </td>
         </tr>
         <tr>
@@ -227,19 +266,20 @@ input:hover
         <tr>
             <th>정보수신 여부</th><td>
               <p class="inside">서비스 및 이벤트 소식을
-                <input type="checkbox">email로 받겠습니다.
-                <input type="checkbox">SMS로 받겠습니다.
+                <input type="checkbox" id="rev_mail">email로 받겠습니다.
+                <input type="checkbox" id="rev_sns">SMS로 받겠습니다.
               </p>
             </td>
         </tr>
     </table>
+    <p class="submit"></p>
     <button type="button" value="전송" onclick="sendit()">전송</button>
     <button type="reset" value="초기화">초기화</button>
   </div>
 </form>
 <script>
   // 이벤트 리스너
-  document.getElementById("email3").addEventListener("change",emailSelect)
+  document.getElementById(email3.value).addEventListener("email2",email)
 
 
 </script>
@@ -258,6 +298,7 @@ input:hover
       function closeDaumPostcode() {
           // iframe을 넣은 element를 안보이게 한다.
           element_layer.style.display = 'none';
+        
       }
   
       function sample2_execDaumPostcode() {
