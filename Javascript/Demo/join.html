@@ -71,7 +71,7 @@ input:hover
     let reg_name = RegExp(/^[가-힣]{2,10}$/);
     let reg_id = RegExp(/^[a-zA-Z]+[0-9a-zA-Z]{5,15}$/);
     let reg_pw = RegExp(/^.*(?=^.{9,15}$)(?=.*\d)(?=.*[a-z])(?=.*[~!@#$%^&*()_+{}|:<>?]).*$/);
-    let reg_email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+    let reg_email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]{2,3}+/);
 
     // 입력필드 태그참조 변수 (target으로 갈 놈)
     let u_name = document.getElementById("u_name");
@@ -176,7 +176,10 @@ input:hover
 <body>
 <div><p style="text-align: right; font-size: 10px;">표시항목은 필수 입력 사항입니다.</p>
     <h1>기본정보</h1>
-  <form id="join_form" action="./join_ok.html" method="post" enctype="application/x-www-form-urlencoded">
+    <!-- https://developer.mozilla.org/ko/docs/Learn/Forms/How_to_structure_a_web_form -->
+    <!-- <input type="file">를 사용시 , form태그에 enctype="multipart/form-data" -->
+  <form id="join_form" action="./join_ok.html" 
+  method="post" enctype="application/x-www-form-urlencoded">
     <table border="1">
         <tr>
             <th>이름</th>
@@ -289,7 +292,7 @@ input:hover
     let email2 = document.getElementById("email2");
     email2.value = document.getElementById("email3").value;
   }
-</script>
+</script> 
 
 
 
