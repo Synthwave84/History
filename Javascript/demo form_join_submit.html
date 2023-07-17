@@ -88,11 +88,11 @@
       // 즉 현재 앞에 !(NOT)가 붙었으므로 값은 false + false = false로 반환되는것이다.
       if(!agree1.checked && !agree2.checked){
         alert("메일 수신 여부를 선택요망")
-        return false;
+        return false; // 함수를 호출한 쪽에서 False를 반환값으로 돌려준다. 즉 전송중지.
       }
 
 
-      return false; // 전송이 중지된다.
+      return true; // 전송이 가능해진다.
     }
   </script>
 </head>
@@ -124,6 +124,8 @@
 
 Mail agree : <br><label for="agree1">동의</label><input type="radio" id="agree1" name="agree">YES<br>
                 <label for="agree2">비동의</label><input type="radio" id="agree2" name="agree">NO<br>
+    <!-- 인풋 타입이 submit일 경우에는 절대 oncilck이벤트를 사용하지 않는다. 
+        input type 이 submit일 경우에는 상단의 폼에 onsubmit을 사용해야한다.-->
     <input type="submit" value="전송">
   </form>
 </body>
