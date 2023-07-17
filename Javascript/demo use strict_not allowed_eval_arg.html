@@ -6,7 +6,13 @@
   <title>Document</title>
 </head>
 <body>
-  <h1></h1>
-  <p></p>
+  <h1>use strict : eval,arguments 키워드 변수사용 허용 불가</h1>
+
+  <p id="demo"></p>
+  <script>
+    // "use strict"; 바로 에러가 떠버린다.
+    let eval = 3.14;
+    let arguments = 3.14;
+  </script>
 </body>
 </html>
