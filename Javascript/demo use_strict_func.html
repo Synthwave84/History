@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>use strict : 함수</h1>
+  <p id="demo"></p>
+  <script>
+    // "use strict"
+
+    print();
+
+    function print() {
+      y = 3.14; // 함수안의 변수 사용도 선언하지 않으면, use strict의 영향을 받는다.
+      document.getElementById("demo").innerHTML = y;
+    }
+  </script>
+<hr>
+  <h2>함수내부에 use strict 사용시 함수안의 변수만 체크</h2>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+  <script>
+    
+      a = 3.14; // "use strict";구문이 없어 에러처리되지아니한다.
+      document.getElementById("demo1").innerHTML = a;
+      
+      printl();
+
+      function printl(){
+        //"use strict"; // 함수 내부의 변수선언을 하지 않은 부분을 에러처리 한다.
+        b = 3.14; // 에러
+
+        document.getElementById("demo2").innerHTML = b;
+      }
+    </script>
+<hr>
+    <h2>use strict는 delete 는 사용 불가.</h2>
+    <p id="demo3"></p>
+    <script>
+      // "use strict";
+      let c = 3.14;
+      delete c; // 에러 (delete구문은 "use strict" 가 있을 시 사용 할 수 없다.)
+    </script>
+<hr>
+    <h2>use strict : 10진수이외의 다른 진수표현은 에러처리한다.</h2>
+    <p id="demo4"></p>
+      <script>
+        // "use strict"
+        let d = 0o10; // 8진수 10
+        document.getElementById("demo4").innerHTML = d;
+      </script>
+</body>
+</html>
