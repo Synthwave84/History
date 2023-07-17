@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>this 차이점.</h1>
+  <button id="btn">클릭!</button>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+  <script>
+    // 일반함수 *익명함수포함 에서, window or document 객체로 이벤트 등록 시
+    // this의 참조하는 대상이 다르다.
+    let hello = "";
+    hello = function() {
+      // this는 일반함수(익명함수 포함) 안에서 window객체를 참조한다.
+      document.getElementById("demo").innerHTML = this;
+    }
+
+    window.addEventListener("load", hello); 
+
+    let hello2 = "";
+    hello2 = function () {
+      // 이곳의 this는 버튼 객체를 참조한다.
+      document.getElementById("demo1").innerHTML = this;
+    }
+
+    // 왜냐하면 여기서 this를 참조하기 때문.
+    document.getElementById("btn").addEventListener("click",hello2); 
+
+  </script>
+
+</body>
+</html>

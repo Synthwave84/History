@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>함수의 매개변수 arguments 속성</h1>
+  <script>
+    // test()함수에 매개변수가 없는 상태
+    function test(){
+      console.log("arguments[0]", arguments[0]);
+      console.log("arguments[1]", arguments[1]);
+    // test2() 함수에 매개변수가 있는 형태
+    // 매개변수를 선언하지 않아도, arguments 사용가능
+    function test2(x,y) {
+      console.log ("x", x);
+      console.log ("y", y);
+      console.log ("arguments.length", arguments.length);
+    }
+
+    }
+    test(10,20);
+    test2(10,20);
+
+  </script>
+</body>
+</html>

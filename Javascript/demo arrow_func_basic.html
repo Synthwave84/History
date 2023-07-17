@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>화살표 함수</h1>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+
+  <script>
+
+    
+
+// 함수 정의하는 방법 3가지, 
+    
+    // 첫번째 방법 : 함수 정의의 기본
+    function myFunction(a, b) {
+      return a + b;
+    }
+    document.getElementById("demo").innerHTML = myFunction(10, 20)
+    // 두번째 방법 : 변수에 함수를 대입하기.
+    // 즉 함수의 매개변수에 함수를 대이발 수 있다는 의미(매우 중요)
+    let fn_test = function(a, b) {
+      return a + b;
+    }
+  
+    document.getElementById("demo1").innerHTML = fn_test(10,20);
+    // 세번째 방법 : 화살표 함수 
+    /* 
+    let fn_test2 = (a, b) => {
+      return a + b;
+    }
+    */
+    // 더 줄여버리기~
+    let fn_test2 = (a, b) => a + b;
+    document.getElementById("demo2").innerHTML = fn_test2(10,20);
+    
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>this 차이점.</h1>
+  <button id="btn">클릭!</button>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+  <script>
+    // 화살표 함수에서 this의 의미는 window객체 또는 document 객체로 이벤트 등록 시
+    // 둘 다 this는 window 객체를 참조하게 된다.
+    let hello = "";
+    // 화살표 함수 1
+    hello = () => {
+      // this는 일반함수(익명함수 포함) 안에서 window객체를 참조한다.
+      document.getElementById("demo").innerHTML = this;
+    }
+
+    window.addEventListener("load", hello); 
+    // 화살표 함수 2
+
+    // 즉 여기서 this를 자기자신을 참조하기 위해선, 화살표 함수를 사용해선 아니된다.(매우 중요.)
+    let hello2 = "";
+    hello2 =  () => {
+      document.getElementById("demo1").innerHTML = this;
+    }
+    
+    document.getElementById("btn").addEventListener("click",hello2); 
+
+  </script>
+
+</body>
+</html>

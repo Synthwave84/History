@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>use strict : this 지원 안함</h1>
+  <script>
+    "use strict"
+
+    // this는 window객체를 참조안함.
+    // 일반함수에서는 this객체가 window객체를 참조하게된다.
+    function myFunction() {
+      alert(this);
+    }
+
+    myFunction(); // use strict가 있을 경우엔 undefined, 없다면 object window 가 된다.
+
+  </script>
+</body>
+</html>

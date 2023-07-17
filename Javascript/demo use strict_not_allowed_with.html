@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>use strict : with 지원 안함</h1>
+  <script>
+    
+    /*  
+      상단의 코드와 하단의 코드는 같다. 허나 use strict 구문이 사용되면 사용 할 수 없다.
+      Math.round();
+      Math.floor();
+      Math.ceil();
+
+      with(Math){
+          round();
+          floor();
+          ceil();
+      }
+    */
+      // "use strict"
+      // with = 동일한 메소드를 여러번 사용해야 할 때 쓸 수 있다.
+    let x;
+    with(Math) { // use strict 구문을 써서 with 메소드를 사용 할 수 없다.
+      x = round(5,6)
+    }
+  </script>
+</body>
+</html>
