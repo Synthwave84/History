@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    
+    th {
+      padding: 15px; 
+      text-align: center; 
+      color: midnightblue;
+      background-color: aquamarine;
+    }
+    td {
+      width: 85%; 
+      border : 1px solid gainsboro;
+    }
+    .firstdiv {
+      border : none  black;
+    }
+    
+    .firstheader {
+      text-align: center;
+    }
+    .table {
+      border :  black; margin : 0 auto;
+    }
+    .inside {
+      font-size: 4px;
+    }
+    .buttons {
+      text-align: center;
+    }
+  </style>
+  <script>
+    // 유효성 검사
+    function validChecker() {
+    // 정규식
+    let r_name = RegExp(/^[가-힣]{2,10}$/); 
+    let r_id = RegExp(/^[a-zA-Z]+[0-9a-zA-Z]{5,15}$/); 
+    let r_pw = RegExp(/^.*(?=^.{9,15}$)(?=.*\d)(?=.*[a-z])(?=.*[~!@#$%^&*()_+{}|:<>?]).*$/);
+    let r_email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]{2,3}/);
+    // 요소
+    let u_name = document.getElementById("u_name")
+    let u_id = document.getElementById("u_id");
+    let u_pw = document.getElementById("u_pw");
+    let u_cpw = document.getElementById("u_cpw");
+    let u_gender1 = document.getElementById("u_gender1");
+    let u_gender2 = document.getElementById("u_gender2");
+    let u_email1 = document.getElementById("u_email1");
+    let u_email2 = document.getElementById("u_email2");
+    let u_birth = document.getElementById("u_birth");
+    let u_htel1 = document.getElementById("u_htel1");
+    let u_htel2 = document.getElementById("u_htel2");
+    let u_htel3 = document.getElementById("u_htel3");
+    let u_addr1 = document.getElementById("sample2_postcode");
+    let u_addr2 = document.getElementById("sample2_address");
+    let u_addr3 = document.getElementById("sample2_detailAddress");
+    let u_recE = document.getElementById("rec_email");
+    let u_recS = document.getElementById("rec_SMS");
+    
+    //유효성 검사 시작
+
+    // 이유는 잘 모르겠으나, return에 false값을 주지 않으면 전송 시 값이 전부 초기화됨... 
+    // 이것 저것 해보고 확인완료...
+    if(!empVal(u_name,"이름을 입력 해 주세요")) return false;
+    if(!regVal(r_name,u_name,"이름 형식이 일치하지 않습니다"))return false;
+    if(!empVal(u_id,"아이디를 입력 해 주세요"))return false;
+    if(!regVal(r_id,u_id,"아이디 형식이 일치하지 않습니다"))return false;
+    if(!empVal(u_pw,"비밀번호를 입력 해 주세요"))return false;
+    if(!regVal(r_pw,u_pw,"비밀번호 형식이 일치하지 않습니다"))return false;
+
+    // 비밀번호 일치여부 확인
+    if(u_pw.value !== u_cpw.value) {
+      alert("비밀번호가 서로 일치하지 않습니다.")
+      return false;
+    }
+
+    if(!empVal(u_birth,"생년 월일을 입력 해 주세요"))return false;
+    
+    // 라디오버튼 체크 확인
+    if(!u_gender1.checked && !u_gender2.checked) {
+    alert("성별을 체크하세요")
+    return false;
+  }
+    //이메일 확인
+    if(!empVal(u_email1,"이메일 아이디를 입력 해 주세요"))return false;
+    if(!empVal(u_email2,"이메일을 마저 입력 해 주세요"))return false;
+    
+    // 이메일 합치 "id=email" 히든타입 참조
+    email.value = u_email1.value+ "@" +u_email2.value;
+    if(!regVal(r_email,email,"이메일 형식이 일치하지 않습니다"))return false;
+    if(!empVal(u_htel1,"핸드폰 번호 앞자리를 입력 해 주세요"))return false;
+    if(!empVal(u_htel2,"핸드폰 번호 중간 자리를 입력 해 주세요"))return false;
+    if(!empVal(u_htel3,"핸드폰 번호 끝자리를 입력 해 주세요"))return false;
+    if(!empVal(u_addr1,"우편 번호를 입력 해 주세요"))return false;
+    if(!empVal(u_addr2,"주소를 입력 해 주세요"))return false;
+    if(!empVal(u_addr3,"상세 주소를 입력 해 주세요"))return false;
+    
+    // 체크박스 확인
+    if(!u_recE.checked && !u_recS.checked) {
+      alert("수신 여부에 체크 해 주세요")
+      return false;
+    }
+    
+    // 공란 확인
+    function empVal(Eid, msg) {
+    if(Eid.value == ""){
+      alert(msg);
+      Eid.focus();
+      return false;
+    }
+    return true
+  }
+  
+  // 정규식 확인
+    function regVal(reg, id, msg ) {
+    if(!reg.test(id.value)) {
+      alert(msg);
+      id.focus();
+      return false;
+    }
+    return true;
+  }
+
+    // 최종 검사
+    alert("유효성 검사 성공")
+    return true;
+
+    
+    document.forms[0].submit();
+    }
+  </script>
+</head>
+
+
+
+
+
+<body>
+  <div class="firstdiv">
+    <h1 class="firstheader">회원가입</h1>
+      <div>
+        <form action="#" method="post" onsubmit="return validChecker()">
+          <table class="table" >
+            <tr>
+              <th>이름</th>
+              <td>
+                <input type="text" id="u_name" name="u_name" placeholder="이름">
+              </td>
+            </tr>
+            <tr>
+              <th>아이디</th>
+              <td>
+                <input type="text" id="u_id" name="u_id" placeholder="ID">
+                <p class="inside">아이디는 영문 및 숫자 조합만 가능합니다.</p>
+              </td>
+            </tr>
+            <tr>
+              <th>비밀번호</th>
+              <td>
+                <input type="password" id="u_pw" name="u_pw" placeholder="Password">
+                <p class="inside">비밀번호는 대 소문자를 구분합니다.</p>
+              </td>
+            </tr>
+            <tr>
+              <th>비밀번호 확인</th>
+              <td>
+                <input type="password" id="u_cpw" name="u_cpw">
+              </td>
+            </tr>
+            <tr>
+              <th>생년월일/성별</th>
+              <td>
+                <input type="date" id="u_birth">
+                <input type="radio" value="남자" id="u_gender1">남자
+                <input type="radio" value="여자" id="u_gender2">여자
+              </td>
+            </tr>
+            <tr>
+              <th>이메일</th>
+              <td>
+                <input type="text" id="u_email1" name="u_email1" placeholder="ID">@
+                <input type="text" id="u_email2" name="u_email2" placeholder="example.com">
+                  <select id="sel_email" class="select1">
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="daum.net">daum.net</option>
+                  </select>
+                <input type="hidden" id="email" name="email">
+              </td>
+            </tr>
+            <tr>
+              <th>연락처</th>
+              <td>
+                <select class="select2" id="sel_tel">
+                  <option value="010">010</option>
+                  <option value="011">011</option>
+                </select>
+                <input type="text" id="u_htel1" name="u_htel1">
+                <input type="text" id="u_htel2" name="u_htel2">
+                <input type="text" id="u_htel3" name="u_htel3">
+              </td>
+            </tr>
+            <tr>
+              <th>우편번호</th>
+              <td>
+                <input type="text" id="sample2_postcode" placeholder="우편번호">
+                <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+              </td>
+            </tr>
+            <tr>
+              <th>주소</th>
+              <td>
+                <input type="text" id="sample2_address" placeholder="주소"><br>
+                <input type="text" id="sample2_detailAddress" placeholder="상세주소">
+              </td>
+            </tr>
+            <tr>
+              <th>정보 수신여부</th>
+              <td>
+                <p>서비스 및 이벤트 소식을</p>
+                <input type="checkbox" id="rec_email">이메일로 받겠습니다.
+                <input type="checkbox" id="rec_SMS">SMS로 받겠습니다.
+              </td>
+            </tr>
+          </table>
+          <div class="buttons">
+          <input type="submit" value="전송">
+          <input type="reset" value="초기화">
+          </div>
+        </form>
+        <script>
+
+          // 핸드폰앞자리 이메일 뒷자리 이벤트리스너 작업
+          document.getElementById("sel_tel").addEventListener("change",hnumSelector);
+          document.getElementById("sel_email").addEventListener("change",emSelector);
+          function hnumSelector() {
+            let htel1 = document.getElementById("u_htel1");
+            htel1.value = document.getElementById("sel_tel").value;
+          }
+
+          function emSelector() {
+            let email2 = document.getElementById("u_email2");
+            email2.value = document.getElementById("sel_email").value;
+          }
+        </script> 
+      </div>
+  </div>
+
+
+  <input type="hidden" id="sample2_extraAddress" placeholder="참고항목">
+  
+  <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+  <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+  <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+  </div>
+  
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+      // 우편번호 찾기 화면을 넣을 element
+      var element_layer = document.getElementById('layer');
+  
+      function closeDaumPostcode() {
+          // iframe을 넣은 element를 안보이게 한다.
+          element_layer.style.display = 'none';
+      }
+  
+      function sample2_execDaumPostcode() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+  
+                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var addr = ''; // 주소 변수
+                  var extraAddr = ''; // 참고항목 변수
+  
+                  //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                      addr = data.roadAddress;
+                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                      addr = data.jibunAddress;
+                  }
+  
+                  // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                  if(data.userSelectedType === 'R'){
+                      // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                      // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                      if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                          extraAddr += data.bname;
+                      }
+                      // 건물명이 있고, 공동주택일 경우 추가한다.
+                      if(data.buildingName !== '' && data.apartment === 'Y'){
+                          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                      }
+                      // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                      if(extraAddr !== ''){
+                          extraAddr = ' (' + extraAddr + ')';
+                      }
+                      // 조합된 참고항목을 해당 필드에 넣는다.
+                      document.getElementById("sample2_extraAddress").value = extraAddr;
+                  
+                  } else {
+                      document.getElementById("sample2_extraAddress").value = '';
+                  }
+  
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('sample2_postcode').value = data.zonecode;
+                  document.getElementById("sample2_address").value = addr;
+                  // 커서를 상세주소 필드로 이동한다.
+                  document.getElementById("sample2_detailAddress").focus();
+  
+                  // iframe을 넣은 element를 안보이게 한다.
+                  // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+                  element_layer.style.display = 'none';
+              },
+              width : '100%',
+              height : '100%',
+              maxSuggestItems : 5
+          }).embed(element_layer);
+  
+          // iframe을 넣은 element를 보이게 한다.
+          element_layer.style.display = 'block';
+  
+          // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+          initLayerPosition();
+      }
+  
+      // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+      // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+      // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+      function initLayerPosition(){
+          var width = 300; //우편번호서비스가 들어갈 element의 width
+          var height = 400; //우편번호서비스가 들어갈 element의 height
+          var borderWidth = 5; //샘플에서 사용하는 border의 두께
+  
+          // 위에서 선언한 값들을 실제 element에 넣는다.
+          element_layer.style.width = width + 'px';
+          element_layer.style.height = height + 'px';
+          element_layer.style.border = borderWidth + 'px solid';
+          // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+          element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+          element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+      }
+  </script>
+
+
+
+
+</body>
+</html>
