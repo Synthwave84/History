@@ -37,14 +37,14 @@
       function study() {
         console.log("수업을 듣습니다");
       }
-    // 구문을 순서대로 호출하여, 예상결과를 예상 할 수 있다.
-    // 학교에 갑니다. -> 학교에 도착했습니다. -> 수업을 듣습니다.
+    
     goToSchool();
     // 메소드 체이닝 : 메소드의 리턴타입이 모두 동일한 객체이었을 때 메소드를 
     // (.) 으로 연결하여 구사하는 문법
-    // arriveAtSchool()함수의 기본 구문이 정상적으로 이행이 되면, 
+    // arriveAtSchool()함수의 기본 구문이 정상적으로 이행이 되면, study()의 매개변수가 진행되고,
     // then() 메서드의 첫번째 매개변수 기본 구문이 에러가 발생하면, 
     // catch()메서드의 익명함수가 동작한다.
+    // then과 catch메소드는 모두 함수가 Promise의 성격을 가졌을 때만 사용 할 수 있다.
     arriveAtSchool().then(function(res){
       console.log(res);
       study(); // 수업을 들음

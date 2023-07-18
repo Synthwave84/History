@@ -21,3 +21,7 @@
     컴퓨터에 SQL Developer와 Oracle이 동시에 설치 되어있을 경우, localhost가 된다.
     
     IP : 127.0.0.1 (localhost = 127.0.0.1을 상수로 만든것.) 
+
+시작 
+CREATE USER doc1 IDENTIFIED BY 1234;
+GRANT CONNECT, RESOURCE TO doc1; <<필수
