@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>잘못 처리 된 비동기방식 작성예제</h1>
+  <script>
+
+    // 시나리오 : 물건 구매하는 프로세스 
+    // 상품 및 갯수 주문요청 -> 계산작업 -> 비용을 지불
+    function buy_normal(item, price, quantity, callback){
+      console.log(item+"상품을" + quantity + "개 점원에게 주문");
+      //setTimeout()함수가 매개변수로 익명함수를 제공받아, 콜백함수기능을 한다.
+      setTimeout(function(){
+        console.log("계산이 필요합니다.");
+      let total = price*quantity;
+      // 콜백 함수를 써서 callback = pay가 된다.
+      callback(total); 
+
+      
+      },1000);
+    
+    }
+    function pay(tot){
+      console.log(tot + "원을 지불함.");
+    }
+    // 맨끝에 콜백이 추가되어 pay를 추가해준다. pay = callback함수가 변수로 가져간 것.
+    let tot = buy_normal("사과",500 , 10, pay);
+
+  </script>
+</body>
+</html>

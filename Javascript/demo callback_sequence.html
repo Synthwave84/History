@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>순차 흐름 작성예제</h1>
+  <script>
+  /*콜백함수 형태
+    function 함수이름(p1, p2, callbackFunc){
+    처리구문;
+    }
+  */
+    // 시나리오 : 물건 구매하는 프로세스 
+    // 상품 및 갯수 주문요청 -> 계산작업 -> 비용을 지불
+    function buy_normal(item, price, quantity){
+      console.log(item+"상품을" + quantity + "개 점원에게 주문");
+      console.log("계산이 필요합니다.");
+      let total = price*quantity;
+      return total;
+    }
+    function pay(tot){
+      console.log(tot + "원을 지불함.");
+    }
+
+    let tot = buy_normal("사과",500 , 10);
+    pay(tot);
+
+  </script>
+</body>
+</html>

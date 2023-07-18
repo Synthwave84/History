@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Call bakc 함수</h1>
+
+  <script>
+    /*
+      함수가 변수에 대입하는 구문.
+
+      fn_test에 익명 함수를 대입한다.
+      let fn_test = function(a,b) {
+        return a+b;
+      }
+    */
+    // print(xx)괄호 안에 함수가 들어온다.
+    // 즉 위의 fn_test처럼 callback쪽에 함수를 대입하는것이다. 
+
+    // 어떠한 함수의 파라미터(매개변수)로써 함수를 전달하고, 
+    // 어떤 행위나 작업이 완료된 직후에 콜백 함수를 호출하는 목적으로 사용된다.
+    // 1) 콜백 함수의 정의
+    function print(callback) {
+      callback();
+    }
+
+    function message() {
+      alert("콜백 함수");
+    }
+
+    // 프린트에 message함수가 콜백이 되었고, 콜백을 할 때는 절대 콜백대상 함수명에
+    // 괄호를 추가하지 않는다.
+    print(message);
+
+    // 2) 콜백함수 정의 및 사용
+    
+  
+    function message3(callback) {
+      callback();
+    }
+
+    let msg = function() {
+      alert("익명함수 전달");
+    }
+    message2(msg);
+    // 괄호로 익명함수 부분을 전체로 묶어준다. 즉 messager() 괄호 안에 실행 할 함수를 넣는것.
+    message3 (function() {
+      alert ("익명함수를 사용한 콜백함수")
+    });
+
+
+
+
+</script>
+</body>
+</html>
