@@ -177,7 +177,18 @@ https://velog.io/@kim_unknown_/JavaScript-Objects
 - 선택자
 - css 파일
 
+callback 함수
 
+https://sangminem.tistory.com/275
+
+동기 (Synchronous)
+비동기 (Asynchronous)
+
+let 변수명 = new 생성자함수();
+- 생성자 함수 : 내장 명령어, 사용자 정의
+예> 
+     let d = new Date();
+     let a = new Promise();
 
 
 ---------------------------------------------------------------------------------------------------

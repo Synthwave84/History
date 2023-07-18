@@ -26,9 +26,11 @@
     function pay(tot){
       console.log(tot + "원을 지불함.");
     }
-
-    let tot = buy_normal("사과",500 , 10);
-    pay(tot);
+    // buy_normal()함수가 호출시, 안에 setTimeout() 함수의 비동기적 작업에 의해
+    // 하단의 pay(tot); 함수가 먼저 동작되어 버린다. 
+    // 때문에 계산값이 undefined가 된다
+    let tot = buy_normal("사과",500 , 10); // 리턴값이 setTimeout때문에 늦게 진행된다.
+    pay(tot); // undefined값을 출력한다. 왜냐하면 값을 받지 못했기 떄문
 
   </script>
 </body>
