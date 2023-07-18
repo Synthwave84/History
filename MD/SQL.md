@@ -25,3 +25,31 @@
 시작 
 CREATE USER doc1 IDENTIFIED BY 1234;
 GRANT CONNECT, RESOURCE TO doc1; <<필수
+
+성격 
+포트 = IP 기반에서 Port로 프로그램 번호를 설정한다. IP는 동일하나 Port 넘버가 없으면 
+한번 연결된 컴퓨터는 다른 컴퓨터에 접근 할수 없다. 
+
+TCP Port = ARS전화를 걸 떄 번호로 특정한 부서로 이동하는 것을 생각하면 된다. 즉
+통로 라고 생각하면 된다. 비슷한 성격을 가진 프로그램들 끼리 포트를 묶는다.
+오라클이란 데이터베이스는 1521이란 포트 번호를 가진다.
+IP = 회사 대표 번호. TCP Port = 각 부서로 연결해주는 1번 2번 등의 번호 (내선번호).
+네트워크를 사용하는 모든 프로그램은 포트가 존재하며, 웹서버는 80번이다.
+즉 모든 홈페이지는 www.naver.com:80 이런 식으로 구성 되어 있다.
+
+포트는 크게 세 종류로 구분됨
+0~1023 : 잘 알려진 포트 (Well-known Port)
+1024-49151 : 등록된 포트 (Registered Port)
+49152-65535 : 동적 포트 (Dynamic Port)
+
+20 : FTP(Data)
+21 : FTP(제어)
+22 : SSH
+23 : Telnet
+53 : DNS
+80 : World Wide Web
+119 : NNTP
+443 : TLS/SSL 방식의 HTTP
+
+
+SID - 서비스에서 OracleService 뒤에 xx를 확인하면된다. 현재 XE.
