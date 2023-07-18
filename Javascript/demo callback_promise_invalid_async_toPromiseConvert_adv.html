@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>잘못된 비동기 방식 promise로 수정하기</h1>
+  <script>
+    // 학교에 갑니다
+    function goToSchool() {
+    console.log( "학교에 갑니다");
+    }
+    // handler = 이벤트 핸들러 = 함수 또는 자바스크립트 코드.
+    function arriveAtSchool() {
+      
+      // 생성자 함수를 통해 Promise함수를 생성해준다.
+      // 생성자 함수는 new이다. Promise는 생성자함수이다.
+      return new Promise(function(resolve, reject){
+        setTimeout(function(){  
+        let status = Math.floor(Math.random()*2) // 기본작업
+        if(status === 1 ) {
+          resolve("학교에 도착했습니다"); // 함수 안의 기본작업이 정상적으로 이행 되었을 때
+        }else{
+            reject("중간에 떙땡이 침."); // 함수 안에서 에러가 발생 했을 때
+        }
+        console.log("학교에 도착");
+        resolve();
+        },1000);
+      })
+    };
+      // 전제조건 : 비동기적 작업환경에서 해야 되는 경우를 가정하자.
+      // 비동기적 
+      function cure(){
+      console.log("양호실에 가서 약을 발랐습니다.");
+    }
+      function study() {
+        console.log("수업을 듣습니다");
+      }
+    // 구문을 순서대로 호출하여, 예상결과를 예상 할 수 있다.
+    // 학교에 갑니다. -> 학교에 도착했습니다. -> 수업을 듣습니다.
+    goToSchool();
+    // 메소드 체이닝 : 메소드의 리턴타입이 모두 동일한 객체이었을 때 메소드를 
+    // (.) 으로 연결하여 구사하는 문법
+    // arriveAtSchool()함수의 기본 구문이 정상적으로 이행이 되면, 
+    // then() 메서드의 첫번째 매개변수 기본 구문이 에러가 발생하면, 
+    // catch()메서드의 익명함수가 동작한다.
+    arriveAtSchool().then(function(res){
+      console.log(res);
+      study(); // 수업을 들음
+    }).catch(function(err){
+      console.log(err); 
+      cure(); // 양호실 가서 치료받음
+    });
+    
+    
+  </script>
+</body>
+</html>

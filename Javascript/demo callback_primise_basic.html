@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Promise()함수 기본 사용 예제</h1>
+  <p id="demo"></p>
+  <script>
+    function myDisplayer(some){
+    document.getElementById("demo").innerHTML = some;
+    }
+
+    // Promise객체 생성
+
+    let myPromise = new Promise(function(res, rej){
+      // 기본 작업.
+      let x = 0;
+
+      if(x == 0) {
+        res("OK");
+      }else {
+        rej("Error");
+      }
+    });
+
+    myPromise.then (
+      function( value ) { myDisplayer (value); },
+      function( error ) { myDisplayer (Error); }
+    )
+  </script>
+</body>
+</html>

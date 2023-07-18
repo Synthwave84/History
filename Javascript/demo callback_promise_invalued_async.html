@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>잘못된 비동기 방식 콜백 예제</h1>
+  <script>
+    // 학교에 갑니다
+    function goToSchool() {
+    console.log( "학교에 갑니다")
+    }
+    // handler = 이벤트 핸들러 = 함수 또는 자바스크립트 코드.
+    function arriveAtSchool() {
+      // 전제조건 : 비동기적 작업환경에서 해야 되는 경우를 가정하자.
+      // 비동기적
+      setTimeout(function(){
+        console.log("학교에 도착")
+      },1000);
+    }
+
+    function study(){
+      console.log("수업을 듣습니다.");
+    }
+    // 구문을 순서대로 호출하여, 예상결과를 예상 할 수 있다.
+    // 학교에 갑니다. -> 학교에 도착했습니다. -> 수업을 듣습니다.
+    // 정작 결과는 학교에 갑니다-> 수업을 듣습니다 -> 학교에 도착했습니다.
+    goToSchool();
+     // 이 함수가 완료 될 때까지 대기한 것이 아니라, 아래 함수가 먼저 실행되었다.
+    arriveAtSchool(); 
+    study();
+
+  </script>
+</body>
+</html>
