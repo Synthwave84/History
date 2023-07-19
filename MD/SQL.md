@@ -53,3 +53,5 @@ IP = 회사 대표 번호. TCP Port = 각 부서로 연결해주는 1번 2번 �
 
 
 SID - 서비스에서 OracleService 뒤에 xx를 확인하면된다. 현재 XE.
+
+The Network Adapter could not established ~~ = OracleXEINSListener 서비스가 꺼져있는것.
