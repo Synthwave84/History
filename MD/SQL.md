@@ -55,3 +55,17 @@ IP = 회사 대표 번호. TCP Port = 각 부서로 연결해주는 1번 2번 �
 SID - 서비스에서 OracleService 뒤에 xx를 확인하면된다. 현재 XE.
 
 The Network Adapter could not established ~~ = OracleXEINSListener 서비스가 꺼져있는것.
+
+
+데이터베이스 
+
+ - 관리자(DBA)
+ - 개발자 : 데이터베이스 관리 기능은 제외.
+ - 일반 사용자
+
+데이터 베이스 프로그래밍 : SQL
+- 툴 (GUI)
+
+
+데이터베이스를 통해 테이블을 작성하고
+Spring 이나 자바등으로 전송 해 준다. 
