@@ -104,17 +104,29 @@
       return false;
     }
     
+  
+
+    // 최종 검사
+    alert("유효성 검사 성공")
+    return true;
+
+    
+    document.forms[0].submit();
+    }
+
     // 공란 확인
+    
     function empVal(Eid, msg) {
     if(Eid.value == ""){
       alert(msg);
       Eid.focus();
       return false;
     }
-    return true
+    return true;
   }
   
-  // 정규식 확인
+    // 정규식 확인
+    
     function regVal(reg, id, msg ) {
     if(!reg.test(id.value)) {
       alert(msg);
@@ -124,13 +136,7 @@
     return true;
   }
 
-    // 최종 검사
-    alert("유효성 검사 성공")
-    return true;
-
-    
-    document.forms[0].submit();
-    }
+  
   </script>
 </head>
 

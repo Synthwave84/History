@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>비동기 작업에 대한 이해</h1>
+  <script> 
+    //작업시간(실행시간) 측정
+    
+    // 1) 동기화
+  /*  function work() {
+      const start = Date.now(); // 시작시간 체크
+      for(let i=0; i<1000000000; i++) { } // 작업, 공회전. 왜냐. 출력할 것이 없으므로
+      const end = Date.now(); // 종료시간 체크
+      console.log(end - start + "ms");
+    } 
+
+    work(); 
+    // work();의 작업이 끝나기 전 까진 하단의 콘솔 로그가 실행될 수 없음.
+    console.log("다음 작업");
+  */
+    // 2) 비동기화
+
+    function work() {
+      setTimeout(() => {
+      const start = Date.now(); // 시작시간 체크
+      for(let i=0; i<1000000000; i++) { } // 작업, 공회전. 왜냐. 출력할 것이 없으므로
+      const end = Date.now(); // 종료시간 체크
+      console.log(end - start + "ms");
+      }, 0)
+    }
+    console.log("작업 시작");
+    work(); 
+  console.log("다음 작업");
+
+
+  
+  </script>
+</body>
+</html>
