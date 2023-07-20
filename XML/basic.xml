@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 루트디렉토리는 꼭 단 하나여야한다. 트리구조이기 때문이다. -->
+  <books>
+    <book>
+      <title>스프링</title>
+      <publisher>이젠</publisher>
+      <price>50000</price>
+      <!-- 부등호를 표기하는 방식이다. 허나 코드상 꼭 들어가야 하는 부분에서는 이렇게 처리해선 절대 안된다. -->
+      <etc>가격 &lt; 50000 </etc>
+    </book>
+    <book>
+      <title>자바</title>
+      <publisher>이젠</publisher>
+      <price>40000</price>
+      <!-- 필수적으로 표기해야 할 기호가 있을 때 (프로그램의 문법적 성격으로 쓰일떄) -->
+      <etc>가격 할인 <![CDATA[ <document.write("Hello World!">)]]> 40000</etc>
+    </book>
+  </books>

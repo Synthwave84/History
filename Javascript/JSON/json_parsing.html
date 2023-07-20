@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <h1>JSON문자열 데이터를 object객체로 패싱 하기.</h1>
+    <p id="demo"></p>
+      <script>
+        
+        // 작은 따옴표로 먼저 묶고, 중괄호, 이후 배열일 경우엔 대괄호로 묶어준다.
+        // 내부는 Object이기 때문에,  대괄호로 묶고, 그 안에 오브젝트 구조가 있으므로
+        // 중괄호로 한번 더 묶은 뒤, 매 끝날떄 마다 작은 따옴표를 달아주고, 쉼표로 구분한다.
+        // ' { " json제목 " : [ { " a " : " A " , " b " : " B " }, { " c " : " C " , " d " : " D "  }, { " x " : 10 , " y " : 20 , " z " : 30 } ] }'
+      
+        let txt = '{ "employees" :[ { "firstName":"홍","lastName":"길동" },' +
+        '{ "firstName":"손","lastName":"흥민" },' +
+        '{ "firstName":"이","lastName":"강인" }] }' ;
+        // 문자열이기 때문에 큰 따옴표를 적어 준 것이며, 숫자일 경우 큰따옴표를 표기 하지 않아도 된다.
+        // parse로 인해 a : "A", b : "B" 식으로 자바스크립트 object 형으로 변환 해 준다.
+        let dsd = ' {"test":[{ "a":"A","b":"B"},{"c":"C","d":"D" },{"x":10,"y":20,"z":30}]}';
+        // JSON.parse 를 사용하기 위해선, 먼저 변수로 json을 선언해주고, 
+        // 그 뒤에 JSON.parse(변수이름)을 적어준다.
+
+        // 그 이후 값을 알고자 할때는, parse를 선언한 변수이름을 적고, json의 제목을 적어주면 된다.
+
+        const obj = JSON.parse(txt); // 문법 검사 및 해석하여, javascript object로 반환해준다.
+        const tester = JSON.parse(dsd);
+        console.log(obj.employees);
+        console.log(tester.test);
+        console.log(obj.employees[0]); // 배열데이터 참조
+        console.log(obj.employees[1]); // 배열데이터 참조
+
+        
+        document.getElementById("demo").innerHTML = 
+        obj.employees[0].firstName + "" + obj.employees[0].lastName;
+      </script>
+</body>
+</html>

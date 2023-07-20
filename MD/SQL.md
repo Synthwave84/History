@@ -69,3 +69,12 @@ The Network Adapter could not established ~~ = OracleXEINSListener 서비스가 
 
 데이터베이스를 통해 테이블을 작성하고
 Spring 이나 자바등으로 전송 해 준다. 
+
+
+간단한 순서도.
+  - 1. 웹페이지에서 데이터 입력
+  - 2. 회원 가입 (submit)
+  - 3. 자바 or 스프링 서버(mybatis등)를 이용해 데이터 확보 후
+  - 4. Oracle 로 전송. 
+  - 5. Oracle 로 전송 받기 이전에, Oracle에는 타입에 맞는 테이블이 준비 되어 있어야함. 
+    (현재는 회원가입)
