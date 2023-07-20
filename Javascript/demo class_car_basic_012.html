@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>클래스 선언 및 사용.</h1>
+    <p id="demo"></p>
+    <script>
+    // 클래스 선언
+      class Cars {
+        
+        constructor(name, year) {
+    
+          this.name = name;
+          this.year = year;
+        }
+      
+        // 메소드 추가.
+        // 차 년식 구하기.
+        age(x) {
+          return x - this.year;
+        }
+
+      } 
+      const date = new Date();
+      let year = date.getFullYear();
+    
+
+      const myCar1 = new Cars("Ford", 2014); // 제품 1
+      
+
+      document.getElementById("demo").innerHTML =
+      `자동차 이름은? ${myCar1.name} 이고, 년식은 ${myCar1.age(year)}` ;
+      
+    </script>
+
+</body>
+</html>

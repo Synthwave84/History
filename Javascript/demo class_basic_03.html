@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>훈련과정: 자바, 스프링, 오라클</h1>
+  <p id="java"></p>
+  <p id="spring"></p>
+  <p id="oracle"></p>
+<hr>
+  <h2>값을 변경하여 출력하자</h2>
+
+  <p id="java2"></p>
+  <p id="spring2"></p>
+  <p id="oracle2"></p>
+
+  <script>
+    /* 
+    클래스명 : Dev
+    변수 (필드) : java,spring, oracle
+    */
+    class Dev {
+      constructor (java,spring,oracle)  {
+      this.java = java;
+      this.spring = spring;
+      this.oracle = oracle;
+      }
+        
+    }
+
+    // 생성자 함수 new 를 이용해 Dev 를 새로 생성한다. (배열과 비슷하다.) 
+    // 생성자 함수로 클래스를 생성 시킬때는, 꼭 클래스명이 일치해아 한다.
+    const devTest = new Dev("자바","스프링","오라클");
+    document.getElementById("java").innerHTML = devTest.java;
+    document.getElementById("spring").innerHTML = devTest.spring;
+    document.getElementById("oracle").innerHTML = devTest.oracle;
+    // 중간에 상단 문서 출력 후, 내부의 클래스에서 값을 바꾼다.
+    // 하기 처럼, 지속적인 재활용을 할 수 있다.
+    // 아마 이런 방식으로 실행이 가능한것은, 자바스크립트가 인터프리터 언어라
+    // 순차실행을 하기 때문이 아닐까 예상한다. 
+    // 맨 윗줄부터 차례대로 출력을 하고, 중간에 값을 치환 후, 
+    // 하단의 값 3개를 추가 출력하는 순서로 이루어 지는 듯 하다.
+    devTest.java = "java";
+    devTest.spring = "spring";
+    devTest.oracle = "oracle";
+
+    document.getElementById("java2").innerHTML = devTest.java;
+    document.getElementById("spring2").innerHTML = devTest.spring;
+    document.getElementById("oracle2").innerHTML = devTest.oracle;
+  </script>
+</body>
+</html>

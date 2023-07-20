@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>클래스 선언 및 사용.</h1>
+    <p id="demo"></p>
+    <script>
+      // 클래스 선언 (정의) : 속성(필드, 변수)과 메소드로 구성을 한다.
+      // 클래스란? 기억장소를 설꼐하는 의미.(기억장소를 디자인)
+      // Cars 클래스 설계 목적은 자동의 이름, 출시연도 정보를 저장하는 기억장소 설계도.
+      // 클래스는 1) 속성만으로도 구성이 가능하고,
+      //                 2) 메소드로만으로 구성이 가능하며,
+      //                 3) 속성과 메소드를 혼합해서 사용도 가능하다.
+
+      // 배열이나 메소드 변수 등과 다르게, 직접 설계하는것이 차이점이라고 할 수 있다.
+      // 객체지향 언어에서 클래스는 매우 중요한 요소로 작용한다.
+      // 자바스크립트는 프로토타입 언어이기 때문에, 객체지향의 한 갈레이나, 완벽한 객체지향 언어로 보기에는
+      // 다소 차이가 있다. 
+      class Cars {
+        // 생성자함수 
+        // constructor를 꼭 적어주어야 하며, 이떄는 function과 동일하게 작성토록 한다.
+        // 일종의 데이터리스트를 구축 해 주는것.
+        constructor(name, year) {
+          // 이것의 이름. 즉 this로 이 클래스 내에 name은 무엇이고 year는 무엇인지 정의 해 준다.
+          // this 뒤에 있는것은 변수이기 때문에, 이름은 달라도 괜찮다.
+          // ex this.abcd = name;
+          // 이럴 경우, 하단의 자동차 이름은? ${myCar1.name}이 ${myCar1.abcd}로 변해야한다.
+          this.name = name;
+          this.year = year;
+        }
+
+        // 메소드 추가.
+        // 차 년식 구하기.
+        age() {
+          const date = new Date();
+          // 상단의 this.year를 가져온다. this.year가 변수이기 때문.
+          return date.getFullYear() - this.year;
+        }
+
+      } 
+      
+
+      // 클래스 사용 - let, var, const 등의 기억장소를 사용하는 의미와 동일하다.
+      // 내부적으론 상단의 constructor 안에 있는 값을 참조한다.
+      const myCar1 = new Cars("Ford", 2014); // 제품 1
+      const myCar2 =  new Cars("Audi", 2019); // 제품2
+
+      document.getElementById("demo").innerHTML =
+      `자동차 이름은? ${myCar1.name} 이고, 년식은 ${myCar1.age()} 
+      자동차 2 이름은? ${myCar2.name} 입니다 년식은 ${myCar2.age()}`;
+    </script>
+
+</body>
+</html>

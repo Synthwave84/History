@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> 개인정보를 저장하기 위한 깅거장소 설계도 : 클래스</h1>
+  <p id="name"></p>
+  <p id="age"></p>
+  <p id="addr"></p>
+
+  <script>
+    class personInfo {
+      // 개인정보 : 이름, 나이, 주소 3개
+      constructor(name , age, addr) {
+        this.name = name;
+        this.age = age;
+        this.addr = addr;
+      }
+    }
+    const person1 = new personInfo("홍길동", 100, "대한민국");
+    const person2 = new personInfo("곽두팔", 412393, "목성");
+    const person3 = new personInfo("김데이비드베컴", 412393, "지왴");
+
+    document.getElementById("name").innerHTML = person1.name;
+    document.getElementById("age").innerHTML = person1.age;
+    document.getElementById("addr").innerHTML = person1.addr
+  </script>
+</body>
+</html>

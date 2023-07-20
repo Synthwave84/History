@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>모듈 사용해보기</h1>
+  <p id="demo"></p>
+  <!-- 모듈을 참조한다 -->
+  <script type="module">
+    // 현재 문서에서 name과 age를 person.js에서 따오겠다.
+    import {name, age} from "./person.js";
+
+    let txt = `이름은 ${name}이고, 나이는 ${age} 입니다`;
+
+    document.getElementById("demo").innerHTML = txt;
+  </script>
+</body>
+</html>
