@@ -7,17 +7,31 @@
 </head>
 <body>
   <h1>fetch() 메소드를 이용한 ajax 작업</h1>
+  <p id="demo">버튼을 클릭하면, 서버로부터 데이터를 갱신하게 됩니다.</p>
     <button id="btn" onclick="fetchload()">클릭</button>
       <script>
         function fetchload() {
+          // 하단의 링크는 json형태로 데이터를 보내는 기능을 가지고 있다.
           let url = "https://jsonplaceholder.typicode.com/posts/1";
           // fetch api호출, fetch는 promise 속성이다.
           // then은 링크를 가져오는데 성공 했을때 동작한다
           fetch(url) // promise 객체를 리턴한다.
-          .then((response) => response.json() )
-          .then((data) => console.log(data) );
-        }
-
+          // 서버로부터 json데이터를 성공적으로 받아오면, 이 구문이 진행된다.
+          .then((response) => response.json() ) 
+          .then((data) => {
+          display(data); // object 개체
+        } );
+      } 
+        
+        function display(data) {
+              console.log(data);
+          
+          // 하단의 작업이 필요하지 않다.
+          // let obj = JSON.parse(data);
+          document.getElementById("demo").innerHTML = 
+            `userID ${data.userId}<br> id: ${data.id} <br> title:${data.title}<br>body:${data.body}  ` ;
+                  }
+  
       </script>
 </body>
 </html>
