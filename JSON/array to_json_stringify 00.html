@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>배열 객체를 json문자열로 변환</h1>
+  <p id="demo"></p>
+  <script>
+    const arr = ["john", "Peter", "Sally", "Jana"];
+    const myJSON = JSON.stringify(arr); // '' 작은따옴표 안에 들어간다.
+    // > '["john", "Peter", "Sally", "Jana"]'
+    document.getElementById("demo").innerHTML = myJSON;
+    // >["john", "Peter", "Sally", "Jana"] 표기상은 이러나 작은따옴표로 감싸져 있는 것이 맞다.
+  </script>
+</body>
+</html>

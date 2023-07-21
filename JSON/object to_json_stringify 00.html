@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>오브젝트 객체를 json문자열로 변환</h1>
+  <p id="demo"></p>
+  <script>
+
+    // 자바스크립트 object 구문
+    const obj = {name :"홍길동", age: 100, country: "대한민국"};
+    const myJSON = JSON.stringify(obj);
+
+    console.log(myJSON); 
+    document.getElementById("demo").innerHTML = myJSON;
+  </script>
+</body>
+</html>

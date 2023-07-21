@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>날짜 데이터를 포함한 object 객체를 JSON문자열로 변환.</h1>
+    <p id="demo"></p>
+    <script>
+      // today: new Date(), 실행할 때 동작되어. 현재 시스템의 날짜 및 시간 정보를 갖게된다.
+      const obj = {name: "홍길동", today: new Date(), country : "한국"};
+      let myJSON = JSON.stringify(obj);
+
+      document.getElementById("demo").innerHTML = myJSON;
+
+    </script>
+</body>
+</html>

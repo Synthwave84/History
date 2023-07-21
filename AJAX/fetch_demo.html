@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>fetch() 메소드를 이용한 ajax 작업</h1>
+    <button id="btn" onclick="fetchload()">클릭</button>
+      <script>
+        function fetchload() {
+          let url = "https://jsonplaceholder.typicode.com/posts/1";
+          // fetch api호출, fetch는 promise 속성이다.
+          // then은 링크를 가져오는데 성공 했을때 동작한다
+          fetch(url) // promise 객체를 리턴한다.
+          .then((response) => response.json() )
+          .then((data) => console.log(data) );
+        }
+
+      </script>
+</body>
+</html>
