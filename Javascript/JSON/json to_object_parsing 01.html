@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>날짜를 포함한 json 문자열을 object 객체로 변환 사용하기</h1>
+  <p id="demo"></p>
+
+  <script>
+
+    const text = '{"name": "홍길동", "birth" : "1986-12-24", "city": "뉴욕"}';
+    // 서버에서 들어온 JSON객체를 Javascript로 전환하기.
+    const obj = JSON.parse(text);
+    console.log(obj.birth); // 현재까지는 날짜 정보가 문자열로 되어있다. = 1986-12-14
+
+    // 하단부를 주석을 걸어 테스트를 해 보는 것을 권장한다.
+    obj. birth = new Date(obj.birth); // date 객체로 날짜를 변환. = Wed Dec 24 1986 09:00:00 GMT+0900 (한국 표준시)
+    // let birth = "1986-12-24"
+    // birth = new Date(birth); => Wed Dec 24 1986 09:00:00 GMT+0900 (한국 표준시)
+    // 이것은 자바에서만 가능하다. 문자열을 집어 넣었으면, 문자열 값으로 변경 시켜주지,
+    // 객체 자체를 변환 시켜주진 못한다.
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth;
+
+  </script>
+</body>
+</html>

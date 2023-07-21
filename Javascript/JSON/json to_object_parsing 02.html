@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>날짜를 포함한 json 문자열을 object 객체로 변환 사용하기</h1>
+  <p id="demo"></p>
+
+  <script>
+
+    const text = '{"name": "홍길동", "birth" : "1986-12-24", "city": "뉴욕"}';
+     // 1) JSON 형태의 날짜로 되어있는 문자열을 object 객체의 문자열로 변환
+    // const obj = JSON.parse(text);
+
+    // 2) JSON 형태의 날짜로 되어있는 문자열을 object 객체로 변환 시
+    //  new Date() 날짜형 데이터로 변환하여
+    
+    const obj = JSON.parse(text,(key, value) => {
+      if(key == "birth") {
+        return new Date(value);
+      }else {
+        return value;
+      }
+    });
+
+    console.log(obj.birth); 
+
+    // 위에서 변환 해 주었기 때문에, 하단의 구문이 필요 없다.
+    // obj. birth = new Date(obj.birth); 
+  
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth;
+
+  </script>
+</body>
+</html>

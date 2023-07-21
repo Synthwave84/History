@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>배열(array)문자열을 JSON으로 파싱(Parsing)하기.</h1>
+  <p id="demo"></p>
+  <script>
+    // const text = ["Ford", "BMW", "Audi", "Benz"] ;  <- 배열 문법 
+    // text [0], text [1];
+
+    // 배열의 문자열을 가지고 있는 문자열. 서버로부터 넘어온다.
+    // 이것을 자바스크립트 화 시켜준다. SQL에도 생각해보면 VARCHAR 등으로 문자가 많았다.
+    // 처음부터 const myArr = ["Ford", "BMW", "Audi", "Benz"] ;
+    // 이렇게 쓰지 않았던 이유는 서버에서 넘어오는 값은 저런 식으로 String 화 되어있는 경우가 많기 때문이다.
+    // 그런 고로 JSON.parse 를 이용 하여, 자바스크립트용으로 변환을 해 주는 작업이 필요한 것이다.
+    // 쉽게 말하면.... 인코...딩?
+
+    const text = '["Ford", "BMW", "Audi", "Benz"]'  ;   
+    const myArr = JSON.parse(text); // const myArr = ["Ford", "BMW", "Audi", "Benz"] ;
+
+    
+
+
+    document.getElementById("demo").innerHTML = myArr[0] ;
+
+
+  </script>
+</body>
+</html>

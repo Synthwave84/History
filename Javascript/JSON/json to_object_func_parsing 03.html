@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>함수 구문이 포함되어있는 json 문자열을 object로 변환</h1>
+  <p id="demo"></p>
+    <script>
+
+      const text  ='{"name":"홍길동","age":"function () {return 30;}","country": "대한민국"}';
+
+      const obj = JSON.parse(text);
+
+       // 함수가 eval()에 의하여 문법적인 기능을 갖는다.
+       // 주석을 사용하여 테스트 해 보길 바란다. obj.age()에서 ( )는 함수용 이므로 빼준다.
+      obj.age = eval( " ( " + obj.age + " ) " ); 
+      // let age = function () {return 30};
+      // age();
+      console.log(obj);
+      document.getElementById("demo").innerHTML = 
+      obj.name + " , " + obj.age();
+    </script>
+</body>
+</html>

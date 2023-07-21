@@ -25,8 +25,15 @@
         // 그 뒤에 JSON.parse(변수이름)을 적어준다.
 
         // 그 이후 값을 알고자 할때는, parse를 선언한 변수이름을 적고, json의 제목을 적어주면 된다.
-
+        // parse = 작성한 문자열 구문이 JSON 문법에 맞는지 검사. 만일, 실패시 에러 출력한다.
         const obj = JSON.parse(txt); // 문법 검사 및 해석하여, javascript object로 반환해준다.
+        // 즉 키 값을 제외하고 스트링은 그대로 따옴표 처리로 두는 식으로 Javascript 형 오브젝트로 반환해준다
+
+        /* 
+        
+        ' {test: [{ a:"A",b:"B"},{c:"C",d:"D" },{x:10,y:20,z:30}]}';
+        
+        */
         const tester = JSON.parse(dsd);
         console.log(obj.employees);
         console.log(tester.test);

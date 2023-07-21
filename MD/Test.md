@@ -90,7 +90,7 @@ Object와 Arrays의
 Object / Arrays 의 구분
 
 Object는 쉽게 설명하면 각 제품의 특징에 대해서 기술할때 주로 쓰인다.
-const cars {type:BMW, model:5 serise, generation : 1};
+const cars {type: "BMW", model:5 serise, generation : 1};
 
 Arrays는 같은 틀 안에 있는 집합을 목록화 할 때 주로 사용한다.
 const maker ["BMW","VOLVO","BENZ","AUDI","HYUNDAI"];
@@ -184,8 +184,15 @@ const 이름1 =new 클래스명();
 const 이름2 =new 클래스명();
 const 이름3 =new 클래스명();
 
+변수
+ - 변수 안에 데이터가 존재
+     let count = 10;
+ - 변수 안에 데이터가 존재하는 기억장소의 주체가 존재
+     person = {name:"john", age:31 city:"New York"} 여기서 변수는 "name" 이 되는것
 
-- navigator : 사용자의 브라우저 정보를 확인할 때 사용한다.
+
+
+navigator : 사용자의 브라우저 정보를 확인할 때 사용한다.
       쿠키지원 여부 확인 : navigator.cookieEnabled
       대부분의 브라우저는 쿠키기능을 지원한다.
 
@@ -249,6 +256,12 @@ XML
           - 환경설정 및 메타데이터, 프로그램의 기본 구성정보 및 
           - 데이터 교환 포멧
 
+MIME 타입 
+          - 웹페이지에서 자료포멧을 알려줄 때 쓰는 구문.
+          웹페이지는 자료가 무엇인지 확장자로 알 수 없다. 그래서 따로 구문을 말 해주어야 한다.
+          파일을 사용할 때, MIME값을 찾아야한다. JSON을 예로 들면
+          application/json 으로 표기한다.
+
  XML은 루트가 단 하나만 있어야 한다. 마치 HTML의 <html></html>와 동일하다.
  Spring의 mybatis 등에서 사용한다. 소규모의 데이터 저장용 포멧으로 사용되는 듯 하다.
 
@@ -261,6 +274,9 @@ XML
 
  JSON의 구조
  JSON의 구조는 object 구조와 비슷하다.
+ 첫 이름은 JSON의 이름이 되고, 그 이후에 정의를 하는 부분은 Key 라고 한다. 
+ Key + Value
+
 
 Object
  (type."Fiat", Model:"500");
@@ -273,18 +289,62 @@ json 구조
 - object 데이터는 {} 중괄호를 입력해야한다.
 - array 데이터는 [] 대괄호로 표현한다.
 
+
+
+JSON에서 넣을 수 있는 자료들
+
+stirng
+number
+object
+boolean
+null
+
 예시
 {"이름":값}
-
+{ "name" : value };
 값
-string - "홍길동"
-number - 10
-object {" " : " "}
-array
-     number [10, 20, 30, 40 ]
-     string ["손흥민", "박지성", "이강인"]
-     boolean [true, false, false, true]
-     object [{"idx": 1}, {"title":"제목"},{"content" : "본문"}]
+
+string
+{"name" : "김정웅"};
+
+number
+{"name" : 10};
+
+object 
+{"name" : { "id" : "USER01" } };
+
+array 
+{"name" : ["정웅", "웅쨩"]} 숫자일 시 - {"name" : [1, 2, 3]};
+
+boolean 
+{"name" : true };
+
+null 
+{"name" : null};
+
+다음 데이터 들은 문자열로 감싸주어야한다.
+
+function
+date
+undefined
+
+예시
+
+function  
+{"name" : "function () {}"}
+
+date 
+{"name" : "2023-07-21" }
+
+undefined 
+{"name" : "undefined"}
+
+저장 시 확장자는 *.json이 된다.
+
+JSON에 넣을 수 없는 자료
+function
+date -> 날짜는 모두 그냥 스트링처리해버린다.
+undefined
 --------------------------------------------------------------------------------------------
 JAVA
 
