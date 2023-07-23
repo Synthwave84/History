@@ -46,7 +46,11 @@
       background-color: cadetblue;
       width : 60%;
       display: flex; 
+      /* container 안에 있는 상자 중 left 안에 있는 
+      leftin이 바깥으로 삐져나와 footer 를 침범하는것을 방지하는 명령어. 
+      flex를 column(열) 방향으로 위치 시켜 주세요~ */
       flex-direction: column; 
+      
       }
 
     .leftin {
