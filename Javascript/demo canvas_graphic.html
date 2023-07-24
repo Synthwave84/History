@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>자바스크립트를 이용한 canvas태그에 그래픽 작업</h1>
+  <canvas id="myCanvas" style="width: 400px; height: 400px; border : 1px solid black;">
+  </canvas>
+    
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx= canvas.getContext("2d");
+      ctx.fillStyle = "#f0418F";
+      canvas.height = canvas.width;
+      ctx.transform(1, 0, 0, -1, 0, canvas.height);
+
+      let xMax = canvas.height;
+      let slope = 1.2;
+      let intercept = 70;
+      ctx.moveTo(0, intercept);
+      ctx.lineTo(xMax, f(xMax));
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+
+      function f(x) {
+        return x * slope + intercept;
+      }
+    </script>
+</body>
+</html>
