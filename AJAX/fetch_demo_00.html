@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>JSON 데이터를 서버로 전송하기 Post방식</h1>
+  <p>Post방식 : 데이터를 서버에 저장(삽입, 등록)시 사용</p>
+  
+  <!-- <form> -->
+    title : <input type="text" id="title"><br>
+    body:  <textarea type="text" id="body"></textarea><br>
+    userId : <input type="text" id="userId"><br>
+    <button type="button" onclick="post()"> json 데이터 서버로 전송</button>
+
+  <!-- </form> -->
+
+    <script>
+      // 요청 주소
+      
+
+    function  post() { 
+
+      let url = "https://jsonplaceholder.typicode.com/posts";
+
+      // 입력 데이터
+      let title = document.getElementById("title").value;
+      let body = document.getElementById("body").value;
+      let userId = document.getElementById("userId").value;
+
+
+      console.log (title,body,userId);
+      
+      // 매개변수에 콤마 필수
+      fetch(url, {
+        // 페이지에 어떻게 보낼 것인지 지정. post, get
+        method:"POST", // POST는 데이터를 삽입(추가)할 때 사용된다.
+        // 클라이언트와 서버가 통신(데이터 주고 받기) 할 때, 데이터는 header,body로 이루어 져 있다.
+        // Header(헤더) : 데이터의 설명에 해당하는 부가정보.
+        // Body(본문) : 데이터 그 자체.
+        headers : {
+           // 대괄호로 묶는다. 두번째 변수.
+          "Content-Type" : "application/json" // JSON의 MIME(데이터에 대한 부가 설명 또는 확장자)
+          // 실질적으로 보낼 데이터. 
+        }, // body : JSON.stringify({title : 'test', body: "Testing...", userid : 1})
+        body : JSON.stringify({title : title , body: body, userId : userId})
+      })
+      .then((response) => {
+        //console.log(response);
+        // json문자 데이터를 promise 객체에서 관리되는 object 객체 형태로 사용가능하게 해줌.
+         return response.json(); // json문자 데이터를 promise 객체에서 관리되는 object 객체 형태로 사용가능하게 해줌.
+      }) 
+      // 상단의 return을 주지 않으면, data에 undefined 로 데이터가 가지 않는다.
+      // 이유는 중괄호에 넣었기 때문이다. 중괄호가 들어갈 때, 외부로 값을 호출하기위해서는
+      // return을 꼭 해야만 한다.
+      .then((data) => 
+      console.log(data));
+      alert("데이터가 등록되었습니다.");
+    }
+
+
+    </script>
+</body>
+</html>

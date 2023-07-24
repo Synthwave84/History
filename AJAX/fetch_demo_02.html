@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>JSON 데이터를 서버로 전송하기 Put방식</h1>
+  <p>PUT방식 : 데이터 수정할 때 보내는 방식</p>
+  <!-- <form> -->
+    title : <input type="text" id="title"><br>
+    body:  <textarea id="body"></textarea><br>
+    userId : <input type="text" id="userId"><br>
+    
+
+  <!-- </form> -->
+  <button type="button" onclick="post()"> json 데이터 서버로 전송</button>
+    <script>
+      // 요청 주소
+      let url = "https://jsonplaceholder.typicode.com/posts";
+
+      // 입력 데이터
+      let title = document.getElementById("title").value;
+      let body = document.getElementById("body").value;
+      let userId = document.getElementById("userId").value;
+
+    function  post() { 
+      // 요청 주소
+      let url = "https://jsonplaceholder.typicode.com/posts";
+
+      // 입력 데이터
+      let title = document.getElementById("title").value;
+      let body = document.getElementById("body").value;
+      let userId = document.getElementById("userId").value;
+      // 매개변수에 콤마 필수
+      fetch(url, {
+        
+        method:"PUT",
+        headers : {
+           // 대괄호로 묶는다. 두번째 변수.
+          "Content-Type" : "application/json"
+          
+        }, 
+        body : JSON.stringify({title : title , body: body, userid : userId})
+      })
+      .then((response) => {
+        
+        return response.json(); 
+      }) 
+      
+      .then((data) => {console.log(data)
+        alert("데이터가 등록되었습니다.") 
+      });
+      
+    }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>JSON 데이터를 서버로 전송하기</h1>
+  <p>Get방식은 데이터 조회를 위해 사용 </p>
+  
+  <!-- <form> -->
+    title : <input type="text" id="title"><br>
+    body:  <input type="text" id="body"><br>
+    userId : <input type="text" id="userId"><br>
+    <button type="button" onclick="post();"> json 데이터 서버로 전송</button>
+
+  <!-- </form> --> 
+
+    <script>
+      // 요청 주소
+      let url = "https://jsonplaceholder.typicode.com/posts";
+
+      // 입력 데이터
+      let title = document.getElementById("title").value;
+      let body = document.getElementById("body").value;
+      let userId = document.getElementById("userId").value;
+
+    function  post() { 
+      // 요청 주소
+      let url = "https://jsonplaceholder.typicode.com/posts";
+
+      // 입력 데이터
+      let title = document.getElementById("title").value;
+      let body = document.getElementById("body").value;
+      let userId = document.getElementById("userId").value;
+
+
+      fetch(url, {
+        
+        method:"GET", 
+        headers :{
+          "Content-Type" : "application/json" 
+        }, body : JSON.stringify({title : 'test', body: "Testing...", userid : 1})
+      })
+      .then((response) => {
+        return response.json(); 
+      }) 
+      .then((data) => console.log(data));
+    }
+
+
+    </script>
+</body>
+</html>
