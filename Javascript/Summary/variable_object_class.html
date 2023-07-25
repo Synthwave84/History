@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>object 데이터타입에 대한 이해, 용도</h1>
+  <p id="demo"></p>
+  <script>
+
+    // 시나리오 : 자동차에 대한 정보를 저장.
+    // 1) 자동차에 대한 정보를 저장.
+    
+    /* let type = "Fiat";
+    let model = "500"
+    let color = "white"
+    */
+
+    // 2) object 데이터 타입으로 정보를 저장
+    const car = {
+      type : "Fiat", 
+      model:"500", 
+      color : "White",
+      fullInfo : function () {
+        return this.type + "  " + this.model;
+      }
+    };
+    document.getElementById("demo").innerHTML = car.fullInfo();
+
+      // 클래스 ? 기억장소 설계도. 즉 사용자 정의 데이터타입. 
+      // ex) 클래스 : 붕어빵기계,  기억장소 : 붕어빵 
+
+    class Car {
+      constructor(type, model, color) {
+        // this.이름 : 내부 기억장소 선언.
+        this.type = type;
+        this.model = model;
+        this.color = color;
+      }
+      // 메소드 정의
+      fullInfo () {
+        return this.type + " " + this.model;
+      }
+    }
+
+    // 클래스 사용 ?  기억장소를 생성하는 의미.
+    const myCar1 = new Car ("Ford","100","White");
+    const myCar2 = new Car("Audi","Quattro","Silver");
+
+    // 클래스로 생성 된 객체의 형태는 object 구조를 갖고있다.
+    // console.log("myCar1",myCar1);
+    // console.log("myCar2",myCar2);
+
+    // 객체가 관리하는 기억 장소 사용
+    console.log("myCar1.type", myCar1.type);
+    myCar1.type = "Grandeur";
+    console.log("myCar1.type", myCar1.type);
+    console.log(myCar1.fullInfo());
+
+    const d = new Date();
+    d.getFullYear();
+
+  </script>
+</body>
+</html>

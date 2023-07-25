@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>함수 정의 및 사용</h1>
+  <script>
+
+    // 함수의 유형 :  return값의 유무.
+    // 함수의 유형 : 매개변수의 사용 유무
+    // 즉 총 네가지.
+
+    // 함수 유형 1 : return, 매개변수 사용이 없는 형태
+
+    function noReturn () {
+      document.write("Hello World");
+    }
+
+    function move () {
+      location.href = "http://www.naver.com";
+    }
+
+    // 함수 유형 2 : return은 없으나 매개변수는 사용하는 형태.
+    function noReturn_write (name) {
+      document.write(name + "님 반갑습니다.");
+    }
+
+    function noReturn_add (num1, num2) {
+      document.write("두 수의 합은?" + (num1 + num2));
+    }
+
+    let testlink = "http://www.naver.com"
+    function move2 (link) {
+      location.href = link;
+    }
+    // move2("http://www.naver.com");
+    // move2(testlink);
+
+    // 함수 유형 3 : return 은 있으나 매개변수는 사용하지 않는 형태.
+    function haveReturn () {
+      //코드
+
+      return 값;
+    }
+    // 함수유형 4 : return 및 매개변수 둘다 사용 하는 형태.
+    function bothHave (kor, eng, math) {
+      
+      return kor + eng + math;
+    }
+    // 리턴값이 있으면 값으로 저장되기 때문에 변수에 값을 지정해 줄 수 있음.
+    // void이면 저렇게 지정해도 아무것도 나오지 않음. 
+    
+    let tot = bothHave(100, 98, 75);
+    console.log(tot);
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>두 수를 이용한 덧셈,뺄셈,곱셈, 나눗셈, 나머지를 구하는 예제</h1>
+ 
+  <input type="text" id="num1"><br>
+  <input type="text" id="num2"><br>
+  <input type="button" value="+" onclick="calc('+')">
+  <input type="button" value="-" onclick="calc('-')">
+  <input type="button" value="*" onclick="calc('*')">
+  <input type="button" value="/" onclick="calc('/')">
+  <input type="button" value="%" onclick="calc('%')">
+  <p id="result"></p>
+  
+  
+  <script>
+    
+    
+    function calc(op) {
+      let num1= Number(document.getElementById("num1").value);
+      let num2 = Number(document.getElementById("num2").value);
+      let result;
+    switch(op) {
+      case "+":
+        result = num1 + num2;
+        break;
+      case "-":
+        result = num - num2;
+        break;
+        case "*" : 
+        result = num1 * num2;
+        break;
+      case "/" :
+        result = num1 / num2;
+        break;
+      case "%" :
+        result = num1 % num2;
+        break;
+    }
+    document.getElementById("result").innerHTML = result;
+  }
+  </script>
+</body>
+</html>

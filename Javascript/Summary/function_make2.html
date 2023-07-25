@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>함수 연습</h1>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+  <p id="demo3"></p>
+  <p id="demo4"></p>
+  <p id="demo5"></p>
+  <script>
+
+    // 두 수의 합을 구하는 함수 : add (num1, num2)
+    // 두 수의 차이를 구하는 함수 : sub (num1, num2)
+    // 두 수의 곱을 구하는 함수 : mul (num1, num2)
+    // 두 수의 나눗셈을 구하는 함수 : div (num1, num2)
+    // 두 수의 나누었을 때을  나머지를 구하는 함수 : div2 (num1, num2)
+    // num1 = 10 , num2 = 3;
+
+    let a = 10;
+    let b = 3;
+    function add(num1, num2) {
+      return num1 + num2;
+    }
+    function sub(num1, num2) {
+      return num1 - num2;
+    }
+    function mul(num1, num2) {
+      return num1 * num2;
+    }
+    function div(num1, num2) {
+      return num1 / num2;
+    }
+    function div2(num1, num2) {
+      return num1 % num2;
+    }
+    document.getElementById("demo1").innerHTML =
+    add(a,b);
+    document.getElementById("demo2").innerHTML =
+    sub(a,b);
+    document.getElementById("demo3").innerHTML =
+    mul(a,b);
+    document.getElementById("demo4").innerHTML =
+    div(a,b);
+    document.getElementById("demo5").innerHTML =
+    div2(a,b);
+
+  </script>
+</body>
+</html>
