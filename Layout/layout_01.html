@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI 구현 능력단위평가</title>
+  <style>
+    * {
+        box-sizing: border-box;
+
+    }
+    body {
+      font-family: "명조체";
+    }
+
+    header {
+      background-color: rgba(108, 197, 248, 0.488);
+      padding : 5px;
+      text-align: center;
+    } 
+
+    a:link {
+      text-decoration: none;
+    }
+    div#top_menu {
+      text-align: right;
+      font-size: 10px;
+    }
+    div#top_title {
+      text-align: center;
+    }
+
+    nav#menu ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav#menu ul li a::after {
+      content : "|";
+    }
+    nav#menu ul li {
+      display: inline;
+    }
+    
+    nav#category_menu {
+            float: left;
+            width: 30%;
+            height: 450px;
+            padding-top: 40px;
+            font-size: 20px;
+            background-color: bisque;
+        }
+
+        nav#category_menu ul {
+            list-style-type: none;
+            padding: 5;
+            text-align: left;
+        }
+
+        article {
+            float: left;
+            width: 70%;
+            height: 450px;
+            background-color: rgb(251, 203, 168);
+            padding: 20px;
+
+        }
+
+    footer {
+      text-align: center;
+      background-color: rgb(126, 95, 45);
+      color: azure;
+    }
+
+    a:link {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a:active {
+            text-decoration: underline;
+        }
+        div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+        /* 브라우저 창 크기 조절시 확인 */
+        /* 브라우저 창크기 조절 시 효과 확인 */
+        @media (max-width:600px) {
+            nav, article {
+                width: 100%;
+                height: auto;
+            }
+        }
+  </style>
+</head>
+<body>
+
+  <header>
+
+        <div id="top_menu">
+          <nav id="menu">
+          <ul>
+              <li><a href="#">LOGIN</a></li>
+              <li><a href="#">JOIN</a></li>
+              <li><a href="#">MYPAGE</a></li>
+              <li><a href="#">ORDER</a></li>
+              <li><a href="#">CART(0)</a></li>
+            </ul>
+          </nav>
+      </div>
+      <div id="top_title">
+        <h1>DOCMALL</h1>
+      </div>
+  </header>
+  <section>
+    <nav id="category_menu">
+      <ul>
+        <li><a href="#">TOP</a></li>
+        <li><a href="#">SHIRTS</a></li>
+        <li><a href="#">PANTS</a></li>
+        <li><a href="#">OUTER</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <h1>TOP</h1>
+      <div class="gallery">
+          <a target="_blank" href="img_5terre.jpg">
+            <img src="https://www.w3schools.com/css/img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+          </a>
+          <div class="desc">Add a description of the image here</div>
+        </div>
+        
+        <div class="gallery">
+          <a target="_blank" href="img_forest.jpg">
+            <img src="https://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600" height="400">
+          </a>
+          <div class="desc">Add a description of the image here</div>
+        </div>
+        
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="https://www.w3schools.com/css/img_lights.jpg" alt="Northern Lights" width="600" height="400">
+          </a>
+          <div class="desc">Add a description of the image here</div>
+        </div>
+        
+        <div class="gallery">
+          <a target="_blank" href="img_mountains.jpg">
+            <img src="https://www.w3schools.com/css/img_mountains.jpg" alt="Mountains" width="600" height="400">
+          </a>
+          <div class="desc">Add a description of the image here</div>
+        </div>
+ 
+  </article>
+  </section>
+  <footer>
+    <div>
+      <p>(주) 삼정컴퓨터 | 대표 : 김정웅 | 사업자 등록번호 : 206-47-10514 | 통신판매업신고 : 제 0000-서울노원-100호 | 개인 저보 보호 책임자 : 김정웅</p>
+      <p>E-mail : user01@docmall.com | 주소 : 서울시 노원구 이젠빌딩 704호</p>
+      <p>© 2023. Docmall All rights reserved.</p>
+    </div>
+    </footer>
+</body>
+</html>

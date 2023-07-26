@@ -59,4 +59,30 @@ CREATE TABLE BOARD (
     -- 사용자에게 입력받지 않고 자동으로 처리(DEFAULT) 오라클의 데이터정보를 가져오는것 (SYSDATE)
     -- 가장마지막 라인의 콤마는 빼준다.
     B_REGDATE   DATE            DEFAULT SYSDATE
-    );
+       );
+    
+    /* 
+    문자데이터타입
+    - CHAR
+    - VARCHAR2
+    CHAR : 고정길이. 최대 2000바이트, 기본값 1바이트
+    VARCHAR2 : 유동길이. 최대 4000바이트, 기본값 1바이트 EX > ID. PASSWORD, ETC
+    
+    */
+-- 표 생성
+-- 컬럼 생성시 NOT NULL을 정의하지 않으면, 기본값은 NULL이 된다.
+-- NULL의 의미는 해당 컬럼에 데이터가 존재하면 입력하고, 없으면 입력 하지 않아도 괜찮다는 의미가 된다.
+CREATE TABLE ex2_1 (
+    COLUMN1     CHAR(10),
+    COLUMN2     VARCHAR2(10),
+    COLUMN3     NVARCHAR2(10),
+    COLUMN4     NUMBER
+);
+
+-- 데이터 삽입
+-- 문자 데이터는 ' 작은 따옴표를 사용해야 한다.
+INSERT INTO EX2_1(COLUMN1,COLUMN2) VALUES('ABC','ABC');
+
+COMMIT: -- 실제 데이터가 물리적으로 오라클 디스크에 반영되는 작업.
+
+SELECT * FROM EX2_1;

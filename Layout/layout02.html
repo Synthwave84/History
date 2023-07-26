@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI구현 능력단위평가</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "명조체";
+        }
+
+        header {
+            background-color: white;
+            padding-top: 0px;
+            padding-right: 10px;
+        }
+
+        div#top_menu {
+            text-align: right;
+            
+        }
+
+        div#top_title {
+            text-align: center;
+        }
+
+        nav#menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav#menu ul li {
+            display: inline;
+        }
+
+        nav#menu ul li a::after {
+            content: " |";
+        }
+
+        nav#category_menu {
+            float: left;
+            width: 30%;
+            height: 450px;
+            padding-left: 50px;
+            padding-top: 40px;
+            font-size: 20px;
+            color: white;
+        }
+
+        nav#category_menu ul {
+            list-style-type: none;
+            padding: 5;
+        }
+
+        article {
+            float: left;
+            width: 70%;
+            height: 450px;
+            background-color: #f1f1f1;
+            padding: 20px;
+
+        }
+
+        footer {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        a:link {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a:active {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+   <header>
+    
+    <div id="top_menu">
+        <nav id="menu">
+            <ul>
+                <li><a href="#">LOGIN</a></li>
+                <li><a href="#">JOIN</a></li>
+                <li><a href="#">MYPAGE</a></li>
+                <li><a href="#">ORDER</a></li>
+                <li><a href="#">CART(0)</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="top_title">
+        <h1>DocMall</h1>
+    </div>       
+    </header> 
+   <section>
+        <nav id="category_menu">
+            <ul>
+                <li><a href="#">TOP</a></li>
+                <li><a href="#">SHIRTS</a></li>
+                <li><a href="#">PANTS</a></li>
+                <li><a href="#">OUTER</a></li>
+            </ul>
+        </nav>
+
+        <article>
+            <h1>TOP</h1>
+            <div>
+                <p>상품리스트</p>
+            </div>
+        </article>
+   </section>
+   <footer>
+    <div>
+        <p>(주)DocMall | 대표 : 홍길동 | 사업자 등록번호 : 111-11-11111 | 통신판매업신고 : 제0000-서울노원-100호 | 개인정보 보호 책임자: 홍길동</p>
+        <p>E-mail: user01@docmall.com | 주소: 서울시 노원구 이젠빌딩 704호 </p>
+        <p>ⓒ2023. DocMall All rights reserved.</p>
+
+    </div>
+   </footer>
+</body>
+</html>
