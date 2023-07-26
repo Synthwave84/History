@@ -7,15 +7,27 @@
 </head>
 <body>
   <h2>java~~~</h2>
-  <input type="text" id="fname">
+  <p>현재 진행하는 과정 선택</p>
+  <select id="subject" name="subject">
+    <option value="">선택하세요.</option>
+    <option >HTML5</option>
+    <option >JavaScript</option>
+    <option >CSS3</option>
+  </select>
 
+  <p id="demo"></p>
   <script>
+    document.querySelector("#subject").onchange = currentSubjectInfo;
     
-    function upperCase(){
-      const x = document.getElementById("fname");
-      x.value = x.value.toUpperCase();
-    } 
-    document.getElementById("fname").onchange = upperCase; // ()는 안 한다!!!!!!!!!!!!!
+    function currentSubjectInfo(){
+      const subject = document.querySelector("#subject");
+      if(subject.value == "") {
+        alert("다른항목 선택바람")
+        return  ;
+      }
+      console.log(subject.value);
+      document.querySelector("#demo").innerHTML= subject.value;
+    }
   </script>
 </body>
 </html>

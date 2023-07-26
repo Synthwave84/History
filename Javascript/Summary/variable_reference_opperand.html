@@ -7,5 +7,19 @@
 </head>
 <body>
   <h1>변수가 가지고 있는 데이터 타입에 따라, 상대적인 명령어 (속성,메소드)를 사용할 수 있다.</h1>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+
+  <script>
+
+    let text ="ABCDEF"; // 변수의 데이터타입이 string
+    // text = 100;  변수의 데이터타입이 number로 변경되어 string 관련 명령어를 사용하면 문제가 생긴다.
+
+    // text변수가 string데이터 타입이므로, 그에 따른 속성과 메서드를 사용해야 한다. 
+    document.getElementById("demo1").innerHTML = text.length;
+
+    let num = 10;
+    document.getElementById("demo2").innerHTML = num.toString();
+  </script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+  <p id="demo3"></p>
+  <script>
+/* 
+
+    Index 0은 첫번쨰 문자의 위치를 가리킨다. 
+    컴퓨터는 숫자를 0 부터 셈
+    slice(start, end)
+    substring(start, end)
+    substr(start,length)
+*/
+    let text = "Apple, Banana, Kiwi"
+    // slice (7,13) substring(7,13) : 인덱스 13의 위치의 문자 콤마는 포함하지 않는다
+    document.getElementById("demo1").innerHTML = text.slice(7,13); // Banana
+    document.getElementById("demo2").innerHTML = text.substring(7,13); // Banana
+
+    // substr(7,6) : 6의 의미는 길이(갯수)
+    document.getElementById("demo3").innerHTML = text.substr(7,6); // Banana
+  </script>
+</body>
+</html>
