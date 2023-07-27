@@ -12,10 +12,7 @@
   <p id="demo2"></p>
 
   <script>
-
-    
-
-// 함수 정의하는 방법 3가지, 
+    // 함수 정의하는 방법 3가지, 
     
     // 첫번째 방법 : 함수 정의의 기본
     function myFunction(a, b) {
@@ -23,7 +20,7 @@
     }
     document.getElementById("demo").innerHTML = myFunction(10, 20)
     // 두번째 방법 : 변수에 함수를 대입하기.
-    // 즉 함수의 매개변수에 함수를 대이발 수 있다는 의미(매우 중요)
+    // 즉 함수의 매개변수에 함수를 대입 할  수 있다는 의미(매우 중요)
     let fn_test = function(a, b) {
       return a + b;
     }
@@ -35,7 +32,15 @@
       return a + b;
     }
     */
-    // 더 줄여버리기~
+    // 더 줄여버리기~  
+    // 화살표 함수일 경우 내부의 줄이 1줄일 경우, 중괄호도 생략해도 된다. 
+    // 리턴값도 생략 할 수 있다.
+    // 매개 변수가 하나일 경우 괄호 까지 생략 할 수 있다.
+    /* 
+    let fn_test 2 (a, b) {
+    return a + b;
+    }
+    */
     let fn_test2 = (a, b) => a + b;
     document.getElementById("demo2").innerHTML = fn_test2(10,20);
     
