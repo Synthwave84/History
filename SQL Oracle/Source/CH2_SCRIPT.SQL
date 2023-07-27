@@ -131,6 +131,12 @@ INSERT INTO EX2_2 (COLUMN3) VALUES ('홍길동');
 -- COLUMN3 에 데이터가 정상적으로 들어간 이유는 VARCHAR2(3 CHAR)이기 때문이다.
 -- 이유는 3 CHAR 옵션은 바이트 수에 상관없이 갯수로 세는 것이기 때문이다.
 
+-- 타 데이터베이스는 ''를 공백문자로 사용하나, ORACLE은 ''를 NULL로 처리한다.
+-- INSERT INTO EX2_2 VALUES('','',''); 
+-- INSERT INTO EX2_2 VALUES(NULL,NULL,NULL);
+-- 상단의두개 코드는 같다. NULL입력 시 콜론을 붙여선 안된다. 붙이면 문자열로 인식하게된다.
+
+
 -- 입력된 데이터값 확인.
 SELECT 
 COLUMN1, LENGTH(COLUMN1), 
@@ -139,3 +145,10 @@ COLUMN3, LENGTH(COLUMN3)
 FROM EX2_2;
 
 COMMIT;
+
+-- 데이터 확인 : 길이 및 바이트 확인
+-- LENGTHB는 바이트 길이를 재 주는 것이다.
+SELECT COLUMN3, LENGTH(COLUMN3), LENGTHB(COLUMN3) FROM EX2_2;
+ 
+-- 한글의 바이트 수 확인
+SELECT LENGTHB('홍') FROM DUAL;
