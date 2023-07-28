@@ -20,15 +20,21 @@
         // 괄호 내의 값이 있으면 변경하는것
         
       // 태그미지원
-        $("#demo").text("FullStack <b>Java</b> Web Developer Course");
+        $("#demo").text(function(i, orgText) {
+
+          // i : 인덱스, orgText : 이전내용
+          return "이전내용 : "+ orgText + "변경내용" + "FullStack <b>Java</b> Web Developer Course index:" +i;
+        });
       });
 
-      $("#btn2").click(function () {
+      $("#btn2").click(function (i, orgText) {
         // 태그지원
-        $("#demo").html("FullStack <b>Java</b> Web Developer Course");
+        return "이전내용 : "+ orgText + "변경내용" + "FullStack <b>Java</b> Web Developer Course index:" +i;
       });
       $("#btn3").click (function () {
-        $("#u_name").val("김정웅"); // val("") 내용을 지우는 의미.
+        $("#u_name").val(function(i, value) {
+          return "이전내용 : " + value + ", 변경명"+ "김정웅";
+        }); // val("") 내용을 지우는 의미.
       });
       
       $("#btn4").click(function () {
