@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+
+    // document.queryselector("button").click = functions () {};
+
+    // 1) 이벤트 메소드명을 직접 사용.
+    $("button").click(function () {
+      $("p").hide();
+    });
+
+    // 2) on메서드명으로 이벤트 사용
+    $("input[type='button']").on("click", function () {
+      $("p").hide();
+    });
+    // on 메소드명의 다른 사용법
+    /* 
+    $("부모태그선택자(정적)").on("click", "자식태그선택자(동적)",  function () {
+      $("p").hide();
+    });
+    */
+  });
+</script>
+</head>
+<body>
+  <h1>버튼 클릭시 p태그 화면에 숨기기</h1>
+  <p>jQuery를 학습 중입니다.</p>
+  <button>클릭</button>
+  <input type="button" value="클릭2">
+</body>
+</html>

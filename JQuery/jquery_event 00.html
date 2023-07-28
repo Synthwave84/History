@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $("#demo").hover(function () {
+      console.log("Mou_ENTER")
+    },
+    function() {
+      console.log("Mou_Out")
+    });
+  });
+</script>
+</head>
+<body>
+  <h1>jQuery 이벤트 학습</h1>
+  <p id="demo">풀스택 웹 자바 개발자과정</p>
+  <p>oracle</p>
+  <p>CSS</p>
+
+</body>
+</html>

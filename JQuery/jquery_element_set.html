@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // let txt = document.getElementById("demo").innerHTML;
+      // let txt = document.getElementById("demo").innerText;
+      /* 
+          - 일반 태그의 내용 읽어오기 : html(), text()
+          - 입력양식 태그의 내용 읽어오기 : val() <<value
+              ex) input,select,textarea 태그 등
+      */
+
+      $("#btn1").click(function () {
+        // 괄호 내에 아무것도 없으면 읽어오는 것.
+        // 괄호 내의 값이 있으면 변경하는것
+        
+      // 태그미지원
+        $("#demo").text("FullStack <b>Java</b> Web Developer Course");
+      });
+
+      $("#btn2").click(function () {
+        // 태그지원
+        $("#demo").html("FullStack <b>Java</b> Web Developer Course");
+      });
+      $("#btn3").click (function () {
+        $("#u_name").val("김정웅"); // val("") 내용을 지우는 의미.
+      });
+      
+      $("#btn4").click(function () {
+        $("#url").text("다음");
+        $("#url").attr("href", "http://www.daum.net");
+        // 예전 개념에서 변경 불가능한 경우도 있다.
+        // 하지만 변경을 권장하지 않는다.
+        $("#url").attr("id","daum"); 
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <h1>태그의 내용과 속성 값 변경하기</h1>
+  <p id="demo">풀스택 <b>자바</b> 웹 개발자 과정</p><br>
+  이름 입력<input type="text" id="u_name" value="홍길동"><br>
+  <a href="http://www.naver.com" id="url">나베르</a><br>
+  <button id="btn1">TEXT 값 변경</button>
+  <button id="btn2">HTML 값 변경</button>
+  <button id="btn3">이름 값 변경</button>
+  <button id="btn4">다음 주소로 변경</button>
+</body>
+</html>

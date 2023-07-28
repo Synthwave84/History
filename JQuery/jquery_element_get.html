@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // let txt = document.getElementById("demo").innerHTML;
+      // let txt = document.getElementById("demo").innerText;
+      /* 
+          - 일반 태그의 내용 읽어오기 : html(), text()
+          - 입력양식 태그의 내용 읽어오기 : val() <<value
+              ex) input,select,textarea 태그 등
+      */
+
+      $("#btn1").click(function () {
+        alert("텍스트출력 : " + $("#demo").text()); // 태그 제거
+      });
+      $("#btn2").click(function () {
+        alert("HTML 출력 : " + $("#demo").html()); // 태그 포함
+      });
+      $("#btn3").click (function () {
+        alert("이름 출력 :" +$("#u_name").val());
+      });
+      
+      $("#btn4").click(function () {
+        alert("주소값 출력 : " + $("#naver").attr("href"));
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <h1>태그의 내용과 속성 값 읽어오기</h1>
+  <p id="demo">풀스택 <b>자바</b> 웹 개발자 과정</p><br>
+  이름 입력<input type="text" id="u_name"><br>
+  <a href="http://www.naver.com" id="naver">나베르</a><br>
+  <button id="btn1">TEXT 출력</button>
+  <button id="btn2">HTML 출력</button>
+  <button id="btn3">이름 출력</button>
+  <button id="btn4">네이버 주소 출력</button>
+</body>
+</html>
