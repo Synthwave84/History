@@ -39,10 +39,12 @@
       
       $("#btn4").click(function () {
         $("#url").text("다음");
-        $("#url").attr("href", "http://www.daum.net");
-        // 예전 개념에서 변경 불가능한 경우도 있다.
-        // 하지만 변경을 권장하지 않는다.
-        $("#url").attr("id","daum"); 
+
+        // 태그의 속성들을 한번에 변경하기
+        $("#url").attr({
+          "href" : "http://www.daum.net",
+          "title" : "다음"
+        });
       });
 
     });
