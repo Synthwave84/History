@@ -147,8 +147,80 @@ FROM EX2_2;
 COMMIT;
 
 -- 데이터 확인 : 길이 및 바이트 확인
--- LENGTHB는 바이트 길이를 재 주는 것이다.
+-- LENGTHB는 바이트 용량을 재 주는 것이다.
 SELECT COLUMN3, LENGTH(COLUMN3), LENGTHB(COLUMN3) FROM EX2_2;
  
 -- 한글의 바이트 수 확인
 SELECT LENGTHB('홍') FROM DUAL;
+-- 오라클의 시간 확인
+SELECT SYSDATE FROM DUAL;
+
+-- DUAL = 특수 테이블 : 테이블이 필요한 명령문을 사용 시 가상의 테이블을 제작해서 데이터를 보는데 쓰인다.
+
+-- NCHAR, NVARCHAR2 사용
+
+CREATE TABLE UNITABLE (
+    COL1    NCHAR(9),
+    COL2    NVARCHAR2(20)
+);
+-- 유니코드를 작성 시 에는 필수적으로 스트링 앞에 N을 붙여아한다.
+INSERT INTO UNITABLE (COL1, COL2) VALUES (N'홍길동',N'가나다라'); -- CTRL + ENTER 실행 단축키
+
+SELECT * FROM UNITABLE;
+
+-- 숫자 데이터 타입
+/*
+    NUMBER[P,{S}]
+    P(PRECISION : - 최대 유효 자릿수
+    S(SCALE : 소숫점 기준 자리)
+*/
+-- 숫자 데이터 타입에는 INTEGER, DECIMAL, NUMBER 가 있다. 그러나 내부적으로는 모두 NUMBER 로 관리 된다.
+CREATE TABLE EX2_3 (
+    COL_INT     INTEGER,
+    COL_DEC     DECIMAL,
+    COL_NUM     NUMBER
+);
+
+-- 시스템 뷰 : 오라클이 설치되면서, 자동으로 생성된 테이블
+-- user_tab_cols : 테이블 생성 시 컬럼에 적용한 데이터 타입 정보가 저장되어있음.
+-- 테이블명은 반드시 대문자로 적어야한다.
+
+SELECT COLUMN_ID, COLUMN_NAME, DATA_TYPE, DATA_LENGTH FROM USER_TAB_COLS 
+WHERE TABLE_NAME = 'EX2_3' 
+ORDER BY COLUMN_ID;
+
+/* 
+ NUMBER (P[,S])
+ 컬럼의 데이터타입이 다음과 같고, 숫자 데이터 입력시 결과 처리는 다음과 같다.
+ 입력 123.54 NUMBER => 123.54 정상처리
+ 입력 123.54 NUMBER(3) => 124 NUMBER(3)은 NUMBER (3,0)과 같다. 정수 자리 3자리. 소수자리 0자리. 반올림된다.
+ 입력 123.54 NUMBER(3,2) => ERROR NUMBER(3,2)는 소수자리 2자리를 포함한 전체자리수가 3자리. 정수자리수는 1자리
+ 입력 123.54 NUMBER(5,2) -> 정상 NUMBER(5,2)는 소수자리 2자리를 ?마한 전체 자리수를 5개로 표현. 정수자리는 3자리가된다.
+*/
+
+-- 날짜 데이터 타입
+/* 
+DATE : 	BC 4712년 1월 1일부터 9999년 12월 31일, 연,월,일,시,분,초까지 입력 가능하다.
+TIMESTAMP : 연도, 월, 일, 시, 분, 초는 물론 밀리초까지 입력 가능하다.
+fractional_seconds_precision은 0~9까지 입력할 수 있고 디폴트 값은 6이다.
+
+*/
+
+CREATE TABLE EX2_5 (
+    COL_DATE        DATE,
+    COL_TIMESTAMP   TIMESTAMP
+);
+
+-- 날짜형 함수
+    /*
+    SYSDATE : 현재 날짜 시간, 시간을 초까지 정보확인
+    SYSTIMESTAMP : 오라클 서버의 현재 날짜, 시간을 밀리세컨드까지 정보 확인.
+    */
+ 
+INSERT INTO EX2_5 VALUES (SYSDATE, SYSTIMESTAMP);
+
+SELECT * FROM EX2_5;
+
+COMMIT;
+
+ 
