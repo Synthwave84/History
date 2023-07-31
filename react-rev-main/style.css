@@ -1,0 +1,160 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Wikibooks
+*/
+
+body {
+    padding: 20px;
+}
+nav {
+    margin-bottom: 60px;
+}
+nav ul li {
+    float: left;
+    padding-right: 30px;
+}
+nav ul li a, h2 {
+    color: #64afc8;
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 40px;
+    text-decoration: none;
+}
+nav ul li a.active {
+    color: #4468b0;
+}
+
+ul#contents {
+    max-width: 100%;
+    overflow-x: hidden;
+    clear: both;
+}
+ul#contents li {
+    line-height: 1.8;
+}
+ul#contents > li {
+    margin-bottom: 30px;
+}
+ul#contents > li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    color: #64afc8;
+    font-weight: 100;
+    content:
+ "·····························································"
+ "·····························································"
+ "·····························································"
+ "·····························································"
+ "·····························································"
+ "·····························································"
+ "·····························································"
+ "·····························································"
+ "·····························································"
+}
+ul#contents .title {
+    padding-right: 0.33em;
+    background: white;
+    color: #64afc8;
+}
+ul#contents .title .num {
+    padding-right: 1em;
+    background: white;
+    color: #474545;
+    width: 34px;
+    display: inline-block;
+    font-weight: bold;
+}
+ul#contents .page {
+    float: right;
+    padding-left: 0.33em;
+    background: white;
+    color: #64afc8;
+}
+ul#contents li.indent {
+    margin-left: 40px;
+}
+ul#detail {
+    font-size: 12px;
+}
+ul#detail li {
+    margin-bottom: 5px;
+}
+#detail li:nth-child(n+4) a {
+    margin-left: 121px;
+}
+#detail li:nth-child(3) a.addIndent {
+    margin-left: 121px;
+}
+ul#detail a {
+    color: black;
+}
+ul#detail span:first-child {
+	margin-top: 3px;
+    margin-left: 46px;
+    margin-right: 20px;
+    border-radius: 5px;
+    color: white;
+    background: #64afc8;
+    width: 55px;
+    height: 18px;
+    font-size: 8px;
+    display: inline-block;
+    text-align: center;
+    font-weight: lighter;
+    float: left;
+}
+ul#detail span:nth-child(2) {
+    margin-left: 122px;
+    display: inherit;
+}
+ul#detail .time {
+    color: #64afc8;
+}
