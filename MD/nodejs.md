@@ -45,3 +45,61 @@ npx : npm 5.2버전 부터 지원한다. 모듈의 일종이라고 볼 수 있�
   - Visual Studio Code 재시작
   - 컴퓨터 재시작
   - npm install -g create-react-app : create-react-app 모듈을 global 영역에서 제거
+
+react 웹 프로젝트 생성
+ -  node_modules 폴더
+  - public 폴더
+  - src 폴더
+
+3개의 폴더로 구성 되어있다.
+ - public 폴더 
+    index.html : 기본 페이지 : http://localhost:3000/ 주소에 의하여 동작.
+      <div id="root"></div> 이 위치에 리액트 실행 결과물이 렌더링 된다.
+
+- src  폴더
+    index.js파일에서
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    구문이 index.html 파일의 <div id="root"></div>를 참조한다.
+
+    import App from './App': 구문에 의하여
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+    <React.StrictMode>
+    <App /> - App.js 파일의 function App()를 참조하게된다. 
+    </React.StrictMode>
+    );
+
+- 실제 리액트 구문이 존재하지만, 어렵고 복잡하여 JSX문법으로 리액트 작업을 한다.
+
+  작업은 JSX문법으로 작업 하지만, 컴파일 과정에서 리액트 문법으로 컨버팅된다.
+  변환작업을 하는 도구 = babel
+  Babel : 문법을 통일해준다. Node.js 환경에 맞게 해준다.
+
+- 리액트 컴포넌트 :자바스크립트의 함수에 해당함.  
+  리액트 컴포넌트로 사용 하는 함수는 함수명을 반드시 대문자로 작성해야 한다.
+
+  기본 구조.
+
+  function App() {
+    자바 스크립트 문법작업.
+    return (
+      JSX 문법작업
+    );
+  }
+
+- JSX : JavaScript + (XML or HTML) 포함된 형태의 언어.
+  공식명 ReactJS
+  - 개발분야에서는 JSX 라는 이름으로 통한다.
+
+JSX 구문에서 자바스크립트 사용시 {} 안에 사용해야한다.
+또한, XML과 동일하게 부모 요소(루트)가 하나 존재해야한다. 사실상 HTML 문서또한 <html></html>의 
+하나의 부모요소로 구성되어있는 것과 동일하다. 
+
+JSX 구문에 컴포넌트 속성작업 : props 
+
+  예 > HTML
+    <img src="test.gif" title="꽃">
+
+  예 > JSX 구문에 속성 사용
+    <Book name="리액트", numOfPage="500"></Book>
