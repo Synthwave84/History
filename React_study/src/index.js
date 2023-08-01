@@ -8,12 +8,15 @@ import Clock from './chapter_04/Clock';
 import TestApp from './chapter_04/TestApp';
 import reportWebVitals from './reportWebVitals';
 import ComponentList from './chapter_05/ComponentList';
+import Employee from './chapter_05/Employee';
+import EmplolyeeList from './chapter_05/EmployeeList';
+import Hello from './chapter_05/Hello';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render (
   <React.StrictMode>
-  <ComponentList />
-  <TestApp></TestApp>
+    <EmplolyeeList />
+    <Hello />
 </React.StrictMode>
 )
 

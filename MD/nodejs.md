@@ -102,4 +102,9 @@ JSX 구문에 컴포넌트 속성작업 : props
     <img src="test.gif" title="꽃">
 
   예 > JSX 구문에 속성 사용
-    <Book name="리액트", numOfPage="500"></Book>
+    <Book name="리액트", numOfPage="500"></Book>90-
+
+    1. 시나리오
+    함수 컴포넌트 : Employee
+    <h1>사원번호 : 1</h1>
+    <h2> 사원이름 : 홍길동</h2>
