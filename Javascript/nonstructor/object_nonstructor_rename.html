@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>비구조화 할당시 이름 변경하기.</h2>
+  <script>
+    const animal = {
+      name : "강아지",
+      type : "개"
+    };
+
+   // const nickname = animal.name;
+   // name -> nickname 새로운 변수명으로 값을 갖게딘다. 
+   // 상단의 코드와 완전히 동일하다. 
+   const {name : nickname} = animal; // 상단의 문법과 동일하다. 
+
+    console.log(nickname);
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>/함수에서 객체를 파라미터로 받기. -> 객체구조와 할당구문</h1>
+  <script>
+
+    const ironMan = {
+      name : "토니스타크",
+      actor : "로버트 다우니 주니어",
+      alias : "아이언맨"
+    };
+    const captainAmerica = {
+      name : "스티븐 로져스",
+      actor : "크리스 에반스",
+      alias : " 캡틴아메리카"
+    };
+
+    function print({alias, name, actor}) {
+      
+      // 이렇게 구성하게 될경우, 함수의 변수값을 객체의 내부 데이터명과 일치 시켜야한다.
+
+      const text= `${hero.alias}(${hero.name}) 역활을 맡은 배우는 ${hero.actor} 입니다`; 
+      console.log(text);
+    } 
+
+    print(ironMan);
+    print(captainAmerica);
+
+  </script>
+</body>
+</html>

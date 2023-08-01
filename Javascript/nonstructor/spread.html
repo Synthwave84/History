@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>spread 문법</h1>
+  <script>
+    /*
+    const slime = {
+      name : "슬라임"
+    };
+    const cuteSlime = {
+      name : "슬라임",
+      attribute : "cute"
+    };
+    const purpleCuteSlime = {
+      name : "슬라임",
+      attribute : "cute",
+      color : "purple"
+    }
+    */
+    // ... = 스프레드 연산자.
+    const slime = {
+      name : "슬라임"
+    };
+    const cuteSlime = {
+      ...slime, // 상단 슬라임 객체 참조
+      attribute : "cute"
+    };
+    const purpleCuteSlime = {
+      ...cuteSlime, // 상단cuteSlime 객체 참조
+      color : "purple"
+    }
+
+    const a = [1, 2, 3, 4, 5];
+    const b = [...a];  // [1,2,3,4,5]
+
+      console.log(a == b); // false 주소비교
+      /*
+      해설 : 변수는 데이터 그 자체가 저장되는 경우가 있고, 
+      데이터가 위치한 주소를 저장하는 개념이 있다.
+      현재 위의 배열구조는 주소를 저장하는 것이다. 그렇기 떄문에,
+      a변수에 a에 해당하는 값이 실값이 아닌, 주소가 지정되어있고,
+      b는 spread로 a를 참조하게 되기 때문에 b에도 또 다른 주소가 생성된다.
+      그렇기 때문에, a와 b는 실질적으로 내부 자료는 동일하나, 값 자체의 비교는 틀리다.
+      */
+
+      const x= 10;
+      const y = 10;
+
+      console.log ( x == y) ; // true
+
+  
+  </script>
+</body>
+</html>
