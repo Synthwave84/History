@@ -14,20 +14,42 @@ import './index.css';
 // import Hello from './chapter_07/Hello';
 // import Hello from './chapter_08/Hello.jsx'
 // import Hello from './chapter_09/Hello.jsx'
-import Hello from './chapter_10/Hello.jsx'
-import Wrapper from './chapter_09/Wrapper'
+// import Hello from './chapter_10/Hello.jsx'
+//import Wrapper from './chapter_09/Wrapper'
+// import Hello from './chapter_11/Hello';
+//import Counter from './chapter_12/conter';
+// import InputState from './chapter_13/inputState';
+import InputState from './chapter_14/InputState'
+
+
 
 import reportWebVitals from './reportWebVitals';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render (
-  <React.StrictMode>
+  /*
+setInterval(()=>{
+  root.render(
+    <React.StrictMode>
+      <Clook />
+    </React.StrictMode>
+  //<App />
+)}
+
+    {//import Hello from './chapter_5~10/Hello';}
     <Wrapper>
-    <Hello name="홍길동" age={100} color="red" />
-    <Hello color="pink" />
+      <Hello name={`홍길동`} age={100} color={`red`} />
+      <Hello color={`pink`} />
     </Wrapper>
-</React.StrictMode>
+*/
+/* 속성을 이용한 조건부 렌더링 */
+    /* <Hello isState={true} /> */
+    /*하단처럼 true 또는 false 비 선언시 기본값은 true 다.*/ 
+  <React.StrictMode>
+    {/* 리액트 훅 : useState */}
+      <InputState />
+  </React.StrictMode>
 )
 
 /*

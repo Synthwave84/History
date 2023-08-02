@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+  <script>
+    const obj1= {name : "홍길동", nickname : "의적", name : "손흥민"};
+    const obj2 = {...obj ,age : 100};
+    console.log(obj1 == obj2); // false, 주소기준이기 때문
+
+    let x = 10;
+    let y = 10;
+    console.log(x==y); // true 값 기준
+
+    const obj3 ={...obj1, age : 100};
+    document.getElementById("demo").innerHTML = obj.name;
+  </script>
+</body>
+</html>
