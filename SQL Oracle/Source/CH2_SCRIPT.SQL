@@ -263,3 +263,129 @@ CREATE TABLE EX2_6 (
     COL_NOT_NULL    VARCHAR2(10)    NOT NULL
 )
 
+-- 에러 발생
+INSERT INTO EX2_6(COL_NULL, COL_NOT_NULL) VALUES('AA', NULL);
+-- INSERT INTO ex2_6 VALUES('AA', '');
+/*
+ORA-01400: cannot insert NULL into ("ORA_USER"."EX2_6"."COL_NOT_NULL")
+*/
+
+-- 성공
+INSERT INTO EX2_6 VALUES('AA', 'BB');
+
+-- 데이터조회
+SELECT *FROM EX2_6;
+
+-- 에러발생.
+INSERT INTO EX2_6 VALUES (NULL, NULL);
+/*
+ORA-01400: cannot insert NULL into ("ORA_USER"."EX2_6"."COL_NOT_NULL")
+*/
+
+/*
+제약조건개체이름
+SYS_C008289     C      EX2_6    
+*/
+/*
+② UNIQUE
+UNIQUE 제약조건은 말 그대로 해당 컬럼에 들어가는 값이 유일해야 한다는 의미다. 즉 중복 값을 허용하지 않는다
+
+    컬럼명 데이터타입 UNIQUE -- 1) 컬럼수준 제약
+    혹은
+    CONSTRAINTS 제약조건명 UNIQUE(컬럼명, ...) -- 2) 테이블수준 제약
+*/
+
+CREATE TABLE EX2_7 (
+    COL_UNIQUE_NULL      VARCHAR2(10)    UNIQUE,     -- 생략 시 기본값은 NULL
+    COL_UNIQUE_NNULL     VARCHAR2(10)    UNIQUE NOT NULL,    
+    COL_UNIQUE           VARCHAR2(10),
+    CONSTRAINTS UNIQUE_NM1 UNIQUE (COL_UNIQUE)
+    
+);
+
+
+
+-- 테이블 삭제
+DROP TABLE EX2_7;
+
+
+-- 시스템 뷰 : 테이블의 제약조건 정보를 볼 때 확인
+SELECT constraint_name, constraint_type, table_name, search_condition
+FROM user_constraints
+WHERE table_name = 'EX2_6'; -- 테이블명을 대문자로 입력
+
+-- 성공
+INSERT INTO EX2_7 VALUES('AA', 'AA', 'AA');
+INSERT INTO EX2_7 VALUES('BB', 'BB', 'BB');
+
+-- 실패 AA중복
+INSERT INTO EX2_7 VALUES('', 'AA', 'BB); -- ' '은 NULL
+
+-- UNIQUE 비교 대상에서 NULL은 제외
+-- 오라클운 ''(NULL) 중복데이터 제외된다 그러나, 다른 데이터베이스에서는 다를 수 있다. 실무에서 작업 시 확인 후 작업바람.
+INSERT INTO EX2_7 VALUES('', 'CC', 'CC');
+
+-- 데이터 확인
+SELECT * FROM EX2_7;
+
+-- UNIQUE 제약조건 에러 : COL_UNIQUE_NULL 컬럼에 UNIQUE 제약조건 때문에 'AA'데이터가 존재하여, 입력할 수가 없다.
+INSERT INTO EX2_7 VALUES('AA', 'DD', 'DD');
+/*
+ORA-00001: unique constraint (ORA_USER.SYS_CC008299) violated
+*/
+
+COMMIT;
+
+/* 
+③ 기본키
+기본키Primary key라고도 하고 영어 그대로 ‘Primary key’라고 한다. 
+보통 테이블에 키를 생성했다라고 할 때, 이는 기본키를 의미한다. 
+기본키는 UNIQUE와 NOT NULL 속성을 동시에 가진 제약조건으로, 
+테이블 당 1개의 기본키만 생성할 수 있다.
+
+    컬럼명 데이터타입 PRIMARY KEY  -- 컬럼 수준 제약
+    혹은
+    CONSTRAINTS 제약조건명 PRIMARY KEY(컬럼명, ...)  -- 테이블 수준 제약.
+
+*/
+
+-- PRIMARY KEY 제약 조건에 의하여 생성되는 제약조건이름은 자동으로 생성되게 하지않고,
+-- 수동으로 생성해야, 나중에 스프링기능에서 페이징 처리 할 때 사용 할 수가 있다. (중요_
+
+
+CREATE TABLE EX2_8(
+    COL1        VARCHAR2(10)    PRIMARY KEY, -- UNIQUE와 NOT_NULL 성격을 동시에 가진다.
+    COL2        VARCHAR2(10)    
+);
+
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME, SEARCH_CONDITION
+FROM   USER_CONSTRAINTS
+WHERE  TABLE_NAME = 'EX2_8';
+
+-- 오류. 값이 NOT_NULL이다. PRIMARY KEY로 설정이 되었기 때문.
+-- ORA-01400: cannot insert NULL into ("ORA_USER"."EX2_8"."COL1")
+INSERT INTO EX2_8 VALUES('', 'AA');
+
+-- 성공
+INSERT INTO EX2_8 VALUES('AA','AA');
+
+-- 실패. PRIMARY KEY 성격 ?문에 중복데이터 입력 불가
+-- ORA-00001: unique constraint (ORA_USER.SYS_C007141) violated
+-- CONSTRAINT_NAME = SYS_C007141 로 에러 코드와 동일하다.
+-- 상단의 코드는 컴퓨터 마다 다르다.
+-- 이것이 시스템 뷰의 속성 명칭이 된다.
+INSERT INTO EX2_8 VALUES('AA','AA');
+
+DROP TABLE EX2_8;
+
+SELECT * FROM EX2_8;
+
+--- 테이블의 PRIMARY_KEY  수동생성하기.
+CREATE TABLE EX2_8 (
+    COL1    VARCHAR2(10)  CONSTRAINT pk_coll PRIMARY KEY,
+    COL2    VARCHAR2(10)    
+    );
+
+
+
+
