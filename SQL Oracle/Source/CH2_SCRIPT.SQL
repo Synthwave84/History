@@ -386,6 +386,7 @@ CREATE TABLE EX2_8 (
     COL2    VARCHAR2(10)    
     );
 
+commit;
 
 
 
