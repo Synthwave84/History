@@ -338,6 +338,10 @@ COMMIT;
 
 /* 
 ③ 기본키
+
+- 단일키 : 컬럼 1개를 설정
+- 복합키 : 컬럼 2개 이상으로 설정
+
 기본키Primary key라고도 하고 영어 그대로 ‘Primary key’라고 한다. 
 보통 테이블에 키를 생성했다라고 할 때, 이는 기본키를 의미한다. 
 기본키는 UNIQUE와 NOT NULL 속성을 동시에 가진 제약조건으로, 
@@ -350,7 +354,7 @@ COMMIT;
 */
 
 -- PRIMARY KEY 제약 조건에 의하여 생성되는 제약조건이름은 자동으로 생성되게 하지않고,
--- 수동으로 생성해야, 나중에 스프링기능에서 페이징 처리 할 때 사용 할 수가 있다. (중요_
+-- 수동으로 생성해야, 나중에 스프링기능에서 페이징 처리 할 때 사용 할 수가 있다. (중요)
 
 
 CREATE TABLE EX2_8(
@@ -389,4 +393,145 @@ CREATE TABLE EX2_8 (
 commit;
 
 
+CREATE TABLE DEFT_CONST (
+        DEFTNO      NUMBER(2)           CONSTRAINT      DEFTCONST_DEFFNO_PK PRIMARY KEY,
+        DNAME       VARCHAR2(14)        CONSTRAINT      DEFFCONST_DNAME_UNQ UNIQUE,
+        LOC         VARCHAR2(13)        CONSTRAINT      DEFTCONST_LOC_NN    NOT NULL
+    );
 
+/* 
+CREATE TABLE DEFT_CONST (
+        DEFTNO      NUMBER(2)           CONSTRAINT      DEFTCONST_DEFFNO_PK PRIMARY KEY,
+        DNAME       VARCHAR2(14)        UNIQUE,     -- 작성되지 않은것은 오라클 서버가 제약조건이름을 자동 생성한다
+        LOC         VARCHAR2(13)        NOT NULL    -- 작성되지 않은것은 오라클 서버가 제약조건이름을 자동 생성한다
+    );
+*/
+
+/*
+사원 테이블명 : EMP
+    - 사원 번호(EMP_ID)     - 데이터타입 :  정수 숫자, 제약조건 : PRIMARY KEY 제약이름 : PK_EMP_ID
+    - 사원번호 (EMP_NAME)   - 데이터타입 :  데이터타입: 가변문자열, 길이 : 60 제약조건 NOT NULL 제약이름 : 생략
+    - 입사일자(EXP_HIRE)    - 데이터타입 : 날짜, 길이: 없음. 제약조건 : NOT NULL 제약이름 : 생략
+
+*/  
+-- 기본키를 이용한 테이블 연습(단일키)
+
+CREATE TABLE EMP  (
+    EMP_ID      NUMBER                  CONSTRAINT PK_EXP_ID   PRIMARY KEY,
+    EMP_NAME    VARCHAR2(60)            NOT NULL,
+    EMP_HIRE    DATE                    NOT NULL
+);
+
+/* 
+오류 보고 -
+ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis" 
+-- PRIMARY KEY 사용시 CONSTRAINT 미입력으로 인한 오류
+*/
+
+/* 
+테이블명 : GOODS
+- 상품코드 G_CODE    정수숫자, 4  PRIMARY KEY : PK_GOODS_CODE
+- 상품이름 G_NAME    가변문자 30  NOT NULL  
+- 상품이름 G_PRICE   정수숫자 6   NULL
+- 등록일 CREATE_DATE      날짜         NOT NULL
+*/
+-- 기본키를 이용한 연습)복합키)
+
+CREATE TABLE GOODS (
+    GCODE       NUMBER(4)       CONSTRAINT PK_GOODS_CODE PRIMARY KEY,
+    G_NAME      VARCHAR2(30)    NOT NULL,
+    G_PRICE     NUMBER(6)       NULL,
+    CREATE_DATE DATE            NOT NULL
+);
+
+SELECT * FROM GOODS;
+
+DROP TABLE GOODS;
+-- 기본키를 이용한 테이블 연습(단일키)
+CREATE TABLE ORDETAIL_TBL(
+        ORD_CODE        NUMBER      PRIMARY KEY,
+        PRO_NUM         NUMBER      PRIMARY KEY,
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL
+        );
+        
+        
+-- 기본키를 이용한 연습)복합키)
+
+-- 에러 발생 
+-- ORA-02260: table can have only one primary key
+-- 02260. 00000 -  "table can have only one primary key"
+CREATE TABLE ORDETAIL_TBL(
+        ORD_CODE        NUMBER      PRIMARY KEY,
+        PRO_NUM         NUMBER      PRIMARY KEY,
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL
+        );
+        
+-- 위의 2개의 컬럼을 하나의 의미로 복합키로 설정을 할 경우 다음과 같다.
+-- 마지막 컬럼에도 콤마를 추가 해 주어야 한다. 하단의 맨 마지막 코드만 콤마가 들어가지 않기 ?문.
+CREATE TABLE ORDETAIL_TBL (
+        ORD_CODE        NUMBER      UNIQUE,      
+        PRO_NUM         NUMBER      UNIQUE,     
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL,
+        CONSTRAINT PK_CODE_NUM PRIMARY KEY (ORD_CODE,PRO_NUM)
+        );
+
+-- 에러발생 
+-- SQL 오류: ORA-00947: not enough values
+-- 00947. 00000 -  "not enough values" NOT NULL성격
+INSERT INTO ORDETAIL_TBL VALUES ('','');
+
+
+-- UNIQUE (유니크)
+/*
+
+단일키
+복합키
+
+*/
+
+-- 테이블에 유니크 두개 생성, 각각 단일 키.
+CREATE TABLE ORDERS_TBL_1(
+        ORD_CODE        NUMBER      UNIQUE,  
+        PRO_NUM         NUMBER      UNIQUE,
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL
+        );
+-- 자료를 테이블에 삽입 할 경우. 테이블 클릭 후 ORDERS_TEL_3 () 괄호안에 드래그 하여주면 바로 입력이 가능하다.
+-- 영문 대 소문자 일괄변화는 ALT + '(작은따옴표)로 자동전환 시킬 수 있다.
+
+--성공
+INSERT INTO ORDERS_TBL_1 (ORD_CODE, PRO_NUM, DT_AMOUNT, DT_PRICE)
+VALUES (1,1,10,500);
+-- 에러 발생
+-- ORA-00001: unique constraint (ORA_USER.SYS_C007165) violated
+INSERT INTO ORDERS_TBL_1 (ORD_CODE, PRO_NUM, DT_AMOUNT, DT_PRICE)
+VALUES (1,1,10,500);
+
+
+-- 테이블에 UNIQUE를 1번만 선언 후 컬럼2개를 묶어 복합키로 생성
+CREATE TABLE ORDERS_TBL_2 (
+        ORD_CODE        NUMBER,      
+        PRO_NUM         NUMBER,     
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL,
+        CONSTRAINT PK_CODE_NUM_2 UNIQUE (ORD_CODE,PRO_NUM)
+        );
+
+-- 자료를 테이블에 삽입 할 경우. 테이블 클릭 후 ORDERS_TEL_3 () 괄호안에 드래그 하여주면 바로 입력이 가능하다.
+-- 영문 대 소문자 일괄변화는 ALT + '(작은따옴표)로 자동전환 시킬 수 있다.
+
+-- 성공
+INSERT INTO ORDERS_TBL_2 (ORD_CODE, PRO_NUM, DT_AMOUNT, DT_PRICE)
+VALUES (1,2,10,500);
+
+-- 성공 : 복합키는 동시에 만족되는 데이터를 삽입 시 에러가 발생한다.
+-- 즉 컬럼1, 컬럼2가 둘다 문제가 되어야만 문제가 생기는 것이다.
+INSERT INTO ORDERS_TBL_2 (ORD_CODE, PRO_NUM, DT_AMOUNT, DT_PRICE)
+VALUES (1,1,10,500);
+
+
+COMMIT;
