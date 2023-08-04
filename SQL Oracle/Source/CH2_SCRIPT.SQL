@@ -535,3 +535,106 @@ VALUES (1,1,10,500);
 
 
 COMMIT;
+
+/* 
+    
+    PRIMARY KEY(복합키)를 이용한 테이블 생성예제
+    테이블명 COMPLEX_TEL
+    컬럼명 : COL A B C D
+    데이터 타입 : NUMBER , VARCHAR2 10 , NUMBER NULL, VARCHAR 2 19 N_NULL
+    
+기본키 복합키 : COL,A B 설정
+ 기본키 제약조건 명 : PK_COLAB
+*/
+
+CREATE TABLE COMPLEX_TEL (
+
+    COLA        NUMBER, 
+    COLB        VARCHAR2(10),
+    COLC        NUMBER          NULL,
+    COLD        VARCHAR2(10)    NOT NULL,
+    
+    -- PRIMARY KEY는 필수는 아니나 가급적 무조건 생성하도록 한다.
+    CONSTRAINT PK_COMP_COLAB PRIMARY KEY (COLA,COLB)
+);
+
+/*
+④ 외래키
+외래키Foreign key는 테이블 간의 참조 데이터 무결성을 위한 제약조건이다.
+
+    CONSTRAINT 외래키명 FOREIGN KEY(컬럼명, ...)
+    REFERENCES 참조 테이블(참조 테이블 컬럼명, ...)
+    
+    참조되는 테이블이 기본키(복합키) 이면, 참조하는 테이블도 참조키( 복합키 ) 로 설정되어야 한다.
+    
+*/
+
+-- 부서테이블 : DEPT
+CREATE TABLE DEPT (
+    DEPT_CODE       NUMBER          CONSTRAINT PK_DEPT_CODE PRIMARY KEY,
+    DEPT_NAME       VARCHAR2(30)    NOT NULL
+);
+
+-- 사원 테이블
+-- 하단라인의 DEPT_CODE 부는 상단의 DEPT 테이블의 DEPT_CODE 부를 참조한다. (FOREIGN KEY)
+-- 하단 행의 DEPT_CODE 테이블명은 마음대로 변경하여도 된다. 어차피 참조하는 값은 REFERENCES DEPT(DEPT_CODE)
+-- 에서 가져오기 때문이다. 다만, 애초에 표를 만드는 작업이므로, 명칭을 같게 하는것이 옳다.
+-- 참조의 경우 참조할 테이블명과, 데이터타입이 무조건 동일해야한다. 
+-- 현재는 DEPT_CODE의 데이터 타입이 NUMBER 로 되어있기 때문에, 하단 EMP 테이블에서도 
+-- 참조하려는 DEPT_CODE 컬럼의 데이터 타입또한 NUMBER 가 되어야 한다.
+CREATE TABLE EMP (
+    EMP_NO      NUMBER          CONSTRAINT  PK_EMP_NOR   PRIMARY KEY,
+    EMP_NAME    VARCHAR2(30)    NOT NULL,
+    DEPT_CODE   NUMBER          NULL        REFERENCES DEPT(DEPT_CODE) 
+);
+
+/* 
+테이블 하단에 추가하여 테이블 단위의 작업을 할 수도 있다.
+CONSTRAINT PK_EMP_DEPT FOREIGN KEY (DEPT_CODE) REFERENCE DEPT(DEPT_CODE)
+*/
+-- 각 테이블에 데이터 입력 
+-- DEPT(부서테이블 = 참조데이터)에 먼저 생성해야한다.
+INSERT INTO DEPT(DEPT_CODE, DEPT_NAME) VALUES(100, '총무부');
+INSERT INTO DEPT(DEPT_CODE, DEPT_NAME) VALUES(101, '마케팅부');
+INSERT INTO DEPT(DEPT_CODE, DEPT_NAME) VALUES(102, '영업부');
+INSERT INTO DEPT(DEPT_CODE, DEPT_NAME) VALUES(103, '전략기획부');
+
+SELECT * FROM DEPT;
+
+-- EMP 사원 테이블
+/*
+SQL 오류: ORA-00926: missing VALUES keyword
+00926. 00000 -  "missing VALUES keyword"
+*/
+-- INSERT INTO EMP(EMP_NO, EMP_NAME, DEPT_CODE) VALUES(1, '홍길동', 104); <- 참조테이블(부모테이블)에 자료가 없음
+INSERT INTO EMP(EMP_NO, EMP_NAME, DEPT_CODE) VALUES (1, '홍길동', 100);
+INSERT INTO EMP(EMP_NO, EMP_NAME, DEPT_CODE) VALUES (2, '손흥민', 102);
+INSERT INTO EMP(EMP_NO, EMP_NAME, DEPT_CODE) VALUES (3, '이강인', 103);
+INSERT INTO EMP(EMP_NO, EMP_NAME, DEPT_CODE) VALUES (4, '박지성', 101);
+INSERT INTO EMP(EMP_NO, EMP_NAME, DEPT_CODE) VALUES (5, '이영표', 102);
+INSERT INTO EMP(EMP_NO, EMP_NAME, DEPT_CODE) VALUES (6, '하석주', 100);
+
+SELECT * FROM EMP;
+
+-- 참조되는 테이블이 기본키(복합키) 이면, 참조하는 테이블도 참조키( 복합키 ) 로 설정되어야 한다.
+
+CREATE TABLE TESTA (
+    A   NUMBER,     
+    B   VARCHAR2(10),  
+    C   NUMBER,
+    D   NUMBER,
+    CONSTRAINT PK_TESTA PRIMARY KEY (A,B)
+);
+
+
+CREATE TABLE TESTB (
+    X   NUMBER,   
+    Y   VARCHAR2(10),
+    M   VARCHAR2(100)      NOT NULL,
+    N   NUMBER,
+    CONSTRAINT PK_TESTB_TESTA FOREIGN KEY (X,Y) REFERENCES TESTA (A,B)
+    );
+    
+    
+    
+    
