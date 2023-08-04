@@ -19,6 +19,7 @@ CREATE TABLE DEFT_CONST (
     - 입사일자(EXP_HIRE)    - 데이터타입 : 날짜, 길이: 없음. 제약조건 : NOT NULL 제약이름 : 생략
 
 */  
+-- 기본키를 이용한 테이블 연습(단일키)
 
 CREATE TABLE EMP  (
     EMP_ID      NUMBER                  CONSTRAINT PK_EXP_ID   PRIMARY KEY,
@@ -40,6 +41,7 @@ ORA-00907: missing right parenthesis
 - 상품이름 G_PRICE   정수숫자 6   NULL
 - 등록일 CREATE_DATE      날짜         NOT NULL
 */
+-- 기본키를 이용한 연습)복합키)
 
 CREATE TABLE GOODS (
     GCODE       NUMBER(4)       CONSTRAINT PK_GOODS_CODE PRIMARY KEY,
@@ -51,3 +53,37 @@ CREATE TABLE GOODS (
 SELECT * FROM GOODS;
 
 DROP TABLE GOODS;
+-- 기본키를 이용한 테이블 연습(단일키)
+CREATE TABLE ORDETAIL_TBL(
+        ORD_CODE        NUMBER      PRIMARY KEY,
+        PRO_NUM         NUMBER      PRIMARY KEY,
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL
+        );
+        
+        
+-- 기본키를 이용한 연습)복합키)
+
+-- 에러 발생 
+-- ORA-02260: table can have only one primary key
+-- 02260. 00000 -  "table can have only one primary key"
+CREATE TABLE ORDETAIL_TBL(
+        ORD_CODE        NUMBER      PRIMARY KEY,
+        PRO_NUM         NUMBER      PRIMARY KEY,
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL
+        );
+        
+-- 위의 2개의 컬럼을 하나의 의미로 복합키로 설정을 할 경우 다음과 같다.
+-- 마지막 컬럼에도 콤마를 추가 해 주어야 한다. 하단의 맨 마지막 코드만 콤마가 들어가지 않기 ?문.
+CREATE TABLE ORDETAIL_TBL(
+        ORD_CODE        NUMBER,      
+        PRO_NUM         NUMBER,     
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL,
+        CONSTRAINT PK_CODE_NUM PRIMARY KEY (ORD_CODE,PRO_NUM)
+        );
+        
+    
+        
+        
