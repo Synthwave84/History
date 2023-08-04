@@ -103,17 +103,20 @@ function App() {
       {
         id:1,
         username: '홍길동',
-        email: 'user01@abc.com'
+        email: 'user01@abc.com',
+        active : true
       },
       {
         id:2,
         username: '손흥민',
-        email: 'user02@abc.com'
+        email: 'user02@abc.com',
+        active : false
       },
       {
         id:3,
         username: '이강인',
-        email: 'user03@abc.com'
+        email: 'user03@abc.com',
+        active : false
       }
     ]);
   
@@ -132,7 +135,9 @@ function App() {
     email
     };
 
-    // useState함수로 배열의 값을 변경.
+    // useState함수로 배열의 값을 변경. 
+    // useState가 관리하는 데이터가 배열이므로, 배열은 객체이다.
+    // 그래서 useState는 객체의 주소가 변경이 되어야만 하기때문에, 새로운 배열로 구성을 하게된다.
     setUsers([...users, user]); // 배열에 object으로 데이터가 추가됨. App.js 함수 컴포넌트가
                                            // 재 실행된다
 
@@ -143,6 +148,20 @@ function App() {
     nextId.current += 1;
   }
   
+  // 삭제버튼을 클릭 시 호출할 이벤트 함수.
+  const onRemove = id => {
+    // 배열데이터에서 배열 데이터 하나를 삭제 하는 의미.
+    // 삭제하려는 id를 매개변수로 받는다.
+    // filter() 메소드 : 배열에서 id가 같지 않은 것만 선택하는 기능.
+    setUsers(users.filter(user=> user.id !== id)) // App.js 함수 컴포넌트가 다시 한번 재 실행된다.
+  }
+  const onToggle = id=> {
+    setUsers(
+      users.map(user => 
+        // ? = true 이면 중괄호를 실행하고, 그렇지 않으면 : 뒤에 있는 구문을 실행한다
+        user.id === id ? {...user, active: !user.active} : user) 
+    );
+  };
   return(
     <>
       {/* 자바스크립트 주석효과 */}
@@ -157,7 +176,7 @@ function App() {
       <div className="gray-box"></div>
       */}
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate}/>
-      <UserList users={users}/>
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle}/>
     </>
   );
 }

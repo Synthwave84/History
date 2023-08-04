@@ -6,7 +6,6 @@ import App from './App';
 // import Book from './chapter_03/Book'
 // import Library from './chapter_03/Library';
 // import Clock from './chapter_04/Clock';
-// import TestApp from './chapter_04/TestApp';
 
 // import ComponentList from './chapter_05/ComponentList';
 // import Employee from './chapter_05/Employee';

@@ -6,16 +6,24 @@ import React,{useRef} from "react";
 // 리액트 훅중 useRef 사용
 
 // 배열 요소 하나를 출력하는 기능.
-function User({user}) {
-    
+function User({user,onRemove, onToggle}) {
+    // css 스타일 작업 시 object 문법으로 구성해야한다
     return(
         <div>
-            <b>{user.username}</b><span>({user.email})</span>
+            <b style={{
+              cursor : 'pointer',
+              color : user.active ? 'green' : 'black'
+            }}
+            onClick={() => onToggle(user.id)}>
+              {user.username}
+            </b>
+            <span>({user.email})</span>
+            <button onClick={() => onRemove(user.id)}>삭제</button>
         </div>
-    )
+    );
 }
 
-function UserList({users}) {
+function UserList({users, onRemove, onToggle}) {
 
     // 자바스크립트(리액트문법 포함)
 
@@ -29,8 +37,9 @@ function UserList({users}) {
 
     const onCreate = () => {
         nextId.current +=1;
-    }
-
+    };
+    // 목록에서 클릭시 active필드값을 변경하는 작업.
+    
     // 배열에 데이터삭제 함수
 
     // 배열에 데이터수정 함수
@@ -39,25 +48,10 @@ function UserList({users}) {
 
     return (
         <div>
-        {/*JSX와 위에서 사용한 자바스크립트 변수,함수포함 */}
-        {/* 1)작업
-        <User user={users[0]}/>
-        <User user={users[1]}/>
-        <User user={users[2]}/>
-        */}
-        {/* 
-        배열을 랜더링할 때에는 key 라는 props를 설정해야 한다.(중요) 
-        나중 배열을 추가,수정,삭제시 고유한 키를 통하여, 작업을 하게되므로
-        리액트에서는 배열작업시 고유한 값을 갖는 키작업을 해야한다.
-
-        배열에 고유 키값이 존재하지 않으면
-            users.map(user,index) => (
-                <User user={user} key={user.index}/>
-            ))
-        */}
+        
             {
             users.map(user => (
-                <User user={user} key={user.id}/>
+                <User user={user} key={user.id} onRemove={onRemove} onToggle={onToggle}/>
             ))
             }
 
