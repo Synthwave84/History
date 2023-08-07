@@ -574,6 +574,14 @@ CREATE TABLE DEPT (
     DEPT_CODE       NUMBER          CONSTRAINT PK_DEPT_CODE PRIMARY KEY,
     DEPT_NAME       VARCHAR2(30)    NOT NULL
 );
+-- DROP TABLE DEPT;
+-- ORA-02449: unique/primary keys in table referenced by foreign keys
+-- 삭제가 안된다. 왜냐면, 레퍼런스로 하단에서 사용중이기 때문
+-- 참조(레퍼런스) 테이블 부터 지우는 것은 상관 없다.
+-- 단 CASCADE CONSTRAINTS 옵션을 추가로 사용하면 삭제된다
+-- DROP TABLE DEPT CASCADE CONSTRAINTS
+-- 사원 테이블의 FOREIGN KEY 제약 조건도 삭제된다. 
+
 
 -- 사원 테이블
 -- 하단라인의 DEPT_CODE 부는 상단의 DEPT 테이블의 DEPT_CODE 부를 참조한다. (FOREIGN KEY)
@@ -582,6 +590,7 @@ CREATE TABLE DEPT (
 -- 참조의 경우 참조할 테이블명과, 데이터타입이 무조건 동일해야한다. 
 -- 현재는 DEPT_CODE의 데이터 타입이 NUMBER 로 되어있기 때문에, 하단 EMP 테이블에서도 
 -- 참조하려는 DEPT_CODE 컬럼의 데이터 타입또한 NUMBER 가 되어야 한다.
+
 CREATE TABLE EMP (
     EMP_NO      NUMBER          CONSTRAINT  PK_EMP_NOR   PRIMARY KEY,
     EMP_NAME    VARCHAR2(30)    NOT NULL,
@@ -632,9 +641,75 @@ CREATE TABLE TESTB (
     Y   VARCHAR2(10),
     M   VARCHAR2(100)      NOT NULL,
     N   NUMBER,
-    CONSTRAINT PK_TESTB_TESTA FOREIGN KEY (X,Y) REFERENCES TESTA (A,B)
+    CONSTRAINT FK_TESTB_TESTA FOREIGN KEY (X,Y) REFERENCES TESTA (A,B)
     );
     
     
-    
-    
+COMMIT;
+
+/*
+⑤ CHECK
+마지막으로 알아볼 제약조건으로 CHECK가 있다. 
+컬럼에 입력되는 데이터를 체크해 특정 조건에 맞는 데이터만 입력 받고 
+그렇지 않으면 오류를 뱉어 낸다.
+CONSTRAINT 체크면, CHECK(체크조건)
+*/
+
+CREATE TABLE EX2_9 (
+    NUM1        NUMBER          CONSTRAINTS CHECK1 CHECK (NUM1 BETWEEN 1 AND 9),
+    GENDER      VARCHAR2(10)    CONSTRAINTS CHECK2 CHECK (GENDER IN ('MALE', 'FEMALE') )
+);
+
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME, SEARCH_CONDITION
+FROM   USER_CONSTRAINTS
+WHERE  TABLE_NAME = 'EX2_9';
+
+-- 오류
+-- ORA-02290: check constraint (ORA_USER.CHECK2) violated
+-- 숫자 범위를 벗어남. 숫자는 1~9 까지 
+INSERT INTO EX2_9 VALUES(10,'MAN');
+
+INSERT INTO EX2_9 VALUES(5,'FEMALE');
+
+-- DEFAULT 속성 (기본값) > 제약조건은 아니다. 
+
+CREATE TABLE EX2_10 (
+    COL1        VARCHAR2(10)        NOT NULL,
+    COL2        VARCHAR2(10)        NULL,
+    CREATE_DATE DATE                DEFAULT SYSDATE    
+);
+
+-- EX2_10 테이블에는 3개의 컬럼이 존재하고 있다. 컬럼명이 존재하고있다.
+-- 그래서 값도 반드시 3개가 존재해야한다. 
+-- 그러나 COLUMN이 DEFAULT 이거나 NULL인 컬럼은 값을 생략 할 수 있다. (중요)
+
+-- 오류 : not enough values > 컬럼을 표기 생략되면 3개 컬럼의 값을 일치해야한다.
+INSERT INTO EX2_10 VALUES ('AA','BB');
+
+-- 위의 문장을 올바르게 작성 하려면
+INSERT INTO EX2_10(COL1, COL2) VALUES ('AA','BB'); -- CREATE_DATE 컬럼은 DEFAULT 기능이 값으로 작동한다.
+
+INSERT INTO EX2_10(COL1, COL2) VALUES ('AA','AA');
+
+-- DEFAULT 기능을 사용하지 않고 수동으로 날짜 데이터 삽입
+INSERT INTO EX2_10 VALUES ('AA','BB', '2023-08-07');
+
+SELECT * FROM EX2_10;
+
+COMMIT;
+
+CREATE TABLE EMP_CONST (
+    EMPNO       NUMBER(4)       CONSTRAINTS    EMPCONST_EMPNO_PK            PRIMARY KEY,
+    ENAME       VARCHAR2(10)    CONSTRAINTS    EMPCONST_ENAME_NM            NOT NULL,
+    JOB         VARCHAR2(9),            
+    TEL         VARCHAR2(20)    CONSTRAINTS    EMPCONST_TEL_UNQ             UNIQUE,
+    HIREDATE    DATE            DEFAULT        SYSDATE,
+    SAL         NUMBER(7,2)     CONSTRAINTS    EMPCONST_SAL_CHK             CHECK (SAL BETWEEN 1000 AND 9999),
+    COMM        NUMBER(7,2),
+    DEPTNO      NUMBER(7)       CONSTRAINTS    EMPCONST_DEPTNO_FK           REFERENCES DEFT_CONST(DEFTNO)
+    );
+
+
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME, SEARCH_CONDITION
+FROM   USER_CONSTRAINTS
+WHERE  TABLE_NAME = 'EMP_CONST';
