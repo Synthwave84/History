@@ -715,3 +715,132 @@ FROM   USER_CONSTRAINTS
 WHERE  TABLE_NAME = 'EMP_CONST';
 
 COMMIT;
+
+-- 드랍 테이블
+-- DROP TABLE[스키마,] 테이블명 [CASCASDE CONSTRAINTS]
+-- CASCADE CONSTRAINTS를 붙이면 삭제할 테이블의 기본키와 
+-- UNIQUE 키를 참조하는 참조 무결성 제약조건도 자동으로 삭제된다.
+
+-- 테이블 변경 
+CREATE TABLE EX2_TEST (
+COLA    NUMBER      PRIMARY KEY,
+COLB    VARCHAR2(10),
+COLC    CHAR(10)    NOT NULL
+);
+
+DROP TABLE EX2_TEST;
+
+DROP TABLE EX2_10;
+
+CREATE TABLE EX2_10 (
+    COL1        VARCHAR2(10)    NOT NULL,
+    COL2        VARCHAR2(10)    NULL,
+    CREATE_DATE DATE            DEFAULT SYSDATE
+);
+
+-- ① 컬럼명 변경: col1 컬럼 이름을 col11으로 변경
+-- ALTER TABLE [스키마.]테이블명 RENAME COLUMN 변경전컬럼명 TO 변경후컬럼명;
+
+ALTER TABLE EX2_10
+RENAME COLUMN COL1 TO COL11;
+
+SELECT * FROM EX2_10;
+
+-- 테이블 컬럼 내역 확인 명령어
+
+DESC EX2_10;
+
+-- ② 컬럼 타입 변경: col2 컬럼을 VARCHAR2(10)에서 VARCHAR2(30)으로 변경
+-- ALTER TABLE [스키마.]테이블명 MODIFY 컬럼명 데이터타입;
+
+ALTER TABLE EX2_10 
+MODIFY COL2 VARCHAR2(30);
+
+-- ③ 컬럼 추가: col3 NUMBER 타입으로 신규 생성
+-- ALTER TABLE [스키마.]테이블명 ADD 컬럼명 데이터타입;
+
+
+ALTER TABLE EX2_10
+ADD COL3    NUMBER;
+
+-- ④ 컬럼 삭제: col3 컬럼을 삭제
+-- ALTER TABLE [스키마.]테이블명 DROP COLUMN 컬럼명;
+
+ALTER TABLE EX2_10
+DROP COLUMN COL3;
+
+-- ⑤ 제약조건 추가: col11에 기본키 추가
+-- ALTER TABLE [스키마.]테이블명 ADD CONSTRAINTS 제약조건명 PRIMARY KEY (컬럼명, ..);
+-- 나머지 보다 상대적으로 자주 쓰일 경우가 있다.
+
+ALTER TABLE EX2_10
+ADD CONSTRAINTS PK_EX2_10 PRIMARY KEY (COL11);
+
+-- ⑥ 제약조건 삭제: col11에서 기본키 삭제
+-- ALTER TABLE [스키마.]테이블명 DROP CONSTRAINTS 제약조건명;
+
+-- 제약조건명만 적어주면 된다. 
+-- 제약조건명 이후에 삭제하고자 하는 키 이름까지 추가할 경우,
+-- ORA-01735: invalid ALTER TABLE option가 뜬다
+
+ALTER TABLE EX2_10 
+DROP CONSTRAINTS PK_EX2_10;
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

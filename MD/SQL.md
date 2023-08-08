@@ -101,3 +101,18 @@ Spring 이나 자바등으로 전송 해 준다.
 
 
 ERD - 테이블의 도식화 라고 생각하면 될것같다. 데이터 모델러에서 확인 할 수 있다.
+
+
+SQL : 데이터베이스 프로그래밍 언어
+Structured Query Language. 
+
+DDL - Definintion Data Language
+  - CREATE, ALTER, DROP ...
+DML - Data Manipulation Language
+  - SELECT, UPDATE, INSERT, DELETE ...
+DCL - Data Control Language
+  - GRANT, REVOKE, COMMIT, ROLLBACK
+
+DBA 관리자의 영역
+TABLE SPACE
+  - 테이블 등이 저장되는 영역
