@@ -10,10 +10,14 @@ function Header(props) {  // props.title로 인식된다.
   // let props= {title:"WEB", onChangeMode=function {alert();}};
   return (
     <header>
-    <h1><a href='/' onClick={(event) => {
+    <h1>
+      <a href='/' onClick={(event) => {
       event.preventDefault(); // a태그의 클릭 시 진행되는 기본동작 성격을 취소하는 작업. 
       props.onChangeMode();
-      }}>{props.title}</a></h1>
+      }}>
+      {props.title}
+      </a>
+    </h1>
   </header>
   );
 }
@@ -25,21 +29,23 @@ function Nav(props) {
   for(let i=0; i<props.topics.length; i++) {
     let t= props.topics[i];
     lis.push(<li key={t.id}>
-      <a id={t.id} href={'/read/'+ t.id} onClick={event => {
+    <a id={t.id} href={'/read/'+ t.id} onClick={event => {
       event.preventDefault(); // a태그의 href 새로고침 속성제거
       // event : <a>태그를 클릭시  <a>태그를 가리키는 이벤트 객체
       // event.target : a태그 자체를 의미한다.
       // event.target.id : a태그의 id속성값
-    props.alerter (Number(event.target.id)); 
+    props.onChange (Number(event.target.id)); 
     // 태그의 내용일시 속성값은 string 이다. 때문에 Number() 형번환작업을 해준다
-    }}>
-    {t.title}</a></li>);
+        }}>
+        {t.title}
+    </a>
+    </li>);
   }
   return (
     <nav>
-    <ol>
-      {lis}
-    </ol>
+      <ol>
+        {lis}
+      </ol>
   </nav>
   );
 }
@@ -48,10 +54,11 @@ function Article (props) {
   
   return (
     <article>
-    <h2>{props.title}</h2>
-    {props.body}
-    
-  </article>
+      <h2>
+        {props.title}
+      </h2>
+        {props.body}
+    </article>
   );
 }
 
@@ -95,13 +102,17 @@ function Update(props) {
         }}>
           <p><input type="text" name='title' placeholder='title' value={title} 
                   onChange={event=> {
-                    setTitle(event.target.value)
-                    }}/></p>
+                  setTitle(event.target.value);
+                    }}/>
+          </p>
           <p><textarea name='body' placeholder='body ' value={body}
                   onChange={event=> {
                     setBody(event.target.value);
-                    }}/></p>
-          <p><input type="submit" value={"Update"} /></p>
+                    }}/>
+          </p>
+          <p>
+            <input type="submit" value={"Update"} />
+          </p>
       </form>
     </article>
   );
@@ -142,14 +153,33 @@ function App() {
         title = topics[i].title;
         body = topics[i].body;
       }
-    }
+    };
+    
     content = <Article title={title} body={body}></Article>
     // 모드가 Read 일 때만 활성화 되야 하므로, Read 아래에 삽입하여 Read 모드일 때
     // Update 링크가 나타나게 한다.
-    contextControl = <li><a href={'/update' + id} onClick={event=>{
+    contextControl = <>
+    <li>
+      <a href={'/update' + id} onClick={event=>{
       event.preventDefault();
       setMode('Update');
-    }}>Update</a></li>
+    }}>Update</a>
+
+      
+      <br /><input type='button' value='Delete' onClick={() => {
+      // if(!confirm('삭제 하시겠습니까?')) return;
+      const newTopics = [];
+      // 삭제하고자 하는 id에 해당하는 것을 제외한 나머지
+      for(let i=0; i<topics.length; i++) {
+        if(topics[i].id !== id) {
+          newTopics.push(topics[i]);
+          }
+      }
+      setTopics(newTopics);
+      setMode("Welcome");
+    }}/>
+    </li>
+    </>
 
 
   }else if (mode==="Create") {
@@ -167,17 +197,33 @@ function App() {
       setId(nextId); 
       setNextId(nextId+1);
     }}>
-</Create>
+  </Create>
   }  
     else if (mode === "Update") {
+    // id가 일치 되는 데이터를 통하여 수정폼에 사용할 title, body 변수작업. 
     let title, body = null;
-    for(let i=0; i<topics.length; i++){
-      if(topics[i].id= topics[i].title);
+    for(let i=0; i<topics.length; i++) {
+      if(topics[i].id=== id);
       title= topics[i].title;
       body= topics[i].body;
+      break;
     }
     content = <Update  title={title} body={body} onUpdate={(title, body) => {
-
+      //  내용 수정 작업.
+      console.log(title, body);
+      // 기존의 내용
+      const newTopics = [...topics];
+      // 수정 된 내용
+      const updatedTopic = {id:id, title:title, body:body};
+      // 수정 id는 mode가 Read 에서 선택한 id를 사용.
+      for(let i=0; i<newTopics.length; i++) {
+        if((topics[i].id === id)) {
+          newTopics[i] = updatedTopic;
+          break;
+          }
+        } 
+        setTopics(newTopics);
+        setMode("Read");
     }}></Update>
   }
     
@@ -188,19 +234,17 @@ function App() {
         // mode = "Welcome"; = 읽기전용 변수로 사용해야함
         setMode("Welcome"); // setter함수로 값 변경 목적으로 사용 할 것.
       }}>
-      
-</Header>
+      </Header>
 
 
       {/* <Nav /> */}
-      <Nav topics={topics} alerter={(id) => {
+      <Nav topics={topics} onChange={(id) => {
         // alert(id);
         // mode = "Read"; = 일기전용 변수로 사용해야함
         setMode("Read"); // setter함수로 값 변경 목적으로 사용 할 것.
         setId(id); // 선택한 id 값을 변경함. 
       }}>
-    
-</Nav>
+      </Nav>
 
 
       {/* 3) <Article /> */}
