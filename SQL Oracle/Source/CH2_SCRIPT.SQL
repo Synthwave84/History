@@ -789,9 +789,66 @@ DROP CONSTRAINTS PK_EX2_10;
 COMMIT;
 
 
+-- 테이블 복사
+-- 기존 테이블을 복사한다. 테이블 내부의 데이터 까지 복사한다.
+-- 주로 테스트 용도 또는 백업용으로 사용한다. 
+-- SELECT 컬럼 1, 컬럼2 ....
+-- FROM 복사할 테이블 명
 
+DESC EX2_9;
 
+-- EX2_9테이블을 EX2_9_1로 테이블 복제
 
+CREATE TABLE EX2_9_1 
+AS
+SELECT * FROM EX2_9;
+
+CREATE TABLE EMP_01
+AS 
+SELECT EMP_NAME, EMPLOYEE_ID, HIRE_DATE, SALARY FROM EMPLOYEES
+
+WHERE SALARY >= 10000;
+
+DROP TABLE EMP_01;
+
+-- 테이블 생성 및 데이터 조회 확인.
+
+SELECT * FROM EMP_01;
+
+-- 테이블 복사기능 : 제약조건 PRIMARY KEY가 복사 되지 않는다.
+
+--01 | SELECT문
+--가장 기본적인 SQL문으로 테이블이나 뷰에 있는 데이터를 조회할 때 사용하는 문장이다. 
+--SQL문 중 사용빈도로 볼 때 가장 많이 사용하는 것이 SELECT문이며, 기본 구문은 다음과 같다.
+--
+--    SELECT * 혹은 컬럼
+--    FROM [스키마.]테이블명 혹은 [스키마.]뷰명
+--    WHERE 조건
+--    ORDER BY 컬럼;
+
+-- 질의 > 사원 테이블에서 급여가 5000이 넘는 사원을 조회.
+
+SELECT * FROM EMPLOYEES;  -- 107건
+
+SELECT EMPLOYEE_ID, EMP_NAME  
+FROM EMPLOYEES
+WHERE SALARY > 5000;  -- 58건
+
+SELECT EMPLOYEE_ID, EMP_NAME SALARY
+FROM EMPLOYEES;
+WHERE SALARY> 5000;
+
+-- 질의 사원 테이블에서 급여가 5000이 넘는 사원번호와 사원명을 조회( 단, 사번으로 오름차순 정렬)
+
+SELECT EMPLOYEE_ID, EMP_NAME
+FROM EMPLOYEES
+WHERE SALARY > 5000
+ORDER BY EMPLOYEE_ID;
+
+SELECT EMPLOYEE_ID, EMP_NAME
+FROM EMPLOYEES
+WHERE SALARY > 5000
+ORDER BY EMPLOYEE_ID ABC;
 
 
 

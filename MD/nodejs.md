@@ -147,4 +147,39 @@ useState가 관리하는 변수의 데이터타입
 
       ex-> const [id, setId] = useState([1]);
               setId (id.push(1)); -- 이럴때는 변경되지 아니 한다.
+
+npm install reactor-router-dom@5
+
+https://v5.reactrouter.com/web/guides/quick-start
+
+npx create-react-app
+
+import {BrowserRouter, Route, Routes} from './react-router-dom';
   
+라우팅 = 사용자가 요청한 주소(URL)에 해당하는 페이지를 보여주는것
+
+웹 프로젝트 
+    
+  - 단일 페이지로 구성 (Single Page Application ) 리액트, 뷰, 앵글러 지원
+    일정관리 애플리케이션 : 단일 페이지.
+
+  
+  - 여러 페이지로 구성 (Multi Page Application) 기본
+
+
+BrowserRouter vs HashRouter
+
+BrowserRouter  
+ 
+ - 주소가 일반적인 형태
+ - 검색엔진(로봇)에 노출이 된다.
+ - 배포가 다소 복잡하다.
+ - 새로고침하거나 URL로 직접 접근할 경우 경로를 찾지 못하는 에러가 발생한다.
+
+HashRouter 
+
+ - 주소에 #이 붙는다.
+ - 검색엔진(로봇)에게 노출이 되지 않는다. 적합하지 않다.
+ - 배포가 다소 간단하다.
+ - '#' 해시를 사용하면 서버에 요청하지 않기 때문에, 새로고침 하거나 URL로 직접 접근해도
+   에러를 발생시키지 않는다. 

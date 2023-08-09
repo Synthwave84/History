@@ -25,7 +25,7 @@ function Header(props) {  // props.title로 인식된다.
 // 함수형 컴포넌트
 function Nav(props) {
 
-  const lis=[]  // [html, css, javascript]
+  const lis=[];  // [html, css, javascript]
   for(let i=0; i<props.topics.length; i++) {
     let t= props.topics[i];
     lis.push(<li key={t.id}>
@@ -67,9 +67,9 @@ function Create(props) {
   return (
     <article>
     <h2>Create</h2>
-    <form onSubmit={event => {
+    <form onSubmit = {event => {
       event.preventDefault();  // form태그의 전송(submit)기능을 취소시킨다.
-      const title= event.target.title.value;
+      const title = event.target.title.value;
       const body = event.target.body.value;
       props.onCreate(title, body);
     }}>
@@ -96,18 +96,18 @@ function Update(props) {
       <h2>Update</h2>
       <form onSubmit={event => {
         event.preventDefault();  // form태그의 전송(submit)기능을 취소시킨다.
-        const title= event.target.title.value;
+        const title = event.target.title.value;
         const body = event.target.body.value;
         props.onUpdate(title, body);
         }}>
           <p><input type="text" name='title' placeholder='title' value={title} 
-                  onChange={event=> {
+                  onChange = {event=> {
                   setTitle(event.target.value);
                     }}/>
           </p>
           <p><textarea name='body' placeholder='body ' value={body}
-                  onChange={event=> {
-                    setBody(event.target.value);
+                  onChange = {event=> {
+                    setBody(event.target.value) ;
                     }}/>
           </p>
           <p>
@@ -167,7 +167,7 @@ function App() {
 
       
       <br /><input type='button' value='Delete' onClick={() => {
-      // if(!confirm('삭제 하시겠습니까?')) return;
+      if (!window.confirm('삭제 하시겠습니까?')) return;
       const newTopics = [];
       // 삭제하고자 하는 id에 해당하는 것을 제외한 나머지
       for(let i=0; i<topics.length; i++) {
@@ -182,7 +182,7 @@ function App() {
     </>
 
 
-  }else if (mode==="Create") {
+  }else if (mode === "Create") {
     // 폼 작업
     content = <Create onCreate={(title, body) => {
       const newTopic = {id :nextId, title: title, body: body};
@@ -196,18 +196,18 @@ function App() {
       // 추가된 데이터의 세부 내용을 보여주기 위한 id값 제공
       setId(nextId); 
       setNextId(nextId+1);
-    }}>
-  </Create>
+    }}></Create>
   }  
     else if (mode === "Update") {
     // id가 일치 되는 데이터를 통하여 수정폼에 사용할 title, body 변수작업. 
     let title, body = null;
     for(let i=0; i<topics.length; i++) {
-      if(topics[i].id=== id);
+      if(topics[i].id === id){
       title= topics[i].title;
       body= topics[i].body;
       break;
     }
+  }
     content = <Update  title={title} body={body} onUpdate={(title, body) => {
       //  내용 수정 작업.
       console.log(title, body);
@@ -217,7 +217,7 @@ function App() {
       const updatedTopic = {id:id, title:title, body:body};
       // 수정 id는 mode가 Read 에서 선택한 id를 사용.
       for(let i=0; i<newTopics.length; i++) {
-        if((topics[i].id === id)) {
+        if(topics[i].id === id) {
           newTopics[i] = updatedTopic;
           break;
           }
