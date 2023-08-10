@@ -158,6 +158,11 @@ import {BrowserRouter, Route, Routes} from './react-router-dom';
   
 라우팅 = 사용자가 요청한 주소(URL)에 해당하는 페이지를 보여주는것
 
+리액트 관점
+
+주소를 요청시 함수 컴포넌트가 실행이 되어 결과를 받게된다.
+결과 = jsx 구문
+
 웹 프로젝트 
     
   - 단일 페이지로 구성 (Single Page Application ) 리액트, 뷰, 앵글러 지원
@@ -175,6 +180,7 @@ BrowserRouter
  - 검색엔진(로봇)에 노출이 된다.
  - 배포가 다소 복잡하다.
  - 새로고침하거나 URL로 직접 접근할 경우 경로를 찾지 못하는 에러가 발생한다.
+ 
 
 HashRouter 
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+* {
+  box-sizing: border-box;
+  padding: 5px;
+}
+div {
+  border: solid 1px green;
+}
+  .w_title {
+    width:  100%;
+  }
+  .w_content {
+    padding: auto;
+    width: 100%;
+    height: 90%;
+    min-height: 300px;
+  }
+  .sidebutton {
+    float: right; 
+  }
+
+</style>
+</head>
+<body>
+  <h3>게시판 글쓰기/글수정</h3>
+  <div class="container">
+    <div>
+    제목  <input class="w_title" type="text" placeholder="제목을 입력하세요">
+    </div>
+    <div>
+      <span>내용</span>  <textarea class="w_content" placeholder="글 내용을 입력하세요"></textarea>
+        <button onclick="alert('등록되었습니다.')">글쓰기</button>
+        <button>취소</button>
+        <button>초기화</button>
+        <button class="sidebutton">글목록</button>
+    </div>
+  </div>
+</body>
+</html>
