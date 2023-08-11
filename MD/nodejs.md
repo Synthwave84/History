@@ -189,3 +189,31 @@ HashRouter
  - 배포가 다소 간단하다.
  - '#' 해시를 사용하면 서버에 요청하지 않기 때문에, 새로고침 하거나 URL로 직접 접근해도
    에러를 발생시키지 않는다. 
+
+
+
+https://www.charlezz.com/?p=44767
+
+URL 
+- URL은 링크에 확장자를 포함한다. 또한 확장자가 있어도 URI가 될 수 있다. 
+  WWW.ABC.COM/INDEX.HTML
+
+URI
+- URI는 파일 확장자를 포함하지 아니한다. 확장자가 없을 경우 URL은 될 수 없다.
+  즉 주소 자체만을 이야기 할 경우. URI, 파일명 까지 포함하면 URL이다.
+  WWW.ABC.COM/INDEX
+
+
+URI의 구조
+   일반 URI는 다음과 같은 형태를 나타낸다.
+
+- scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]
+- scheme : 사용할 프로토콜을 뜻하며 웹에서는 http 또는 https를 사용
+- user와 password : (서버에 있는) 데이터에 접근하기 위한 사용자의 이름과 비밀번호
+- host와 port : 접근할 대상(서버)의 호스트명과 포트번호
+- path : 접근할 대상(서버)의 경로에 대한 상세 정보
+- query : 접근할 대상에 전달하는 추가적인 정보 (파라미터)
+- fragment : 메인 리소스 내에 존재하는 서브 리소스에 접근할 때 이를 식별하기 위한 정보
+
+스타일드 컴포넌트
+https://styled-components.com/

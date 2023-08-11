@@ -30,6 +30,7 @@ let contents = [
 ];
 
 function Topic() {
+  // 함수 컴포넌트에서 파라미터 정보를 참조하기 위해,휵(Hook) useParams() 함수를 사용해야 한다.
   let params= useParams(); // /topics/1, /topics/2, /topics/3
   // console.log(params);
   // console.log(params.topic_id);
@@ -77,7 +78,8 @@ function Topics() {
       </ul>
       <Routes>
         {/* /만 붙이면 URL 자체의 주소가 되고, (:)콜론을 입력하면 값이 된다. */}
-        <Route path='/:topic_id' element={<Topic />}/>
+        {/* 공통 주소가 /topics/:topic_id */}
+        <Route path='/:topic_id' element={<Topic />}/>  
       </Routes>
     </div>
   );
