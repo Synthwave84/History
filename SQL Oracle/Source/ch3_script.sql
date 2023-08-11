@@ -65,6 +65,8 @@ FROM EMPLOYEES
 ORDER BY EMPLOYEE_ID ASC, EMP_NAME ASC;
 
 -- 별칭사용
+-- 컬럼명 AS 별칭, 컬럼명 별칭
+-- 사용용도: 응용프로그램(스프링)에서 컬럼명을 별칭으로 만들어 사용하는 경우가 있다. 
 SELECT EMPLOYEE_ID AS E_ID, EMP_NAME  ENAME
 FROM EMPLOYEES
 ORDER BY EMPLOYEE_ID ASC
@@ -73,10 +75,16 @@ ORDER BY EMPLOYEE_ID ASC
 SELECT EMPLOYEE_ID, EMP_NAME, SALARY, SALARY * 1.5 AS SALARY2
 FROM EMPLOYEES;
 
--- 여기까지. 
 
 
--- 컬럼끼리 연결문자열을 통한 하나의 컬럼으로 조회
+-- 문자열 타입에 연산식을 사용하여 에러 발생
+SELECT EMPLOYEE_ID, EMP_NAME * 1.5
+FROM EMPLOYEES;
+
+-- 컬럼끼리 연결문자열을 통한 하나의 컬럼으로 조회. 문자열은 작은따옴표를 쓴다.
+-- || '/' || = 묶기. 
+-- 중간의 / 로 구분하고,
+-- AS 명령어로 저 두개의 컬럼을 합쳐서 ID_MANAGER 로 부르겠다는것이다.
 SELECT EMPLOYEE_ID || ' / ' || MANAGER_ID AS ID_MANAGER
 FROM EMPLOYEES;
 
@@ -87,11 +95,11 @@ FROM EMPLOYEES;
 -- 조건식을 추가시 AND, OR 연산자 사용.
 -- 질의? 급여가 5000 이상이고 job_id가 ‘IT_PROG’인 사원을 조회한다면, AND 연산자와 job_id를 검색하는 조건을 추가한다.
 
-SELECT  employee_id, emp_name
-FROM employees
-WHERE salary >= 5000
-  AND job_id = 'IT_PROG'
-ORDER BY employee_id;
+SELECT  EMPLOYEE_ID, EMP_NAME
+FROM EMPLOYEES -- 107건 
+WHERE SALARY >= 5000
+  AND JOB_ID = 'IT_PROG'
+ORDER BY EMPLOYEE_ID;
 
 
 -- 문자열 데이타는 대,소문자 구분한다.
@@ -108,7 +116,8 @@ WHERE salary >= 5000
   AND job_id = 'it_prog'    -- 소문자
 ORDER BY employee_id;
 
--- 질의? 급여가 5000 이상이거나 job_id가 ‘IT_PROG’인 사원, 즉 급여가 5000 이상인 사원 혹은 job_id 값이 ‘IT_PROG’인 사원을 조회한다면, AND 대신 OR 연산자와 조건을 추가로 붙이면 된다.
+-- 질의? 급여가 5000 이상이거나 job_id가 ‘IT_PROG’인 사원, 즉 급여가 5000 이상인 사원 혹은 job_id 값이 
+--‘IT_PROG’인 사원을 조회한다면, AND 대신 OR 연산자와 조건을 추가로 붙이면 된다.
 
 SELECT  employee_id, emp_name
 FROM employees
@@ -116,6 +125,8 @@ WHERE salary >= 5000
    OR job_id = 'IT_PROG'
 ORDER BY employee_id;
 
+
+---- **** 신경쓰지말자 일단은!!!**** ----
 -- 별칭
 -- 컬럼명 별칭
 -- 테이블명 별칭
@@ -124,7 +135,8 @@ b.department_name AS dep_name
  FROM employees a, 
        departments b
  WHERE a.department_id = b.department_id;
- 
+---- ****       SEE YOU LATER   **** ----
+
  -- 시나리오?
  -- DEPARTMENT_ID가 60 이고, JOB_ID가 'IT_PROG'인 데이타 조회하라, DEPARTMENT_ID -> DEPT_ID, JOB_ID -> J_ID 별칭이용
  SELECT DEPARTMENT_ID AS DEPT_ID, JOB_ID AS J_ID
@@ -144,12 +156,21 @@ b.department_name AS dep_name
  */
 
 
+-- 상단의 내용과 동일한 구문
+
+ SELECT EMPLOYEE_ID, EMP_NAME, SALARY
+ FROM EMPLOYEES 
+ WHERE SALARY BETWEEN 4000 AND 8000
+ ORDER BY SALARY ASC; 
+
 
 -- INSERT : 테이블에 데이터를 추가하는 명령어
 /*
  INSERT INTO [스키마.]테이블명 (컬럼1, 컬럼2, ...)
     VALUES (값1, 값2, ...);
     컬럼의 개수와 값의 개수, 타입은 일치해야 한다.
+    
+    주의사항 : 같은 컬럼에 설정된 데이터타입의 형식에 맞게 사용해야 한다.
 */
 CREATE TABLE ex3_1 (
     col1   VARCHAR2(10),  -- NULL
@@ -188,12 +209,55 @@ VALUES ('GHI', 30);
 INSERT INTO ex3_1 (COL1, COL2, COL3) 
 VALUES ('GHI', 30);
 
+--3) NULL 값이 삽입되는것이 아니라, COL3 컬ㄹ럼에 NULL, 상태로 두라는 의미.
+INSERT INTO ex3_1 (COL1, COL2, COL3) 
+VALUES ('GHI', 30, NULL);
+
 /*
 참고> VALUES절이 없다.
 INSERT ~ SELECT 형태
     INSERT INTO [스키마.]테이블명 (컬럼1, 컬럼2, ...)
     SELECT 문; -- 데이터 역할. 즉 VALUES 기능목적을 한다.
 */    
+
+-- 테이블 복사
+select * from employees;
+
+/*
+시나리오
+테이블명 : emp_sales_500
+급여(salary)가 5000 이상인 사원번호, 사원이름, 입사일, 급여의 데이터를 갖는 테이블을 생성하라
+*/
+
+
+-- !!
+CREATE TABLE EMP_SALES_5000
+AS
+SELECT EMPLOYEE_ID,EMP_NAME,HIRE_DATE,SALARY
+FROM EMPLOYEES
+WHERE SALARY >= 5000;
+
+CREATE TABLE EMP_JOBID_ITPROG
+AS
+SELECT EMPLOYEE_ID,EMP_NAME,HIRE_DATE,JOB_ID 
+FROM EMPLOYEES
+WHERE JOB_ID ='IT_PROG';
+
+CREATE TABLE EMP_JOBID_ITPROG_5000
+AS
+SELECT EMPLOYEE_ID, EMP_NAME, SALARY
+FROM EMPLOYEES
+WHERE SALARY BETWEEN 5000 AND 8000 AND JOB_ID = 'IT_PROG';
+
+CREATE TABLE EMP_HIREDATE_1998_2000
+AS
+SELECT  EMPLOYEE_ID, EMP_NAME, HIRE_DATE
+FROM    EMPLOYEES
+WHERE   HIRE_DATE    BETWEEN '98-01-01' AND '01-01-01';
+
+
+
+
 
 
 -- employees테이블을 참조하여, 생성함.
@@ -202,6 +266,7 @@ CREATE TABLE ex3_2 (
        emp_id    NUMBER,    -- 사원번호
        emp_name  VARCHAR2(100));    -- 사원이름
 
+SELECT * FROM EX3_2;
 
 --   employees테이블의 데이타를   ex3_2테이블에 데이타 삽입하는 문법   
 INSERT INTO ex3_2 ( emp_id, emp_name ) 
