@@ -231,29 +231,29 @@ select * from employees;
 
 
 -- !!
-CREATE TABLE EMP_SALES_5000
+CREATE TABLE    EMP_SALES_5000
 AS
-SELECT EMPLOYEE_ID,EMP_NAME,HIRE_DATE,SALARY
-FROM EMPLOYEES
-WHERE SALARY >= 5000;
+SELECT          EMPLOYEE_ID,EMP_NAME,HIRE_DATE,SALARY
+FROM            EMPLOYEES
+WHERE           SALARY >= 5000;
 
-CREATE TABLE EMP_JOBID_ITPROG
+CREATE TABLE    EMP_JOBID_ITPROG
 AS
-SELECT EMPLOYEE_ID,EMP_NAME,HIRE_DATE,JOB_ID 
-FROM EMPLOYEES
-WHERE JOB_ID ='IT_PROG';
+SELECT          EMPLOYEE_ID,EMP_NAME,HIRE_DATE,JOB_ID 
+FROM            EMPLOYEES
+WHERE           JOB_ID ='IT_PROG';
 
-CREATE TABLE EMP_JOBID_ITPROG_5000
+CREATE TABLE    EMP_JOBID_ITPROG_5000
 AS
-SELECT EMPLOYEE_ID, EMP_NAME, SALARY
-FROM EMPLOYEES
-WHERE SALARY BETWEEN 5000 AND 8000 AND JOB_ID = 'IT_PROG';
+SELECT          EMPLOYEE_ID, EMP_NAME, SALARY
+FROM            EMPLOYEES
+WHERE           SALARY      BETWEEN 5000 AND 8000 AND JOB_ID = 'IT_PROG';
 
-CREATE TABLE EMP_HIREDATE_1998_2000
+CREATE TABLE    EMP_HIREDATE_1998_2000
 AS
-SELECT  EMPLOYEE_ID, EMP_NAME, HIRE_DATE
-FROM    EMPLOYEES
-WHERE   HIRE_DATE    BETWEEN '98-01-01' AND '01-01-01';
+SELECT          EMPLOYEE_ID, EMP_NAME, HIRE_DATE
+FROM            EMPLOYEES
+WHERE           HIRE_DATE    BETWEEN '98-01-01' AND '01-01-01';
 
 
 
@@ -316,39 +316,62 @@ SELECT *
 FROM ex3_1;
 
 -- ex3_1테이블의 col2 값을 모두 50으로 변경해 보자. 조건이 존재하지 않는다.
-UPDATE ex3_1 -- 조건 WHERE절이 없으면, 테이블의 모든데이타를 수정한다는 의미가된다.
-   SET col2 = 50;
+-- 조건 WHERE절이 없으면, 테이블의 모든데이타를 수정한다는 의미가된다.
+
+UPDATE EX3_1 
+SET COL2 = 50;
    
 SELECT *
-FROM ex3_1;
+FROM EX3_1;
+
+-- DB에 물리적으로 실제 반영
+COMMIT;
+-- 현재 작업한 것을 취소 하는 기능
+
+-- 중간 작업: INSERT, UPDATE, DELETE
+
+ROLLBACK;
+-- ***** 커밋 이후 롤백은 의미가 없다.***********************************
 
 /*
-네 번째 로우의 col3 값이 비어 있는데, 
+네 번째 로우의 COL3 값이 비어 있는데, 
 이 값을 현재 날짜로 갱신해 보자. 이를 위해서는 네 번째 로우를 검색하는 조건이 필요한데, 
 col3 값이 NULL인 것을 찾으면 된다.
 */
 --1)'' 은 NULL의미가 아니다. 0개 행 이(가) 업데이트되었습니다.
-UPDATE ex3_1
-   SET col3 = SYSDATE
-WHERE col3 = '';    -- 조건식에 '' 사용하면, NULL 의미가 아니라, 공백을 의미한다. INSERT문만 ''사용시 NULL의미.
+
+-- 조건식에 ''를 사용하면, NULL의 의미가 아니라 공백을 의미한다. 
+-- INSERT문에 사용시 ''NULL의 의미가 된다.
+UPDATE  EX3_1
+SET     COL3 = SYSDATE
+WHERE   COL3 = '';    
+
+
+-- 조건식에 '' 사용하면, NULL 의미가 아니라, 공백을 의미한다. INSERT문만 ''사용시 NULL의미.
 
 --2) IS NULL.  1 행 이(가) 업데이트되었습니다.   참고> IS NOT NULL
-UPDATE ex3_1
-   SET col3 = SYSDATE
-WHERE col3 IS NULL; -- COL3컬럼중 데이타가 입력되어 있지않은 의미.
+UPDATE  EX3_1
+SET     COL3 = SYSDATE
+WHERE   COL3 IS NULL; -- COL3컬럼중 데이타가 입력되어 있지않은 것을 찾는 의미.
 
-UPDATE ex3_1
-    SET COL3 = NULL
-WHERE COL1 = 'GHI';
+UPDATE  EX3_1
+SET     COL3 = NULL
+WHERE   COL1 = 'GHI';
 
-UPDATE ex3_1
-    SET COL3 = ''  -- NULL 로처리가 됨.
-WHERE COL1 = 'GHI';
+UPDATE  EX3_1
+SET     COL3 = ''  -- NULL 로 처리가 된다.
+WHERE   COL1 = 'GHI';
 
--- 질의? COL3가 데이타가 존재하는 것만 조회
+-- MERGE는 나중에 설명
+
+
+-- 질의? COL3에 데이타가 존재하는 것만 조회
 SELECT *
-FROM ex3_1
+FROM EX3_1
 WHERE COL3 IS NOT NULL;
+
+
+
 
 
 CREATE TABLE ex3_3 (
@@ -511,15 +534,81 @@ MERGE INTO ex3_3 d
 */
 
 -- 조건 WHERE절이 없으면, 테이블의 모든 데이타를 삭제
- DELETE ex3_3;
+    DELETE EX3_3;
  
-  SELECT * 
-  FROM ex3_3 
- ORDER BY employee_id;  
+    SELECT      * 
+    FROM        EX3_3 
+    ORDER BY    EMPLOYEE_ID;  
  
-SELECT partition_name
-  FROM user_tab_partitions
- WHERE table_name = 'SALES';
+    SELECT      PARTITION_NAME
+    FROM        USER_TAB_PARTITIONS
+    WHERE       TABLE_NAME = 'SALES';
+
+
+SELECT * FROM EMPLOYEES
+ORDER BY EMPLOYEE_ID ASC;
+
+SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID = 100;
+
+-- 사원번호 101, 103만 삭제하라
+
+
+-- AND는 두 값을 동시에 만족 시켜야 하므로, 값을 찾을 수가 없다.
+-- 즉 101번과 103번을 동시에 갖고있는 값을 지우라는 의미가 되어버린다.
+DELETE EMPLOYEES
+WHERE EMPLOYEE_ID = 101 AND EMPLOYEE_ID = 103;
+
+
+-- OR은 101과 103을 삭제 하라는 뜻이된다.
+DELETE EMPLOYEES
+WHERE EMPLOYEE_ID = 101 OR EMPLOYEE_ID = 103;
+
+ROLLBACK;
+
+DESC EMPLOYEES;
+
+COMMIT;
+
+-- 사원 번호가 110에서 115인 사원 번호를 삭제하라
+
+DELETE  EMPLOYEES
+WHERE   EMPLOYEE_ID BETWEEN 110 AND 114;
+-- WHERE    EMPLOYEE_ID >= 110 AND EMPLOYEE_ID <= 115;
+-- WHERE    EMPLOYEE_ID IN (110,111,112,113,114) -- OR 와 비슷하다.
+
+-- 사원번호를 오름차순으로 정렬하라.
+
+SELECT * FROM EMPLOYEES;
+
+/* 시나리오
+사원테이블에서 JOB_ID 컬럼의 데이터가 'IT_PROG' 인 데이터를 구성으로 EMPLOYEES_TEST 테이블 복사
+
+*/
+
+CREATE TABLE    EMPLOYEES_TEST
+AS
+SELECT * FROM   EMPLOYEES
+WHERE           JOB_ID = 'IT_PROG';
+
+-- 데이터 확인
+
+SELECT * FROM EMPLOYEES_TEST;
+
+-- EMPLOYEES_TESET  테이블에서 사원번호가 103이거나 MANAGER_ID가 103인 데이터를 삭제하라.
+
+DELETE EMPLOYEES_TEST
+WHERE EMPLOYEE_ID = 103 OR MANAGER_ID = 103;
+
+ROLLBACK;
+
+-- EMPLOYEE_TEST 테이블에서 사원번호가 107인 데이터의 급여를 5000, MAAGER_ID를 105로 변경한다
+-- UPDATE 시에 꼭 SET은 단 한번만 사용하고, 컬럼을 추가하려면 쉼표로 구분한다.
+UPDATE EMPLOYEES_TEST
+SET    SALARY = 5000 , MANAGER_ID = 105
+WHERE  EMPLOYEE_ID = 107;
+
+SELECT * FROM   EMPLOYEE_TEST
+WHERE           EMPLOYEE_ID = 107;
 
 
 -- 3월20일(월) 부터 설명할 것.

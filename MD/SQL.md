@@ -116,3 +116,14 @@ DCL - Data Control Language
 DBA 관리자의 영역
 TABLE SPACE
   - 테이블 등이 저장되는 영역
+
+
+  SELECT
+  INSERT
+  UPDATE
+  DELETE
+
+  -- 조건식
+  WHERE (INSERT는 제외 된다.)
+
+  MERGE
