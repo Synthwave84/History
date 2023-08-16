@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
-// import App_Context from './App_Context';
-// import App_Reducer from './App_Reducer_01';
-// import App_Reducer from './App_Reducer_02';
-import App_Reducer from './App_Reducer';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App_Context /> */}
-    <App_Reducer />
+    <App />
   </React.StrictMode>
 );
 
