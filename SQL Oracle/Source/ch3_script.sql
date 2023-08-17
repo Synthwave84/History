@@ -619,25 +619,29 @@ COMMIT은 변경한 데이터를 데이터베이스에 마지막으로 반영하는 역할을,
 ROLLBACK은 그 반대로 변경한 데이터를 변경하기 이전 상태로 되돌리는 역할을 한다.
 UPDATE, INSERT, MERGE, DELETE문을 실행하면 데이터에 변화가 생긴다. 하지만 영구적으로 변경되는 것은 아니다.
 
+DDL = 데이터 정의 언어 -CREATE/ALTER/DROP = COMMIT,ROLLBACK 을 사용 할 수 없다. 
 
 뒷부분에 트랜재션(Transaction) 개념에서 내용을 다룸.
 */
 
-DROP TABLE ex3_4;
-CREATE TABLE ex3_4 (
-       employee_id NUMBER);
+DROP TABLE      EX3_4;
+
+CREATE TABLE    EX3_4 (
+EMPLOYEE_ID         NUMBER
+);
 
 
-INSERT INTO ex3_4 VALUES (100);
+INSERT INTO EX3_4 VALUES (100);
 
-SELECT employee_id, rowid
-  FROM ex3_4;
+SELECT      EMPLOYEE_ID, ROWID
+FROM        EX3_4;
   
-Rollback; -- 앞에 insert문 실행한 데이타작업이 물리적디스크에 반영되지 않고, 취소가 된다.
-commit; -- 앞에 insert문 실행한 데이타작업이 물리적디스크에 반영됨.
+ROLLBACK;   -- 앞에 insert문 실행한 데이타작업이 물리적디스크에 반영되지 않고, 취소가 된다.
+COMMIT;     -- 앞에 insert문 실행한 데이타작업이 물리적디스크에 반영됨.
 
 -- 데이타 삭제하는 명령어.  
-TRUNCATE TABLE ex3_4; -- commit, rollback 지원안함.
+-- 데이터는 특정장소에 존재하지만, 참조를 불가능하게 만드는 의미
+TRUNCATE TABLE EX3_4;   -- commit, rollback 지원안함.
 
 
 
@@ -647,16 +651,34 @@ TRUNCATE TABLE ex3_4; -- commit, rollback 지원안함.
 SELECT 문에서는 의사컬럼을 사용할 수 있지만, 의사컬럼 값을 INSERT, UPDATE, DELETE 할 수는 없다.
 */
 
--- ROWNM은 쿼리에서 반환되는 각 로우들에 대한 순서 값을 나타내는 의사컬럼이다
+-- 1.ROWNM : 은 쿼리에서 반환되는 각 로우들에 대한 순서 값을 나타내는 의사컬럼이다
 SELECT ROWNUM, employee_id
-  FROM employees;
+  FROM employees; -- 107건 
   
 SELECT ROWNUM, employee_id FROM EMPLOYEES;
 
+SELECT ROWNUM, EMPLOYEE_ID FROM EMPLOYEES;
+
 -- 데이타 출력시 조회 건수 제한할 때 사용. 스프링에서 게시판 페이징기능에 사용할 명령어.
-SELECT ROWNUM, employee_id
-FROM employees
-WHERE ROWNUM < 5;
+SELECT  ROWNUM,  employee_id, ROWID
+FROM             employees
+WHERE   ROWNUM < 5;
+-- 매우 중요!
+-- ******************************************************************
+SELECT  ROWNUM, EMPLOYEE_ID
+FROM            EMPLOYEES
+WHERE   ROWNUM < 5;
+
+
+-- ROWNUM을 이용하여, 특정범위를 조건으로 하면, 출려건수가 없다.
+-- 즉 작동이 안되버린다!!!!!!!!!!!!! ********************************
+-- 강사님인증 5스타
+SELECT ROWNUM,  EMPLOYEE_ID
+FROM            EMPLOYEES
+WHERE ROWNUM >=10 AND ROWNUM <= 20;
+
+
+
 
 -- ROWID는 테이블에 저장된 각 로우가 저장된 주소 값을 가리키는 의사컬럼이다.  
 -- 각 로우를 식별하는 값이므로 ROWID는 유일한 값을 가진다.
@@ -673,11 +695,78 @@ SELECT ROWNUM, employee_id
   WHERE ROWNUM >= 5 AND ROWNUM <= 10;
 
 
+/*
+연산자
+-- 수식연산자 : + - * /
+-- 피연산자가 숫자 데이터여야만 한다.
+*/
+DESC EMPLOYEES;
+
+SELECT EMP_NAME, SALARY 
+FROM EMPLOYEES;
+
+-- 사원 급여를 10% 인상
+
+SELECT EMP_NAME, SALARY, SALARY + (SALARY * 0.1) 
+AS CHANGE_SALARY FROM EMPLOYEES;
+
+-- 에러 발생 : 피연산자의 타입이 숫자가 아니다.
+-- 컬럼이 VARCHAR2 데이터 타입이기 때문. 즉 스트링이다.
+-- ORA-01722: invalid number
+-- 01722. 00000 -  "invalid number"
+
+SELECT EMP_NAME, SALARY, EMP_NAME + (EMP_NAME * 0.1) 
+AS CHANGE_SALARY FROM EMPLOYEES;
+
 
 -- 연산자. || 문자열 또는 컬럼 연결연산자기능
 SELECT employee_id || '-' || emp_name AS employee_info
   FROM employees
  WHERE ROWNUM < 5;
+ 
+-- 논리연산자 : > < <= >= = <> != \=
+
+-- 사원테이블(EMPLOYEES) 에서 급여가 5000 이상이고, 8000미만인 데이터를 조회하라
+SELECT EMP_NAME, SALARY FROM EMPLOYEES
+WHERE SALARY >=5000 AND SALARY < 8000
+ORDER BY SALARY ASC; -- 22 건
+ 
+-- BEETWEEN은 미만, 초과 가 아니라 이상 이하 일때 사용한다. 즉 값을 포함한다.
+SELECT EMP_NAME, SALARY FROM EMPLOYEES
+WHERE SALARY BEETWEEN 5000 AND 8000
+ORDER BY SALARY ASC; -- 25 건
+ 
+SELECT * FROM EMPLOYEES;
+-- JOB_ID 의 컬럼의 데이터가 'SA_REP'이거나, 'SH_CLERK' 사원의 EMP_NAME, JOB_ID 컬럼을 조회하라.
+
+SELECT EMP_NAME, JOB_ID 
+FROM EMPLOYEES
+WHERE JOB_ID = 'SA_REF' OR JOB_ID = 'SH_CLERK'
+ORDER BY EMP_NAME ASC;
+ 
+-- JOB_ID 의 컬럼의 데이터가 'SA_REP'이거나, 'SH_CLERK'이며 
+-- 급여가 5천보다 큰 사원의 EMP_NAME, JOB_ID 컬럼을 조회하라.
+
+
+-- AND, OR 연산자의 우선순위는 AND가 높기 때문에, 괄호로 OR 먼저 묶어주어야한다.
+SELECT EMP_NAME, SALARY, JOB_ID
+FROM EMPLOYEES
+WHERE (JOB_ID = 'SA_REF' OR JOB_ID = 'SH_CLERK') AND SALARY > 5000
+ORDER BY SALARY ASC;
+
+-- COMMISION_PCT 컬럼의 커미션이 없는 사원을 EMP_NAME, SALARY, COMMISION_PCT
+
+SELECT EMP_NAME, SALARY, COMMISSION_PCT
+FROM EMPLOYEES
+WHERE COMMISSION_PCT IS NULL
+ORDER BY EMP_NAME ASC;
+
+-- COMMISION_PCT 컬럼의 커미션이 있는 사원을 EMP_NAME, SALARY, COMMISION_PCT
+
+SELECT EMP_NAME, SALARY, COMMISSION_PCT
+FROM EMPLOYEES
+WHERE COMMISSION_PCT IS NOT NULL
+ORDER BY EMP_NAME ASC;
  
 -- 표현식
 -- CASE 문 - 2종류(ANSI-SQL표준구문)
