@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {up} from "./counterSlice";
-import {down} from "./counterSlice";
+import {down} from "./counterSlice"; 
 
 
 
