@@ -6,6 +6,14 @@ import "./style.css"
 //  https://velog.io/@404/%EB%A6%AC%EB%8D%95%EC%8A%A4-0.-%EB%A6%AC%EB%8D%95%EC%8A%A4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80
 
 
+// ContextAPI 사용방식이 개선되기 전 (버젼업 전), useReducerhook 나오기 전에 존재하는 라이브러리
+// 상태관리 라이브러리 
+
+// 리덕스 = 리액트와 상관없이 독립적인 형태를 가지고있다.
+// 리액트 프로젝트 : 리덕스, 리액트 리덕스 패키지를 함께 설치해야 한다.
+// npm install reduc react-redux
+
+
 // redux 사용예제
 // 공유 데이터를 특정 함수 컴포넌트에서 사용.
 // store : 상태 관리를 전문적으로 하는 곳.
@@ -68,7 +76,7 @@ function Left2() {
 function Left3() {
 
   // 3단계. 실제 reducer 함수가 동작되어 return된 값을 state 변수값으로 참조한다.
-  const number= useSelector((state) => state.number);
+  const number = useSelector((state) => state.number);
   return (
     <div>
       <h1>Left3 : {number}</h1>
@@ -96,7 +104,7 @@ function Right2() {
 }
 function Right3() {
   // 4단계 : state 변경작업을 Reducer() 함수에게 요청.
-  const dispatch = useDispatch
+  const dispatch = useDispatch();
   return (
     <div>
     <h1>Right3 : </h1>
