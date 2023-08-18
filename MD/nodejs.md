@@ -225,8 +225,29 @@ Redux = 상태관리 라이브러리
 
   리액트 프로젝트와 리덕스 라이브러리를 연결(바인딩) 하는 기능.
   
+주제 : 리액트 프로젝트에 redux toolkit을 통한 리덕스작업 주비 및 빌드, 배포 테스트
+React 배포작업 - 빌드 npm run build
+  React  프로젝트 - build폴더 생성
+  build폴더 안에 들어있는 것들이, 서비스 될때 실제로 사용되는 것이다.
+
+  리덕스 작업의 사용 선택 기준
+    - 프로젝트 규모 여부
+          리덕스 
+          Context API
+    - 비동기 작업: fetch()
+          리덕스
+          Context API
 
 https://www.charlezz.com/?p=44767
+
+
+serve 웹서버 설치.
+  npm install -g serve
+  실행
+  npx serve -s build (-s = 스타트)
+
+  설명: build 폴더를 루트로 설정하여, 서비스
+  Ctrl+c = 작업중지 
 
 URL 
 - URL은 링크에 확장자를 포함한다. 또한 확장자가 있어도 URI가 될 수 있다. 
