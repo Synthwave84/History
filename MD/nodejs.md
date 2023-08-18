@@ -230,6 +230,15 @@ React 배포작업 - 빌드 npm run build
   React  프로젝트 - build폴더 생성
   build폴더 안에 들어있는 것들이, 서비스 될때 실제로 사용되는 것이다.
 
+1. 터미널 하단 내용 중 npm install -g serve 복붙 또는 npm i -g serve 라고 작성해서 실행
+2. 마찬가지로 하단 내용 중 serve -s build 복붙하되 앞에 npx 붙여  npx serve -s build 형태로 작성해서 실행 
+
+* npm install -g serve: 웹서버 기능 프로그램
+
+3. 네트워크 주소는 각자 다르게 나타나는데, 강사님의 경우 http://192.168.0.48:3000 이 형태로 강사님 네트워크에 접속 테스트
+
+
+
   리덕스 작업의 사용 선택 기준
     - 프로젝트 규모 여부
           리덕스 

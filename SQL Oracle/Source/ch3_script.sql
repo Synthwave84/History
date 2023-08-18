@@ -739,9 +739,9 @@ ORDER BY SALARY ASC; -- 25 건
 SELECT * FROM EMPLOYEES;
 -- JOB_ID 의 컬럼의 데이터가 'SA_REP'이거나, 'SH_CLERK' 사원의 EMP_NAME, JOB_ID 컬럼을 조회하라.
 
-SELECT EMP_NAME, JOB_ID 
+SELECT EMP_NAME, JOB_ID, SALARY
 FROM EMPLOYEES
-WHERE JOB_ID = 'SA_REF' OR JOB_ID = 'SH_CLERK'
+WHERE JOB_ID = 'SA_REP' OR JOB_ID = 'SH_CLERK'
 ORDER BY EMP_NAME ASC;
  
 -- JOB_ID 의 컬럼의 데이터가 'SA_REP'이거나, 'SH_CLERK'이며 
@@ -751,23 +751,34 @@ ORDER BY EMP_NAME ASC;
 -- AND, OR 연산자의 우선순위는 AND가 높기 때문에, 괄호로 OR 먼저 묶어주어야한다.
 SELECT EMP_NAME, SALARY, JOB_ID
 FROM EMPLOYEES
-WHERE (JOB_ID = 'SA_REF' OR JOB_ID = 'SH_CLERK') AND SALARY > 5000
+WHERE JOB_ID = 'SA_REP' OR (JOB_ID = 'SH_CLERK' AND SALARY > 5000)
 ORDER BY SALARY ASC;
 
 -- COMMISION_PCT 컬럼의 커미션이 없는 사원을 EMP_NAME, SALARY, COMMISION_PCT
 
-SELECT EMP_NAME, SALARY, COMMISSION_PCT
-FROM EMPLOYEES
-WHERE COMMISSION_PCT IS NULL
-ORDER BY EMP_NAME ASC;
+
+-- NULL 
+-- ANSI SQL
+SELECT      EMP_NAME, SALARY, COMMISSION_PCT
+FROM        EMPLOYEES
+WHERE       COMMISSION_PCT IS NULL
+ORDER BY    EMP_NAME ASC;
 
 -- COMMISION_PCT 컬럼의 커미션이 있는 사원을 EMP_NAME, SALARY, COMMISION_PCT
 
-SELECT EMP_NAME, SALARY, COMMISSION_PCT
-FROM EMPLOYEES
-WHERE COMMISSION_PCT IS NOT NULL
-ORDER BY EMP_NAME ASC;
+-- NOT NULL
+-- ANSI SQL
+SELECT      EMP_NAME, SALARY, COMMISSION_PCT
+FROM        EMPLOYEES
+WHERE       COMMISSION_PCT IS NOT NULL
+ORDER BY    EMP_NAME ASC;
  
+ 
+COMMIT;
+
+
+
+
 -- 표현식
 -- CASE 문 - 2종류(ANSI-SQL표준구문)
 /*
@@ -779,9 +790,29 @@ CASE
     ELSE 기타 값
 END
 */
--- 질의> 사원 테이블에서 각 사원의 급여에 따라 5000 이하로 급여를 받는 사원은 C, 5000~15000은 B, 15000 이상은 A등급을 반환하는 쿼리를 작성해 보자.
+-- 질의> 사원 테이블에서 각 사원의 급여에 따라 5000 이하로 
+-- 급여를 받는 사원은 C, 5000~15000은 B, 15000 이상은 
+-- A등급을 반환하는 쿼리를 작성해 보자. (컬럼은 사원번호, 이름, 급여)
+
+SELECT * FROM EMPLOYEES;
+
+
+SELECT EMPLOYEE_ID, EMP_NAME, SALARY,
+
+CASE    
+        WHEN SALARY <=  5000 THEN                       'C등급'
+        WHEN SALARY > 5000 AND SALARY <=15000 THEN      'B등급'
+        ELSE                                            'A등급'
+END AS GRADE
+
+FROM EMPLOYEES;        
+
+
+
+
  SELECT employee_id, salary, 
-         CASE WHEN salary <= 5000 THEN 'C등급'
+         CASE 
+            WHEN salary <= 5000 THEN 'C등급'
             WHEN salary > 5000 AND salary <= 15000 THEN 'B등급'
             ELSE 'A등급'
        END AS salary_grade
@@ -805,6 +836,10 @@ CASE 컬럼명
     ELSE 기타 값
 END
 */
+
+
+
+
 CREATE TABLE TEST_05 (
     CODE    NUMBER PRIMARY KEY,
     ENAME   VARCHAR2(20)     NOT NULL
@@ -823,6 +858,28 @@ SELECT CODE, ENAME,
             WHEN 2 THEN '오라클'
             WHEN 3 THEN '스프링'
         END AS KNAME
+FROM TEST_05;
+
+
+-- ENAME으로 NAME 출력하기
+
+SELECT CODE,ENAME,
+    CASE ENAME
+         WHEN 'JAVA' THEN '자바'
+         WHEN 'ORACLE' THEN '오라클'
+         WHEN 'SPRING' THEN '스프링'   
+    END AS KNAME
+FROM TEST_05;
+
+
+-- IF 문 유형으로 CASE 문법 작성
+
+    SELECT CODE,ENAME,
+    CASE 
+         WHEN ENAME = 'JAVA'   THEN       '자바'
+         WHEN ENAME = 'ORACLE' THEN     '오라클'
+         WHEN ENAME = 'SPRING' THEN     '스프링'   
+    END AS KNAME
 FROM TEST_05;
 
 -- 연습>
@@ -844,14 +901,20 @@ SELECT EMP_NAME, DEPARTMENT_ID,
         -- ELSE 'Unknown'
     END AS loc_name
 FROM EMPLOYEES;
+-- 데이터베이스 함수편.
+-- TO_CHAR (컬럼명 또는 데이터) : 문자열로 변환해 주는 기능
+
+SELECT EMP_NAME, HIRE_DATE FROM EMPLOYEES;
+
 
 -- 함수를 이용한 CASE문
 SELECT EMP_NAME, HIRE_DATE,
     CASE
-        WHEN TO_CHAR(HIRE_DATE, 'q') = '1' THEN '1분기'
-        WHEN TO_CHAR(HIRE_DATE, 'q') = '2' THEN '2분기'
-        WHEN TO_CHAR(HIRE_DATE, 'q') = '3' THEN '3분기'
-        WHEN TO_CHAR(HIRE_DATE, 'q') = '4' THEN '4분기'
+        --  Q = 쿼터 1/4 로 만들기        
+        WHEN TO_CHAR(HIRE_DATE, 'Q') = '1' THEN '1분기'
+        WHEN TO_CHAR(HIRE_DATE, 'Q') = '2' THEN '2분기'
+        WHEN TO_CHAR(HIRE_DATE, 'Q') = '3' THEN '3분기'
+        WHEN TO_CHAR(HIRE_DATE, 'Q') = '4' THEN '4분기'
     END AS HIRE_QUARTER
 FROM EMPLOYEES;
 
@@ -863,6 +926,44 @@ FROM EMPLOYEES;
 부서코드 50 이면 급여가 2500 이상 1등급, 급여가 2000 이상 2등급, 급여가 1500 이상 3등급
 나머지 부서코드는  급여가 4000 이상 1등급, 급여가 3500 이상 2등급, 급여가 2500 이상 3등급
 */
+/*
+이럴경우 뼈대부터 작업하도록 한다.
+WHEN DEPARTMENT_ID = 10 THEN 
+WHEN DEPARTMENT_ID = 20 THEN 
+WHEN DEPARTMENT_ID = 30 THEN 
+*/
+
+
+SELECT EMP_NAME, SALARY, DEPARTMENT_ID,
+    CASE
+    WHEN DEPARTMENT_ID = 10 THEN
+        CASE
+            WHEN SALARY >= 2000 THEN '1등급'
+            WHEN SALARY >= 1500 THEN '2등급'
+            WHEN SALARY >= 1000 THEN '3등급'
+        END
+    WHEN DEPARTMENT_ID = 20 THEN
+        CASE
+            WHEN SALARY >= 3000 THEN '1등급'
+            WHEN SALARY >= 2500 THEN '2등급'
+            WHEN SALARY >= 2000 THEN '3등급'
+        END
+    WHEN DEPARTMENT_ID = 50 THEN
+        CASE
+            WHEN SALARY >= 2000 THEN '1등급'
+            WHEN SALARY >= 1500 THEN '2등급'
+            WHEN SALARY >= 1000 THEN '3등급'
+        END
+    ELSE
+        CASE
+            WHEN SALARY >= 4500 THEN '1등급'
+            WHEN SALARY >= 3000 THEN '2등급'
+            WHEN SALARY >= 2500 THEN '3등급'
+        END 
+    END AS GRADER
+FROM EMPLOYEES;
+    
+
 
 SELECT EMP_NAME, SALARY, DEPARTMENT_ID,
     CASE
@@ -908,44 +1009,56 @@ FROM EMPLOYEES;
 ANY가 ‘아무것’이나 ‘하나’란 뜻이 있으므로 위 문장은 세 가지 값, 즉 급여가 2000이나 3000이나 4000 중 하나라도 일치하는 
 모든 사원을 추출한 것이다. 따라서 ANY는 OR 조건으로 변환이 가능하며 다음 문장도 같은 결과를 반환한다.
 */
-SELECT employee_id, salary 
-  FROM employees
-WHERE salary = ANY (2000, 3000, 4000)
-ORDER BY employee_id;
 
-SELECT employee_id, salary
-FROM employees
-WHERE salary = ANY(2000, 3000, 4000)
-ORDER BY employee_id;
+-- 1, 2, 3, 4 동일한 결과가 출력된다
 
+-- 1
+
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE       SALARY IN (2000, 3000, 4000)
+ORDER BY    EMPLOYEE_ID;
+
+-- 2
+
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE       SALARY = ANY (2000, 3000, 4000)
+ORDER BY    EMPLOYEE_ID;
+
+-- 3
+-- SOME은 ANY와 동일하게 사용되며 동작한다.
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE       SALARY = SOME (2000, 3000, 4000)
+ORDER BY    EMPLOYEE_ID;
+
+-- 4
 -- ANY -> OR 변환가능   
-SELECT employee_id, salary 
-  FROM employees
-WHERE salary = 2000
-   OR salary = 3000
-   OR salary = 4000
-ORDER BY employee_id;   
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE       SALARY = 2000
+OR          SALARY = 3000
+OR          SALARY = 4000
+ORDER BY    EMPLOYEE_ID;   
 
 -- ALL은 열거된 값이 모두 조건을 동시에 만족해야 한다. 
---  한 사원의 급여는 한 가지 값만 가지고 있으므로 논리적으로 봐도 잘못된 쿼리다
+-- 한 사원의 급여는 한 가지 값만 가지고 있으므로 논리적으로 봐도 잘못된 쿼리다
 -- (=) 같다 등호연산자는 모순이 존재하고,  부등호(<, >, >=, <=) 사용가능.
-SELECT employee_id, salary 
-  FROM employees
-WHERE salary = ALL (2000, 3000, 4000)
-ORDER BY employee_id;
+
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE       SALARY = ALL (2000, 3000, 4000)
+ORDER BY    EMPLOYEE_ID;
 
 -- 부등호(<, >, >=, <=) 사용가능
-SELECT employee_id, salary 
-  FROM employees
-WHERE salary > ALL (2000, 3000, 4000)  -- 최대 4000 보다 큰 경우의 데이타
-ORDER BY employee_id;
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE       SALARY > ALL (2000, 3000, 4000)  -- 최대 4000 보다 큰 경우의 데이타
+ORDER BY    EMPLOYEE_ID;
 
 
--- SOME은 ANY와 동일하게 사용되며 동작한다.
-SELECT employee_id, salary 
-  FROM employees
-WHERE salary = SOME (2000, 3000, 4000)
-ORDER BY employee_id;
+
 
 -- 논리조건식
 /*
@@ -955,10 +1068,15 @@ AND는 모든 조건을 만족해야 하고 OR는 여러 조건 중 하나만 만족해도 TRUE를 반환된�
 
 -- 질의? 이 쿼리는 NOT으로 급여가 2500보다 크거나 같지 않은 사원, 즉 급여가 2500 미만인 사원을 반환하고 있다.
 -- not 을 사용하는 목적? 데이타의 분포를 판단하여, 조회되는 성능을 목적으로 하기때문에 사용.
-SELECT employee_id, salary 
-  FROM employees
-WHERE NOT ( salary >= 2500)
-ORDER BY employee_id;
+
+-- 1, 2의 결과는 동일하다
+
+-- 1.
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE NOT   ( SALARY >= 2500) -- SALARY < 2500
+ORDER BY    EMPLOYEE_ID;
+
 /*
 127	2400
 128	2200
@@ -967,10 +1085,12 @@ ORDER BY employee_id;
 136	2200
 */
 
-SELECT employee_id, salary 
-  FROM employees
-WHERE salary < 2500
-ORDER BY employee_id;
+-- 2.
+SELECT      EMPLOYEE_ID, SALARY 
+FROM        EMPLOYEES
+WHERE       SALARY < 2500
+ORDER BY    EMPLOYEE_ID;
+
 /*
 127	2400
 128	2200
@@ -1003,6 +1123,7 @@ WHERE salary IN (2000, 3000, 4000)
 ORDER BY employee_id;
 
 -- 질의? 급여가 2000 또는 3000 또는 4000 을 포함하지 않는 데이타 조회. 1), 2) 3) 동일한 결과.
+-- <> = NOT EQUAL. !=비슷한거같다.
 --1)
 SELECT employee_id, salary 
   FROM employees
