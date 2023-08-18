@@ -1,0 +1,6 @@
+/* NavLink 태그에서 제공하는 a <class="active"> */
+.active {
+  background-color: rgb(194, 220, 243);
+  text-decoration: none;
+  
+}
