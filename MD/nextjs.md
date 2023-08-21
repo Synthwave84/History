@@ -67,3 +67,18 @@ read/[id]/page.js
 
 SPA- Single Page Applicaiton
  ajax 환경처럼, 단일페이지에서 새로고침 없이 부분업데이트 되는 기술.
+
+react
+컴포넌트
+- client component only.
+
+next.js
+컴포넌트
+  - server component
+      - 사용자와 상호작용 하지 않는 경우. (정적)
+      - 백엔드에 접근하면서, 보안적으로 위험한 정보를 주고받는 경우
+  - client component.
+      - 사용자와 상호작용 하는 경우. ex> 버튼 클릭 시 반응하는 동작. (동적)
+      - 서버컴포넌트로 해결되지 않는 경우
+      
+next.js에서 특정한 작업을 진행하지 않으면, 기본은 Server Component 작업이 된다.

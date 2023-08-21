@@ -15,7 +15,19 @@ export const metadata = {
 
 
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+
+  const resp = await fetch('http://localhost:9999/topics'); 
+
+  const topics = await resp.json();
+
+  // 깨발자의 콘솔에서는 값이 나타나지 않고, 터미널에 표기된다.
+  // 클라이언트(브라우저) 에서 확인하는 것이 아니라, 서버(터미널) 에서 확인 해야한다.
+  // 왜냐하면 기본은 서버컴포넌트이기 때문이다. 즉 동작은 서버에서 실행되고, html코드로 표현만 될 뿐이다.
+  // 참고로, 클라이언트 컴포넌트도 작업이 가능하다. 
+  // 서버쪽에서 브라우저에게 보여주는 내용이 생성된다는 의미로 server side rendering이라고 한다. 
+ // console.log(topics);
+
   return (
     <html>
       <body>
@@ -32,8 +44,11 @@ export default function RootLayout({ children }) {
           <Link href='/'>WEB</Link></h1>
           
           <ol>
-            <li><Link href='/read/1'>html</Link></li>
-            <li><Link href='/read/2'>css</Link></li>
+            {
+              topics.map(topic => {
+                return <li key={topic.id}><Link href={`/read/${topic.id}`}>{topic.title}</Link></li>
+              })
+            }
           </ol>
         
         {children}{/* page.js가 들어간다. */} 
