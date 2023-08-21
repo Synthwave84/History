@@ -20,3 +20,8 @@ layout.js
 
 라우터(라우팅)
   사용자가 접속한 URL에 해당하는 컨텐츠를 응답해주는 작업. 
+
+React 
+CSR : Client Side Rendering
+Next
+SSR : Server Side Rendering
