@@ -15,18 +15,19 @@ export function Control () {
   return (
     <ul>
     <li><Link href='/create'>create</Link></li>
-    {
+      {/* 상항연산자 구문 */}
+      {
       id ? (
       <>
-      {/* 상항연산자 구문 */}
         <li><Link href={`/update/${id}`}>update</Link></li>
-        <li><button onClick={async () => {
-          const resp = await fetch(''), {
-              method : "DELETE",
-          };
-          await resp.json();
-          router.push('/');
-          router.refresh();
+        <li>
+          <button onClick={async () => {
+                const resp = await fetch(`http://localhost:99/topics/${id}`, {
+                method : "DELETE",
+                });
+                await resp.json();
+                router.push('/');
+                router.refresh();
         }}>delete</button></li>
       </>
       ) : null
