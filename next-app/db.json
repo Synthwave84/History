@@ -1,7 +1,15 @@
 {
-  "topics" : [
-    {"id":1, "title": "html", "body" :"htmi is...."},
-    {"id":2, "title": "css", "body" :"css is...."}
+  "topics": [
+    {
+      "id": 1,
+      "title": "html",
+      "body": "htmi is...."
+    },
+    {
+      "id": 2,
+      "title": "css",
+      "body": "css is...."
+    }
   ],
   "posts": [
     {

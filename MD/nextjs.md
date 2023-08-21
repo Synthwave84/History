@@ -82,3 +82,8 @@ next.js
       - 서버컴포넌트로 해결되지 않는 경우
       
 next.js에서 특정한 작업을 진행하지 않으면, 기본은 Server Component 작업이 된다.
+
+서버 열기 npx json-server --port 9999 --watch db.json
+
+<form method="get">  여기서 메소드를 생략하면 기본은 "get"방식이다.
+

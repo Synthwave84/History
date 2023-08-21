@@ -16,8 +16,9 @@ export const metadata = {
 
 
 export default async function RootLayout({ children }) {
-
-  const resp = await fetch('http://localhost:9999/topics'); 
+// 서버측의 캐시가 작동되어 새로 추가, 변경된 내용이 반영되지 않으므로
+// 매번 요청시 캐시가 작동되지 않고, 새로운 작업진행이 되도록 한다.
+  const resp = await fetch('http://localhost:9999/topics', {cache:'no-cache'}); 
 
   const topics = await resp.json();
 
@@ -56,7 +57,6 @@ export default async function RootLayout({ children }) {
             <li><Link href='/create'>create</Link></li>
             <li><Link href='/update/id'>update</Link></li>
             <li><button>delete</button></li>
-    
         </ul>
         </body>
     </html>
