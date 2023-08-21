@@ -1,5 +1,6 @@
 import Link from "next/link"
 import "./globals.css";
+import { Control } from "./Control";
 // html의 head태그안의 내용을 생성하는 부분이다.
 
 /*
@@ -53,11 +54,7 @@ export default async function RootLayout({ children }) {
           </ol>
         
         {children}{/* page.js가 들어간다. */} 
-        <ul>
-            <li><Link href='/create'>create</Link></li>
-            <li><Link href='/update/id'>update</Link></li>
-            <li><button>delete</button></li>
-        </ul>
+            <Control></Control>
         </body>
     </html>
   )

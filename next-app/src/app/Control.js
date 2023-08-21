@@ -19,9 +19,13 @@ export function Control () {
       {
       id ? (
       <>
+        {/* update는 read와 동일 */}
         <li><Link href={`/update/${id}`}>update</Link></li>
         <li>
           <button onClick={async () => {
+                // fetch() 사용법
+                // 1) const resp = await fetch (주소);
+                // 2) const resp = await fetch (주소, 옵션);
                 const resp = await fetch(`http://localhost:99/topics/${id}`, {
                 method : "DELETE",
                 });
