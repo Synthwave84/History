@@ -1,5 +1,5 @@
-import './globals.css'
-
+import Link from "next/link"
+import "./globals.css";
 // html의 head태그안의 내용을 생성하는 부분이다.
 
 /*
@@ -20,16 +20,26 @@ export default function RootLayout({ children }) {
     <html>
       <body>
       
-        <h1><a href='/'>WEB</a></h1>
+        <h1>
+          {/*a태그를 Link태그로 변환하게되면, 다음과 같은 기능이 제공된다.
+          링크 클릭시 새로고침이 발생하지 않음. 필요한 컨텐츠만 로딩된다. 
+          이미 방문한 페이지는 캐시가 지원되어, 다시 다운로드 되지 않는다.  
+          미리 페이지를 로드 했다가, 실제 요청이 있을 때 클라이언트축에서 응답한다.
+        결과적으로, next.js에서는 외부주소를 요청시 작업은 <a>태그를 사용하고,
+        운영서버 요청은 <Link>태그를 사용한다.  
+        그래서, SPA를 매우 쉽게 구현 할 수 있다. 
+          */}
+          <Link href='/'>WEB</Link></h1>
+          
           <ol>
-            <li><a href='/read1'>html</a></li>
-            <li><a href='/read2'>css</a></li>
+            <li><Link href='/read/1'>html</Link></li>
+            <li><Link href='/read/2'>css</Link></li>
           </ol>
         
-        {children}{/* page.js가 들어간ㄷ. */} 
+        {children}{/* page.js가 들어간다. */} 
         <ul>
-            <li><a href='/create'>create</a></li>
-            <li><a href='/update/id'>update</a></li>
+            <li><Link href='/create'>create</Link></li>
+            <li><Link href='/update/id'>update</Link></li>
             <li><button>delete</button></li>
     
         </ul>
