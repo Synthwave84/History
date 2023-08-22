@@ -1157,10 +1157,20 @@ LIKE 조건식은 문자열의 패턴을 검색할 때 사용하는 조건식이다.
 예를 들어, 사원 테이블에서 사원이름이 ‘A’로 시작되는 사원을 조회하는 쿼리를 작성한다면 
 다음과 같이 LIKE 조건식을 사용한다.
 */
+
+--LIKE 조건식 예> 게시판, 검색기능, 상품리스트 검색기능, 회원리스트 검색기능
 SELECT emp_name
   FROM employees
  WHERE emp_name LIKE 'A%'   -- 'A' 글자 1개이상으로 시작하는 문자열
  ORDER BY emp_name;
+ 
+ SELECT EMP_NAME FROM EMPLOYEES
+ WHERE EMP_NAME LIKE 'A%'
+ ORDER BY EMP_NAME ASC;
+ 
+SELECT EMP)ANME FROM EMPLOYEES
+WHERE EMP_NAME LIKE 'A%'//
+
  
  -- Al로 시작되는 모든 사원을 조회한 쿼리다. (Al 이라는 두글자 이상의 문자열)
 SELECT emp_name
@@ -1184,12 +1194,14 @@ INSERT INTO ex3_5 VALUES ('홍길용');
 
 INSERT INTO ex3_5 VALUES ('홍길상');
 
-INSERT INTO ex3_5 VALUES ('홍길상동');
+INSERT INTO ex3_5 VALUES ('김홍길상동');
 
 SELECT * FROM ex3_5;
 
 
 
+-- 이름에 "홍길" 로 시작하는 데이터를 조회하라
+-- '%' = 와일드카드
 SELECT *
   FROM ex3_5
  WHERE names LIKE '홍길%';  -- '홍길' 길이가 2글자 자신도 포함하고, 시작되는 문자열을 의미한다.
@@ -1211,7 +1223,8 @@ SELECT *
  -- 사원테이블의 이름에서 3번째 위치가 n 에 해당하는 데이터를 조회하라.
   SELECT EMP_NAME 
  FROM EMPLOYEES
- WHERE EMP_NAME LIKE '__n%';
+ -- 언더바 2개 _ _ N (3번째)
+ WHERE EMP_NAME LIKE '__n%'; 
  
  -- JOB_ID 컬럼에서 'H로 시작하면서, REP 끝나는 문자열을 조회하라.'
  SELECT JOB_ID
