@@ -3,7 +3,7 @@
 // 클라이언트 컴포넌트로 변경해 주어야한다.
 'use client'
 import { useRouter } from "next/navigation";
-import { useEffect, useState} from "react";
+import { useState, useEffect} from "react";
 
 // 화면(UI)수정폼을 출력작업
 export default function Update(props) {
@@ -45,9 +45,9 @@ export default function Update(props) {
         }}>
           <h2>Update</h2>
           <p><input type="text" name="title" placeholder="title"  
-          onChage= {e=>setTitle(e.target.value)} value={title}></input></p>
+          onChange= {e=>setTitle(e.target.value)} value={title}></input></p>
           <p><textarea name="body" placeholder="body" 
-          onChage= {e=>setBody(e.target.value)} value={body}></textarea></p>
+          onChange= {e=>setBody(e.target.value)} value={body}></textarea></p>
           <p><input type="submit" value="update"></input></p>
         </form>
       );
