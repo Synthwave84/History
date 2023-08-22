@@ -26,7 +26,7 @@ export function Control () {
                 // fetch() 사용법
                 // 1) const resp = await fetch (주소);
                 // 2) const resp = await fetch (주소, 옵션);
-                const resp = await fetch(`http://localhost:9999/topics/${id}`, {
+                const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}topics/${id}`, {
                 method : "DELETE",
                 });
                 await resp.json();
