@@ -19,7 +19,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
 // 서버측의 캐시가 작동되어 새로 추가, 변경된 내용이 반영되지 않으므로
 // 매번 요청시 캐시가 작동되지 않고, 새로운 작업진행이 되도록 한다.
-  const resp = await fetch('http://localhost:9999/topics', {cache:'no-cache'}); 
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}topics`, {cache:'no-cache'}); 
 
   const topics = await resp.json();
 

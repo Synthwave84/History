@@ -20,7 +20,7 @@ const router = useRouter()
           },
           body: JSON.stringify({title, body}) // {title :title, body : body}
         };
-        const resp = await fetch("http://localhost:9999/topics", options)
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}topics`, options)
         const topic = await resp.json(); // 새글 등록시 (create) 작업결과.
         // 클라이언트 컴포넌트로 기능이 동작하니, 개발자 도구 콘솔에서 확인
         console.log("topic", topic);

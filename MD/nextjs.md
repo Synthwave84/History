@@ -87,3 +87,17 @@ next.js에서 특정한 작업을 진행하지 않으면, 기본은 Server Compo
 
 <form method="get">  여기서 메소드를 생략하면 기본은 "get"방식이다.
 
+export default 함수작명() {
+  1. 화면에 보여줄 내용을 자바스크립트로 작업한다.
+  return (
+  
+  2. jsx문법: 화면
+  );
+}
+
+
+method
+- GET : 조회(읽기)
+- POST : 등록(쓰기)
+- PATCH , PUT : 수정, 변경
+- DELETE : 삭제
