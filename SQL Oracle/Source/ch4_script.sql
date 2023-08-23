@@ -5,6 +5,7 @@
 /*
 ① ABS(n)
 ABS 함수는 매개변수로 숫자를 받아 그 절대값을 반환하는 함수다.
+절댓값 = -고 +고 그냥 진짜 숫자
 */
 
 SELECT ABS(10), ABS(-10), ABS(-10.123)
@@ -19,6 +20,7 @@ CEIL 함수는 매개변수 n과 같거나 가장 큰 정수를 반환한다.
 SELECT CEIL(10.123), CEIL(10.541), CEIL(11.001), CEIL(11.000)
   FROM DUAL;
   
+-- 
 -- 내림함수  : 소수부분을 제거하여, 정수값으로 반환
 SELECT FLOOR(10.123), FLOOR(10.541), FLOOR(11.001)
   FROM DUAL;
@@ -27,11 +29,14 @@ SELECT FLOOR(10.123), FLOOR(10.541), FLOOR(11.001)
 ③ ROUND(n, i)와 TRUNC(n1, n2)
 ROUND 함수는 매개변수 n을 소수점 기준 (i+1)번 째에서 반올림한 결과를 반환한다. i는 생략할 수 있고 디폴트 값은 0, 즉 소수점 첫 번째 자리에서 반올림이 일어나 정수 부분의 일의 자리에 결과가 반영된다.
 */
+
+-- 1) 매개변수 1개 사용  
 -- 기본은 소수부분 첫째자리를 반올림 대상(여부)으로 본다.
 SELECT ROUND(10.154), ROUND(10.541), ROUND(11.001)
   FROM DUAL;
+
   
--- 2개의 매개변수가 사용. 첫번째는 대상, 
+-- 2) 2개의 매개변수가 사용. 첫번째는 대상, 
 -- 두번째 매개변수의 값이 양수일 경우 지정한 소수 자리를 반올림하여 결과를 만들어준다.
 -- 소수 자리수까지 결과를 보여준다.
 SELECT ROUND(10.154, 1), ROUND(10.154, 2), ROUND(10.154, 3)
@@ -61,7 +66,9 @@ SELECT POWER(3, 2), POWER(3, 3), POWER(3, 3.0001)
   
 SELECT POWER(-3, 3.0001)
   FROM DUAL;  -- SQL. 오류: ORA-01428: '-3' 인수가 범위를 벗어났습니다.
-  
+
+
+-- SQRT는 루트를 씌우는 함수다  
 SELECT SQRT(2), SQRT(5)
   FROM DUAL;   
   
@@ -79,7 +86,7 @@ REMAINDER 함수 역시 n2를 n1으로 나눈 나머지 값을 반환하는데, 나머지를 구하는 내�
 
 ? REMAINDER → n2 - n1 * ROUND (n2/n1)
 */
-  
+-- 20 - 4*4 = -1
 SELECT REMAINDER(19,4), REMAINDER(19.123, 4.2)
   FROM DUAL;     
 /*
@@ -109,13 +116,17 @@ SELECT LOWER('NEVER SAY GOODBYE'), UPPER('never say goodbye')
  ② CONCAT(char1, char2), SUBSTR(char, pos, len), SUBSTRB(char, pos, len)
 CONCAT 함수는 ‘||’ 연산자처럼 매개변수로 들어오는 두 문자를 붙여 반환한다.
 */
+
+-- 즉 둘이 동일하다
 SELECT CONCAT('I Have', ' A Dream'), 'I Have' || ' A Dream'
   FROM DUAL;
   
 /*
 SUBSTR는 문자 함수 중 가장 많이 사용되는 함수로, 
 잘라올 대사 문자열인 char의 pos번째 문자부터 len길이만큼 잘라낸 결과를 반환하는 함수다. 
-pos 값으로 0이 오면 디폴트 값인 1, 즉 첫 번째 문자를 가리키며, 음수가 오면 char 문자열 맨 끝에서 시작한 상대적 위치를 의미한다. 또한 len 값이 생략되면 pos번째 문자부터 나머지 모든 문자를 반환한다.
+pos 값으로 0이 오면 디폴트 값인 1, 즉 첫 번째 문자를 가리키며, 음수가 오면 
+char 문자열 맨 끝에서 시작한 상대적 위치를 의미한다. 또한 len 값이 생략되면 
+pos번째 문자부터 나머지 모든 문자를 반환한다.
 */
 SELECT SUBSTR('ABCD EFG', 1, 4)
   FROM DUAL;
@@ -123,6 +134,8 @@ SELECT SUBSTR('ABCD EFG', 1, 4)
 --   3번째 매개변수의 기능은 문자개수이다.
 SELECT SUBSTR('ABCDEFG', 1, 4), SUBSTR('ABCDEFG', -1, 4)
   FROM DUAL;  
+  
+SELECT EMP_NAME, SUBSTR(EMP_NAME,1 ,2) || '...' AS EMP_NAME_INFO FROM EMPLOYEES;
 
 -- 3번째 매개변수의 기능은 바이트 의미이다. 한글은 3바이트로 설정. 
 SELECT SUBSTRB('ABCDEFG', 1, 4), SUBSTRB('가나다라마바사', 1, 6)
