@@ -127,3 +127,6 @@ TABLE SPACE
   WHERE (INSERT는 제외 된다.)
 
   MERGE
+
+
+계정 생성 및 권한 작업.

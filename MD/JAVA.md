@@ -6,15 +6,60 @@ JAVA
 - 유료정책 : 오라클 JDK
 - 무료정책 : Open JDK
 
-JDK : 자바 개발 및 학습을 위한 S/W
-- Java Developement Kit
 편집기 : IDE Tool
 - 이클립스(무료)
+  최신 이클립스 : JDK8(JDK 1.8)을 지원하지 않는다.
+- 인텔리J : Jetbrain
+  Ultimate Edition : 상용버젼
+  Community Edition : 무료버젼 (30일)
+- Visual Studio Code
+
+설치
+
+  - JDK(with JRE)
+  - JRE
 
 구성요소
--JDK(JRE포함) : 자바개발도구 및 실행환경 프로그램
 
--JRE : 자바 런타임 실행환경 프로그램 Runtime Environment
+- JDK(JRE포함) : Java Development Kit 자바개발도구 및 실행환경 프로그램
+
+- JRE : 자바 런타임 실행환경 프로그램 Runtime Environment
+
+환경변수 등록
+
+1. 사용자 환경 변수 설정 -> JDK 폴더. (bin이 아님.)
+    상단은, 유저, 하단은 시스템으로 구성되어있다.
+2. path 편집 : 실행파일을 폴더위치와 상관없이 어디든 사용 하고자 하는 목적
+    ->%JAVA_HOME%\BIN
+
+개발 툴 설정
+
+- Workspace 폴더 설정
+- 인코딩 설정
+  Windows메뉴 - Preferences - 텍스트박스 : 검색어 enc 입력
+
+
+
+
+자바 
+
+C, C++, C# 프로그램 코드작성 -> 컴파일러 프로그램 사용 -> 기계어 변환 (0,1의 2진수 코드)
+JAVA 프로그램 코드작성 -> 컴파일러 javac.exe ->바이트코드 -> 기계어 변환.
+
+
+- bin폴더에 바이트코드 
+- src폴더에 소스
+
+
+- 자바는 기본구조가 class라는 기본 형태를 구성으로 만들어져있다.
+  class 클래스명 {
+    실행될 코드.
+  }
+
+
+자바에서 스프링 설치
+ - sts 검색 마켓플레이스
+
 
 path 설정 : 폴더의 위치에 상관 없이 실행파일을 사용하고자 할 때 설정한다.
 자바 실행파일 관련 설정
@@ -28,8 +73,19 @@ Javac -> Java Compiler
 /정규식패턴문법문자열/flag
 
 
+백엔드 기술
+- 스프링 맞춤형 자바학습
+- 스프링 버전과 자바버전
+
+자바 개발환경 구축 (웹분야)
+- JDK설치 
+ -> 자바8 (JDK 1.8)
+
 클래스
 
   -자바언어 
    1) 객체지향언어
    2) 문법 기본구조 : 클래스 기반
+
+자바 스프링 기본 
+https://kghworks.tistory.com/m/137

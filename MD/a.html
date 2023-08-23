@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script>
+        function sendit() {
+            var reg_name = /^[가-힣]{2,10}$/; // 한글만 입력가능, 2~10글자범위
+            var reg_id = /^[a-zA-Z]+[0-9a-zA-Z]{5,15}$/; // 알파벳 대소문자로 시작하고, 숫자가 혼용.
+            var reg_pw = /^.*(?=^.{9,15}$)(?=.*\d)(?=.*[a-z])(?=.*[~!@#$%^&*()_+{}|:<>?]).*$/;
+            var reg_email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+$/;
+
+            var u_name = document.getElementById("u_name");
+            var u_id = document.getElementById("u_id");
+            var u_pw = document.getElementById("u_pw");
+            var u_repw = document.getElementById("u_repw");
+            var u_birth = document.getElementById("u_birth");
+            var gender1 = document.getElementById("gender1");
+            var gender2 = document.getElementById("gender2");
+            var email = document.getElementById("email");
+            var email1 = document.getElementById("email1");
+            var email2 = document.getElementById("email2");
+
+            if (!empty_validate(u_id, "아이디를 입력하세요.")) return;
+            if (!reg_validate(reg_id, u_id, "아이디는 영문, 숫자만 길이는 6-16 사용가능")) return;
+
+            if (!empty_validate(u_pw, "비밀번호를 입력하세요.")) return;
+            if (!reg_validate(reg_pw, u_pw, "비밀번호는 영문소문자, 숫자, 특수문자를 혼합 사용가능")) return;
+
+            if (u_pw.value !== u_repw.value) {
+                alert("비밀번호 확인이 틀립니다.");
+                u_repw.value = "";
+                u_repw.focus();
+                return;
+            }
+            if (!empty_validate(u_name, "이름을 입력하세요.")) return;
+            if (!reg_validate(reg_name, u_name, "이름은 한글만 사용가능")) return;
+
+            if (!empty_validate(u_birth, "생년월일 선택하세요")) return;
+
+            if (!gender1.checked && !gender2.checked) {
+                alert("성별을 선택하세요");
+                return;
+            }
+
+
+            if (!empty_validate(email1, "메일 입력요망")) return;
+            if (!empty_validate(email2, "메일 입력요망")) return;
+            if (!reg_validate(reg_email, email, "이메일 형식이 다릅니다.")) return;
+
+            alert("유효성 검사 성공");
+        }
+
+        function empty_validate(target, msg) {
+            if (target.value.trim() === "") {
+                alert(msg);
+                target.focus();
+                return false;
+            }
+            return true;
+        }
+
+        function reg_validate(regExp, target, msg) {
+            if (!regExp.test(target.value)) {
+                alert(msg);
+                target.value = "";
+                target.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <table>
+            <tr>
+                <th>아이디</th>
+                <td>
+                    <input type="text" id="u_id" name="u_id">
+                    <input type="button" value="아이디중복확인">
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" id="u_pw" name="u_pw">
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인</th>
+                <td>
+                    <input type="password" id="u_repw">
+                </td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td>
+                    <input type="text" id="u_name" name="u_name">
+                </td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td>
+                    <input type="text" id="email1">@<input type="text" id="email2">
+                </td>
+            </tr>
+            <tr>
+                <th>성별</th>
+                <td>
+                    <input type="radio" name="gender" id="gender1" value="남">남자
+                    <input type="radio" name="gender" id="gender2" value="여">여자
+                </td>
+            </tr>
+            <tr>
+                <th>생년월일</th>
+                <td>
+                    <input type="date" id="u_birth">
+                </td>
+            </tr>
+        </table>
+        <input type="button" value="전송" onclick="sendit();">
+    </form>
+</body>
+</html>
