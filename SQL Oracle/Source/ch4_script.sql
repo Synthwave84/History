@@ -121,6 +121,9 @@ CONCAT 함수는 ‘||’ 연산자처럼 매개변수로 들어오는 두 문자를 붙여 반환한다.
 SELECT CONCAT('I Have', ' A Dream'), 'I Have' || ' A Dream'
   FROM DUAL;
   
+SELECT CONCAT (EMP_NAME, EMAIL) AS EMPINFO, 
+EMPLOYEE_ID || EMP_NAME || EMAIL  AS EMPINFO2 
+FROM EMPLOYEES;
 /*
 SUBSTR는 문자 함수 중 가장 많이 사용되는 함수로, 
 잘라올 대사 문자열인 char의 pos번째 문자부터 len길이만큼 잘라낸 결과를 반환하는 함수다. 
@@ -209,7 +212,8 @@ SELECT REPLACE('나는 너를 모르는데 너는 나를 알겠는가?', '나는', '너를') AS rep,
     
 /*
 ⑥ INSTR(str, substr, pos, occur), LENGTH(chr), LENGTHB(chr)
-INSTR 함수는 str 문자열에서 substr과 일치하는 위치를 반환하는데, pos는 시작 위치로 디폴트 값은 1, occur은 몇 번째 일치하는지를 명시하며 디폴트 값은 1이다.
+INSTR 함수는 str 문자열에서 substr과 일치하는 위치를 반환하는데, pos는 시작 위치로 디폴트 값은 1, 
+occur은 몇 번째 일치하는지를 명시하며 디폴트 값은 1이다.
 */
     
 SELECT INSTR('내가 만약 외로울 때면, 내가 만약 괴로울 때면, 내가 만약 즐거울 때면', '만약') AS INSTR1, 
@@ -227,6 +231,7 @@ SELECT employee_id, TRANSLATE(EMP_NAME,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','thehillsare
   
     
 --날짜 함수
+-- 날짜 데이터타입 : DATE, TIMESTAP
 
 -- SYSDATE : 초까지 반환, SYSTIMESTAMP : 밀리세컨드까지 반환
 SELECT SYSDATE, SYSTIMESTAMP
@@ -256,7 +261,8 @@ SELECT LAST_DAY(SYSDATE)
   -- 사원테이블에서 근속년수를 조회하라.
   -- RETIRE_DATE컬럼의 값이 NULL 일 경우는 반환값이 NULL 이된다.
   -- 함수안에 매개변수가 함수가 사용될 수도 있다.
-  SELECT HIRE_DATE, RETIRE_DATE, MONTHS_BETWEEN(RETIRE_DATE, HIRE_DATE), TRUNC(MONTHS_BETWEEN(SYSDATE, HIRE_DATE))
+  SELECT HIRE_DATE, RETIRE_DATE, MONTHS_BETWEEN(RETIRE_DATE, HIRE_DATE), 
+  TRUNC(MONTHS_BETWEEN(SYSDATE, HIRE_DATE))
   FROM EMPLOYEES;
 
 /*
@@ -270,8 +276,11 @@ ROUND나 TRUNC나 숫자 함수에서 배웠던 것처럼 반올림과 잘라내기 기능을 하는데 매개
 */
 -- 2번째 매개변수의 값은 반올림의 효과를 보는 용도.
 -- ROUND함수 : 일단위가 16일 이상 일때 반올림이 된다.
-SELECT SYSDATE, ROUND(SYSDATE, 'month'), ROUND(TO_DATE('2023-03-15'), 'month'), ROUND(TO_DATE('2023-03-16'), 'month'), TRUNC(SYSDATE, 'month')
+SELECT SYSDATE, ROUND(SYSDATE, 'month'), ROUND(TO_DATE('2023-03-15'), 'month'), 
+ROUND(TO_DATE('2023-03-16'), 'month'), 
+TRUNC(SYSDATE, 'month')
   FROM DUAL;   
+  
 /*
 ⑥ NEXT_DAY (date, char)
 NEXT_DAY는 date를 char에 명시한 날짜로 다음 주 주중 일자를 반환한다.
