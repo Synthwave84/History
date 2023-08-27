@@ -350,6 +350,7 @@ SELECT TO_DATE('20140101 13:44:50', 'YYYY-MM-DD HH24:MI:SS')
   FROM DUAL;  
   
 -- NULL 관련함수
+-- 컬럼에 데이터 존재 유무 확인할 때 사용
 -- WHERE 컬럼명 IS NULL
 -- WHERE 컬럼명 IS NOT NULL
 
@@ -361,10 +362,11 @@ NVL 함수는 expr1이 NULL일 때 expr2를 반환한다.
 -- manager_id컬럼이 NULL이면, 2번째 매개변수의 employee_id컬럼의 값이 반환,
 -- manager_id컬럼이 NOT NULL이면, manager_id컬럼 값이 반환된다.
 
--- 
-SELECT NVL(manager_id, employee_id)
+--
+
+SELECT EMP_NAME, NVL(manager_id, employee_id)
   FROM employees
- WHERE manager_id IS NULL;  
+ WHERE manager_id IS  NULL;  
  
  SELECT manager_id, NVL(manager_id, employee_id) 
  FROM employees  WHERE manager_id IS NULL;
@@ -373,6 +375,20 @@ SELECT NVL(manager_id, employee_id)
  -- NVL2는 NVL을 확장한 함수로 expr1이 NULL이 아니면 expr2를, NULL이면 expr3를 반환하는 함수다.
  -- NVL2(expr1, expr2, expr2)
  -- 커미션이 not null이면, 급여에 커미션 적용되고, null이면 급여만 지급되게 조회.
+ 
+SELECT EMP_NAME, SALARY, COMMISSION_PCT FROM EMPLOYEES;
+SELECT * FROM EMPLOYEES;
+
+-- NVL2 = IF NULL(EX1) =>EXP3 IF NOT NULL = EXP 2 대충 이래 이해하면 될거같다.
+-- 현재 SALARY(EXP1) , + SALARY에 커미션을 곱한 값(EXP2) , SALARY( EXP3) 
+
+SELECT  EMPLOYEE_ID, SALARY, NVL2(COMMISSION_PCT, 
+        SALARY + (SALARY * COMMISSION_PCT), SALARY) 
+        AS REAL_SALARY
+FROM EMPLOYEES;
+
+
+
 SELECT employee_id, salary,
        NVL2(commission_pct, salary + (salary * commission_pct), salary) AS salary2
   FROM employees;
@@ -382,14 +398,19 @@ SELECT employee_id, salary,
 FROM   employees;      
   
 /*
-② COALESCE (expr1, expr2, …)
+② COALESCE (expr1, expr2, …) : 매개변수의 개수가 제한이 없다.
 COALESCE 함수는 매개변수로 들어오는 표현식에서 NULL이 아닌 첫 번째 표현식을 반환하는 함수다.
 매개변수를 NOT NULL 이 나올때 까지 순서대로 체크 후, NOT NULL이 나오는 매개변수의 값을 반환.
 */
 
 -- NULL 이 포함된 연산식의 결과는 NULL이된다.(중요)
+
 SELECT NULL + 10 FROM DUAL;
 SELECT NULL * 10 FROM DUAL;
+
+SELECT  EMPLOYEE_ID, SALARY - COMMISSION_PCT
+FROM EMPLOYEES;
+
 
 SELECT 5 * NULL + 10 FROM DUAL;
 
@@ -412,13 +433,22 @@ LNNVL은 매개변수로 들어오는 조건식의 결과가 FALSE 나 UNKNOWN 이라면 TRUE 반환. T
 */
     
 -- commission_pct 컬럼에 NULL 데이타는 포함되지 않는다.(중요)
+-- 즉 커미션이 없는 데이터는 출력되지 않았다.
+-- 커미션 자체가 없는 경우는 조회가 되지 않는다.
 SELECT employee_id, commission_pct
   FROM employees
  WHERE commission_pct < 0.2;    -- 11 건
  
 -- 아래 1)NVL함수이용 2)LNNVEL함수이용 결과는 동일하다.(NULL 데이타를 포함한 부분) 
  -- commission_pct 컬럼에 NULL 데이타는 0 으로 처리하고, 0.2보다는 작은 조건에 포함한다.
+ -- 즉 COMISSION_PCT 가 NULL인걸 0 으로 치환하여 조회가 가능하게 하는 것.
 -- 1)
+-- COUNT 함수 = 이 조건에 해당되는 데이터가 몇개인가? 
+-- 하단으로 대체 할 경우 몇개인지의 여부만 가르쳐준다.
+SELECT employee_id, commission_pct
+  FROM employees
+ WHERE NVL(commission_pct, 0) < 0.2;
+
 SELECT COUNT(*)
   FROM employees
  WHERE NVL(commission_pct, 0) < 0.2;    -- 83건 (72개의 NULL인 데이타 포함)
@@ -441,7 +471,16 @@ SELECT NULLIF(NULL, NULL) FROM DUAL; -- 에러발생. 둘다 NULL 일 경우
 SELECT NULLIF(1, 1) FROM DUAL; -- 2개의 매개변수 값이 같으면 NULL
 SELECT NULLIF(1, 2) FROM DUAL;  -- 2개의 매개변수 값이 같지않으면, 첫번째 매개변수 값이 반환된다.  1
 
---job_history 테이블에서 start_date와 end_date의 연도만 추출해 두 연도가 같으면(당해년도) NULL을, 같지 않으면 종료년도를 출력하는 쿼리다. 
+
+
+
+--job_history 테이블에서 start_date와 end_date의 연도만 추출해  
+--두 연도가 같으면(당해년도) NULL을, 같지 않으면 종료년도를 출력하는 쿼리다. 
+
+SELECT * FROM JOB_HISTORY;
+
+SELECT START_DATE, END_DATE FROM JOB_HISTORY;
+
 SELECT employee_id,
        TO_CHAR(start_date, 'YYYY') start_year,
        TO_CHAR(end_date, 'YYYY') end_year,
