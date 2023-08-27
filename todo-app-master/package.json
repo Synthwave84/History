@@ -1,0 +1,11 @@
+{
+  "name": "todo-app-master",
+  "version": "1.0.0",
+  "description": "예제와 동일한 사이트를 만들기",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
