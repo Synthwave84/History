@@ -238,7 +238,7 @@ function App() {
 
 
       {/* <Nav /> */}
-      <Nsdafsdagav topics={topics} onChange={(id) => {
+      <Nav topics={topics} onChange={(id) => {
         // alert(id);
         // mode = "Read"; = 일기전용 변수로 사용해야함
         setMode("Read"); // setter함수로 값 변경 목적으로 사용 할 것.
