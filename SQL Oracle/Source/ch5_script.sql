@@ -17,17 +17,25 @@ SELECT COUNT(*)
 
 SELECT COUNT(*) FROM employees;
 
--- 매개변수로 컬럼명을 사용가능하다. 컬럼명은 PRIMARK KEY(UNIQUE + NOT NULL) 해당하는 것을 권장
+-- 매개변수로 컬럼명을 사용가능하다. 컬럼명은 PRIMARY KEY(UNIQUE + NOT NULL) 해당하는 것을 권장
 SELECT COUNT(employee_id)   -- 107건
   FROM employees;
  
  -- department_id컬럼은 NULL 허용, 실제 NULL 인 데이터행이 존재한다. 
 SELECT COUNT(department_id)
   FROM employees;     --  106건(NULL 데이타 1개는 제외)
+  
+-- NULL인 데이터를 출력
+SELECT *
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID IS NULL;
 
 --  DISTINCT department_id : 컬럼의 중복된 데이타를 중복데이타를 제거해서 단 1개의 데이타로 관리. 
 SELECT COUNT(DISTINCT department_id)
-  FROM employees;    -- 11건
+  FROM employees;    -- 11건 = 부서의 갯수
+  
+SELECT DISTINCT DEPARTMENT_ID FROM EMPLOYEES
+ORDER BY 1 ASC;
 
 -- 11건의 부서코드를 조회
 SELECT DISTINCT department_id
@@ -58,7 +66,8 @@ SELECT DISTINCT COL1, COL2, COL3 FROM TEST_06;
 
 /*
 ② SUM(expr)
-SUM은 expr의 전체 합계를 반환하는 함수로 매개변수 expr에는 숫자형만 올 수 있다. 사원 테이블에서 급여가 숫자형이므로 전 사원의 급여 총액을 구해 보자.
+SUM은 expr의 전체 합계를 반환하는 함수로 매개변수 expr에는 숫자형만 올 수 있다. 
+사원 테이블에서 급여가 숫자형이므로 전 사원의 급여 총액을 구해 보자.
 */
 
 -- 사원의 전체 급여총액을 조회하자.  
@@ -78,7 +87,7 @@ SELECT AVG(salary), AVG(DISTINCT salary)
 
 /*
 ④ MIN(expr), MAX(expr)
-MIN과 MAX는 각각 최솟값과 최댓값을 반환한다.
+MIN과 MAX는 각각 최솟값과 최댓값을 반환한다. (컬럼명) 수직
 */
 -- 급여가 가장 낮은금액과 높은금액을 조회하라.
 SELECT MIN(salary), MAX( salary)
@@ -101,19 +110,49 @@ SELECT VARIANCE(salary), STDDEV(salary)
  */
  
 -- 질의? 각 부서별 사원들의 급여 총액을 조회하라.
+SELECT DEPARTMENT_ID, SALARY 
+FROM EMPLOYEES
+ORDER BY DEPARTMENT_ID ASC;
+
+-- GROUP BY 명령어를 사용하면, SELECT 절에 사용컬럼에 제한이 있다.(중요)
+-- 즉 구조적으로 하단에 EMP_NAME 을 넣으면 GROUP BY 로 명령어 축약을 해야하는데,
+-- EMP_NAME은 107건이 되어 구조적을 ㅗ부ㅜㄹ가능하다.
+-- GROUP_BY로 지정된 컬럼명, 집계함수를 사용한 컬럼명만 SELECT 절에 사용이 가능하다.
+
+SELECT DEPARTMENT_ID , SUM(SALARY)
+FROM EMPLOYEES
+GROUP BY DEPARTMENT_ID
+ORDER BY DEPARTMENT_ID ASC;
+
+
+
+
+
+
+
 SELECT department_id, SUM(salary)
   FROM employees    -- 107건
  GROUP BY department_id -- 부서코드가 같은 데이타들을 그룹화 작업을 하고, 대상데이터
  ORDER BY department_id;  
- 
+
+
+/*
 CREATE TABLE KOR_LOAN_STATUS (
            PERIOD        VARCHAR2(6),
            REGION        VARCHAR2(10),
            GUBUN         VARCHAR2(30),
            LOAN_JAN_AMT  NUMBER) ; 
+*/
+
 
 SELECT *
 FROM kor_loan_status;
+
+SELECT REGION,SUM(LOAN_JAN_AMT) 
+FROM KOR_LOAN_STATUS
+WHERE PERIOD LIKE '2013%'
+GROUP BY REGION;
+
 
 -- 질의? 2013년 데이타를 가지고, 지역별 가계대출 총 잔액을 구해 보자.
 -- 2013년 추출(WHERE),  지역별(GROUP BY), SUM(LOAN_JAN_AMT)
