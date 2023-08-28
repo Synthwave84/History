@@ -32,6 +32,7 @@ public static void main(String[] args) {
 	 	System.out.println();
 	 }
 	System.out.println("종료");
+	System.out.println(scanner);
 	}
 
 

@@ -5,7 +5,7 @@ public class ArthmetricOperatorExample {
 		// 산술연산자  +,- *, / , %
 		byte v1 = 10;
 		byte v2 = 4;
-		byte v3 = 5;
+//		byte v3 = 5;
 		long v4 = 100L;
 		
 		int result1 = v1+ v2;

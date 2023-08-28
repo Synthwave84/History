@@ -8,6 +8,8 @@ public class VariableScopeExample {
 		int v1=15;
 		if(v1>10) {
 			int v2 = v1- 10; // 지역변수
+			
+			System.out.println(v2);
 		}
 //		int v3= v1 + v2 + 5;  v2 변수는 사용할 수가 없다. 
 		
