@@ -100,7 +100,36 @@ https://kghworks.tistory.com/m/137
 
 
 자바 프로그램 실행
+
+> JHello.java -> javac 컴파일러 -> Hello.class(바이트코드) -> java.exe(실행)
+> JVM 구동 -> Hello.class 기계어 변환 -> JVM
+> JVM 운영체제로부터 할당 메모리를 관리
+
 - 기억장소의 성격
-  1) 메소드 영역..
-  2_ 스택 영역
+  1. 메소드 영역..
+  2. 스택 영역
   3. 힙 영역
+
+
+  메소드영역 : Hello.class 바이트코드를 읽어들인 정보
+  스택 영역 : 기본 데이터 타입 사용
+  힙 영역 : 참조타입 사용.
+
+기본(primitive) 타입 데이터는 앞 글자가 소문자다.
+boolean, char, int, long etc....
+힙영역을 사용하는 참조타입은 대문자로 시작한다.
+String etc....
+
+char vs String 
+
+char : 기본데이터타입 (2바이트 유니코드 0~65535)
+"A" - 올바른 문법
+"AB" - 잘못된 문법
+
+String : 클래스, 참조타입
+"A"
+
+
+
+
+
