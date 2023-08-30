@@ -15,7 +15,7 @@ public class MultiDimensionalArrayEx01 {
 		arr[1]
 		arr[2]
 		
-		
+		for문 1번 사용
 		*/
 		
 //		2차원 배열
@@ -47,6 +47,20 @@ public class MultiDimensionalArrayEx01 {
 		}
 		double class2Avg = (double) class2Sum/ scores[0].length;
 		System.out.println("두번쨰 반의 평균 점수 : " + class2Avg);
+		
+		int totalStudent = 0;
+		int totalSum = 0;
+		
+		for (int i=0; i<scores.length; i++) {
+			totalStudent +=scores[i].length;
+			for(int k=0; k<scores[i].length; k++) {
+				totalSum += scores[i][k];
+				
+			
+			}
+			double totalAvg = (double) totalSum / totalStudent;
+			System.out.println("전체 학생의 평균 점수: " + totalAvg);
+		}
 		
 	}
 }

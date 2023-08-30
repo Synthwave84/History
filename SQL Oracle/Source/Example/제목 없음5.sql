@@ -107,29 +107,48 @@ FROM EMP;
 
 --32) emp테이블에서 월급의 4의 배수(mod(sal,4)=0)인 사원의 이름과 월급을 출력하시오.(세자리 단위 쉼표 표시)
 
-
+SELECT  ENAME, TO_CHAR(SAL, '999,999,999') 
+FROM    EMP
+WHERE   MOD(SAL,4)=0;
 
 
 -- 33) 각 사원의 이름을 표시하고 근무 달 수(입사일로부터 현재까지의 달수)를 계산하여 열 레이블을 MONTHS_WORKED로 지정하시오. 
 -- 결과는 정수로 반올림하여 표시하고 근무달 수를 기준으로 오름차순으로 정렬하시오.
 -- 적고싶은 날짜가 있을 시 TO_DATE('00000000','YYYYMMDD') 사용
 
-
+SELECT  ENAME, HIREDATE,ROUND (MONTHS_BETWEEN (SYSDATE,HIREDATE)) 
+AS      MONTHS_WORKED
+FROM    EMP
+ORDER BY MONTHS_WORKED ASC;
 
 
 -- 34)emp테이블에서 이름, 업무, 근무연차를 출력하시오.
 
-
+SELECT  ENAME, JOB, ROUND(MONTHS_BETWEEN (SYSDATE,HIREDATE) / 12) 
+AS      YEARS
+FROM    EMP
+ORDER BY MONTHS_WORKED ASC;
 
 
 -- 35)emp테이블에서 사원이름, 월급, 월급과 커미션을 더한 값을 컬럼명 실급여라고 해서 출력.
 -- 단, NULL값은 나타나지 않게 작성하시오. NVL
+SELECT ENAME, SAL, SAL + NVL(COMM, 0) AS REALSAL
+FROM EMP
+WHERE COMM IS NOT NULL AND COMM !=0;
+
+SELECT ENAME, SAL, NVL(COMM+SAL, SAL) AS REALSAL
+FROM EMP
+WHERE (COMM+SAL) IS NOT NULL AND COMM !=0;
 
 
 
 
--- 36)월급과 커미션을 합친 금액이 2,000이상인 급여를 받는 사원의 이름,업무,월급,커미션,고용날짜를 출력하시오. 단, 고용날짜는 1980-12-17 형태로 출력하시오.
 
+-- 36)월급과 커미션을 합친 금액이 2,000이상인 급여를 받는 사원의 이름,업무,월급,커미션,고용날짜를 
+-- 출력하시오. 단, 고용날짜는 1980-12-17 형태로 출력하시오.
+SELECT ENAME, SAL, SAL + NVL(COMM, 0), TO_CHAR(HIREDATE, 'YYYY-MM-DD') 
+FROM EMP
+WHERE SAL+ NVL(COMM,0) >= 2000;
 
 
 
@@ -137,55 +156,85 @@ FROM EMP;
 -- 열 레이블을 각각 maximum,minimum,sum 및 average로 지정하고 
 -- 결과를 정수로 반올림하고 세자리 단위로 ,를 명시하시오.
 
-
-
+SELECT  TO_CHAR(MAX(SAL),'999,999') MAXIMUM, 
+        TO_CHAR(MIN(SAL),'999,999') MINIMUM, 
+        TO_CHAR(SUM(SAL),'999,999') SUM, 
+        TO_CHAR(ROUND(AVG(SAL),0),'999,999') AVERAGE
+FROM    EMP;
 
 -- 39) 업무가 동일한 사원 수를 표시하는 질의를 작성하시오.
-
+SELECT COUNT(*), JOB
+FROM EMP
+GROUP BY JOB;
 
 
 
 -- 40) emp테이블에서 30번부서의 사원수를 구하시오.
 
-
+SELECT COUNT(*)
+FROM EMP
+WHERE DEPTNO = 30;
 
 
 -- 41) emp테이블에서 업무별 최고 월급을 구하고 업무,최고 월급을 출력하시오.
 
-
+SELECT MAX(SAL), JOB
+FROM EMP
+GROUP BY DEPTNO,JOB;
 
 
 -- 42) emp테이블에서 20번부서의 급여 합계를 구하고 급여 합계 금액을 출력하시오.
 
-
+SELECT SUM(SAL)
+FROM EMP
+WHERE DEPTNO=20;
 
 
 -- 43) emp테이블에서 부서별로 지급되는 총월급에서 금액이 7,000이상인 부서번호, 총월급을 출력하시오.
 
-
+SELECT DEPTNO, SUM(SAL)
+FROM EMP
+GROUP BY DEPTNO
+HAVING SUM(SAL) >=7000;
 
  
 -- 44) emp테이블에서 업무별로 사번이 제일 늦은 사람을 구하고 그 결과 내에서 사번이 79로 시작하는 결과만 보여주시오.
 
-
-
+SELECT MAX(EMPNO),JOB
+FROM EMP
+GROUP BY JOB
+HAVING MAX(EMPNO) LIKE '79%';
 
 -- 45) emp테이블에서 업무별 총월급을 출력하는데 업무가 'MANAGER'인 사원들은 제외하고 
 -- 총월급이 5,000보다 큰 업무와 총월급만 출력하시오.
 
-
+SELECT SUM(SAL), JOB
+FROM EMP
+WHERE JOB!='MANAGER'
+GROUP BY JOB
+HAVING SUM(SAL)>5000;
 
 
 -- 46)emp테이블에서 업무별로 사원수가 4명 이상인 업무와 인원수를 출력하시오.
 
-
+SELECT JOB, COUNT(*)
+FROM EMP
+GROUP BY JOB
+HAVING COUNT(JOB) >=4;
 
 
 -- 47)emp테이블에서 사원수가 5명이 넘는 부서의 부서번호와 사원수를 구하시오.
 
-
+SELECT COUNT(*), DEPTNO
+FROM EMP
+GROUP BY DEPTNO
+HAVING COUNT(DEPTNO) > 5;
 
 
 -- 48)emp테이블에서 부서별 급여평균을 구할 때 소수점 3자리에서 반올림해서 2자리까지 구하고 
 -- 부서번호, 급여평균을 출력하시오.
+
+SELECT ROUND(AVG(SAL),2), DEPTNO
+FROM EMP
+GROUP BY DEPTNO;
 
