@@ -6,6 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts -->
     <title>To Do List</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+header, 
+form {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+.fa-plus-circle {
+    margin-top: 0.3rem;
+    margin-left: -8px;
+}
+
+
+
+.todo-list {
+    min-width: 30%;
+    list-style: none;
+}
+
+
+
+
+
+
+
+
+.todo-item {
+    padding: 0rem 0.5rem;
+}
+
+.fa-trash, 
+.fa-check-circle {
+    pointer-events: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.slide {
+    transform: translateX(10rem);
+    opacity: 0;
+}
+
+
+
+
+    </style>
+    <script>
+        
+    </script>
 </head>
 
 <body>
@@ -16,8 +85,7 @@
     <form action="">
         <input type="text" class="todo-input">
         <button class="todo-button" type="submit">
-            <i class="fas fa-plus-circle fa-lg"></i>
-        </button>
+            버튼</button>
         <div class="select">
             <select name="todos" class="filter-todo">
                 <option value="all">All</option>
@@ -33,9 +101,9 @@
 
     <script >
         const todoInput = document.querySelector(".todo-input");
-const todoButton = document.querySelector(".todo-button");
-const todoList = document.querySelector(".todo-list");
-const filterOption = document.querySelector(".filter-todo");
+        const todoButton = document.querySelector(".todo-button");
+        const todoList = document.querySelector(".todo-list");
+        const filterOption = document.querySelector(".filter-todo");
 
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoButton.addEventListener("click", addTodo);
@@ -54,12 +122,10 @@ function addTodo(event) {
     saveLocalTodos(todoInput.value);
     
     const completedButton = document.createElement("button");
-    completedButton.innerHTML = '<i class="fas fa-check-circle"></li>';
     completedButton.classList.add("complete-btn");
     todoDiv.appendChild(completedButton);
 
     const trashButton = document.createElement("button");
-    trashButton.innerHTML = '<i class="fas fa-trash"></li>';
     trashButton.classList.add("trash-btn");
     todoDiv.appendChild(trashButton);
     
