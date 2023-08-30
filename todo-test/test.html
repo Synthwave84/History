@@ -5,9 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>React-clone</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Tester/style.css" />
     <script>
-      const todoInput = document.querySelector ("new-todo")
 
     </script>
   </head>
@@ -40,6 +39,49 @@
         </div>
       </main>
     </div>
-    <script type="module" src="./src/index.js"></script>
+    <script>
+      const addButton = document.getElementById('addButton');
+      const newTodoInput = document.getElementById('newTodo');
+      const todoList = document.getElementById('todo-list');
+      const todos = []; // To-Do 항목을 저장할 배열
+  
+      function addTodo() {
+        const todoText = newTodoInput.value.trim();
+  
+        if (todoText !== '') {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = 
+          `
+            <li class="todo-list">${todoText}</li>
+            <button class="destroy">삭제</button>
+          `;
+  
+          const deleteButton = listItem.querySelector('.destroy');
+          deleteButton.addEventListener('click', () => {
+            listItem.remove();
+            // 배열에서 해당 항목 제거
+            const index = todos.indexOf(todoText);
+            if (index > -1) {
+              todos.splice(index, 1);
+            }
+          });
+  
+          todoList.appendChild(listItem);
+          newTodoInput.value = '';
+  
+          // 배열에 추가
+          todos.push(todoText);
+        }
+      }
+  
+      addButton.addEventListener('click', addTodo);
+  
+      newTodoInput.addEventListener('keyup', event => {
+        if (event.key === 'Enter') {
+          addTodo();
+        }
+      });
+      
+    </script>
   </body>
 </html>

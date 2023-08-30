@@ -159,7 +159,7 @@ main {
 }
 
 .todo-list li.editing .view {
-    display: none;
+    display: block;
 }
 
 .todo-list li .toggle {
@@ -231,7 +231,7 @@ main {
 }
 
 .todo-list li .edit {
-    display: none;
+    display: block;
 }
 
 .todo-list li.editing:last-child {

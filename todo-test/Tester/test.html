@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>To-Do List</title>
+  <style>
+    /* ... CSS 스타일링 ... */
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <div class="todoapp">
+    <input type="text" id="new-Todo-title" class="new-todo" placeholder="할 일을 입력하세요">
+    <main>
+      <input class="toggle-all" type="checkbox">
+      <button id="addButton" class="hidden">추가</button>
+      <ul id="todo-list"></ul>
+      <button id="showCompletedButton">완료된 항목 보기</button>
+    </div>
+    </main>
+  </div>
+  <script>
+    const addButton = document.getElementById('addButton');
+    const newTodoInput = document.getElementById('new-Todo-title');
+    const todoList = document.getElementById('todo-list');
+    const todos = [];
+
+    function addTodo() {
+      const todoText = newTodoInput.value.trim();
+      if (todoText == "") {
+        alert("내용을 입력하세요.")
+        return;
+      }
+      if (todoText !== '') {
+        const listItem = document.createElement('div'); // <li> 요소 생성
+        listItem.innerHTML = `
+      
+        <input class="toggle" type="checkbox">
+        <label>${todoText}</label>
+        <input type="button" class="destroy">
+    
+        `;
+
+        const todoToggle = listItem.querySelector('.toggle'); // 체크박스 요소
+        const todoComplete = listItem.querySelector(".completed");
+        const deleteButton = listItem.querySelector('.destroy');
+        const showCompletedButton = document.getElementById('showCompletedButton'); // 완료된 항목 보기 버튼
+
+
+        
+        todoToggle.addEventListener('change', () => {
+          if (todoToggle.checked) {
+            listItem.classList.add('completed'); // 완료된 항목에 클래스 추가
+          } else {
+            listItem.classList.add('view'); // 완료 해제되면 클래스 제거
+          }
+        });
+
+        function handleCompleted(item, completed) {
+        const viewDivs = item.querySelectorAll('.view');
+        viewDivs.forEach(viewDiv => {
+    if (completed) {
+      viewDiv.style.display = 'block'; // 내용 숨기기
+    } else {
+      viewDiv.style.display = 'none'; // 내용 보이기
+    }
+  });
+}
+
+// ... (나머지 코드)
+
+todoToggle.addEventListener('change', () => {
+  if (todoToggle.checked) {
+    listItem.classList.add('completed'); // 완료된 항목에 클래스 추가
+  } else {
+    listItem.classList.remove('completed'); // 완료 해제되면 클래스 제거
+  }
+
+  handleCompleted(listItem, todoToggle.checked); // 내용 처리 함수 호출
+});
+
+        deleteButton.addEventListener('click', () => {
+          alert("삭제하시겠습니까?")
+          listItem.remove();
+          // 배열에서 해당 항목 제거
+          const index = todos.indexOf(todoText);
+          if (index > -1) {
+            todos.splice(index, 1);
+          }
+        });
+
+        todoList.appendChild(listItem);
+        newTodoInput.value = '';
+
+        // 배열에 추가
+        todos.push({ text: todoText, completed: false });
+      }
+    }
+    
+    addButton.addEventListener('click', addTodo);
+
+    newTodoInput.addEventListener('keyup', event => {
+      if (event.key === 'Enter') {
+        addTodo();
+      }
+    });
+    showCompletedButton.addEventListener('click', () => {
+      // 모든 항목 숨기기
+      const allItems = document.querySelectorAll('.editing');
+      allItems.forEach(item => {
+        item.style.display = 'none';
+      });
+
+      // 완료된 항목만 보이도록 처리
+      const completedItems = document.querySelectorAll('.completed');
+      completedItems.forEach(item => {
+        item.style.display = 'block';
+      });
+    });
+    
+
+  </script>
+</body>
+</html>
