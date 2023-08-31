@@ -129,7 +129,76 @@ char : 기본데이터타입 (2바이트 유니코드 0~65535)
 String : 클래스, 참조타입
 "A"
 
+객체지향  ( 클래스 )
+필드 : 명사적
+메소드 : 동사적 
 
+예를들면 인간 객체가 가질 수 있는 공통된 속성
+팔다리갯수 이름 나이 성별등 
+즉 애초에 객체 자체에 할당된 것. 
 
+<필드>
+
+반대로 인간객체가 하는 행위
+움직이다, 먹는다, 웃는다, 잔다 등 <메소드>
+
+example
+
+쇼핑몰 
+
+객체 
+
+회원 : Member
+- 속성과 동작으로 나뉜다
+  1. 속성 : 아이디, 비밀번호, 이름, 주소, 연락처 등 (정보)
+  2. 동작 : 회원가입, 회원수정, 회원삭제, 상품 장바구니에 담기, 상품 주문 (행위)
+
+- 필드(변수)와 메소드
+  String userid;
+  String passwd;
+
+- 메소드
+  void join() {}
+  void modify() {}
+
+  ex>
+  // 객체 (class)
+  public class Members {
+    필드 : 아이디, 비밀번호 etc
+    메소드 : 회원가입, 회원수정 ~~~
+  }
+
+- 클래스 정의,설계,디자인
+  public class Member {
+    String userId;
+    String passwd;
+
+    void join() {}
+    void modify() {}
+  }
+
+- 데이터베이스와 결합한 예제
+  오라클 SCOTT 의 EMP 테이블 참조.
+  public class Emp {
+    int empno;
+    String ename;
+    String job;
+    int mgr'
+    LocalDate hiredate;
+    int sal
+    int comm
+    int deptno
+  // 사원들이 회사에서 하는 업무 기능
+  // 메소드 정의를 하거나, 아예 새로 만들 수 있다
+  
+  }
+  public class EmpWork {
+  // 사원들이 회사에서 하는 업무기능
+  // 메소드 정의
+
+  }
+
+상품 : Product
+주문 : Order  
 
 
