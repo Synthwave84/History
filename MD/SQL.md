@@ -130,3 +130,41 @@ TABLE SPACE
 
 
 계정 생성 및 권한 작업.
+
+
+Rollup expr1 , expr,2, expr3
+
+- expr1, expr2, expr3
+- expr1, expr2,
+- expr1
+- 전체
+
+CUBE expr1, expr2, expr3 = 2^3 = 8개
+- expr1, expr2, expr3
+- expr1, expr2
+- expr1, expr3
+- expr2, expr3
+- expr1
+- expr2
+- expr3
+- 전체
+
+
+Cube expr1, expr2, expr3, expr4
+
+- expr1, 2, 3, 4
+- 1 2 3
+- 1 2 4
+- 1 3 4
+-  2 3 4
+- 1 2 
+- 1 3
+- 1 4
+- 2 3
+- 2 4
+- 3 4
+- 1
+- 2
+- 3
+- 4
+- 전체
