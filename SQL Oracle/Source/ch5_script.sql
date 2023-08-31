@@ -276,6 +276,14 @@ SELECT period, region, SUM(loan_jan_amt) totl_jan
 ROLLUP과 CUBE는 GROUP BY절에서 사용되어 그룹별 데이타, 소계및 전체합계도 추가로 보여 주는 역할을 한다.
 */
 
+SELECT
+    *
+FROM KOR_LOAN_STATUS;
+
+
+
+
+
 -- GROUP BY절에서 사용되어 그룹별 데이타. [기간+대출종류] 별 대출총액을 조회한다.
 SELECT period, gubun, SUM(loan_jan_amt) totl_jan
   FROM kor_loan_status
@@ -302,11 +310,52 @@ ROLLUP 절에 명시할 수 있는 표현식에는 그룹핑 대상,
 
 -- ROLLUP(컬럼1, 컬럼2) : 컬럼의 개수 2 + 1 = 3
 -- 하위레벨 -> 상위레벨 : 총 3개의 레벨데이타 출력
+-- (컬럼1, 컬럼2 묶기) -> (컬럼1) -> (전체대상)
 
- SELECT period, gubun, SUM(loan_jan_amt) totl_jan
-  FROM kor_loan_status
- WHERE period LIKE '2013%' 
- GROUP BY ROLLUP(period, gubun); 
+
+SELECT period, gubun, SUM(loan_jan_amt) totl_jan
+FROM kor_loan_status
+WHERE period LIKE '2013%' 
+GROUP BY ROLLUP(period, gubun); 
+-- (PERIOD, GUBUN) -> (PERIOD) -> (전쳬합계)
+
+ 
+--201310	기타대출	    676078
+--201310	주택담보대출	411415.9
+--201310		            1087493.9
+--201311	기타대출	    681121.3
+--201311	주택담보대출	414236.9
+--201311		            1095358.2
+--                        2182852.1
+ 
+SELECT      period, GUBUN, SUM(loan_jan_amt)
+FROM        kor_loan_status
+WHERE       period LIKE '2013%' 
+GROUP BY    PERIOD, GUBUN;
+
+-- 3레벨 (하위레벨) : 기간별 대출종류별 묶은 대출 금액
+--201310	주택담보대출	411415.9
+--201311	기타대출	    681121.3
+--201310	기타대출	    676078
+--201311	주택담보대출	414236.9
+ 
+SELECT      period, SUM(loan_jan_amt) totl_jan
+FROM        kor_loan_status
+WHERE       period LIKE '2013%' 
+GROUP BY    PERIOD;
+ 
+-- 2레벨 (중간레벨) : 기간별 대출합산 
+--201310	1087493.9
+--201311	1095358.2
+ 
+ 
+ 
+-- 레벨
+-- PERIOD, GUBUN 그룹화 결과
+-- PERIOD
+-- 전체집계
+ 
+ 
  /*
  201310	기타대출	676078
 201310	주택담보대출	411415.9
