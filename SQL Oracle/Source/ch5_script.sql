@@ -593,6 +593,25 @@ SELECT goods
  WHERE country = '일본';
  
  
+-- EXP_GOODS_KOR
+-- EXP_GOODS_JPN
+
+CREATE TABLE  EXP_GOODS_KOR
+AS
+SELECT * 
+FROM EXP_GOODS_ASIA
+WHERE COUNTRY = '한국';
+
+CREATE TABLE EXP_GOODS_JPN
+AS
+SELECT * 
+FROM EXP_GOODS_ASIA
+WHERE COUNTRY = '일본';
+
+SELECT * FROM EXP_GOODS_JPN
+UNION ALL
+SELECT * FROM EXP_GOODS_KOR;
+
  /*
  정리 : 중복된 데이타가 존재하지 않은 상태에서 UNION , UNION ALL 둘 중 속도는 누가 빠릅니까? UNION ALL(권장)
  */
@@ -603,12 +622,12 @@ INTERSECT는 합집합이 아닌 교집합을 의미한다. 즉 데이터 집합에서 공통된 항목만 추
 */
  -- 한국과 일본이 공통으로 겹치는 수출품목을 조회하라.
 SELECT goods
-  FROM exp_goods_asia
- WHERE country = '한국'
+  FROM EXP_GOODS_KOR
+
 INTERSECT
 SELECT goods
-  FROM exp_goods_asia
- WHERE country = '일본'; 
+  FROM EXP_GOODS_JPN;
+
 
 /*
 MINUS

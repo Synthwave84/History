@@ -7,6 +7,7 @@ public class KoreanExample {
 	
 		
 //		연예계에 입문을 해버림
+		K1.nation = "미국";
 		K1.name = "GD";
 		
 		System.out.println("K1.nation : " + K1.nation);
