@@ -168,3 +168,11 @@ Cube expr1, expr2, expr3, expr4
 - 3
 - 4
 - 전체
+
+
+Group by 1, CUBE(2, 3)
+
+1 2 3
+1 3 
+1 2 
+1
