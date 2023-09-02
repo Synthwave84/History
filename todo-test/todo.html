@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./Tester/style.css" />
+</head>
+<body>
+  <div class="todoapp">
+    <h1>todo</h1>
+    <input type="text" class="create-input" />
+    <button type="button" class="create-btn">작성</button>
+    <button type="button" class="todo-checker">체크</button>
+    <main>
+      <ul class="todo-list"></ul>
+    </main>
+  </div>
+  <script>
+    let todoList = [];
+    let todoDomList = [];
+    const createInput = document.querySelector(".create-input");
+    const createBtn = document.querySelector(".create-btn");
+    const todoChecker = document.querySelector(".todo-checker");
+
+    let id = 1;
+    let createTodoValue = "";
+
+    createInput.addEventListener("change", (event) => {
+      const value = event.target.value;
+      createTodoValue = value;
+    });
+
+    createBtn.addEventListener("click", () => {
+      todoList.push({
+        id: id++,
+        value: createTodoValue
+      });
+      createTodoValue = "";
+      createInput.value = "";
+      renderTodo();
+    })
+
+    todoChecker.addEventListener("click", () => {
+      console.log("id", id);
+      console.log("createTodoValue", createTodoValue);
+      console.log("todoList", todoList);
+    });
+
+    function createTodoDom(todo) {
+      const div = document.createElement("div");
+      const p = document.createElement("p");
+      const button = document.createElement("button");
+      
+      p.innerHTML = todo.value;
+      button.innerHTML = "삭제";
+      button.addEventListener("click", () => {
+        todoList = todoList.filter(({ id }) => id !== todo.id);
+        renderTodo();
+      });
+
+      div.appendChild(p);
+      div.appendChild(button);
+
+      return div;
+    }
+
+
+    function renderTodo() {
+      const todoListDom = document.querySelector(".todo-list");
+      
+      if (todoDomList.length === todoList.length) {
+        todoList.forEach((todo, idx) => {
+          const dom = todoDomList[idx];
+
+          const p = dom.childNodes()[0];
+          const button = dom.childNodes()[1];
+
+          if (p.innerHTML === todo.value) {
+            return;
+          }
+
+          p.innerHTML = todo.value;
+          button.addEventListener("click", () => {
+            todoList = todoList.filter(({ id }) => id !== todo.id);
+            renderTodo();
+          });
+        });
+      } else if (todoDomList.length < todoList.length) {
+        const diffLength = todoList.length - todoDomList.length;
+        const newTodoDomList = todoList.map((todo, idx) => {
+          if (idx < todoDomList.length) {
+            return null;
+          }
+
+          return createTodoDom(todo);
+        }).filter((todo) => todo !== null);
+
+        newTodoDomList.forEach((dom) => {
+          todoDomList.push(dom);
+          todoListDom.appendChild(dom);
+        });
+      } else {
+        const diffLength = todoDomList.length - todoList.length;
+
+        const removedTodoDomList = todoDomList.map((dom, idx) => {
+          if (idx < todoList.length) {
+            return null;
+          }
+
+          return dom;
+        }).filter((dom) => dom !== null);
+
+        removedTodoDomList.forEach((targetDom) => {
+          todoListDom.removeChild(targetDom);
+          todoDomList = todoDomList.filter((dom) => dom !== targetDom);
+        });
+
+        todoList.forEach((todo, idx) => {
+          const dom = todoDomList[idx];
+          console.log(dom);
+          const p = dom.childNodes()[0];
+          const button = dom.childNodes()[1];
+          console.log(button);
+          if (p.innerHTML === todo.value) {
+            return;
+          }
+   
+          p.innerHTML = todo.value;
+          button.addEventListener("click", () => {
+            todoList = todoList.filter(({ id }) => id !== todo.id);
+            renderTodo();
+          });
+        });
+      }
+    }
+  </script>
+</body>
+</html>

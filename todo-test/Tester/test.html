@@ -36,25 +36,34 @@
       if (todoText !== '') {
         const listItem = document.createElement('div'); // <li> 요소 생성
         listItem.innerHTML = `
-      
-        <input class="toggle" type="checkbox">
-        <label>${todoText}</label>
-        <input type="button" class="destroy">
-    
+          <input class="toggle" type="checkbox">
+          <label>${todoText}</label>
+          <input type="button" class="destroy">
         `;
 
+        listItem.classList.add("view");
         const todoToggle = listItem.querySelector('.toggle'); // 체크박스 요소
         const todoComplete = listItem.querySelector(".completed");
         const deleteButton = listItem.querySelector('.destroy');
         const showCompletedButton = document.getElementById('showCompletedButton'); // 완료된 항목 보기 버튼
 
-
         
         todoToggle.addEventListener('change', () => {
           if (todoToggle.checked) {
+            const listItemClass = listItem.className.split(" ");
+            const removedView = listItemClass.filter((className) => className !== "view");
+            removedView.push("completed");
+
+            listItem.className = removedView.join(" ");
+          } else {
+            listItem.classList.remove('completed');
+            listItem.classList.add('view'); // 완료 해제되면 클래스 제거
+            // listItem.className = "view";
+          }
+          if (todoToggle.checked) {
             listItem.classList.add('completed'); // 완료된 항목에 클래스 추가
           } else {
-            listItem.classList.add('view'); // 완료 해제되면 클래스 제거
+            listItem.classList.remove('completed'); // 완료 해제되면 클래스 제거
           }
         });
 
@@ -109,6 +118,7 @@ todoToggle.addEventListener('change', () => {
     showCompletedButton.addEventListener('click', () => {
       // 모든 항목 숨기기
       const allItems = document.querySelectorAll('.editing');
+
       allItems.forEach(item => {
         item.style.display = 'none';
       });
