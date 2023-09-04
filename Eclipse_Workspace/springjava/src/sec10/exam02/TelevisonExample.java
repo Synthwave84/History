@@ -8,6 +8,7 @@ public class TelevisonExample {
 //		Television tv = new Television();
 		
 //		
-		
+		System.out.println(Television.info);
+//		System.out.println(tv.color);
 	}
 }
