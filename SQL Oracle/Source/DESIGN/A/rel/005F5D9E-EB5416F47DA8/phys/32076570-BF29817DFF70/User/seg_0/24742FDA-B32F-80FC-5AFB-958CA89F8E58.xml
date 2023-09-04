@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="ORA_USER" directorySegmentName="seg_0" id="24742FDA-B32F-80FC-5AFB-958CA89F8E58">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjName>ORA_USER</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<schemaObject>63441874-50B7-3ED0-8EA2-BD6E57AF0E07</schemaObject>
+<privileges>UNLIMITED TABLESPACE</privileges>
+</UserOraclev10g>

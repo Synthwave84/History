@@ -1,0 +1,252 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="17E7D2D1-E0E4-9AEB-0C7F-31E57999E3AF" schemaObject="63441874-50B7-3ED0-8EA2-BD6E57AF0E07" name="EMPLOYEES">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>ORA_USER</sourceObjSchema>
+<sourceObjName>EMPLOYEES</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EMPLOYEE_ID" id="E6D72BA1-4E35-0355-E89F-0CEAFEBE6935">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>EMPLOYEE_ID</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[사원ID]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMP_NAME" id="E305D431-A768-FD5A-B44C-EBF7CCD8BC82">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>EMP_NAME</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[사원이름]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 BYTE</dataTypeSize>
+<ownDataTypeParameters>80 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMAIL" id="BE1D066C-E325-399F-2279-6ABC3ABF5773">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>EMAIL</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[이메일]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHONE_NUMBER" id="67F50575-73BA-C350-31FC-33E2E7816EB8">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>PHONE_NUMBER</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HIRE_DATE" id="DD7C4D71-5BC3-D885-0766-0867D15D0A9D">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>HIRE_DATE</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[입사일자]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SALARY" id="577C8173-B7D1-A7C0-E416-ADA546F1BDA9">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>SALARY</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[급여]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,8,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MANAGER_ID" id="FEF938FD-6577-ECF4-CC21-D9131861D7CC">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>MANAGER_ID</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[상관ID]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COMMISSION_PCT" id="4C202959-A7AE-33AD-C287-F752C93EE73C">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>COMMISSION_PCT</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[커미션]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,2,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RETIRE_DATE" id="E98F3D51-DB5C-9FC6-EF76-7E75AE5546B6">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>RETIRE_DATE</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[퇴사일자]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEPARTMENT_ID" id="75B59265-D65B-2030-DF3B-303BF1587E09">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>DEPARTMENT_ID</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="JOB_ID" id="30147B0A-3010-3F8D-C467-9EE90C4FD601">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>JOB_ID</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 BYTE</dataTypeSize>
+<ownDataTypeParameters>10 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="90F94478-5DD4-83D3-A464-E6B68A6FBFC8">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[생성일자]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPDATE_DATE" id="D81521D7-3114-4F61-C8D0-2EDD9A68282C">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>EMPLOYEES</sourceObjSchema>
+<sourceObjName>UPDATE_DATE</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[변경일자]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="46301CF5-9FD7-5977-AF5E-FC08D0B77C01" name="PK_EMPLOYEES">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>ORA_USER</sourceObjSchema>
+<sourceObjName>PK_EMPLOYEES</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E6D72BA1-4E35-0355-E89F-0CEAFEBE6935"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95BAD985-23C2-ECC0-2E62-B60FEFBACF33" schemaObject="63441874-50B7-3ED0-8EA2-BD6E57AF0E07" name="PK_EMPLOYEES">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>ORA_USER</sourceObjSchema>
+<sourceObjName>PK_EMPLOYEES</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:28 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E6D72BA1-4E35-0355-E89F-0CEAFEBE6935"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9FAE2E64-2136-57ED-2925-2F936CEBE993" schemaObject="63441874-50B7-3ED0-8EA2-BD6E57AF0E07" name="DEPARTMENTS">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>ORA_USER</sourceObjSchema>
+<sourceObjName>DEPARTMENTS</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DEPARTMENT_ID" id="17EFFC3D-C59B-D3C7-EE0E-379D9BEE06F3">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>DEPARTMENTS</sourceObjSchema>
+<sourceObjName>DEPARTMENT_ID</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<commentInRDBMS><![CDATA[부서ID]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEPARTMENT_NAME" id="581DCEEE-56E1-519F-0214-920A61CCE6C3">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>DEPARTMENTS</sourceObjSchema>
+<sourceObjName>DEPARTMENT_NAME</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<commentInRDBMS><![CDATA[부서명;]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 BYTE</dataTypeSize>
+<ownDataTypeParameters>80 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PARENT_ID" id="F6B13733-474D-BA64-C080-BFB5999FE5E6">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>DEPARTMENTS</sourceObjSchema>
+<sourceObjName>PARENT_ID</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<commentInRDBMS><![CDATA[상위부서ID]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MANAGER_ID" id="359961BB-C83B-F847-B761-C2D4F22D150F">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>DEPARTMENTS</sourceObjSchema>
+<sourceObjName>MANAGER_ID</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<commentInRDBMS><![CDATA[상관ID]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="EB90BB50-EE05-7672-8112-B3B71B565B14">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>DEPARTMENTS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<commentInRDBMS><![CDATA[생성일자]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPDATE_DATE" id="1697E366-3F9F-1394-D363-D1F13F229E31">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>DEPARTMENTS</sourceObjSchema>
+<sourceObjName>UPDATE_DATE</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<commentInRDBMS><![CDATA[변경일자]]></commentInRDBMS>
+<ownerDesignName>A</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="90478D66-FF05-0FD4-B699-26B9FAFF7402" name="PK_DEPARTMENTS">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>ORA_USER</sourceObjSchema>
+<sourceObjName>PK_DEPARTMENTS</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:13 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="17EFFC3D-C59B-D3C7-EE0E-379D9BEE06F3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="79F07E48-F7E3-8A74-FDB7-4C859241A3D2" schemaObject="63441874-50B7-3ED0-8EA2-BD6E57AF0E07" name="PK_DEPARTMENTS">
+<sourceConnName>ORA_USER%ED%95%99%EC%8A%B5%EC%9A%A9+%EA%B3%84%EC%A0%95</sourceConnName>
+<sourceObjSchema>ORA_USER</sourceObjSchema>
+<sourceObjName>PK_DEPARTMENTS</sourceObjName>
+<createdBy>i7F-21</createdBy>
+<createdTime>2023-09-04 07:26:12 UTC</createdTime>
+<ownerDesignName>A</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="17EFFC3D-C59B-D3C7-EE0E-379D9BEE06F3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
