@@ -176,3 +176,20 @@ Group by 1, CUBE(2, 3)
 1 3 
 1 2 
 1
+
+
+ JOIN
+  - 이론 8가지
+    
+    내부조인 (INNER JOIN)
+    : 두 테이블에서 컬럼을 비교하여 일치되는 데이터 행을 수평결합
+
+    외부 조인(OUTER JOIN)
+    : INNER JOIN( 일치되는 데이터 행) + 일치되지 않는 데이터형 추가.
+    
+    LEFT OUTER JOIN
+    RIGHT OUTER JOIN
+    FULL OUTER JOIN
+
+
+    
