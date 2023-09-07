@@ -180,22 +180,23 @@ ON          J.JOB_ID = JH.JOB_ID;
 
 -- 세미조인
 /*
-세미 조인(SEMI-JOIN)은 서브 쿼리를 사용해 서브 쿼리에 존재하는 데이터만 메인 쿼리에서 추출하는 조인 방법으로 IN과 EXISTS 연산자를 사용한 조인이다.
+세미 조인(SEMI-JOIN)은 서브 쿼리를 사용해 서브 쿼리에 존재하는 
+데이터만 메인 쿼리에서 추출하는 조인 방법으로 IN과 EXISTS 연산자를 사용한 조인이다.
 */
-SELECT DEPARTMENT_ID, DEPARTMENT_NAME
-  FROM DEPARTMENTS A
- WHERE EXISTS ( SELECT * 
-                 FROM EMPLOYEES B
-                WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
-                  AND B.SALARY > 3000)
+SELECT          DEPARTMENT_ID, DEPARTMENT_NAME
+FROM            DEPARTMENTS A
+WHERE EXISTS (  SELECT  *  -- 서브쿼리
+                FROM    EMPLOYEES B
+                WHERE   A.DEPARTMENT_ID = B.DEPARTMENT_ID
+                AND     B.SALARY > 3000)
 ORDER BY A.DEPARTMENT_NAME;
 
 
-SELECT DEPARTMENT_ID, DEPARTMENT_NAME
-  FROM DEPARTMENTS A
- WHERE A.DEPARTMENT_ID  IN ( SELECT B.DEPARTMENT_ID
-                               FROM EMPLOYEES B
-                              WHERE B.SALARY > 3000)
+SELECT  DEPARTMENT_ID, DEPARTMENT_NAME
+FROM    DEPARTMENTS A
+WHERE   A.DEPARTMENT_ID  IN ( SELECT    B.DEPARTMENT_ID
+                              FROM      EMPLOYEES B
+                              WHERE     B.SALARY > 3000)
 ORDER BY DEPARTMENT_NAME;
 
 
@@ -236,13 +237,20 @@ SELECT EMPLOYEE_ID, EMP_NAME FROM EMPLOYEES;
 같은 부서번호를 가진 사원 중 A 사원번호가 B 사원번호보다 작은 건을 조회하는 쿼리다. 
 사원 테이블에서 부서번호가 20인 건은 단 2건 뿐인데(201과 202), ①조건에 의해 결과는 1건만 추출된 점에 유념하자.
 */
-SELECT A.EMPLOYEE_ID, A.EMP_NAME, B.EMPLOYEE_ID, B.EMP_NAME, A.DEPARTMENT_ID
-  FROM EMPLOYEES A,
+
+SELECT  A.EMPLOYEE_ID, A.EMP_NAME, 
+        B.EMPLOYEE_ID, B.EMP_NAME, A.DEPARTMENT_ID
+FROM    EMPLOYEES A,
         EMPLOYEES B
- WHERE A.EMPLOYEE_ID < B.EMPLOYEE_ID      --  A 사원번호가 B 사원번호보다 작은 건
-   AND A.DEPARTMENT_ID = B.DEPARTMENT_ID    -- 같은 부서번호
-   AND A.DEPARTMENT_ID = 20;    -- 부서번호가 20인 건
+-- 필수적으로 꼭 차등을 주어야 다른 결과를 출력 할 수 있다.  
+WHERE   A.EMPLOYEE_ID < B.EMPLOYEE_ID       --  A 사원번호가 B 사원번호보다 작은 건
+AND     A.DEPARTMENT_ID = B.DEPARTMENT_ID   -- 같은 부서번호
+AND     A.DEPARTMENT_ID = 20;               -- 부서번호가 20인 건
    
+-- 조인을 사용하지 않은 형태
+SELECT  * 
+FROM    EMPLOYEES 
+WHERE   DEPARTMENT_ID =20;
 
 
 
@@ -537,8 +545,24 @@ INSERT INTO HONG_B VALUES ( 30);
 COMMIT;
 
 SELECT * FROM HONG_A;
+
+/*
+    EMP_ID
+----------
+        10
+        20
+        40
+*/
+
 SELECT * FROM HONG_B;
 
+/*
+   EMP_ID
+----------
+        10
+        20
+        30
+*/
 
 -- INNER JOIN
 --1)오라클 버전
@@ -608,7 +632,8 @@ SELECT AVG(SALARY) FROM EMPLOYEES; -- 6461.831775700934579439252336448598130841
 
 SELECT COUNT(*) -- 메인쿼리
 FROM EMPLOYEES
-WHERE SALARY >= (SELECT AVG(SALARY) FROM EMPLOYEES);  -- 51.. 서브쿼리
+WHERE SALARY >= (SELECT AVG(SALARY) 
+FROM EMPLOYEES);  -- 51.. 서브쿼리
 
 
 
@@ -633,8 +658,10 @@ SELECT DEPARTMENT_ID FROM DEPARTMENTS WHERE PARENT_ID IS NULL;
 SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = (50, 70);  -- 에러
 
 SELECT COUNT(*)
-FROM EMPLOYEES
-WHERE DEPARTMENT_ID = (SELECT DEPARTMENT_ID FROM DEPARTMENTS WHERE PARENT_ID IS NULL);
+FROM        EMPLOYEES
+WHERE       DEPARTMENT_ID = (   SELECT DEPARTMENT_ID 
+                                FROM DEPARTMENTS 
+                                WHERE PARENT_ID IS NULL);
 
 
 SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID IN (50, 70);
@@ -660,6 +687,7 @@ WHERE (EMPLOYEE_ID, JOB_ID ) IN ( SELECT EMPLOYEE_ID, JOB_ID
                                     FROM JOB_HISTORY);
 
 -- INSERT, UPDATE, MERGE, DELETE 문에서도 서브쿼리 사용이 지원된다.
+-- 전체 사원의 평균 급여를 전 사원에게 적용하라.
 UPDATE EMPLOYEES
    SET SALARY = ( SELECT AVG(SALARY)
                     FROM EMPLOYEES );
@@ -674,6 +702,8 @@ ROLLBACK;
 
 -- 연관성 있는 서브쿼리  
 -- 동작?
+
+SELECT * FROM DEPARTMENTS;
 
 SELECT 1 FROM JOB_HISTORY B
                 WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID;
@@ -691,11 +721,38 @@ SELECT 1 FROM DUAL WHERE 0 = 0;
 SELECT 'YES' FROM DUAL WHERE EXISTS(SELECT 1 FROM DUAL WHERE 0 = 0);
 
 
+
+SELECT A.DEPARTMENT_ID, A.DEPARTMENT_NAME
+ FROM DEPARTMENTS A
+WHERE EXISTS ( SELECT 1 
+                 FROM JOB_HISTORY B
+                WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID );
+
+-- EXIST() : () 괄호 안의 결과가 존재하면 TRUE 반환, 아니면 FALSE 반환.
+
+-- 1 출력
+SELECT 1 FROM DUAL;
+-- 1 출력
+SELECT 1 FROM DUAL WHERE 0 =0;
+-- 1 출력 안됨
+SELECT 1 FROM DUAL WHERE 0 != 0;
+
+-- EXIST() : () 괄호 안의 결과가 존재하면 TRUE 반환, 아니면 FALSE 반환.
+
+-- 1 출력됨
+SELECT 1 FROM DUAL WHERE EXISTS( SELECT 1 FROM DUAL WHERE 0=0); 
+-- 1 출력 안됨.
+SELECT 1 FROM DUAL WHERE EXISTS( SELECT 1 FROM DUAL WHERE 0!=0);
+
+
+
 SELECT 1 FROM DUAL WHERE 0 = 1;
 -- 서브쿼리의 결과값이 존재하지 않으면, EXISTS()  반환값이 FALSE
 SELECT 'YES' FROM DUAL WHERE EXISTS(SELECT 1 FROM DUAL WHERE 0 = 1);
 
 -- 중복된 데이탁 존재 안한다.
+
+-- EXISTS 절 뒤에 있는 1은 BOOLEAN TRUE 라고 보면 된다.
 SELECT A.DEPARTMENT_ID, A.DEPARTMENT_NAME
  FROM DEPARTMENTS A
 WHERE EXISTS ( SELECT 1 
