@@ -8,7 +8,7 @@ public class RemoteControlExample {
 //		RemoteControl remoteControl= new RemoteControl();
 		RemoteControl rc;
 		rc= new Television();
-		rc.turnOn(); // Television 구현 메소드 호출.
+		rc.turnOn(); // Television 구현 메소드 호출
 		
 		rc = new Audio();
 		rc.turnOn(); // Audio 구현 메소드 호출.

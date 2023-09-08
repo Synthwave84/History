@@ -721,12 +721,23 @@ SELECT 1 FROM DUAL WHERE 0 = 0;
 SELECT 'YES' FROM DUAL WHERE EXISTS(SELECT 1 FROM DUAL WHERE 0 = 0);
 
 
+-- 연관성 서브쿼리 : 메인쿼리의 데이터를 서브쿼리의 조건식에 일치되는 것을 찾아,
+-- 리턴으로 사용하며 그 결과값을 출력한다.
 
+-- 1)WHERE 조건식에 사용
 SELECT A.DEPARTMENT_ID, A.DEPARTMENT_NAME
  FROM DEPARTMENTS A
 WHERE EXISTS ( SELECT 1 
                  FROM JOB_HISTORY B
                 WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID );
+
+-- 조인
+-- 연관성 있는 쿼리와 다르게, 중복 데이터가 제거되지 않았다.
+SELECT A.DEPARTMENT_ID, A.DEPARTMENT_NAME
+FROM DEPARTMENTS A, JOB_HISTORY B
+WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID;
+
+
 
 -- EXIST() : () 괄호 안의 결과가 존재하면 TRUE 반환, 아니면 FALSE 반환.
 
@@ -817,7 +828,23 @@ ORDER BY A.EMPLOYEE_ID ASC;
 */
 
 
--- 서브쿼리가 중첩되어 있는 구조.
+-- 서브쿼리가 중첩되어 있는 구조의 형태도 존재 할 수가 있다.
+-- 전체 사원에 대한 평균 급여보다 큰 부서코드와 부서이름을 출력하라
+--
+-- 1) 전체 사원에 대한 평균 급여 
+-- SELECT AVG(SALARY)  FROM EMPLOYEES
+--
+-- 2) 조인 쿼리접근 OR 서브쿼리 접근
+-- 테이블 참조 : EMPLOYEES, DEPARTMENTS
+
+
+SELECT DISTINCT A.DEPARTMENT_ID, A.DEPARTMENT_NAME
+FROM DEPARTMENTS A, EMPLOYEES B
+WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
+AND B.SALARY > ( SELECT AVG(SALARY)  FROM EMPLOYEES);
+
+-- 연관성 있는 서브쿼리
+
 SELECT A.DEPARTMENT_ID, A.DEPARTMENT_NAME
   FROM DEPARTMENTS A
  WHERE EXISTS ( SELECT 1
@@ -828,7 +855,9 @@ SELECT A.DEPARTMENT_ID, A.DEPARTMENT_NAME
                );
                
 -- 질의? 부서 테이블에서 상위 부서가 기획부(부서번호가 90)에 속하는 사원들의 부서별 평균 급여를 조회해 보자.               
-SELECT DEPARTMENT_ID,DEPARTMENT_NAME FROM DEPARTMENTS WHERE PARENT_ID = 90;
+SELECT DEPARTMENT_ID,DEPARTMENT_NAME 
+FROM DEPARTMENTS 
+WHERE PARENT_ID = 90;
 /*
 기획부(90) 하위부서
 60,IT
@@ -843,8 +872,17 @@ SELECT DEPARTMENT_ID , AVG(SALARY)
  WHERE DEPARTMENT_ID IN ( SELECT DEPARTMENT_ID 
                             FROM DEPARTMENTS
                            WHERE PARENT_ID = 90)
-GROUP BY    DEPARTMENT_ID;                     
-                           
+GROUP BY    DEPARTMENT_ID;     
+
+-- 위의 쿼리를 참고하여, 부서이름 컬럼을 포함하여 출력하라.
+
+SELECT  B.DEPARTMENT_ID, B.DEPARTMENT_NAME, AVG(SALARY)
+FROM    EMPLOYEES A, DEPARTMENTS B
+WHERE   A.DEPARTMENT_ID = B.DEPARTMENT_ID
+AND     A.DEPARTMENT_ID IN (SELECT DEPARTMENT_ID
+                            FROM   DEPARTMENTS
+                            WHERE  PARENT_ID = 90)
+GROUP BY B.DEPARTMENT_ID, B.DEPARTMENT_NAME;
 -- 질의? 기획부 하위부서 직원들의 전체인원수의 평균급여를 조회해 보자.
 
 SELECT DEPARTMENT_ID,DEPARTMENT_NAME FROM DEPARTMENTS WHERE PARENT_ID = 90;
