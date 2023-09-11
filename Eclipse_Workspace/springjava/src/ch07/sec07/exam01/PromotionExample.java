@@ -43,6 +43,14 @@ public class PromotionExample {
 		B b1 = d;
 		C c1 = e;
 		
+
+		System.out.println(a1);
+		System.out.println(a2);
+		System.out.println(a3);
+		System.out.println(a4);
+		System.out.println(b1);
+		System.out.println(c1);
+
 //		형변환 에러
 //		
 //		B b3 = e; 직계상속이 아니므로, 형변환 지원을 하지 않는다.
