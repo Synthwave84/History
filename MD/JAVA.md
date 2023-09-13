@@ -306,4 +306,8 @@ Exception(예외) : 예외 관련 최상위 클래스.
 
 Object obj = 데이터타입. 모든 타입은 obj 로 변환 가능하다.
 
+Date
+Calender
+LocalDate, LocalTime, LocalDateTime
+
 디자인 패턴 알아보기. 1 

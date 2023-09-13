@@ -7,8 +7,8 @@ public class EqualsExample {
 		Member obj3= new Member("Red");
 		
 		System.out.println("obj1 :" + obj1.hashCode());
-		System.out.println("obj1 :" + obj2.hashCode());
-		System.out.println("obj1 :" + obj3.hashCode());
+		System.out.println("obj2 :" + obj2.hashCode());
+		System.out.println("obj3 :" + obj3.hashCode());
 		
 		
 		if(obj1.equals(obj2)) {
