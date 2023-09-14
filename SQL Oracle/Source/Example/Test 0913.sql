@@ -75,77 +75,167 @@ AND E.SALARY > M.SALARY;
 
 -- 이때, 부서에 배치되지 않은 직원의 경우, ‘<Not Assigned>’로 출력하시오. 
 
-?
 
-?
+SELECT  A.EMPLOYEE_ID, A.HIRE_DATE, A.FIRST_NAME, A.LAST_NAME, B.DEPARTMENT_NAME
+FROM    EMPLOYEES A, DEPARTMENTS B
+WHERE   A.DEPARTMENT_ID = B.DEPARTMENT_ID
+AND     A.HIRE_DATE BETWEEN '07-01-01' AND '08-01-01';
 
-?
+SELECT  A.EMPLOYEE_ID, A.HIRE_DATE, A.FIRST_NAME, 
+        A.LAST_NAME, NVL(B.DEPARTMENT_NAME, '<Not Assigned>')
+FROM    EMPLOYEES A, DEPARTMENTS B
+WHERE   A.DEPARTMENT_ID = B.DEPARTMENT_ID(+)
+AND     TO_CHAR(A.HIRE_DATE, 'YYYY') = 2007;
+
+
 
 --6. 업무명(job_title)이 ‘Sales Representative’인 직원 중에서 연봉(salary)이 9,000이상, 10,000 이하인 
 
 -- 직원들의 이름(first_name), 성(last_name)과 연봉(salary)를 출력하시오
 
-?
-
-?
-
-?
+SELECT  A.FIRST_NAME, A.LAST_NAME, A.SALARY, B.JOB_TITLE
+FROM    EMPLOYEES A , JOBS B
+WHERE   A.JOB_ID = B.JOB_ID
+AND     A.SALARY BETWEEN 9000 AND 10000
+AND     JOB_TITLE LIKE 'Sales Representative';
 
 --7. 부서별로 가장 적은 급여를 받고 있는 직원의 이름, 부서이름, 급여를 출력하시오. 
 
 -- 이름은 last_name만 출력하며, 부서이름으로 오름차순 정렬하고, 
 
 -- 부서가 같은 경우 이름을 기준 으로 오름차순 정렬하여 출력합니다. 
+-- INLINE VIEW : FROM절의 서브쿼리.
 
-?
+-- 기초 데이터
+SELECT  *
+FROM    EMPLOYEES A, DEPARTMENTS B
+WHERE   A.DEPARTMENT_ID = B.DEPARTMENT_ID;
 
-?
+-- 서브 쿼리
+SELECT      B.DEPARTMENT_NAME, MIN(A.SALARY)
+FROM        EMPLOYEES A, DEPARTMENTS B
+WHERE       A.DEPARTMENT_ID = B.DEPARTMENT_ID
+GROUP BY    B.DEPARTMENT_NAME;
 
-?
 
+-- 1) 데이터 오류
+SELECT      A.LAST_NAME , B.*
+FROM        EMPLOYEES A,
+            (
+                SELECT      B.DEPARTMENT_NAME, MIN(A.SALARY) AS MIN_SALARY
+                FROM        EMPLOYEES A, DEPARTMENTS B
+                WHERE       A.DEPARTMENT_ID = B.DEPARTMENT_ID
+                GROUP BY    B.DEPARTMENT_NAME
+            ) B
+WHERE       A.SALARY = B.MIN_SALARY;
+
+-- 2) 옳은 방법
+SELECT      E.LAST_NAME , A.*
+FROM        EMPLOYEES E,
+            (
+                SELECT      D.DEPARTMENT_ID, D.DEPARTMENT_NAME, MIN(E.SALARY) AS MIN_SALARY
+                FROM        EMPLOYEES E, DEPARTMENTS D
+                WHERE       E.DEPARTMENT_ID = D.DEPARTMENT_ID
+                GROUP BY    D.DEPARTMENT_ID, D.DEPARTMENT_NAME
+            ) A
+WHERE       E.SALARY = A.MIN_SALARY
+AND         E.DEPARTMENT_ID = A.DEPARTMENT_ID;
+
+
+
+
+SELECT      A.LAST_NAME, A.SALARY, B.DEPARTMENT_NAME
+FROM        EMPLOYEES A, DEPARTMENTS B
+WHERE       A.DEPARTMENT_ID = B.DEPARTMENT_ID;
+
+SELECT      MIN(A.SALARY), B.DEPARTMENT_NAME
+FROM        EMPLOYEES A, DEPARTMENTS B
+WHERE       A.DEPARTMENT_ID = B.DEPARTMENT_ID
+GROUP BY    B.DEPARTMENT_NAME
+ORDER BY    B.DEPARTMENT_NAME ASC; 
+
+
+-- 명령어 공부 필요. RANK() 함수 사용.
 --8. EMPLOYEES 테이블에서 급여를 많이 받는 순서대로 조회했을 때 결과처럼 6번째부터 10 번째까지 
 
 -- 5명의 last_name, first_name, salary를 조회하는 sql문장을 작성하시오.
 
-?
 
-?
-
-?
 
 --9. 사원의 부서가 속한 도시(city)가 ‘Seattle’인 사원의 이름, 해당 사원의 매니저 이름, 사원 의 부서이름을 출력하시오. 
-
 -- 이때 사원의 매니저가 없을 경우 ‘<없음>’이라고 출력하시오. 이름은 last_name만 출력하며, 
-
 -- 사원의 이름을 오름차순으로 정렬하시오. 
 
-?
+-- 테이블 : EMPLOYEES, DEPARTMENTS, LOCATIONS
 
-?
+-- SELF JOIN을 사용해야 하는 이유
+SELECT  EMPLOYEE_ID, FIRST_NAME, LAST_NAME, MANAGER_ID
+FROM    EMPLOYEES;
 
-?
+-- SELF JOIN 기초데이터
+SELECT      B.EMPLOYEE_ID AS E_ID, A.MANAGER_ID AS M_ID, A.FIRST_NAME, A.LAST_NAME
+FROM        EMPLOYEES A LEFT OUTER JOIN EMPLOYEES B 
+ON          A.MANAGER_ID = B.EMPLOYEE_ID;
 
---10. 각 업무(job) 별로 연봉(salary)의 총합을 구하고자 한다. 연봉 총합이 가장 높은 업무부터 
 
+SELECT  E.E_NAME, NVL(E.M_NAME, '<없음>'), D.DEPARTMENT_NAME
+FROM    (
+            SELECT      A.FIRST_NAME AS E_NAME, B.LAST_NAME AS M_NAME, A.DEPARTMENT_ID
+            FROM        EMPLOYEES A LEFT OUTER JOIN EMPLOYEES B 
+            ON          A.MANAGER_ID = B.EMPLOYEE_ID
+        )   E,
+            DEPARTMENTS D, LOCATIONS L
+WHERE       E.DEPARTMENT_ID = D.DEPARTMENT_ID
+AND         D.LOCATION_ID = L.LOCATION_ID
+AND         L.CITY ='Seattle'
+ORDER BY    E.E_NAME ASC;
+
+
+
+
+-- 10. 각 업무(job) 별로 연봉(salary)의 총합을 구하고자 한다. 연봉 총합이 가장 높은 업무부터 
 -- 업무명(job_title)과 연봉 총합을 조회하시오. 단 연봉총합이 30,000보다 큰 업무만 출력하시오. 
 
-?
+-- 참조 테이블 : JOBS, EMPLOYEES
 
-?
+-- 기초 데이터
 
-?
+SELECT      *
+FROM        EMPLOYEES E, JOBS J
+WHERE       E.JOB_ID= J.JOB_ID;
+
+-- 각 업무(JOB) 별로 연봉(SALARY)의 총합
+SELECT      J.JOB_TITLE, SUM(E.SALARY)
+FROM        EMPLOYEES E, JOBS J
+WHERE       E.JOB_ID= J.JOB_ID
+GROUP BY    J.JOB_TITLE;
+
+
+-- 조건 : 연봉 총합이 30000 보다 큰 업무만 출력
+SELECT      J.JOB_TITLE, SUM(E.SALARY)
+FROM        EMPLOYEES E, JOBS J
+WHERE       E.JOB_ID= J.JOB_ID
+GROUP BY    J.JOB_TITLE
+HAVING      SUM(E.SALARY) > 30000
+ORDER BY    SUM(E.SALARY) DESC;
+
+
+
 
 --11. 각 사원(employee)에 대해서 사번(employee_id), 이름(first_name), 업무명(job_title), 
-
 -- 부서 명(department_name)을 조회하시오. 
-
 -- 단 도시명(city)이 ‘Seattle’인 지역(location)의 부서 (department)에 근무하는 직원을 사원번호 오름차순순으로 출력하시오.
 
-?
+-- 필요테이블 : EMPLOYEES, DEPARTMENTS, LOACATIONS, JOBS
 
-?
+SELECT      E.EMPLOYEE_ID, E.FIRST_NAME, J.JOB_TITLE, D.DEPARTMENT_NAME
+FROM        EMPLOYEES E, DEPARTMENTS D, LOCATIONS L, JOBS J
+WHERE       E.DEPARTMENT_ID = D.DEPARTMENT_ID
+AND         D.LOCATION_ID = L.LOCATION_ID
+AND         J.JOB_ID =  E.JOB_ID
+AND         L.CITY = 'Seattle'
+ORDER BY    E.EMPLOYEE_ID ASC;
 
-?
 
 --12. 2001~20003년사이에 입사한 직원의 이름(first_name), 입사일(hire_date), 관리자사번 (employee_id), 
 
