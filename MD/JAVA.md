@@ -328,3 +328,8 @@ LocalDate, LocalTime, LocalDateTime
 메소드 (A);
 메소드 (A,B);
 메소드 (A,B,C);
+
+
+Ctrl + Shift + R 리소스찾기.
+
+Ctrl + Shift + F 코드재정렬

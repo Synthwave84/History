@@ -369,19 +369,10 @@ AND     AVG(A.SALARY) <         (
 -- 단, 직원이 없는 부서에 대해서는 ‘<신생부서>’라는 문자열이 출력되도록 하고,
 -- 출력결과는 다음과 같이 부서명이 내림차순 으로 정렬되어야한다. 
 
-
-
- SELECT     D.DEPARTMENT_NAME , COUNT(E.DEPARTMENT_ID)
-            FROM        DEPARTMENTS D   RIGHT OUTER JOIN EMPLOYEES E
-            ON          E.DEPARTMENT_ID = D.DEPARTMENT_ID
-            GROUP BY    D.DEPARTMENT_NAME
-            HAVING COUNT(*) = 1;
-
-
-
-
-
-
+/*      문제 수정
+        각 부서별 직원의 근무 인원수를 조회하라. 단 직원이 없는 부서에 대해서는
+        <신생부서>또는 0 라는 문자열 출력.
+*/
 
 
 -- EMPLOYEES, DEPARTMENTS
@@ -403,6 +394,10 @@ AND     B.DEPARTMENT_ID IS NULL;
 SELECT  DISTINCT DEPARTMENT_ID
 FROM    EMPLOYEES;
 
+SELECT  E.DEPARTMENT_ID, D.DEPARTMENT_ID
+FROM    DEPARTMENTS D LEFT OUTER JOIN EMPLOYEES E
+ON      E.DEPARTMENT_ID = D.DEPARTMENT_ID
+;
 
 -- 각 부서별 직원
 
@@ -413,11 +408,69 @@ GROUP BY    B.DEPARTMENT_NAME
 HAVING      COUNT(*) = 1
 ORDER BY    B.DEPARTMENT_NAME;
 
+ SELECT     D.DEPARTMENT_NAME , COUNT(E.DEPARTMENT_ID)
+            FROM        DEPARTMENTS D   RIGHT OUTER JOIN EMPLOYEES E
+            ON          E.DEPARTMENT_ID = D.DEPARTMENT_ID
+            GROUP BY    D.DEPARTMENT_NAME
+            HAVING COUNT(*) = 1;
 
+-- 기초데이터
+SELECT  *
+FROM    EMPLOYEES E, DEPARTMENTS D
+WHERE   E.DEPARTMENT_ID(+) = D.DEPARTMENT_ID;
+
+SELECT  E.DEPARTMENT_ID, D.DEPARTMENT_ID
+FROM    DEPARTMENTS D LEFT OUTER JOIN EMPLOYEES E 
+ON      E.DEPARTMENT_ID = D.DEPARTMENT_ID
+;
+
+-- 부서안에 부서원이 없는 데이타
+
+-- 사원테이블에 존재하는 부서 : 11건
+SELECT DISTINCT DEPARTMENT_ID FROM EMPLOYEES;
+
+-- 부서테이블 : 27건
+SELECT COUNT(*) FROM DEPARTMENTS;
+
+SELECT DEPARTMENT_ID FROM DEPARTMENTS;
+
+-- 사원이 없는 부서코드
+SELECT DEPARTMENT_ID FROM DEPARTMENTS
+MINUS
+SELECT DISTINCT DEPARTMENT_ID FROM EMPLOYEES;
+
+-- 사원이 없는 부서 : 27건 - 11건 = 16건..  대표이사 부서소속 NULL
+
+
+
+--1)
+SELECT      NVL2(E.DEPARTMENT_ID, D.DEPARTMENT_NAME, '<부서없음>'), COUNT(E.DEPARTMENT_ID)
+FROM        DEPARTMENTS D LEFT JOIN EMPLOYEES E
+ON          D.DEPARTMENT_ID = E.DEPARTMENT_ID
+GROUP BY    NVL2(E.DEPARTMENT_ID, D.DEPARTMENT_NAME, '<부서없음>');
+--2)
+SELECT      NVL2(E.DEPARTMENT_ID, D.DEPARTMENT_NAME, '<부서없음>'), COUNT(D.DEPARTMENT_NAME)
+FROM        DEPARTMENTS D LEFT JOIN EMPLOYEES E
+ON          D.DEPARTMENT_ID = E.DEPARTMENT_ID
+GROUP BY    NVL2(E.DEPARTMENT_ID, D.DEPARTMENT_NAME, '<부서없음>');
 
 --17. 부서별 입사월별 직원수를 출력하시오. 
 
 -- 단, 직원수가 5명 이상인 부서만 출력되어야 하며 출력결과는 부서이름 순으로 한다.
+
+-- 기초 데이터
+SELECT  *
+FROM    EMPLOYEES A INNER JOIN DEPARTMENTS B
+ON      A.DEPARTMENT_ID = B.DEPARTMENT_ID;
+
+-- (부서별 입사일별 : 직원수 )
+
+SELECT      B.DEPARTMENT_NAME, TO_CHAR(A.HIRE_DATE, 'MM') ,COUNT(*) 
+FROM        EMPLOYEES A INNER JOIN DEPARTMENTS B
+ON          A.DEPARTMENT_ID = B.DEPARTMENT_ID
+GROUP BY    B.DEPARTMENT_NAME, TO_CHAR(A.HIRE_DATE, 'MM')
+HAVING      COUNT (*) >= 5
+ORDER BY    B.DEPARTMENT_NAME ASC;
 
 
 
@@ -427,36 +480,138 @@ ORDER BY    B.DEPARTMENT_NAME;
 
 -- 부서정보가 없는 직원은 국가명과 도시명 대신에 ‘<부서없음>’이 출력되도록 하여 107명 모두 출력되게 한다.
 
-?
+-- 테이블명 : COUNTRIES, DEPARTMENTS, LOCATIONS, EMPLOYEES
 
-?
+-- 기초데이터 
 
-?
+SELECT  *
+FROM    EMPLOYEES E INNER JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+        INNER JOIN LOCATIONS L ON L.LOCATION_ID = D.LOCATION_ID
+        INNER JOIN COUNTRIES C ON L.COUNTRY_ID  = C.COUNTRY_ID;
+        
+-- LEFT OUTER JOIN
+
+SELECT      NVL(C.COUNTRY_NAME , '<부서 없음>') AS COUNTRY_NAME,
+            NVL(L.CITY, '<부서없음>'), COUNT(*)
+FROM        
+            EMPLOYEES E LEFT JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+            LEFT JOIN LOCATIONS L ON L.LOCATION_ID = D.LOCATION_ID
+            LEFT JOIN COUNTRIES C ON L.COUNTRY_ID  = C.COUNTRY_ID
+GROUP BY    C.COUNTRY_NAME, L.CITY;
 
 --19. 각 부서별 최대 급여자의 아이디(employee_id), 이름(first_name), 급여(salary)를 출력하시오. 
 
 -- 단, 최대 급여자가 속한 부서의 평균급여를 마지막으로 출력하여 평균급여와 비교할 수 있게 할 것.
 
-?
+-- 테이블 : DEPARTMENTS, EMPLOYEES
 
-?
+-- EMPLOYEE_ID는 GROUP BY의 직계함수가 아니라 작성이 안된다.
+SELECT      A.DEPARTMENT_ID, MAX(A.SALARY), TRUNC(AVG(A.SALARY), 2) AS AVG
+FROM        EMPLOYEES A INNER JOIN DEPARTMENTS B
+ON          A.DEPARTMENT_ID = B.DEPARTMENT_ID
+GROUP BY    A.DEPARTMENT_ID;
 
-?
+-- 인라인 뷰
+
+SELECT A.EMPLOYEE_ID, A.FIRST_NAME, A2.SALARY, A2.AVG
+FROM   EMPLOYEES A
+        INNER JOIN ( 
+                    SELECT      A.DEPARTMENT_ID, MAX(A.SALARY) AS SALARY, 
+                                TRUNC(AVG(A.SALARY), 2) AS AVG
+                    FROM        EMPLOYEES A INNER JOIN DEPARTMENTS B
+                    ON          A.DEPARTMENT_ID = B.DEPARTMENT_ID
+                    GROUP BY    A.DEPARTMENT_ID
+                    ) A2
+ON A.SALARY = A2.SALARY 
+AND A.DEPARTMENT_ID = A2.DEPARTMENT_ID;
+
 
 --20. 커미션(commission_pct)별 직원수를 조회하시오. 
 
--- 커미션은 아래실행결과처럼 0.2, 0.25는 모두 .2로, 0.3, 0.35는 .3 형태로 출력되어야 한다. 
+-- 커미션은 아래실행결과처럼 0.2, 0.25는 모두 .2로, 
+                          -- 0.3, 0.35는 .3 형태로 출력되어야 한다. 
 
 -- 단, 커미션 정보가 없는 직원들도 있는 데 커미션이 없는 직원 그룹은 ‘<커미션 없음>’이 출력되게 한다.
 
-?
+--  .2, 0.2
+SELECT TO_CHAR(TRUNC(0.2,1)), TRUNC(0.25,1) FROM DUAL; 
+--  .2, 0.3
+SELECT TO_CHAR(TRUNC(0.3,1)), TRUNC(0.35,1) FROM DUAL;
 
-?
+--  데이터를 가공하여 사용한다.
+SELECT      NVL(TO_CHAR(TRUNC(COMMISSION_PCT, 1)), '<커미션 없음>'), COUNT(*)
+FROM        EMPLOYEES
+GROUP BY    NVL(TO_CHAR(TRUNC(COMMISSION_PCT, 1)), '<커미션 없음>');
 
-?
+SELECT      NVL(TO_CHAR(TRUNC(COMMISSION_PCT, 1)), '<커미션 없음>'), COUNT(*) 
+FROM        EMPLOYEES
+GROUP BY    NVL(TO_CHAR(TRUNC(COMMISSION_PCT, 1)), '<커미션 없음>'); 
+
 
 --21. 커미션(commission_pct)을 가장 많이 받은 상위 4명의 부서명(department_name), 
-
 -- 직원명 (first_name), 급여(salary), 커미션(commission_pct) 정보를 조회하시오. 
+-- 출력결과는 커미션 을 많이 받는 순서로 출력하되 동일한 커미션에 대해서는 
+-- 급여가 높은 직원이 먼저 출력 되게 한다
 
--- 출력결과는 커미션 을 많이 받는 순서로 출력하되 동일한 커미션에 대해서는 급여가 높은 직원이 먼저 출력 되게 한다
+-- 테이블 : EMPLOYEES, DEPARTMENTS
+
+-- TOP N 쿼리 > 상위 ~~를 가져와라.
+
+SELECT      ROWNUM, EMPLOYEE_ID
+FROM        EMPLOYEES;
+
+SELECT      ROWNUM, EMPLOYEE_ID 
+FROM        EMPLOYEES
+WHERE       ROWNUM <= 5;
+
+
+-- 불가능. 특정범위에 해당하는 조건은 불가능하다.
+SELECT      ROWNUM, EMPLOYEE_ID
+FROM        EMPLOYEES
+WHERE       ROWNUM>= 5
+AND         ROWNUM <= 10;  
+
+--  상단의 형태를 사용하면 데이터가 없다. 인라인 뷰를 사용하여
+--  결과를 얻을 수 있다. ROWNUM의 동작방식 ?문에, 다음과 같이 사용한다.
+SELECT * 
+FROM 
+    ( 
+        SELECT  ROWNUM AS RN, EMPLOYEE_ID
+        FROM    EMPLOYEES
+    )
+WHERE   RN >= 5 AND RN <= 10;
+
+--  기초 데이터
+
+SELECT      A.FIRST_NAME, B.DEPARTMENT_NAME, A.SALARY, A.COMMISSION_PCT
+FROM        EMPLOYEES A INNER JOIN DEPARTMENTS B
+ON          A.DEPARTMENT_ID = B.DEPARTMENT_ID
+ORDER BY    A.COMMISSION_PCT DESC, A.SALARY DESC;
+
+-- 가장 많이 받는 상위 4명의 데이터
+
+-- 잘못된 쿼리.
+SELECT      ROWNUM,A.FIRST_NAME, B.DEPARTMENT_NAME, A.SALARY, A.COMMISSION_PCT
+FROM        EMPLOYEES A INNER JOIN DEPARTMENTS B
+ON          A.DEPARTMENT_ID = B.DEPARTMENT_ID
+--AND         ROWNUM <= 4 << 잘못된 값이다.
+ORDER BY    A.COMMISSION_PCT DESC, A.SALARY DESC;
+
+
+-- 인라인 뷰 방식을 이용해야 한다.
+
+SELECT      *
+FROM        (
+            SELECT      ROWNUM AS RN,A.FIRST_NAME, B.DEPARTMENT_NAME, A.SALARY, A.COMMISSION_PCT
+            FROM        EMPLOYEES A INNER JOIN DEPARTMENTS B
+            ON          A.DEPARTMENT_ID = B.DEPARTMENT_ID
+            ORDER BY    A.COMMISSION_PCT DESC, A.SALARY DESC
+            )
+WHERE       RN >= 4;
+
+
+
+
+
+
+
