@@ -6,50 +6,50 @@
 */
 
 -- 오라클의 계층형쿼리 문법이 지원 안될 때에는 아래 구문으로 계층형 구조결과를 대신하는 쿼리.
-SELECT department_id, 
-       department_name, 
-       0 AS PARENT_ID,
-       1 as levels,
-        parent_id || department_id AS sort
-FROM departments 
-WHERE parent_id IS NULL
+SELECT  DEPARTMENT_ID, 
+        DEPARTMENT_NAME, 
+        0 AS PARENT_ID,
+        1 AS LEVELS,
+        PARENT_ID || DEPARTMENT_ID AS SORT
+FROM    DEPARTMENTS 
+WHERE   PARENT_ID IS NULL
 UNION ALL
-SELECT t2.department_id, 
-       LPAD(' ' , 3 * (2-1)) || t2.department_name AS department_name, 
-       t2.parent_id,
-       2 AS levels,
-       t2.parent_id || t2.department_id AS sort
-FROM departments t1,
-     departments t2
-WHERE t1.parent_id is null
-  AND t2.parent_id = t1.department_id
+SELECT  T2.DEPARTMENT_ID, 
+        LPAD(' ' , 3 * (2-1)) || T2.DEPARTMENT_NAME AS DEPARTMENT_NAME, 
+        T2.PARENT_ID,
+        2 AS LEVELS,
+        T2.PARENT_ID || T2.DEPARTMENT_ID AS SORT
+FROM    DEPARTMENTS T1,
+        DEPARTMENTS T2
+WHERE   T1.PARENT_ID IS NULL
+  AND   T2.PARENT_ID = T1.DEPARTMENT_ID
 UNION ALL
-SELECT t3.department_id, 
-       LPAD(' ' , 3 * (3-1)) || t3.department_name AS department_name, 
-       t3.parent_id,
-       3 as levels,
-       t2.parent_id || t3.parent_id || t3.department_id as sort
-FROM departments t1,
-     departments t2,
-     departments t3
-WHERE t1.parent_id IS NULL
-  AND t2.parent_id = t1.department_id
-  AND t3.parent_id = t2.department_id
+SELECT  T3.DEPARTMENT_ID, 
+        LPAD(' ' , 3 * (3-1)) || T3.DEPARTMENT_NAME AS DEPARTMENT_NAME, 
+        T3.PARENT_ID,
+        3 AS LEVELS,
+        T2.PARENT_ID || T3.PARENT_ID || T3.DEPARTMENT_ID AS SORT
+FROM    DEPARTMENTS T1,
+        DEPARTMENTS T2,
+        DEPARTMENTS T3
+WHERE   T1.PARENT_ID IS NULL
+  AND   T2.PARENT_ID = T1.DEPARTMENT_ID
+  AND   T3.PARENT_ID = T2.DEPARTMENT_ID
 UNION ALL
-SELECT t4.department_id, 
-       LPAD(' ' , 3 * (4-1)) || t4.department_name as department_name, 
-       t4.parent_id,
-       4 as levels,
-       t2.parent_id || t3.parent_id || t4.parent_id || t4.department_id AS sort
-FROM departments t1,
-     departments t2,
-     departments t3,
-     departments t4
-WHERE t1.parent_id IS NULL
-  AND t2.parent_id = t1.department_id
-  AND t3.parent_id = t2.department_id
-  and t4.parent_id = t3.department_id
-ORDER BY sort;
+SELECT  T4.DEPARTMENT_ID, 
+        LPAD(' ' , 3 * (4-1)) || T4.DEPARTMENT_NAME AS DEPARTMENT_NAME, 
+        T4.PARENT_ID,
+        4 AS LEVELS,
+        T2.PARENT_ID || T3.PARENT_ID || T4.PARENT_ID || T4.DEPARTMENT_ID AS SORT
+FROM    DEPARTMENTS T1,
+        DEPARTMENTS T2,
+        DEPARTMENTS T3,
+        DEPARTMENTS T4
+WHERE   T1.PARENT_ID IS NULL
+  AND   T2.PARENT_ID = T1.DEPARTMENT_ID
+  AND   T3.PARENT_ID = T2.DEPARTMENT_ID
+  AND   T4.PARENT_ID = T3.DEPARTMENT_ID
+ORDER BY SORT;
 
 /*
     SELECT expr1, expr2, ...
@@ -65,110 +65,128 @@ parent_id : 부모컬럼
 */
 
 --1)  상위레벨 -> 하위레벨 수준으로 데이타 출력
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL
-  FROM departments
-  START WITH parent_id IS NULL  -- 루트가 상위로 본다.
-  CONNECT BY PRIOR department_id  = parent_id;  -- prior 키워드가 자식컬럼(department_id) 앞에 사용
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL  -- 루트가 상위로 본다.
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID;  -- prior 키워드가 자식컬럼(department_id) 앞에 사용
+ 
+ 
   
+SELECT      DEPARTMENT_ID, LPAD(' ', 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+FROM        DEPARTMENTS
+-- 최상위 조건
+START WITH  PARENT_ID IS NULL
+-- 컬럼 둘중 하나에 PRIOR를 입력해 주어야한다.
+CONNECT BY  PRIOR DEPARTMENT_ID = PARENT_ID;
 
 --2)  하위레벨 -> 상위레벨 수준으로 데이타 출력  
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL
-FROM departments
-START WITH parent_id IS NULL -- 루트가 하위로 본다.
-CONNECT BY department_id  = PRIOR parent_id;  -- prior 키워드가 부모컬럼(parent_id) 앞에 사용
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+FROM DEPARTMENTS
+START WITH PARENT_ID IS NULL -- 루트가 하위로 본다.
+CONNECT BY DEPARTMENT_ID  = PRIOR PARENT_ID;  -- prior 키워드가 부모컬럼(parent_id) 앞에 사용
 
 
 -- 구매/생산부를 루트로 지정하여, 하위레벨에서 상위레벨로 출력하라.
-SELECT department_id, LPAD(' ', 3 * (LEVEL-1)) || department_name, LEVEL
-FROM departments
-START WITH department_id = 30   -- 30   구매/생산부
-CONNECT BY department_id = PRIOR parent_id;
+SELECT      DEPARTMENT_ID, LPAD(' ', 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+FROM        DEPARTMENTS
+START WITH  DEPARTMENT_ID = 30   -- 30   구매/생산부
+CONNECT BY  DEPARTMENT_ID = PRIOR PARENT_ID;
 
 -- 구매/생산부를 루트로 지정하여, 상위레벨에서 하위레벨로 출력하라.
-SELECT department_id, LPAD(' ', 3 * (LEVEL-1)) || department_name, LEVEL
-FROM departments
-START WITH department_id = 30   -- 30   구매/생산부
-CONNECT BY PRIOR department_id =  parent_id;
+SELECT      DEPARTMENT_ID, LPAD(' ', 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+FROM        DEPARTMENTS
+START WITH  DEPARTMENT_ID = 30   -- 30   구매/생산부
+CONNECT BY  PRIOR DEPARTMENT_ID =  PARENT_ID;
+
+
+-- 조인 형태
+SELECT      *
+FROM        EMPLOYEES;
+
+SELECT      EMPLOYEE_ID, MANAGER_ID
+FROM        EMPLOYEES
+START WITH  MANAGER_ID IS NULL
+CONNECT BY  PRIOR EMPLOYEE_ID = MANAGER_ID;
 
 
 -- 상급자에서 하급자레벨로 출력하라.  
-SELECT a.employee_id, LPAD(' ' , 3 * (LEVEL-1)) || a.emp_name, 
+SELECT A.EMPLOYEE_ID, LPAD(' ' , 3 * (LEVEL-1)) || A.EMP_NAME, 
        LEVEL,
-       b.department_name
-  FROM employees a,
-       departments b
- WHERE a.department_id = b.department_id
- START WITH a.manager_id IS NULL
- CONNECT BY PRIOR a.employee_id = a.manager_id;
+       B.DEPARTMENT_NAME
+  FROM EMPLOYEES A,
+       DEPARTMENTS B
+ WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
+ START WITH A.MANAGER_ID IS NULL
+ CONNECT BY PRIOR A.EMPLOYEE_ID = A.MANAGER_ID;
 
 
 --1) START WITH a.manager_id IS NULL 루트지정한 데이타가 출력안됨.
-SELECT a.employee_id, LPAD(' ' , 3 * (LEVEL-1)) || a.emp_name, 
+SELECT A.EMPLOYEE_ID, LPAD(' ' , 3 * (LEVEL-1)) || A.EMP_NAME, 
        LEVEL,
-       b.department_name, a.DEPARTMENT_ID
-  FROM employees a,
-       departments b
- WHERE a.department_id = b.department_id
-   AND a.department_id = 30 -- 부서가 30번이 데이타를 전제조건.
- START WITH a.manager_id IS NULL
- CONNECT BY NOCYCLE PRIOR a.employee_id = a.manager_id;
+       B.DEPARTMENT_NAME, A.DEPARTMENT_ID
+  FROM EMPLOYEES A,
+       DEPARTMENTS B
+ WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
+   AND A.DEPARTMENT_ID = 30 -- 부서가 30번이 데이타를 전제조건.
+ START WITH A.MANAGER_ID IS NULL
+ CONNECT BY NOCYCLE PRIOR A.EMPLOYEE_ID = A.MANAGER_ID;
 
 --2)계층형쿼리 이후에 조건식이 사용되면, 루트지정한 데이타가 포함되어 출력된다.
-SELECT a.employee_id, LPAD(' ' , 3 * (LEVEL-1)) || a.emp_name, 
+SELECT A.EMPLOYEE_ID, LPAD(' ' , 3 * (LEVEL-1)) || A.EMP_NAME, 
        LEVEL,
-       b.department_name, a.DEPARTMENT_ID
-  FROM employees a,
-       departments b
- WHERE a.department_id = b.department_id
- START WITH a.manager_id IS NULL
- CONNECT BY NOCYCLE PRIOR a.employee_id = a.manager_id
-     AND a.department_id = 30; -- 
+       B.DEPARTMENT_NAME, A.DEPARTMENT_ID
+  FROM EMPLOYEES A,
+       DEPARTMENTS B
+ WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
+ START WITH A.MANAGER_ID IS NULL
+ CONNECT BY NOCYCLE PRIOR A.EMPLOYEE_ID = A.MANAGER_ID
+     AND A.DEPARTMENT_ID = 30; -- 
   
 -- 계층형 정렬하기.  
 
 -- ORDER BY 키워드 사용시, 계층형 구조가 유지되지 않고, 단순하게 정렬된다.
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id
-  ORDER BY department_name;  
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID
+  ORDER BY DEPARTMENT_NAME;  
 
 -- ORDER SIBLINGS BY : 계층형 구조가 유지된 상태에서 정렬  
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id
-  ORDER SIBLINGS BY department_name;    
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID
+  ORDER SIBLINGS BY DEPARTMENT_NAME;    
 
 /*
 ② CONNECT_BY_ROOT
 CONNECT_BY_ROOT는 계층형 쿼리에서 최상위 로우를 반환하는 연산자다
 */
 
--- 에러발생.
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL, CONNECT_BY_ROOT
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id
-  ORDER SIBLINGS BY department_name;      
+-- 에러발생. > CONNECT_BY_ROOT 에 부서명을 필수적으로 입력해 주어야한다.-
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL, CONNECT_BY_ROOT
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID
+  ORDER SIBLINGS BY DEPARTMENT_NAME;      
   
   
 -- 최상위 부서명을 출력함.  
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL, 
-       CONNECT_BY_ROOT department_name AS root_name
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id;
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL, 
+       CONNECT_BY_ROOT DEPARTMENT_NAME AS ROOT_NAME
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID;
 /*
 ③ CONNECT_BY_ISLEAF : 하위레벨 존재유무를 확인가능하다.
 CONNECT_BY_ISLEAF는 CONNECT BY 조건에 정의된 관계에 따라 
 해당 로우가 최하위 자식 로우이면 1을, 그렇지 않으면 0을 반환하는 의사 컬럼이다.
 */
   
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL, CONNECT_BY_ISLEAF
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id;  
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL, CONNECT_BY_ISLEAF
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID;  
  
 /*
 ④ SYS_CONNECT_BY_PATH (colm, char)
@@ -177,11 +195,12 @@ SYS_CONNECT_BY_PATH는 계층형 쿼리에서만 사용할 수 있는 함수로,
 이 함수의 첫 번째 파라미터로는 컬럼이, 두 번째 파라미터인 char은 컬럼 간 구분자를 의미한다.
 */
   
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL, 
-       SYS_CONNECT_BY_PATH( department_name, '|')
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id;   
+-- 현재 결과값에 보면 구매/ 생산부 컬럼에 '/'가 있는데, 이것을 사용해선 안된다.
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL, 
+       SYS_CONNECT_BY_PATH( DEPARTMENT_NAME, '->')
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID;   
  
  /*
  SYS_CONNECT_BY_PATH( department_name, '/')
@@ -190,11 +209,11 @@ SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL,
  */
  
  -- 에러발생 :  department_name컬럼에 "구매/생산부"   데이터가 존재한다. / 를 포함하고 있다.
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL, 
-       SYS_CONNECT_BY_PATH( department_name, '/')
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id;     
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL, 
+       SYS_CONNECT_BY_PATH( DEPARTMENT_NAME, '/')
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID;     
  
 /*
 ⑤ CONNECT_BY_ISCYCLE
@@ -212,19 +231,19 @@ SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL,
 */
 
 --   구매/생산부의 parent_id 값을 생산부 10번에서 170번으로 변경작업을 한다. 결과는 계층형쿼리에서 무한루프가 발생된다.
-UPDATE departments
-   SET parent_id = 170
- WHERE department_id = 30;
+UPDATE DEPARTMENTS
+   SET PARENT_ID = 170
+ WHERE DEPARTMENT_ID = 30;
  
  
 -- 부서코드가 30을 루트지정 .
 -- 상위레벨에서 하위레벨로 출력
 -- 데이터가 잘못 입력되어, 무한루프 에러 발생. CONNECT BY loop in user data
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL, 
-       parent_id
-  FROM departments
-  START WITH department_id = 30 -- 상위레벨
-CONNECT BY PRIOR department_id  = parent_id; 
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL, 
+       PARENT_ID
+  FROM DEPARTMENTS
+  START WITH DEPARTMENT_ID = 30 -- 상위레벨
+CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID; 
 
 /*
 이때는 루프가 발생된 원인을 찾아 잘못된 데이터를 수정해야 하는데, 
@@ -234,20 +253,22 @@ CONNECT_BY_ISCYCLE은 다음과 같이 현재 로우가 자식을 갖고 있는데
 동시에 그 자식 로우가 부모 로우이면 1을, 그렇지 않으면 0을 반환한다.
 */
 
+-- 시스템 패키지
+DBMS
 
 
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name AS depname, LEVEL, 
-       CONNECT_BY_ISCYCLE IsLoop,
-       parent_id
-  FROM departments
-  START WITH department_id = 30
-CONNECT BY NOCYCLE PRIOR department_id  = parent_id; 
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME AS DEPNAME, LEVEL, 
+       CONNECT_BY_ISCYCLE ISLOOP,
+       PARENT_ID
+  FROM DEPARTMENTS
+  START WITH DEPARTMENT_ID = 30
+CONNECT BY NOCYCLE PRIOR DEPARTMENT_ID  = PARENT_ID; 
 
 -- 루프 발생시킨 데이타를 확인한다.
 -- 원래 상태로 다시 변경한다. 170 -> 10 코드로 변경
-UPDATE departments
-   SET parent_id = 10
- WHERE department_id = 30;
+UPDATE DEPARTMENTS
+   SET PARENT_ID = 10
+ WHERE DEPARTMENT_ID = 30;
   
   
 -- 계층형 쿼리 응용 
@@ -257,6 +278,8 @@ UPDATE departments
 -- DBMS_RANDOM 패키지.
 -- 주요기능 : 랜덤한 숫자나 문자열 만들때 사용.
 
+
+
 SET SERVEROUTPUT ON;
 
 SET SERVEROUTPUT OFF;
@@ -265,7 +288,7 @@ SET SERVEROUTPUT OFF;
 SELECT DBMS_RANDOM.RANDOM FROM DUAL;
 
 -- 0~1 범위 사이의 랜덤 값 생성
-SELECT SYS.dbms_random.VALUE FROM DUAL;
+SELECT SYS.DBMS_RANDOM.VALUE FROM DUAL;
 
 -- 1~1000 사이의 랜덤 값 생성
 SELECT DBMS_RANDOM.VALUE(1, 1000) FROM DUAL;
@@ -301,10 +324,10 @@ CONNECT BY LEVEL <= 10;
 
 -- 테이블 생성(데이타포함) : 데이타 백업 
 -- 샘플데이타 작업
-CREATE TABLE ex7_1 AS  
-SELECT ROWNUM seq, 
-       '2014' || LPAD(CEIL(ROWNUM/1000) , 2, '0' ) month,
-        ROUND(DBMS_RANDOM.VALUE (100, 1000)) amt
+CREATE TABLE EX7_1 AS  
+SELECT ROWNUM SEQ, 
+       '2014' || LPAD(CEIL(ROWNUM/1000) , 2, '0' ) MONTH,
+        ROUND(DBMS_RANDOM.VALUE (100, 1000)) AMT
 FROM DUAL
 CONNECT BY LEVEL <= 12000;
 
@@ -326,448 +349,448 @@ SELECT 컬럼1, 컬럼2 FROM 테이블명B
 -- 3월29일까지 진행됨.
 
 SELECT *
-  FROM ex7_1;
+  FROM EX7_1;
   
-SELECT month, SUM(amt)
-FROM ex7_1
-GROUP BY month
-ORDER BY month;
+SELECT MONTH, SUM(AMT)
+FROM EX7_1
+GROUP BY MONTH
+ORDER BY MONTH;
 
 SELECT ROWNUM
 FROM (
-       SELECT 1 AS row_num
+       SELECT 1 AS ROW_NUM
          FROM DUAL
         UNION ALL
-       SELECT 1 AS row_num
+       SELECT 1 AS ROW_NUM
          FROM DUAL
 )
 CONNECT BY LEVEL <= 4;
   
 -- 로우를 컬럼으로
 
-CREATE TABLE ex7_2 AS
-  SELECT department_id,
-         listagg(emp_name, ',') WITHIN GROUP (ORDER BY emp_name) as empnames
-  FROM employees
- WHERE department_id IS NOT NULL
-  GROUP BY department_id;
+CREATE TABLE EX7_2 AS
+  SELECT DEPARTMENT_ID,
+         LISTAGG(EMP_NAME, ',') WITHIN GROUP (ORDER BY EMP_NAME) AS EMPNAMES
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IS NOT NULL
+  GROUP BY DEPARTMENT_ID;
   
   
 SELECT *
-FROM ex7_2;
+FROM EX7_2;
 
 -- 컬럼을 로우로
   
-SELECT empnames,
-       DECODE(level, 1, 1, instr(empnames, ',', 1, level-1)) st,
-       INSTR(empnames, ',', 1, level) ed,
-       LEVEL as lvl
- FROM ( SELECT empnames || ',' as empnames,
-               LENGTH(empnames) ori_len,
-               LENGTH(REPLACE(empnames, ',', '')) new_len
-          FROM ex7_2
-         WHERE department_id = 90
+SELECT EMPNAMES,
+       DECODE(LEVEL, 1, 1, INSTR(EMPNAMES, ',', 1, LEVEL-1)) ST,
+       INSTR(EMPNAMES, ',', 1, LEVEL) ED,
+       LEVEL AS LVL
+ FROM ( SELECT EMPNAMES || ',' AS EMPNAMES,
+               LENGTH(EMPNAMES) ORI_LEN,
+               LENGTH(REPLACE(EMPNAMES, ',', '')) NEW_LEN
+          FROM EX7_2
+         WHERE DEPARTMENT_ID = 90
        )
- CONNECT BY LEVEL <= ori_len - new_len + 1;
+ CONNECT BY LEVEL <= ORI_LEN - NEW_LEN + 1;
  
  
-SELECT empnames,
-       DECODE(level, 1, 1, INSTR(empnames, ',', 1, LEVEL-1)) start_pos,
-       INSTR(empnames, ',', 1, LEVEL) end_pos,
-       LEVEL as lvl
-  FROM (  SELECT empnames || ',' as empnames,
-                 LENGTH(empnames) ori_len,
-                 LENGTH(REPLACE(empnames, ',', '')) new_len
-            FROM ex7_2
-           WHERE department_id = 90
+SELECT EMPNAMES,
+       DECODE(LEVEL, 1, 1, INSTR(EMPNAMES, ',', 1, LEVEL-1)) START_POS,
+       INSTR(EMPNAMES, ',', 1, LEVEL) END_POS,
+       LEVEL AS LVL
+  FROM (  SELECT EMPNAMES || ',' AS EMPNAMES,
+                 LENGTH(EMPNAMES) ORI_LEN,
+                 LENGTH(REPLACE(EMPNAMES, ',', '')) NEW_LEN
+            FROM EX7_2
+           WHERE DEPARTMENT_ID = 90
         )
-  CONNECT BY LEVEL <= ori_len - new_len + 1; 
+  CONNECT BY LEVEL <= ORI_LEN - NEW_LEN + 1; 
   
   
-SELECT REPLACE(SUBSTR(empnames, start_pos, end_pos - start_pos), ',', '') AS emp
-FROM ( SELECT empnames,
-              DECODE(level, 1, 1, INSTR(empnames, ',', 1, level-1)) start_pos,
-              INSTR(empnames, ',', 1, LEVEL) end_pos,
-              LEVEL as lvl
-      FROM (  SELECT empnames || ',' as empnames,
-                     LENGTH(empnames) ori_len,
-                     LENGTH(REPLACE(empnames, ',', '')) new_len
-                FROM ex7_2
-               WHERE department_id = 90
+SELECT REPLACE(SUBSTR(EMPNAMES, START_POS, END_POS - START_POS), ',', '') AS EMP
+FROM ( SELECT EMPNAMES,
+              DECODE(LEVEL, 1, 1, INSTR(EMPNAMES, ',', 1, LEVEL-1)) START_POS,
+              INSTR(EMPNAMES, ',', 1, LEVEL) END_POS,
+              LEVEL AS LVL
+      FROM (  SELECT EMPNAMES || ',' AS EMPNAMES,
+                     LENGTH(EMPNAMES) ORI_LEN,
+                     LENGTH(REPLACE(EMPNAMES, ',', '')) NEW_LEN
+                FROM EX7_2
+               WHERE DEPARTMENT_ID = 90
            )
-      CONNECT BY LEVEL <= ori_len - new_len + 1
+      CONNECT BY LEVEL <= ORI_LEN - NEW_LEN + 1
 ) ;
                   
   
 -- WITH 절
   
-SELECT b2.*
-FROM ( SELECT period, region, sum(loan_jan_amt) jan_amt
-         FROM kor_loan_status 
-         GROUP BY period, region
-      ) b2,      
-      ( SELECT b.period,  MAX(b.jan_amt) max_jan_amt
-         FROM ( SELECT period, region, sum(loan_jan_amt) jan_amt
-                  FROM kor_loan_status 
-                 GROUP BY period, region
-              ) b,
-              ( SELECT MAX(PERIOD) max_month
-                  FROM kor_loan_status
+SELECT B2.*
+FROM ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
+         FROM KOR_LOAN_STATUS 
+         GROUP BY PERIOD, REGION
+      ) B2,      
+      ( SELECT B.PERIOD,  MAX(B.JAN_AMT) MAX_JAN_AMT
+         FROM ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
+                  FROM KOR_LOAN_STATUS 
+                 GROUP BY PERIOD, REGION
+              ) B,
+              ( SELECT MAX(PERIOD) MAX_MONTH
+                  FROM KOR_LOAN_STATUS
                  GROUP BY SUBSTR(PERIOD, 1, 4)
-              ) a
-         WHERE b.period = a.max_month
-         GROUP BY b.period
-      ) c   
- WHERE b2.period = c.period
-   AND b2.jan_amt = c.max_jan_amt
+              ) A
+         WHERE B.PERIOD = A.MAX_MONTH
+         GROUP BY B.PERIOD
+      ) C   
+ WHERE B2.PERIOD = C.PERIOD
+   AND B2.JAN_AMT = C.MAX_JAN_AMT
  ORDER BY 1;
 
 
-WITH b2 AS ( SELECT period, region, sum(loan_jan_amt) jan_amt
-               FROM kor_loan_status 
-              GROUP BY period, region
+WITH B2 AS ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
+               FROM KOR_LOAN_STATUS 
+              GROUP BY PERIOD, REGION
            ),
-     c AS ( SELECT b.period,  MAX(b.jan_amt) max_jan_amt
-              FROM ( SELECT period, region, sum(loan_jan_amt) jan_amt
-                      FROM kor_loan_status 
-                     GROUP BY period, region
-                   ) b,
-                   ( SELECT MAX(PERIOD) max_month
-                       FROM kor_loan_status
+     C AS ( SELECT B.PERIOD,  MAX(B.JAN_AMT) MAX_JAN_AMT
+              FROM ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
+                      FROM KOR_LOAN_STATUS 
+                     GROUP BY PERIOD, REGION
+                   ) B,
+                   ( SELECT MAX(PERIOD) MAX_MONTH
+                       FROM KOR_LOAN_STATUS
                       GROUP BY SUBSTR(PERIOD, 1, 4)
-                   ) a
-             WHERE b.period = a.max_month
-             GROUP BY b.period
+                   ) A
+             WHERE B.PERIOD = A.MAX_MONTH
+             GROUP BY B.PERIOD
            )
-SELECT b2.*
-  FROM b2, c
- WHERE b2.period = c.period
-   AND b2.jan_amt = c.max_jan_amt
+SELECT B2.*
+  FROM B2, C
+ WHERE B2.PERIOD = C.PERIOD
+   AND B2.JAN_AMT = C.MAX_JAN_AMT
  ORDER BY 1;           
            
            
 -- 순환 서브쿼리
            
-SELECT department_id, LPAD(' ' , 3 * (LEVEL-1)) || department_name, LEVEL
-  FROM departments
-  START WITH parent_id IS NULL
-  CONNECT BY PRIOR department_id  = parent_id;
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME, LEVEL
+  FROM DEPARTMENTS
+  START WITH PARENT_ID IS NULL
+  CONNECT BY PRIOR DEPARTMENT_ID  = PARENT_ID;
   
-WITH recur ( department_id, parent_id, department_name, lvl)
-        AS ( SELECT department_id, parent_id, department_name, 1 AS lvl
-               FROM departments
-              WHERE parent_id IS NULL
+WITH RECUR ( DEPARTMENT_ID, PARENT_ID, DEPARTMENT_NAME, LVL)
+        AS ( SELECT DEPARTMENT_ID, PARENT_ID, DEPARTMENT_NAME, 1 AS LVL
+               FROM DEPARTMENTS
+              WHERE PARENT_ID IS NULL
               UNION ALL
-             SELECT a.department_id, a.parent_id, a.department_name, b.lvl + 1 
-               FROM departments a, recur b
-              WHERE a.parent_id = b.department_id 
+             SELECT A.DEPARTMENT_ID, A.PARENT_ID, A.DEPARTMENT_NAME, B.LVL + 1 
+               FROM DEPARTMENTS A, RECUR B
+              WHERE A.PARENT_ID = B.DEPARTMENT_ID 
               )             
-SELECT department_id, LPAD(' ' , 3 * (lvl-1)) || department_name, lvl
- FROM recur;
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LVL-1)) || DEPARTMENT_NAME, LVL
+ FROM RECUR;
  
  
-WITH recur ( department_id, parent_id, department_name, lvl)
-        AS ( SELECT department_id, parent_id, department_name, 1 AS lvl
-               FROM departments
-              WHERE parent_id IS NULL
+WITH RECUR ( DEPARTMENT_ID, PARENT_ID, DEPARTMENT_NAME, LVL)
+        AS ( SELECT DEPARTMENT_ID, PARENT_ID, DEPARTMENT_NAME, 1 AS LVL
+               FROM DEPARTMENTS
+              WHERE PARENT_ID IS NULL
               UNION ALL
-             SELECT a.department_id, a.parent_id, a.department_name, b.lvl + 1 
-               FROM departments a, recur b
-              WHERE a.parent_id = b.department_id 
+             SELECT A.DEPARTMENT_ID, A.PARENT_ID, A.DEPARTMENT_NAME, B.LVL + 1 
+               FROM DEPARTMENTS A, RECUR B
+              WHERE A.PARENT_ID = B.DEPARTMENT_ID 
               )       
-SEARCH DEPTH FIRST BY department_id SET order_seq                       
-SELECT department_id, LPAD(' ' , 3 * (lvl-1)) || department_name, lvl, order_seq
- FROM recur; 
+SEARCH DEPTH FIRST BY DEPARTMENT_ID SET ORDER_SEQ                       
+SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LVL-1)) || DEPARTMENT_NAME, LVL, ORDER_SEQ
+ FROM RECUR; 
 
 
 -- 분석함수
 
-SELECT department_id, emp_name, 
-       ROW_NUMBER() OVER (PARTITION BY department_id 
-                          ORDER BY emp_name ) dep_rows
-  FROM employees;
+SELECT DEPARTMENT_ID, EMP_NAME, 
+       ROW_NUMBER() OVER (PARTITION BY DEPARTMENT_ID 
+                          ORDER BY EMP_NAME ) DEP_ROWS
+  FROM EMPLOYEES;
   
   
-SELECT department_id, emp_name, 
-       salary,
-       RANK() OVER (PARTITION BY department_id 
-                    ORDER BY salary ) dep_rank
-  FROM employees;
+SELECT DEPARTMENT_ID, EMP_NAME, 
+       SALARY,
+       RANK() OVER (PARTITION BY DEPARTMENT_ID 
+                    ORDER BY SALARY ) DEP_RANK
+  FROM EMPLOYEES;
   
-SELECT department_id, emp_name, 
-       salary,
-       DENSE_RANK() OVER (PARTITION BY department_id 
-                    ORDER BY salary ) dep_rank
-  FROM employees;
+SELECT DEPARTMENT_ID, EMP_NAME, 
+       SALARY,
+       DENSE_RANK() OVER (PARTITION BY DEPARTMENT_ID 
+                    ORDER BY SALARY ) DEP_RANK
+  FROM EMPLOYEES;
   
 SELECT *
-FROM ( SELECT department_id, emp_name, 
-              salary, 
-              DENSE_RANK() OVER (PARTITION BY department_id 
-                                 ORDER BY salary desc) dep_rank
-         FROM employees
+FROM ( SELECT DEPARTMENT_ID, EMP_NAME, 
+              SALARY, 
+              DENSE_RANK() OVER (PARTITION BY DEPARTMENT_ID 
+                                 ORDER BY SALARY DESC) DEP_RANK
+         FROM EMPLOYEES
      )
-WHERE dep_rank <= 3;  
+WHERE DEP_RANK <= 3;  
     
     
-SELECT department_id, emp_name, 
-       salary,
-       CUME_DIST() OVER (PARTITION BY department_id 
-                         ORDER BY salary ) dep_dist
-  FROM employees;    
+SELECT DEPARTMENT_ID, EMP_NAME, 
+       SALARY,
+       CUME_DIST() OVER (PARTITION BY DEPARTMENT_ID 
+                         ORDER BY SALARY ) DEP_DIST
+  FROM EMPLOYEES;    
   
   
-SELECT department_id, emp_name, 
-       salary
-      ,rank() OVER (PARTITION BY department_id 
-                         ORDER BY salary ) raking
-      ,CUME_DIST() OVER (PARTITION BY department_id 
-                         ORDER BY salary ) cume_dist_value
-      ,PERCENT_RANK() OVER (PARTITION BY department_id 
-                         ORDER BY salary ) percentile
-  FROM employees
-WHERE department_id = 60;  
+SELECT DEPARTMENT_ID, EMP_NAME, 
+       SALARY
+      ,RANK() OVER (PARTITION BY DEPARTMENT_ID 
+                         ORDER BY SALARY ) RAKING
+      ,CUME_DIST() OVER (PARTITION BY DEPARTMENT_ID 
+                         ORDER BY SALARY ) CUME_DIST_VALUE
+      ,PERCENT_RANK() OVER (PARTITION BY DEPARTMENT_ID 
+                         ORDER BY SALARY ) PERCENTILE
+  FROM EMPLOYEES
+WHERE DEPARTMENT_ID = 60;  
 
-SELECT department_id, emp_name, 
-       salary
-      ,NTILE(4) OVER (PARTITION BY department_id 
-                         ORDER BY salary 
+SELECT DEPARTMENT_ID, EMP_NAME, 
+       SALARY
+      ,NTILE(4) OVER (PARTITION BY DEPARTMENT_ID 
+                         ORDER BY SALARY 
                       ) NTILES
-  FROM employees
-WHERE department_id IN (30, 60) ;
+  FROM EMPLOYEES
+WHERE DEPARTMENT_ID IN (30, 60) ;
 
-SELECT emp_name, hire_date, salary,
-       LAG(salary, 1, 0)  OVER (ORDER BY hire_date) AS prev_sal,
-       LEAD(salary, 1, 0) OVER (ORDER BY hire_date) AS next_sal
-  FROM employees
- WHERE department_id = 30;
+SELECT EMP_NAME, HIRE_DATE, SALARY,
+       LAG(SALARY, 1, 0)  OVER (ORDER BY HIRE_DATE) AS PREV_SAL,
+       LEAD(SALARY, 1, 0) OVER (ORDER BY HIRE_DATE) AS NEXT_SAL
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID = 30;
  
-SELECT emp_name, hire_date, salary,
-       LAG(salary, 2, 0)  OVER (ORDER BY hire_date) AS prev_sal,
-       LEAD(salary, 2, 0) OVER (ORDER BY hire_date) AS next_sal
-  FROM employees
- WHERE department_id = 30;
+SELECT EMP_NAME, HIRE_DATE, SALARY,
+       LAG(SALARY, 2, 0)  OVER (ORDER BY HIRE_DATE) AS PREV_SAL,
+       LEAD(SALARY, 2, 0) OVER (ORDER BY HIRE_DATE) AS NEXT_SAL
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID = 30;
  
  
 -- Window절
  
-SELECT department_id, emp_name, hire_date, salary,
-       SUM(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+SELECT DEPARTMENT_ID, EMP_NAME, HIRE_DATE, SALARY,
+       SUM(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                          ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-                         ) AS all_salary,
-       SUM(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                         ) AS ALL_SALARY,
+       SUM(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                          ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-                         ) AS first_current_sal,
-       SUM(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                         ) AS FIRST_CURRENT_SAL,
+       SUM(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                          ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
-                         ) AS current_end_sal
-  FROM employees
- WHERE department_id IN (30, 90);
+                         ) AS CURRENT_END_SAL
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IN (30, 90);
  
-SELECT department_id, emp_name, hire_date, salary,
-       SUM(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+SELECT DEPARTMENT_ID, EMP_NAME, HIRE_DATE, SALARY,
+       SUM(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                          RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-                         ) AS all_salary,
-       SUM(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                         ) AS ALL_SALARY,
+       SUM(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                          RANGE 365 PRECEDING
-                         ) AS range_sal1,
-       SUM(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                         ) AS RANGE_SAL1,
+       SUM(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                          RANGE BETWEEN 365 PRECEDING AND CURRENT ROW
-                         ) AS range_sal2
-  FROM employees
- WHERE department_id = 30; 
+                         ) AS RANGE_SAL2
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID = 30; 
  
  
-SELECT department_id, emp_name, hire_date, salary,
-       FIRST_VALUE(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+SELECT DEPARTMENT_ID, EMP_NAME, HIRE_DATE, SALARY,
+       FIRST_VALUE(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                  ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-                                ) AS all_salary,
-       FIRST_VALUE(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                                ) AS ALL_SALARY,
+       FIRST_VALUE(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-                                ) AS fr_st_to_current_sal,
-       FIRST_VALUE(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                                ) AS FR_ST_TO_CURRENT_SAL,
+       FIRST_VALUE(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                  ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
-                                ) AS fr_current_to_end_sal
-  FROM employees
- WHERE department_id IN (30, 90); 
+                                ) AS FR_CURRENT_TO_END_SAL
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IN (30, 90); 
  
  
- SELECT department_id, emp_name, hire_date, salary,
-       LAST_VALUE(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+ SELECT DEPARTMENT_ID, EMP_NAME, HIRE_DATE, SALARY,
+       LAST_VALUE(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                 ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-                                ) AS all_salary,
-       LAST_VALUE(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                                ) AS ALL_SALARY,
+       LAST_VALUE(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                 ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-                                ) AS fr_st_to_current_sal,
-       LAST_VALUE(salary) OVER (PARTITION BY department_id ORDER BY hire_Date
+                                ) AS FR_ST_TO_CURRENT_SAL,
+       LAST_VALUE(SALARY) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                 ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
-                                ) AS fr_current_to_end_sal
-  FROM employees
- WHERE department_id IN (30, 90); 
+                                ) AS FR_CURRENT_TO_END_SAL
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IN (30, 90); 
  
  
-SELECT department_id, emp_name, hire_date, salary,
-       NTH_VALUE(salary, 2) OVER (PARTITION BY department_id ORDER BY hire_Date
+SELECT DEPARTMENT_ID, EMP_NAME, HIRE_DATE, SALARY,
+       NTH_VALUE(SALARY, 2) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                   ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-                                 ) AS all_salary,
-       NTH_VALUE(salary, 2) OVER (PARTITION BY department_id ORDER BY hire_Date
+                                 ) AS ALL_SALARY,
+       NTH_VALUE(SALARY, 2) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                   ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-                                 ) AS fr_st_to_current_sal,
-       NTH_VALUE(salary,2 ) OVER (PARTITION BY department_id ORDER BY hire_Date
+                                 ) AS FR_ST_TO_CURRENT_SAL,
+       NTH_VALUE(SALARY,2 ) OVER (PARTITION BY DEPARTMENT_ID ORDER BY HIRE_DATE
                                   ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
-                                 ) AS fr_current_to_end_sal
-  FROM employees
- WHERE department_id IN (30, 90) ; 
+                                 ) AS FR_CURRENT_TO_END_SAL
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IN (30, 90) ; 
  
 -- 기타 분석 함수 
 
-SELECT department_id, emp_name, 
-       salary
-      ,NTILE(4) OVER (PARTITION BY department_id 
-                         ORDER BY salary 
+SELECT DEPARTMENT_ID, EMP_NAME, 
+       SALARY
+      ,NTILE(4) OVER (PARTITION BY DEPARTMENT_ID 
+                         ORDER BY SALARY 
                       ) NTILES
-      ,WIDTH_BUCKET(salary, 1000, 10000, 4) widthbuacket
-  FROM employees
-WHERE department_id = 60; 
+      ,WIDTH_BUCKET(SALARY, 1000, 10000, 4) WIDTHBUACKET
+  FROM EMPLOYEES
+WHERE DEPARTMENT_ID = 60; 
 
-WITH basis AS ( SELECT period, region, SUM(loan_jan_amt) jan_amt
-                  FROM kor_loan_status
-                 GROUP BY period, region
+WITH BASIS AS ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
+                  FROM KOR_LOAN_STATUS
+                 GROUP BY PERIOD, REGION
               ), 
-    basis2 as ( SELECT period, MIN(jan_amt) min_amt, MAX(jan_amt) max_amt
-                  FROM basis
-                 GROUP BY period
+    BASIS2 AS ( SELECT PERIOD, MIN(JAN_AMT) MIN_AMT, MAX(JAN_AMT) MAX_AMT
+                  FROM BASIS
+                 GROUP BY PERIOD
               )
- SELECT a.period, 
-        b.region "최소지역", b.jan_amt "최소금액",
-        c.region "최대지역", c.jan_amt "최대금액"
-   FROM basis2 a, basis b, basis c
-  WHERE a.period  = b.period
-    AND a.min_amt = b.jan_amt 
-    AND a.period  = c.period
-    AND a.max_amt = c.jan_amt
+ SELECT A.PERIOD, 
+        B.REGION "최소지역", B.JAN_AMT "최소금액",
+        C.REGION "최대지역", C.JAN_AMT "최대금액"
+   FROM BASIS2 A, BASIS B, BASIS C
+  WHERE A.PERIOD  = B.PERIOD
+    AND A.MIN_AMT = B.JAN_AMT 
+    AND A.PERIOD  = C.PERIOD
+    AND A.MAX_AMT = C.JAN_AMT
   ORDER BY 1, 2;
  
  
-WITH basis AS (
-               SELECT period, region, SUM(loan_jan_amt) jan_amt
-                 FROM kor_loan_status
-                GROUP BY period, region
+WITH BASIS AS (
+               SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
+                 FROM KOR_LOAN_STATUS
+                GROUP BY PERIOD, REGION
               )
-SELECT a.period, 
-       MIN(a.region) KEEP ( DENSE_RANK FIRST ORDER BY jan_amt) "최소지역", 
-       MIN(jan_amt) "최소금액", 
-       MAX(a.region) keep ( DENSE_RANK LAST ORDER BY jan_amt) "최대지역",
-       MAX(jan_amt) "최대금액"
-FROM basis a
-GROUP BY a.period
+SELECT A.PERIOD, 
+       MIN(A.REGION) KEEP ( DENSE_RANK FIRST ORDER BY JAN_AMT) "최소지역", 
+       MIN(JAN_AMT) "최소금액", 
+       MAX(A.REGION) KEEP ( DENSE_RANK LAST ORDER BY JAN_AMT) "최대지역",
+       MAX(JAN_AMT) "최대금액"
+FROM BASIS A
+GROUP BY A.PERIOD
 ORDER BY 1, 2;
 
-SELECT department_id, emp_name, hire_date, salary,
-       ROUND(RATIO_TO_REPORT(salary) OVER (PARTITION BY department_id 
-                                ),2) * 100 AS salary_percent
-  FROM employees
- WHERE department_id IN (30, 90); 
+SELECT DEPARTMENT_ID, EMP_NAME, HIRE_DATE, SALARY,
+       ROUND(RATIO_TO_REPORT(SALARY) OVER (PARTITION BY DEPARTMENT_ID 
+                                ),2) * 100 AS SALARY_PERCENT
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IN (30, 90); 
  
  
 -- 다중 테이블 INSERT
 -- 여러 개의 INSERT문을 한 방에 처리
-CREATE TABLE ex7_3 (
-       emp_id    NUMBER,
-       emp_name  VARCHAR2(100));
+CREATE TABLE EX7_3 (
+       EMP_ID    NUMBER,
+       EMP_NAME  VARCHAR2(100));
 
 
-CREATE TABLE ex7_4 (
-       emp_id    NUMBER,
-       emp_name  VARCHAR2(100));
+CREATE TABLE EX7_4 (
+       EMP_ID    NUMBER,
+       EMP_NAME  VARCHAR2(100));
        
-INSERT INTO ex7_3 VALUES (101, '홍길동'); 
+INSERT INTO EX7_3 VALUES (101, '홍길동'); 
 
-INSERT INTO ex7_3 VALUES (102, '김유신');       
+INSERT INTO EX7_3 VALUES (102, '김유신');       
 
 INSERT ALL
-INTO ex7_3 VALUES (103, '강감찬')
-INTO ex7_3 VALUES (104, '연개소문')
+INTO EX7_3 VALUES (103, '강감찬')
+INTO EX7_3 VALUES (104, '연개소문')
 SELECT *
 FROM DUAL;
 
 INSERT ALL
-INTO ex7_3 VALUES (emp_id, emp_name)
-SELECT 103 emp_id, '강감찬' emp_name
+INTO EX7_3 VALUES (EMP_ID, EMP_NAME)
+SELECT 103 EMP_ID, '강감찬' EMP_NAME
 FROM DUAL
 UNION ALL
-SELECT 104 emp_id, '연개소문' emp_name
+SELECT 104 EMP_ID, '연개소문' EMP_NAME
 FROM DUAL;
 
 
 INSERT ALL
-INTO ex7_3 VALUES (105, '가가가')
-INTO ex7_4 VALUES (105, '나나나')
+INTO EX7_3 VALUES (105, '가가가')
+INTO EX7_4 VALUES (105, '나나나')
 SELECT *
 FROM DUAL;
 
 -- 조건에 따른 다중 INSERT
-TRUNCATE TABLE ex7_3;
+TRUNCATE TABLE EX7_3;
 
-TRUNCATE TABLE ex7_4;
+TRUNCATE TABLE EX7_4;
 
 
 INSERT ALL
-WHEN department_id = 30 THEN
-  INTO ex7_3 VALUES (employee_id, emp_name)
-WHEN department_id = 90 THEN
-  INTO ex7_4 VALUES (employee_id, emp_name)
-SELECT department_id, 
-       employee_id, emp_name 
-FROM  employees;
+WHEN DEPARTMENT_ID = 30 THEN
+  INTO EX7_3 VALUES (EMPLOYEE_ID, EMP_NAME)
+WHEN DEPARTMENT_ID = 90 THEN
+  INTO EX7_4 VALUES (EMPLOYEE_ID, EMP_NAME)
+SELECT DEPARTMENT_ID, 
+       EMPLOYEE_ID, EMP_NAME 
+FROM  EMPLOYEES;
 
 
-CREATE TABLE ex7_5 (
-       emp_id    NUMBER,
-       emp_name  VARCHAR2(100));
+CREATE TABLE EX7_5 (
+       EMP_ID    NUMBER,
+       EMP_NAME  VARCHAR2(100));
        
 INSERT ALL
-WHEN department_id = 30 THEN
-  INTO ex7_3 VALUES (employee_id, emp_name)
-WHEN department_id = 90 THEN
-  INTO ex7_4 VALUES (employee_id, emp_name)
+WHEN DEPARTMENT_ID = 30 THEN
+  INTO EX7_3 VALUES (EMPLOYEE_ID, EMP_NAME)
+WHEN DEPARTMENT_ID = 90 THEN
+  INTO EX7_4 VALUES (EMPLOYEE_ID, EMP_NAME)
 ELSE
-  INTO ex7_5 VALUES (employee_id, emp_name)
-SELECT department_id, 
-       employee_id, emp_name 
-FROM  employees;
+  INTO EX7_5 VALUES (EMPLOYEE_ID, EMP_NAME)
+SELECT DEPARTMENT_ID, 
+       EMPLOYEE_ID, EMP_NAME 
+FROM  EMPLOYEES;
        
        
 SELECT COUNT(*)
 FROM EX7_5;
        
-SELECT department_id, employee_id, emp_name,  salary
-FROM employees
-WHERE department_id = 30;
+SELECT DEPARTMENT_ID, EMPLOYEE_ID, EMP_NAME,  SALARY
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID = 30;
 
 INSERT ALL
-WHEN employee_id < 116 THEN
-  INTO ex7_3 VALUES (employee_id, emp_name)
-WHEN  salary < 5000 THEN
-  INTO ex7_4 VALUES (employee_id, emp_name)
-SELECT department_id, employee_id, emp_name,  salary
-FROM   employees
-WHERE  department_id = 30;  
+WHEN EMPLOYEE_ID < 116 THEN
+  INTO EX7_3 VALUES (EMPLOYEE_ID, EMP_NAME)
+WHEN  SALARY < 5000 THEN
+  INTO EX7_4 VALUES (EMPLOYEE_ID, EMP_NAME)
+SELECT DEPARTMENT_ID, EMPLOYEE_ID, EMP_NAME,  SALARY
+FROM   EMPLOYEES
+WHERE  DEPARTMENT_ID = 30;  
 
 
 SELECT *
-FROM ex7_3;
+FROM EX7_3;
 
 SELECT *
-FROM ex7_4;
+FROM EX7_4;
 
 INSERT FIRST
-WHEN employee_id < 116 THEN
-  INTO ex7_3 VALUES (employee_id, emp_name)
-WHEN  salary < 5000 THEN
-  INTO ex7_4 VALUES (employee_id, emp_name)
-SELECT department_id, employee_id, emp_name,  salary
-FROM   employees
-WHERE  department_id = 30;   
+WHEN EMPLOYEE_ID < 116 THEN
+  INTO EX7_3 VALUES (EMPLOYEE_ID, EMP_NAME)
+WHEN  SALARY < 5000 THEN
+  INTO EX7_4 VALUES (EMPLOYEE_ID, EMP_NAME)
+SELECT DEPARTMENT_ID, EMPLOYEE_ID, EMP_NAME,  SALARY
+FROM   EMPLOYEES
+WHERE  DEPARTMENT_ID = 30;   
 
 
