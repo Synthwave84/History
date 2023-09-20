@@ -254,7 +254,7 @@ CONNECT_BY_ISCYCLE은 다음과 같이 현재 로우가 자식을 갖고 있는데
 */
 
 -- 시스템 패키지
-DBMS
+-- DBMS
 
 
 SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LEVEL-1)) || DEPARTMENT_NAME AS DEPNAME, LEVEL, 
@@ -323,13 +323,15 @@ SELECT CEIL(DBMS_RANDOM.VALUE(1000, 10000)) FROM DUAL
 CONNECT BY LEVEL <= 10;
 
 -- 테이블 생성(데이타포함) : 데이타 백업 
--- 샘플데이타 작업
+-- 샘플데이타 작업 : 2014년 1월~12월 데이터
 CREATE TABLE EX7_1 AS  
 SELECT ROWNUM SEQ, 
        '2014' || LPAD(CEIL(ROWNUM/1000) , 2, '0' ) MONTH,
         ROUND(DBMS_RANDOM.VALUE (100, 1000)) AMT
 FROM DUAL
 CONNECT BY LEVEL <= 12000;
+
+SELECT * FROM EX7_1;
 
 -- 2014년도 01월~12월 데이타를 가공작업
 -- ROWNUM 1~1000
@@ -338,7 +340,8 @@ SELECT CEIL(1/1000), CEIL(999/1000), CEIL(1000/1000) FROM DUAL;
 -- -- ROWNUM 1001~2000
 SELECT CEIL(1001/1000), CEIL(1999/1000), CEIL(2000/1000) FROM DUAL;
 
-
+-- CREATE TABLE 테이블명 AS SELECT --
+-- 참고, TABLE, SELECT 구분 --
 -- 참고. INSERT~SELECT 구문.
 /*
 INSERT INTO 테이블명A
@@ -351,22 +354,22 @@ SELECT 컬럼1, 컬럼2 FROM 테이블명B
 SELECT *
   FROM EX7_1;
   
+-- 2014년 월별 금액 합계.
 SELECT MONTH, SUM(AMT)
 FROM EX7_1
 GROUP BY MONTH
 ORDER BY MONTH;
 
-SELECT ROWNUM
-FROM (
-       SELECT 1 AS ROW_NUM
-         FROM DUAL
-        UNION ALL
-       SELECT 1 AS ROW_NUM
-         FROM DUAL
-)
-CONNECT BY LEVEL <= 4;
+
   
 -- 로우를 컬럼으로
+-- 부서별 사원이름을 조회하라.
+
+-- 행 <ROW 단위로 출력됨 행= 줄
+SELECT DEPARTMENT_ID,EMP_NAME FROM EMPLOYEES
+ORDER BY DEPARTMENT_ID
+;
+-- 전체 사원 목록
 
 CREATE TABLE EX7_2 AS
   SELECT DEPARTMENT_ID,
@@ -375,55 +378,24 @@ CREATE TABLE EX7_2 AS
  WHERE DEPARTMENT_ID IS NOT NULL
   GROUP BY DEPARTMENT_ID;
   
-  
+-- 상단의 테이블 생성 및 데이터 확인.
 SELECT *
 FROM EX7_2;
 
--- 컬럼을 로우로
-  
-SELECT EMPNAMES,
-       DECODE(LEVEL, 1, 1, INSTR(EMPNAMES, ',', 1, LEVEL-1)) ST,
-       INSTR(EMPNAMES, ',', 1, LEVEL) ED,
-       LEVEL AS LVL
- FROM ( SELECT EMPNAMES || ',' AS EMPNAMES,
-               LENGTH(EMPNAMES) ORI_LEN,
-               LENGTH(REPLACE(EMPNAMES, ',', '')) NEW_LEN
-          FROM EX7_2
-         WHERE DEPARTMENT_ID = 90
-       )
- CONNECT BY LEVEL <= ORI_LEN - NEW_LEN + 1;
- 
- 
-SELECT EMPNAMES,
-       DECODE(LEVEL, 1, 1, INSTR(EMPNAMES, ',', 1, LEVEL-1)) START_POS,
-       INSTR(EMPNAMES, ',', 1, LEVEL) END_POS,
-       LEVEL AS LVL
-  FROM (  SELECT EMPNAMES || ',' AS EMPNAMES,
-                 LENGTH(EMPNAMES) ORI_LEN,
-                 LENGTH(REPLACE(EMPNAMES, ',', '')) NEW_LEN
-            FROM EX7_2
-           WHERE DEPARTMENT_ID = 90
-        )
-  CONNECT BY LEVEL <= ORI_LEN - NEW_LEN + 1; 
-  
-  
-SELECT REPLACE(SUBSTR(EMPNAMES, START_POS, END_POS - START_POS), ',', '') AS EMP
-FROM ( SELECT EMPNAMES,
-              DECODE(LEVEL, 1, 1, INSTR(EMPNAMES, ',', 1, LEVEL-1)) START_POS,
-              INSTR(EMPNAMES, ',', 1, LEVEL) END_POS,
-              LEVEL AS LVL
-      FROM (  SELECT EMPNAMES || ',' AS EMPNAMES,
-                     LENGTH(EMPNAMES) ORI_LEN,
-                     LENGTH(REPLACE(EMPNAMES, ',', '')) NEW_LEN
-                FROM EX7_2
-               WHERE DEPARTMENT_ID = 90
-           )
-      CONNECT BY LEVEL <= ORI_LEN - NEW_LEN + 1
-) ;
+-- 전체 사원 목록
+-- 만일 SELECT 리스트의 DEPARTMENT_ID와 "GROUP BY DEPARTMENT_ID 부분을 없애면
+-- 모든 사원을 , 구분자로 하여 전체 사원을 한 행으로 출력
+
+  SELECT 
+         LISTAGG(EMP_NAME, ',') WITHIN GROUP (ORDER BY EMP_NAME) AS EMPNAMES
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IS NOT NULL
+
                   
   
 -- WITH 절
-  
+
+-- 1)
 SELECT B2.*
 FROM ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
          FROM KOR_LOAN_STATUS 
@@ -446,6 +418,7 @@ FROM ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
  ORDER BY 1;
 
 
+-- 2)
 WITH B2 AS ( SELECT PERIOD, REGION, SUM(LOAN_JAN_AMT) JAN_AMT
                FROM KOR_LOAN_STATUS 
               GROUP BY PERIOD, REGION
@@ -467,7 +440,7 @@ SELECT B2.*
  WHERE B2.PERIOD = C.PERIOD
    AND B2.JAN_AMT = C.MAX_JAN_AMT
  ORDER BY 1;           
-           
+
            
 -- 순환 서브쿼리
            
@@ -503,19 +476,89 @@ SELECT DEPARTMENT_ID, LPAD(' ' , 3 * (LVL-1)) || DEPARTMENT_NAME, LVL, ORDER_SEQ
  FROM RECUR; 
 
 
+           
+-- WITH절 문법 연습
+-- 복잡한 SQL에서 동일 블록에 대해 반복적으로 SQL문을 사용하는 경우
+-- 그 블록에 이름을 부여하여 재사용하는 용도
+
+WITH EXAMPLE AS 
+(
+    SELECT 'WITH절' AS STRI FROM DUAL
+)
+SELECT * FROM EXAMPLE;
+
+-- 2) 다중 WITH 문
+WITH EXAMPLE1 AS 
+(
+    SELECT 'EX1' A FROM DUAL
+    UNION ALL
+    SELECT '2X2' FROM DUAL
+), 
+EAMPLE2 AS
+(
+    SELECT 'EX3' A FROM DUAL
+    UNION ALL
+    SELECT A FROM EXAMPLE1
+)
+SELECT * FROM EXAMPLE2;
+
+
+
 -- 분석함수
+/* 
+분석 함수 AnalyticFunction 란 테이블에 있는 로우에 대해 특정 그룹별로 집계 값을 산출할 때 사용된다. 
+집계 값을 구할 때 보통은 그룹 쿼리를 사용하는데, 이때 GROUP BY 절에 의해 최종 쿼리 결과는 
+그룹별로 로우 수가 줄어든다. 이에 반해, 집계 함수를 사용하면 로우의 손실 없이도 
+그룹별 집계 값을 산출해 낼 수 있다. 분석 함수에서 사용하는 로우별 그룹을 
+윈도우(window)라고 부르는데, 이는 집계 값 계산을 위한 로우의 범위를 결정하는 역할을 한다.
+*/
+
+-- 부서별 급여 합계 
+SELECT      DEPARTMENT_ID, SUM(SALARY)
+FROM        EMPLOYEES
+GROUP BY    DEPARTMENT_ID
+ORDER BY    DEPARTMENT_ID;
+
+/*
+   분석 함수(매개변수) OVER
+       　　　(PARTITION BY expr1, expr2,...
+                  ORDER BY expr3, expr4...
+                window 절)
+
+*/
+
+-- ① ROW_NUMBER( )
+-- ROW_NUMBER는 ROWNUM 의사 컬럼과 비슷한 기능을 하는데, 
+-- 파티션으로 분할된 그룹별로 각 로우에 대한 순번을 반환하는 함수다. 
+-- 사원 테이블에서 부서별 사원들의 로우 수를 출력해 보자.
+
+
 
 SELECT DEPARTMENT_ID, EMP_NAME, 
        ROW_NUMBER() OVER (PARTITION BY DEPARTMENT_ID 
                           ORDER BY EMP_NAME ) DEP_ROWS
   FROM EMPLOYEES;
   
+-- RANK 함수는 파티션별 순위를 반환한다. 부서별로 급여 순위를 매겨보자.
   
+-- 부서별 급여의 순위를 먹인다.
+-- RANK() : 급여가 동일한 데이터에 대하여 공동순위를 매기고,
+-- 그 다음 공동 순위 만큼 차이를 두어 그 다음 순위를 매긴다.
 SELECT DEPARTMENT_ID, EMP_NAME, 
        SALARY,
        RANK() OVER (PARTITION BY DEPARTMENT_ID 
                     ORDER BY SALARY ) DEP_RANK
   FROM EMPLOYEES;
+  
+/* 
+40	Susan Mavris	    6500	1
+50	TJ Olson	        2100	1
+50	Steven Markle	    2200	2
+50	Hazel Philtanker	2200	2
+50	Ki Gee	            2400	4
+50	James Landry	    2400	4
+*/
+  
   
 SELECT DEPARTMENT_ID, EMP_NAME, 
        SALARY,
@@ -523,6 +566,29 @@ SELECT DEPARTMENT_ID, EMP_NAME,
                     ORDER BY SALARY ) DEP_RANK
   FROM EMPLOYEES;
   
+/* 
+50	TJ Olson	        2100	1
+50	Steven Markle	    2200	2
+50	Hazel Philtanker	2200	2
+50	Ki Gee	            2400	3
+50	James Landry	    2400	3
+50	Randall Perkins	    2500	4
+50	Martha Sullivan	    2500	4
+50	Joshua Patel	    2500	4
+50	Peter Vargas	    2500	4
+50	James Marlow	    2500	4
+*/
+  
+  
+/* 
+TOP N 쿼리!
+분석 함수는 응용 분야가 매우 많다. 
+예를 들어, 특정 조건에 맞는 상위 혹은 하위 n개의 데이터만 추출하는 
+TOP n 쿼리도 쉽게 작성할 수 있다. 각 부서별로 급여가 
+상위 3위까지인 사원을 추출하는 쿼리를 작성해 보자.
+*/ 
+
+-- 1) 상위 3위
 SELECT *
 FROM ( SELECT DEPARTMENT_ID, EMP_NAME, 
               SALARY, 
@@ -531,6 +597,17 @@ FROM ( SELECT DEPARTMENT_ID, EMP_NAME,
          FROM EMPLOYEES
      )
 WHERE DEP_RANK <= 3;  
+
+-- 2) 하위 3위
+SELECT *
+FROM ( SELECT DEPARTMENT_ID, EMP_NAME, 
+              SALARY, 
+              DENSE_RANK() OVER (PARTITION BY DEPARTMENT_ID 
+                                 ORDER BY SALARY ASC) DEP_RANK
+         FROM EMPLOYEES
+     )
+WHERE DEP_RANK <= 3;  
+    
     
     
 SELECT DEPARTMENT_ID, EMP_NAME, 

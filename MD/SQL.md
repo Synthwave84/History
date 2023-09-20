@@ -192,4 +192,9 @@ Group by 1, CUBE(2, 3)
     FULL OUTER JOIN
 
 
-    
+좋은 사이트 구루비
+
+
+PL/SQL
+
+ - 시스템 패키지 : DBMS
