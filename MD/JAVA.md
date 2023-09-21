@@ -350,3 +350,62 @@ https://drive.google.com/drive/folders/1503W7f140lzvWsBdTq_RMLCPMWA19NWH
 > 주소 -> sts4.zip 다운
 
 SpringTool.exe 실행
+>안됨 ㅠ 내일
+
+대신 docmall.zip 다운 후 pom.xml 실행 VSCode 등 암거나 열어도됨.
+
+Google에 Maven repository 검색. 메이븐 관련 무료 API
+
+JACKSON DATABIND = JSON 관리 라이브러리(API). 검색 
+버전 클릭하면 HTML 주소 하나 나오고, 이를 POM.XML의 
+<dependency> 태그에 붙여넣기 해 주어야함. 
+
+example > https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.15.2
+하단의 태그 클릭시 바로 클립보드 카피.
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.2</version>
+</dependency>
+카피 된 내역.
+
+허나, 현재 pom에는 jackson databind는 이미 등록이 되어있음.
+Ctrl + F 로 Jackson 검색 시 확인 가능.
+
+Explorer 에서 사용자 -> <USER 계정명> -> 클릭 시 
+.m2 폴더 존재. = Repository -> com -> fasterxml -> jackson 확인 가능.
+패키지가 저장되는 곳.
+허나, 현재 작업한 것이 없기 때문에 우리는 .m2.폴더가 없다. 이후 작업 시 생성됨.
+
+Jackson 폴더 클릭시, 버젼 존재. 2.9.4
+내부 jar 파일이 존재. 압축을 원래는 풀지 않으나, 풀 수 있음.
+확인 시 내부의 클래스 등이 존재.
+
+이후, Maven Repository 사이트를 통해 필요한 API를 끌어옴.
+
+이후, docmall -> main -> java -> controller 0> MemberController.java 클릭
+어노테이션(@xxxxx) 들 확인 및 주석 확인.
+
+작업의 흐름은 Controller -> service -> mapper 
+mapper : DB와 관련된 작업. 
+mapper > service > controller. = 누군가 설계한게 아니라 스프링 자체의 가이드라인으로 잡혀있음.
+즉 기본 뼈대.
+
+mybatis = SI가 주로 사용함.
+Spring JPA = 현재 신생업체에서 주로 사용함.
+허나 Mybatis 가 기본이 되지 않은 상태로는 JPA를 공부해선 안된다. 
+정상적인 루트는 반드시 Mybatis 를 거쳐야 한다. 왜냐하면, mybatis 는 SQL쿼리문을 사용하기때문.
+
+ex > C:\Users\i7F-21\Downloads\docmall\src\main\resources\com\docmall\mapper
+> MemberMapper.xml 의 일부
+
+	<insert id="join">
+		insert into member_tbl(mem_id, MEM_NAME, MEM_PW, MEM_EMAIL, MEM_ZIPCODE, 
+			MEM_ADDR, MEM_ADDR_D, MEM_PHONE, MEM_NICK, MEM_ACCEPT_E)
+		values(#{mem_id}, #{mem_name}, #{mem_pw}, #{mem_email}, #{mem_zipcode},
+			#{mem_addr}, #{mem_addr_d}, #{mem_phone}, #{mem_nick}, #{mem_accept_e})
+	</insert>
+
+mybatis또한 라이브러리.
+pom.xml 에서 확인 가능.
