@@ -333,3 +333,20 @@ LocalDate, LocalTime, LocalDateTime
 Ctrl + Shift + R 리소스찾기.
 
 Ctrl + Shift + F 코드재정렬
+
+
+Spring
+  - 스프링 프레임워크 : 선행 (SI 업체에서 주로 진행)
+  - 스프링 부트 : 별도 정리. (Service 업체에서 주로 진행)
+  대략 70% 가량의 사용법이 비슷하다. 
+  스프링 부트는 다소 난이도가 쉬우나, 스프링 프레임워크는 다소 난이도가 있다.
+  스프링부트 : 스프링프레임워크를 간편하게 변경한 버젼. 특히 설정이나 세팅값
+  부분에서 상당한 편의성이 개선된 프로그램이라고 한다.
+
+  스프링 프레임워크로 개발을 시작한 개발자는 스프링 부트로의 전환이 빠른 편이나,
+  스프링 부트로 시작을 하게 된 개발자는 스프링 프레임워크 사용시 어려움을 겪을 수 있다.
+
+https://drive.google.com/drive/folders/1503W7f140lzvWsBdTq_RMLCPMWA19NWH
+> 주소 -> sts4.zip 다운
+
+SpringTool.exe 실행
