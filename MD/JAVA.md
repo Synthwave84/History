@@ -334,6 +334,12 @@ Ctrl + Shift + R 리소스찾기.
 
 Ctrl + Shift + F 코드재정렬
 
+Ctrl + Shift + O 필요없는 코드 정리
+
+파일
+- 텍스트파일
+- 이진(Binary) 파일
+
 
 Spring
   - 스프링 프레임워크 : 선행 (SI 업체에서 주로 진행)

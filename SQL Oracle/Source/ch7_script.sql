@@ -772,6 +772,23 @@ SELECT DEPARTMENT_ID, EMP_NAME, HIRE_DATE, SALARY,
  
 -- 다중 테이블 INSERT
 -- 여러 개의 INSERT문을 한 방에 처리
+
+--   다중 테이블 INSERT 구문은 단 하나의 INSERT 문장으로 여러 개의 INSERT 문을 
+--   수행하는 효과를 낼 수 있을 뿐만 아니라 특정 조건에 맞는 데이터만 특정 테이블에 
+--   입력되게 할 수 있는 문장이다. 
+--   먼저 다중 테이블 INSERT 문의 구문을 살펴 보자.
+
+
+-- INSERT ALL| FIRST
+--    WHEN 조건1 THEN
+--    　INTO [스키마.]테이블명(컬럼1, 컬럼2, ...) VALUES(값1, 값2, ...)
+--    WHEN 조건2 THEN
+--    　INTO [스키마.]테이블명(컬럼1, 컬럼2, ...) VALUES(값1, 값2, ...)
+--        ...
+--     ELSE
+--    　 INTO [스키마.]테이블명(컬럼1, 컬럼2, ...) VALUES(값1, 값2, ...)
+--    SELECT 문;
+
 CREATE TABLE EX7_3 (
        EMP_ID    NUMBER,
        EMP_NAME  VARCHAR2(100));
@@ -799,6 +816,8 @@ UNION ALL
 SELECT 104 EMP_ID, '연개소문' EMP_NAME
 FROM DUAL;
 
+SELECT * FROM EX7_3;
+
 
 INSERT ALL
 INTO EX7_3 VALUES (105, '가가가')
@@ -807,19 +826,42 @@ SELECT *
 FROM DUAL;
 
 -- 조건에 따른 다중 INSERT
+
+-- COMMIT, ROLLBACK 기능이 적용되지 않음.
+-- 실제 데이터를 제거하는 것이 아닌, 데이터의 주소를 잘라버린다.
+
 TRUNCATE TABLE EX7_3;
 
 TRUNCATE TABLE EX7_4;
 
 
+-- 사용 빈도
+
+SELECT * FROM EX7_3;
+
+SELECT * FROM EX7_4;
+
+
 INSERT ALL
-WHEN DEPARTMENT_ID = 30 THEN
-  INTO EX7_3 VALUES (EMPLOYEE_ID, EMP_NAME)
-WHEN DEPARTMENT_ID = 90 THEN
-  INTO EX7_4 VALUES (EMPLOYEE_ID, EMP_NAME)
-SELECT DEPARTMENT_ID, 
-       EMPLOYEE_ID, EMP_NAME 
-FROM  EMPLOYEES;
+WHEN    DEPARTMENT_ID = 30 THEN
+    INTO EX7_3 VALUES (EMPLOYEE_ID, EMP_NAME)
+WHEN    DEPARTMENT_ID = 90 THEN
+    INTO EX7_4 VALUES (EMPLOYEE_ID, EMP_NAME)
+SELECT  DEPARTMENT_ID, 
+        EMPLOYEE_ID, EMP_NAME 
+FROM    EMPLOYEES;
+
+INSERT ALL
+WHEN    DEPARTMENT_ID=30 THEN
+    INTO    EX7_3 VALUES(EMPLOYEE_ID, EMP_NAME)
+WHEN    DEPARTMENT_ID = 90 THEN
+    INTO    EX7_4   VALUES(EMPLOYEE_ID, EMP_NAME)
+SELECT  DEPARTMENT_ID, 
+        EMPLOYEE_ID, EMP_NAME     
+FROM    EMPLOYEES;
+
+
+
 
 
 CREATE TABLE EX7_5 (
