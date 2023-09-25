@@ -1,4 +1,4 @@
-package Testera;
+package Tester;
 
 public class Sungjuk {
 	
