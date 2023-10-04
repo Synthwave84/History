@@ -436,3 +436,31 @@ TCP 프로토콜
 UDP 프로토콜 
 - 비 연결 지향성. 여러개의 병렬회선을 쓰고, 그떄그떄 연결을 하는느낌.
   목적지에 다양한 회선을 사용. 데이터가 순차적이지 않을 수 있고, 안정성이 부족 패킷로스발생할 수 있음. 대신 속도가 빠름.  속도가 중요할 경우 UDP
+
+개발툴 - 인코딩 설정 확인
+
+톰캣 서버 설정 
+  - Preferences -> Server -> Runtime Environment
+  - Web Application Server(WAS)  : 웹 응용 프로그램을 실행하는 서버.
+  - 웹 응용프로그램 : JSP or Servlet 으로 개발.
+
+Tomcat의 기능
+  - 1) JSP or Servlet 파일을 실행하는 웹 컨테이너 기능.
+  - 2) 웹서버 기능 : 요청과 응답 해 주는 기능.
+
+이클립스
+  - 프로젝트 생성 
+  템플릿 선택 : Dynamic Web Project
+  프로젝트 이름 : docjsp
+
+  - Web Content 폴더 : 파일 및 하위폴더 생성
+  (META-INF, WEB-INF 폴더 제외)
+
+  - date.jsp 변환과정
+    date.jsp -> date.jsp.ava ->date_jsp.class -> html code 생성.
+    실질적인 실행은 date_jsp.class가 담당한다.
+
+Tomcat의 주 기능
+  - 웹 컨테이너 기능이 메인 이다.
+  - 웹 서버 기능은 부차적인 보조 기능이다.
+  - 윕 서버의 기능을 제대로 활용하기 위해선 apache  를 사용해야 한다. 

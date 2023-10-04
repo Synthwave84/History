@@ -48,3 +48,15 @@ https://wikidocs.net/81917
 
 https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%8B%A4%EC%88%98-%ED%91%9C%ED%98%84%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EC%9B%90%EB%A6%AC-%ED%95%9C%EB%88%88%EC%97%90-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0
 
+
+웹 프로그래밍 언어
+  - 클라이언트 기반의 언어
+    : 브라우저에서 동작하는 의미.
+    종류 : HTML, CSS3, Javascript(React 등이 포함된다.)
+  - 서버 기반의 언어
+    : 웹서버에서 동작하는 의미.
+    종류 : JSP (자바 기반의 웹프로그래밍 언어)
+           : 닷넷 Asp.net (With C#,VB.net) 
+           : Node.js(JavaScript)
+           : Python Django
+           : PHP
