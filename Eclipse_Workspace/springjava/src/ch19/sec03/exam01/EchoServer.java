@@ -16,7 +16,9 @@ import java.util.Scanner;
 //	연결 : Socket 클래스
 public class EchoServer {
 	
+//	서버 통신 프로그램. ServerSocket 클래스 사용
 	private static ServerSocket serverSocket = null;
+	
 	public static void main(String[] args) {
 		System.out.println("------------------------------------");
 		System.out.println("서버 종료 : q,Q 입력하고, Enter키를 입력하세요");
