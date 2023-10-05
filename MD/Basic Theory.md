@@ -60,3 +60,9 @@ https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%8B%A4%EC%88%98-%ED%91%9C%ED%98
            : Node.js(JavaScript)
            : Python Django
            : PHP
+
+쿼리 스트링 : 질의에 사용되는 문자열이다.
+http://localhost:9000/docjsp/ch05/process.jsp?name=&age=&gender=male&hobby=%EC%9E%A0%EC%9E%90%EA%B8%B0 
+
+
+https://bellog.tistory.com/79
