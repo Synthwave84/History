@@ -43,7 +43,13 @@ Spring
 JSP문법 = EL(Expression Language) 문법
  - ${표현식} 
 
+ 
+
 라이브러리 구성 시 pom.xml
 
 스프링의 코어 = servlet-context.xml, root-context.xml
+
+/resources/**
+  - /resources/aaa
+  - /resouces/aaa/bbb
 

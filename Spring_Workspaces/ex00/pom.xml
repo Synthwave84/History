@@ -119,7 +119,7 @@
 		
 		<!-- Added -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<!-- JSON Library -->
+		<!-- JSON Library- jackson-databind 2.15.2.jar -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
