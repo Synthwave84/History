@@ -1,8 +1,24 @@
 Spring
 
+  STS4 
+
+  Lombok
+  롬복 라이브러리 다운로드
+
+  cmd java -jar lombok.jar
+  (Pepper 나옴)
+  스프링 실행파일 선택.
+
+  Maven Repo - > Lombok -> 1.18.30 dependency
+
+  https://velog.io/@swjy1216/Lombok
+
+  처리가 원활하지 않을 시
+  -javaagent:C:\DEV\Devtools\sts4\lombok.jar
+
   레거시 프로젝트 생성 시  Spring MVC Project
 
-  Top Level Package = 도메인 네임을 거꾸로. ex(com.demo.__)
+  Top Level Package = 도메인 네임을 거꾸로. ex(com.*.*
 
 자바 진영
 빌드 및 라이브러리 관리 도구
@@ -70,3 +86,7 @@ Tomcat Path - > / 만 남기고 지우기.
 톰캣과 관련된 문제로 스프링이 정상작동이 안되는경우
   - 톰캣 기존 경로 삭제 후 재설치 및 재설정
 
+파일 아이콘에 S 가 있다면 Spring에서 관리가 되고 있다는 뜻이다. 
+S 로고가 없을 시, 특정한 작업을 빼 먹었거나, 툴에 문제가 있는 경우이다.
+재시작을 통해 확인하거나, 빼먹은 작업이 있는지 확인 해야한다.
+@Controller 어노테이션을 이용하니 작동하기 시작했다.
