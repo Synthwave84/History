@@ -53,3 +53,20 @@ JSP문법 = EL(Expression Language) 문법
   - /resources/aaa
   - /resouces/aaa/bbb
 
+
+
+초기 세팅
+1.6 to 1.8
+3.1.1 to 5.0.7
+
+Tomcat Path - > / 만 남기고 지우기.
+패키지 마우스 우클릭 Maven -> 업데이트. 
+
+스프링 정상작동 하지 않을때
+  - ContextPath를 루트디렉토리(/) 로 변경
+  - 톰캣 서버 재시작
+  - Maven 업데이트
+
+톰캣과 관련된 문제로 스프링이 정상작동이 안되는경우
+  - 톰캣 기존 경로 삭제 후 재설치 및 재설정
+
