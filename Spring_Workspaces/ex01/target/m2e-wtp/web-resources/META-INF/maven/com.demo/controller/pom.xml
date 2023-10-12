@@ -91,12 +91,27 @@
 		</dependency>
 				
 		<!-- Servlet -->
+		<!--  
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+		-->
+		<!-- Servlet 2.5 to 3.1 -->
+		<!-- 2.5에서는 업로드관련 라이브러리를 따로 추가 하여야 한다. -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<!-- 3.1.0은 업로드 관련 라이브러리가 필요하지 않다 -->
+		<!-- web.xml문법을 3.1.0으로 수정 -->
+		<dependency>
+    			<groupId>javax.servlet</groupId>
+    			<artifactId>javax.servlet-api</artifactId>
+    			<version>3.1.0</version>
+    			<scope>provided</scope>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -123,7 +138,21 @@
     			<version>1.18.30</version>
     			<scope>provided</scope>
 		</dependency>
-		        
+		        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+    			<groupId>com.fasterxml.jackson.core</groupId>
+    			<artifactId>jackson-databind</artifactId>
+    			<version>2.15.2</version>
+		</dependency>
+		<!-- 2.5 에 사용하던 업로드 라이브러리. 현재는 CommonsMultipartResolver와 연결이 되어있어 
+		외부 라이브러리를 추가 하였다.-->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+    			<groupId>commons-fileupload</groupId>
+    			<artifactId>commons-fileupload</artifactId>
+    			<version>1.5</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>

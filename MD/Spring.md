@@ -90,3 +90,41 @@ Tomcat Path - > / 만 남기고 지우기.
 S 로고가 없을 시, 특정한 작업을 빼 먹었거나, 툴에 문제가 있는 경우이다.
 재시작을 통해 확인하거나, 빼먹은 작업이 있는지 확인 해야한다.
 @Controller 어노테이션을 이용하니 작동하기 시작했다.
+
+
+web.xml, servlet-context.xml, pom.xml
+
+JDK
+  JDBC : java.sql
+    Connection
+    PrepareStatement
+    ResultSet
+
+데이터베이스 회사에서 제공하는 데이터베이스 드라이버
+ - 오라클
+ - MS-SQL Server
+ - DB2
+
+스프링에서 DB를 사용하는 기술
+  - Mybatis : 단순히 설명하면 XML파일에 SQL구문 코드를 사용하는 기술
+  - JPA : JAVA프로그래밍으로 데이터베이스를 사용하는 기술
+
+
+초기 스프링 세팅
+
+  1. pom.xml 작업
+  - 서블릿 버전 변경 : 2.5 -> 3.1.0
+    <dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.1.0</version>
+		    <scope>provided</scope>
+		</dependency>
+
+  2. web.xml 작업
+    <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+      xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+      id="WebApp_ID" version="3.1">
+
+  3. 데이터베이스 연동 작업.
