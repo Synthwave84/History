@@ -112,7 +112,7 @@ JDK
 
 초기 스프링 세팅
 
-  1. pom.xml 작업
+1. pom.xml 작업
   - 서블릿 버전 변경 : 2.5 -> 3.1.0
     <dependency>
 		    <groupId>javax.servlet</groupId>
@@ -127,4 +127,37 @@ JDK
       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
       id="WebApp_ID" version="3.1">
 
-  3. 데이터베이스 연동 작업.
+
+3. 데이터베이스 연동 작업.
+
+  ! 작업순서 !
+  - DB : BOARD 테이블 생성 및 시퀀스 생성
+
+  - Spring : 4개의 패키지 생성. 
+                com.demo.domain
+                com.demo.controller <프로젝트 생성 시 만들어진것.
+                com.demo.service
+                com.demo.mapper
+                폴더생성
+                src/main/resources > com/demo/mapper 폴더 생성. 
+                >com.demo.mapper패키지와 이름 동일해야함.
+
+  각 패키지별 작업
+
+  com.demo.domain
+    - 테이블의 구조를 갖는 클래스 생성 
+    > BoardVO.java 클래스
+
+  com.demo.controller
+    >BoardController.java 클래스
+
+  com.demo.service
+    >BoardService.java 인터페이스
+    >BoardServiceImpl.java 클래스 (Implements BoardService)
+
+  com.demo.mapper
+    >BoardMapper.java 인터페이스
+    
+  com/demo/mapper 폴더
+    >BoardMapper.xml 파일 생성 : mybatis의 xml mapper파일
+      -BoardMapper 인터페이스 파일과 파일명이 일치해야만 한다.
