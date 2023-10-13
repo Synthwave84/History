@@ -99,6 +99,7 @@
 			<scope>provided</scope>
 		</dependency>
 		-->
+		<!-- 서블릿 버젼과 동일하게 한다. -->
 		 <dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
@@ -121,8 +122,8 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
+			<version>4.12</version>
+			<!--  <scope>test</scope> -->
 		</dependency>        
 		
 	<!-- 추가 라이브러리 -->
@@ -151,7 +152,8 @@
 	    <version>2.7.4</version>
 	</dependency>
 	
-	
+	<!-- 스프링에서 DB를 사용하는 방법. -->
+	<!-- 1.Mybatis, 2.JPA -->
 	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 	<!-- 3)Mybatis 라이브러리 -->
 	<dependency>
@@ -194,9 +196,9 @@
 	</dependency>
 	
 	<!-- SQL구문 로그를 출력할 때 사용하는 라이브러리. -->
-	<!--  log4jdbc.log4j2.properties, logback.xml 2개파일을 src/main/resources 폴더에 복사 -->
+	<!-- log4jdbc.log4j2.properties, logback.xml 2개파일을 src/main/resources 폴더에 복사 -->
 	<!-- root-context.xml에서 연결설정을 해야 사용할 수가 있다. -->
-	<!--  개발시 SQL구문 로그를 확인하는 목적 -->
+	<!-- 개발시 SQL구문 로그를 확인하는 목적 -->
 	<dependency>
 	    <groupId>org.bgee.log4jdbc-log4j2</groupId>
 	    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
