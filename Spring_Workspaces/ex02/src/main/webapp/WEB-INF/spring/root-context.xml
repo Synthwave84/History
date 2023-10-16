@@ -32,4 +32,9 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+	<!-- service 패키지 -->
+	<context:component-scan base-package="com.demo.service" />
+	<!-- mapper 패키지 --> 
+	<mybatis-spring:scan base-package="com.demo.mapper" />
 </beans>

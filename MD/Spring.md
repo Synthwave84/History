@@ -144,7 +144,7 @@ JDK
 
   각 패키지별 작업
 
-  com.demo.domain
+  com.demo.domain  : 
     - 테이블의 구조를 갖는 클래스 생성 
     > BoardVO.java 클래스
 
@@ -161,3 +161,24 @@ JDK
   com/demo/mapper 폴더
     >BoardMapper.xml 파일 생성 : mybatis의 xml mapper파일
       -BoardMapper 인터페이스 파일과 파일명이 일치해야만 한다.
+
+
+구현 작업 순서
+1)BoardMapper 인터페이스와 BoardMapper.xml파일
+   - public void register(BoardVO board)
+
+   - <insert id="register" parameterType="com.demo.domain.BoardVO">
+
+2)BoardService 인터페이스와 BoardServiceImpl구현 클래스
+  - BoardService 인터페이스
+    public void register(BoardVO board);
+  - BoardServiceImpl 구현 클래스
+    @RequiredArgsConstructor 클래스 위에 선언
+  - 클래스 안에 필드선언. 스프링이 BoardMapper  인터페이스 bean 객체를 자동으로 주입.
+    private final BoardMapper boardMapper;
+    
+    public void register(BoardVO board); 추상메소드 재정의(구현)
+
+3)BoardController 클래스
+  @RequiredArgsConstructor 클래스 위에 선언
+  public final BoardService boardService; // BoardServiceImpl boardService= new BoardServiceImpl();

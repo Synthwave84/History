@@ -2,6 +2,19 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.demo.mapper.BoardMapper">
+  <mapper namespace="com.demo.mapper.BoardMapper"> 
+  	<!-- 글쓰기 저장 -->
   	
+  	<!-- BoardMapper인터페이스의 메소드 명과 id가 일치해야한다 -->
+  	<!-- 꼭 세미콜론을 뺀다!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+  	<insert id="register" parameterType="com.demo.domain.BoardVO">
+  		INSERT INTO BOARD(BNO, TITLE, CONTENT, WRITER)
+		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
+	</insert>
+	<!-- BoardMapper인터페이스의 메소드 명과 id가 일치해야한다 -->
+	<!-- 꼭 세미콜론을 뺀다!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+	<select id="getList" resultType="com.demo.domain.BoardVO">
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE 
+		FROM BOARD ORDER BY BNO DESC
+	</select>
   </mapper>
