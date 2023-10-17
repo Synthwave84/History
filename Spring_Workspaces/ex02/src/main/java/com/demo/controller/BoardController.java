@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+
+
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.domain.BoardVO;
 import com.demo.service.BoardService;
@@ -54,8 +57,10 @@ public class BoardController {
 		2)BoardService인터페이스와 BoardServiceImpl 작업.
 		
 		*/
+//		JSP파일의 유무로 리턴 정해짐
 		boardService.register(board);
-		return "redirect:/";
+//		주소는 절대경로
+		return "redirect:/board/list";
 	}
 	
 //	목록 /board/list
@@ -63,8 +68,29 @@ public class BoardController {
 //	Model model = JSP파일에 데이터(대부분의 경우 DB)를 출력 하고자 할 때.
 	@GetMapping("/list") 
 	public void list(Model model) {
-		List<BoardVO> list = boardService.getList();
-		model.addAttribute("list", list);
+//		서비스 메소드 호출
+		List<BoardVO> list =boardService.getList();
+		model.addAttribute("list" , list);
+	}
+//	매핑주소
+//	상세내용
+//	게시물 읽기 :리스트에서 제목을 클릭했을 떄, 게시물 번호가 데이터를 출력
+	@GetMapping({"/get", "/modify"}) 
+	public void get(@RequestParam("bno") Long bno, Model model) {
+//		목록에서 선택한 게시물 번호
+		
+		log.info("게시물번호" + bno);
+		BoardVO board= boardService.get(bno);
+		model.addAttribute("board", board);
+	}
+//	수정하기
+	@PostMapping("/modify") 
+	public String modify(BoardVO board) {
+		log.info("수정 데이터" + board);
+//		DB저장
+		boardService.modify(board);
+		
+		return "redirect:/board/list";
 	}
 	
 }

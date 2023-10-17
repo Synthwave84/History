@@ -1,5 +1,7 @@
 package com.demo.service;
 
+
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +21,8 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 	
 //	스프링이 BoardMapper인터페이스를 참조하도록 주입한다.(DI)
-	private final BoardMapper boarddMapper;
+//	즉 BoardMapper의 내용 전부를 주입 해주는 것이다. 
+	private final BoardMapper boardMapper;
 	/*
 	public BoardServiceImpl(BoardMapper boardMapper) {
 		this.boardMapper = boardMapper;
@@ -37,13 +40,25 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void register(BoardVO board) {
 //		BoardMapper 인터페이스의 register 메소드 호출
-		boarddMapper.register(board);
+		boardMapper.register(board);
 	}
 
 	@Override
 	public List<BoardVO> getList() {
-		// TODO Auto-generated method stub
-		return boarddMapper.getList();
+		return boardMapper.getList();
 	}
+
+	@Override
+	public BoardVO get(Long bno) {
+		return boardMapper.get(bno);
+	}
+
+	@Override
+	public void modify(BoardVO board) {
+		// TODO Auto-generated method stub
+		boardMapper.modify(board);
+		
+	}
+
 
 }

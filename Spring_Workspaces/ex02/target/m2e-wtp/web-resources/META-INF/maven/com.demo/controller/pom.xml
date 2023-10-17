@@ -80,6 +80,7 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
+			<!-- 롬복 어노테이션 로그 사용목적 @Log4J 와 충돌. -->
 			<!--<scope>runtime</scope> -->
 		</dependency>
 
@@ -119,6 +120,7 @@
 		</dependency>
 	
 		<!-- Test -->
+		<!-- 단위 테스트 프로그램 : Junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -214,6 +216,7 @@
 	    <version>2.9.4</version>
 	</dependency>
 	<!-- LOMBOK -->
+	<!-- 롬복을 스프링 툴에서 설정작업도 함께 해야한다. -->
 	<dependency>
     			<groupId>org.projectlombok</groupId>
     			<artifactId>lombok</artifactId>

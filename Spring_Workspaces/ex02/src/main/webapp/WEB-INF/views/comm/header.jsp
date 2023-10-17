@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">게시판 <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/board/list">LIST <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="">List</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -57,35 +59,43 @@
   		<div class="row">
   		
   			<div class="col-md-12">
-  				<div class="box box-primary">
+  				<div class="box">
 					<div class="box-header with-border">
-						<h3 class="box-title mt-5">Register</h3>
+						<h3 class="box-title">Bordered Table</h3>
 					</div>
-
-		<!-- BoardVO의 컨텐츠 내용과 동일하게 작성. -->
-		<!-- 절대경로 /board/register -->
-		<form role="form" method="post" action="./register">
-			<div class="box-body">
-			<div class="form-group">
-				<label for="title">Title</label>
-				<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요">
-			</div>
-			<div class="form-group">
-				<label for="writer">Writer</label>
-				<input type="text" class="form-control" name="content" id="writer" placeholder="작성자 입력">
-			</div>
-			<div class="form-group">
-				<label>Contents</label>
-				<textarea class="form-control" rows="3" name="writer" placeholder="내용입력"></textarea>
-			</div>
-			</div>
-			
-			<div class="box-footer">
-			<button type="submit" class="btn btn-primary">저장</button>
-			<button type="reset" class="btn btn-primary">취소</button>
-			</div>
-			</form>
-		</div>
+					
+					<div class="box-body">
+						<table class="table table-bordered">
+						<tbody>
+						<tr>
+							<th style="width: 10%">번호</th>
+							<th style="width: 60%">제목</th>
+							<th style="width: 10%">작성자</th>
+							<th style="width: 15%">등록일</th>
+						</tr>
+						<!-- JSTL문법 작업 -->
+						<c:forEach items="${list}" var="board">
+						<tr>
+							<td>${board.bno}</td>
+							<td><a href="/board/get?bno=${board.bno}">${board.title}</a></td>
+							<td>${board.writer}</td>
+							<td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/> </td>
+					
+						</tr>
+						</c:forEach>
+					</tbody></table>
+					</div>
+					
+					<div class="box-footer clearfix">
+						<ul class="pagination pagination-sm no-margin pull-right">
+							<li><a href="#">«</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">»</a></li>
+						</ul>
+					</div>
+					</div>
   	</div>
   </div>
 </section>

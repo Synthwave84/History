@@ -182,3 +182,19 @@ JDK
 3)BoardController 클래스
   @RequiredArgsConstructor 클래스 위에 선언
   public final BoardService boardService; // BoardServiceImpl boardService= new BoardServiceImpl();
+
+스프링 동작 방식
+https://dalpaeng00.tistory.com/83
+
+DAO - 데이터베이스를 접근하는 코드를 가지고 있는 클래스객체
+
+
+1.BoardMapper인터페이스 ,BoardMapper.xml
+2.BoardService인터페이스, BoardServiceImpl클래스 
+  -> DI 디펜던시 인젝션. (주입작업) > @RequiredArgsConstructor + private final BoardMapper boardMapper << 이놈이 주입받은 것. 즉 가공하여 서빙(제공) 해주는 것. 그래서 서비스.
+3.Controller 
+
+
+
+servlet context > 웹 관련
+root-context > 비 웹 관련.
