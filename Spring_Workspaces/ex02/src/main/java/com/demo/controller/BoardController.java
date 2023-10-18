@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.domain.BoardVO;
+import com.demo.domain.Criteria;
+import com.demo.domain.PageDTO;
 import com.demo.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -66,12 +68,32 @@ public class BoardController {
 //	목록 /board/list
 //	필수적으로 파라미터값은 모델 을 사용해야한다.
 //	Model model = JSP파일에 데이터(대부분의 경우 DB)를 출력 하고자 할 때.
+	/*
 	@GetMapping("/list") 
 	public void list(Model model) {
 //		서비스 메소드 호출
 		List<BoardVO> list =boardService.getList();
 		model.addAttribute("list" , list);
 	}
+	*/
+	
+//	스프링이 Criteria클래스의 기본 생성자를 호출하여, 객체를 생성해준다.
+	@GetMapping("/list") 
+	public void list(Criteria cri, Model model ) {
+//		cri.toString
+		log.info("list :" + cri);
+		List<BoardVO> list =boardService.getListWithPaging(cri);
+		model.addAttribute("list" , list);
+//		2) 페이징 작업 - PageDTO
+		int total = boardService.getTotalCount();
+		log.info("데이터 총 갯수" + total);
+		
+		PageDTO pageDTO = new PageDTO(cri, total);
+		model.addAttribute("pageMaker", pageDTO);
+		
+		log.info("페이징 정보" + pageDTO);
+	}
+	
 //	매핑주소
 //	상세내용
 //	게시물 읽기 :리스트에서 제목을 클릭했을 떄, 게시물 번호가 데이터를 출력
@@ -100,7 +122,7 @@ public class BoardController {
 //	리다이렉트를 이용하려면 스트링
 	public String delete(@RequestParam("bno") Long bno) {
 		log.info("삭제된 번호" + bno);
-		
+//		DB 작업
 		boardService.delete(bno);
 		return "redirect:/board/list";
 	}

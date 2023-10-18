@@ -18,6 +18,23 @@
 	FROM BOARD ORDER BY BNO DESC
 
 	</select>
+	<select id="getListWithPaging" resultType="com.demo.domain.BoardVO" parameterType="com.demo.domain.Criteria">
+	<![CDATA[
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE
+		FROM 
+	(
+		SELECT  /*+INDEX_DESC(BOARD PK_BOARD) */
+		ROWNUM 	RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE 
+		FROM    BOARD
+		WHERE   ROWNUM <= #{pageNum} * #{amount}
+	)
+	WHERE RN > (#{pageNum} -1) * #{amount} 
+	]]>
+	</select>
+	<select id="getTotalCount" resultType="int">
+	SELECT COUNT(*) FROM BOARD
+	</select>
+	
 	<select id="get" resultType="com.demo.domain.BoardVO" parameterType="Long">
        SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE
        FROM BOARD WHERE BNO = #{bno}
@@ -29,4 +46,7 @@
     <delete id="delete" parameterType="com.demo.domain.BoardVO">
     		DELETE FROM BOARD WHERE BNO = #{bno}
     </delete>
+    
+    
+    
   </mapper>

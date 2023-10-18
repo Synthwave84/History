@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.demo.domain.BoardVO;
+import com.demo.domain.Criteria;
 import com.demo.mapper.BoardMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,16 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(Long bno) {
 		boardMapper.delete(bno);
 		
+	}
+
+	@Override
+	public List<BoardVO> getListWithPaging(Criteria cri) {
+		return boardMapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotalCount() {
+		return boardMapper.getTotalCount();
 	}
 
 	
