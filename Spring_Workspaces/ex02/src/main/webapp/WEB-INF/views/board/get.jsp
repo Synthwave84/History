@@ -83,11 +83,11 @@
                   </div>
                   <div class="form-group">
                         <label for="regdate">작성일</label>
-                        <input type="text" class="form-control" name="regdate" id="regdate" value='<fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd" />' readonly>
+                        <input type="text" class="form-control" name="regdate" id="regdate" value='<fmt:formatDate value="${board.regdate}" pattern="yyyy/MM/dd" />' readonly>
                      </div>
                      <div class="form-group">
                         <label for="updateddate">수정일</label>
-                        <input type="text" class="form-control" name="updateddate" id="updateddate" value='<fmt:formatDate value="${board.updateddate}" pattern="yyyy-MM-dd" />' readonly>
+                        <input type="text" class="form-control" name="updateddate" id="updateddate" value='<fmt:formatDate value="${board.updateddate}" pattern="yyyy/MM/dd" />' readonly>
                      </div>
                   
                   </div>
@@ -95,7 +95,8 @@
                   <div class="box-footer">
                      
                      <button type="button" id="btn_modify" class="btn btn-primary">수정하기</button>
-                     <button type="button" id="btn_list" class="btn btn-primary">목록</button>
+                     <button type="button" id="btn_list" 
+                     class="btn btn-primary">목록</button>
                   
                   </div>
         
@@ -121,6 +122,11 @@
 	function fn_modify() {
 			// alert('수정');
 		location.href = "./modify?bno=${board.bno}";
+		}
+
+	document.getElementById("btn_list").addEventListener("click", fn_list);
+	function fn_list() {
+		location.href = "./list"
 		}
 
 	

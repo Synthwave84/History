@@ -1,15 +1,15 @@
--- °Ô½ÃÆÇ Å×ÀÌºí »ý¼º ÀÛ¾÷
+-- ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½
 
 CREATE TABLE BOARD (
-    BNO             NUMBER, -- ±Û¹øÈ£
-    TITLE           VARCHAR2(100)   NOT NULL, -- ±ÛÁ¦¸ñ
-    CONTENT         VARCHAR2(1000)  NOT NULL, -- ±Û³»¿ë
-    WRITER          VARCHAR2(100)   NOT NULL, -- ÀÛ¼ºÀÚ
-    REGDATE         DATE    DEFAULT SYSDATE, -- µî·ÏÀÏ
-    UPDATEDDATE     DATE    DEFAULT SYSDATE, -- ¼öÁ¤ÀÏ
+    BNO             NUMBER, -- ï¿½Û¹ï¿½È£
+    TITLE           VARCHAR2(100)   NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    CONTENT         VARCHAR2(1000)  NOT NULL, -- ï¿½Û³ï¿½ï¿½ï¿½
+    WRITER          VARCHAR2(100)   NOT NULL, -- ï¿½Û¼ï¿½ï¿½ï¿½
+    REGDATE         DATE    DEFAULT SYSDATE, -- ï¿½ï¿½ï¿½ï¿½ï¿½
+    UPDATEDDATE     DATE    DEFAULT SYSDATE, -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     CONSTRAINT PK_BOARD PRIMARY KEY(BNO)
 );
-/*  ½ÃÄö½º ¿É¼Ç
+/*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½
     CREATE SEQUENCE my_seq1
     INCREMENT BY 1
     START WITH 1
@@ -23,29 +23,38 @@ drop table BOARD;
 
 alter table BOARD;
 
--- ½ÃÄö½º »ý¼º
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 CREATE SEQUENCE SEQ_BOARD;
 
--- ½ÃÄö½º »èÁ¦
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 DROP SEQUENCE SEQ_BOARD;
 
--- ½ÃÄö½º ¸í·É¾î
-/* BNO(±Û¹øÈ£)¿¡ Àû¿ë
-    - SEQ_BOARD.NEXTVAL : ÇØ´ç ½ÃÄö½º¿¡¼­ ´ÙÀ½ ¼ø¹ø °ªÀ» ÀÚµ¿À¸·Î °¡Á®¿Â´Ù.
-    - SEQ_BOARD.CURRVAL : ÇØ´ç ½ÃÄö½ºÀÇ ÇöÀç °ªÀ» ¾Ë ¼ö ÀÖ´Ù.
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½É¾ï¿½
+/* BNO(ï¿½Û¹ï¿½È£)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    - SEQ_BOARD.NEXTVAL : ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
+    - SEQ_BOARD.CURRVAL : ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
 */
 SELECT SEQ_BOARD.NEXTVAL FROM DUAL;
 
 SELECT SEQ_BOARD.CURRVAL FROM DUAL;
 
 INSERT INTO BOARD(BNO, TITLE, CONTENT, WRITER)
-VALUES(SEQ_BOARD.NEXTVAL, 'Å×½ºÆ®', '½ºÇÁ¸µ °Ô½ÃÆÇ¿¬½À', 'user02');
+VALUES(SEQ_BOARD.NEXTVAL, 'ï¿½×½ï¿½Æ®', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½', 'user02');
 
 SELECT * FROM BOARD;
 
---    ÃÖ½Å±Û ¼ø¼­
+--    ï¿½Ö½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½
 SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM BOARD ORDER BY BNO DESC;
 
 DELETE FROM BOARD WHERE CONTENT IS NOT NULL;
+
+UPDATE BOARD SET TITLE= ? , CONTENT= ? , UPDATEDATE = SYSDATE WHERE BNO = ?;
+
+
+
+
+
+COMMIT;
+
 
 

@@ -49,6 +49,7 @@
 </header>
 
 <!-- Begin page content -->
+<form role="form" method="post" action="./modify">
 <main role="main" class="flex-shrink-0">
   <div class="container"> <!-- container 큰 틀을 잡는다 -->
     <section>
@@ -81,17 +82,19 @@
                   </div>
                   <div class="form-group">
                         <label for="regdate">작성일</label>
-                        <input type="text" class="form-control" name="regdate" id="regdate" value='<fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd" />' readonly>
+                        <input type="text" class="form-control" name="regdate" id="regdate" value='<fmt:formatDate value="${board.regdate}" pattern="yyyy/MM/dd" />' readonly>
                      </div>
                      <div class="form-group">
                         <label for="updateddate">수정일</label>
-                        <input type="text" class="form-control" name="updateddate" id="updateddate" value='<fmt:formatDate value="${board.updateddate}" pattern="yyyy-MM-dd" />' readonly>
+                        <input type="text" class="form-control" 
+                        name="updateddate" id="updateddate" value='<fmt:formatDate value="${board.updateddate}" pattern="yyyy/MM/dd" />' readonly>
                      </div>
                   
                   </div>
                
                   <div class="box-footer">
-                     <button type="button" id="btn_modify" class="btn btn-primary">수정하기</button>
+                     <button type="submit" id="btn_modify" class="btn btn-primary">저장하기</button>
+                     <button type="button" id="btn_delete" class="btn btn-primary">삭제하기</button>
                      <button type="button" id="btn_list" class="btn btn-primary">목록</button>
                   </div>
              
@@ -101,6 +104,7 @@
     </section>
   </div>
 </main>
+</form>
 
 <footer class="footer mt-auto py-3">
    	<%@include file="/WEB-INF/views/comm/footer.jsp" %>
@@ -114,10 +118,22 @@
 	document.getElementById("btn_modify").addEventListener("click", fn_modify);
 
 	function fn_modify() {
-			alert('수정');
+		//   alert('수정');
+		location.href="/board/modify?bno=${board.bno }"
+		}
+	document.getElementById("btn_delete").addEventListener("click", fn_delete); // 괄호는 제외
+
+	function fn_delete() {
+			if(!confirm("삭제 하시겠습니까?")) return;
+		//	페이지 이동 명령어
+			location.href="/board/delete?bno=${board.bno }"
 		}
 
-	
+	document.getElementById("btn_list").addEventListener("click", fn_list);
+	function fn_list() {
+		location.href = "./list"
+			if(!confirm("수정을 취소 하시겠습니까?")) return;
+		}
   </script>
   
   

@@ -30,4 +30,6 @@ public interface BoardMapper {
 //	추상메소드에는 몸체{} 가 없다. 
 	public List<BoardVO> getList();
 //	글 삭제하기
+	
+	public void delete(Long bno);
 }

@@ -83,6 +83,7 @@ public class BoardController {
 		BoardVO board= boardService.get(bno);
 		model.addAttribute("board", board);
 	}
+//	매핑주소 /board/modify
 //	수정하기
 	@PostMapping("/modify") 
 	public String modify(BoardVO board) {
@@ -92,5 +93,18 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+//	매핑주소 /board/delete
+//	삭제하기
+	@GetMapping("/delete")
+//	리다이렉트를 이용하려면 스트링
+	public String delete(@RequestParam("bno") Long bno) {
+		log.info("삭제된 번호" + bno);
+		
+		boardService.delete(bno);
+		return "redirect:/board/list";
+	}
+	
+	
 	
 }

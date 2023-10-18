@@ -23,8 +23,10 @@
        FROM BOARD WHERE BNO = #{bno}
     </select>
     <update id="modify" parameterType="com.demo.domain.BoardVO">
-    		UPDATE BOARD SET TITLE= #{title} , CONTENT= #{content} , UPDATEDATE = SYSDATE 
+    		UPDATE BOARD SET TITLE= #{title} , CONTENT= #{content} , UPDATEDDATE = SYSDATE 
     		WHERE BNO = #{bno}
     </update>
-    
+    <delete id="delete" parameterType="com.demo.domain.BoardVO">
+    		DELETE FROM BOARD WHERE BNO = #{bno}
+    </delete>
   </mapper>

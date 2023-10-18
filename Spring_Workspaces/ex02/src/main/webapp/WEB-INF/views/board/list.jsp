@@ -94,6 +94,7 @@
 							<li><a href="#">3</a></li>
 							<li><a href="#">»</a></li>
 						</ul>
+						<a class="btn btn-primary" href="./register" role="button">글쓰기</a>
 					</div>
 					</div>
   	</div>
