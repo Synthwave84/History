@@ -72,7 +72,7 @@
                         <c:forEach items="${list}" var="board"> <!-- var = boardVO class 성격이 된다. -->
                         <tr>
                           <td>${board.bno} </td>
-                          <td><a href=" /board/get?bno=${board.bno}">${board.title}</a></td>
+                          <td><a class="move" href="#" data-bno="${board.bno}">${board.title}</a></td>
                           <td>${board.writer}</td>
                           <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd" /></td>
                         </tr>
@@ -173,7 +173,22 @@
       actionForm.submit(); // /board/list
     
     });
+  });
 
+  // 제목클릭 시 이벤트 설정 : 게시물 읽기
+
+  const moves = document.getElementsByClassName("move");
+  Array.from(moves).forEach(function (move) {
+  // actionForm폼 전송
+    move.addEventListener("click", (event) => {
+      event.preventDefault();
+      let bno=event.target.dataset.bno;
+      actionForm.append("<input type='hidden' name='bno' value=''" +bno+"'>" )
+      // actionForm.attr("action","/board/get");// /board/list -> board get
+      actionForm.setAttribute("action","/board/get")
+      // actionForm.submit(); 
+    
+    });
   });
 </script>
 

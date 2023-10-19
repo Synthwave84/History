@@ -7,7 +7,7 @@
 	<!-- 글쓰기 저장 -->
 	<insert id="register" parameterType="com.demo.domain.BoardVO">
 		INSERT INTO BOARD(BNO, TITLE, content, WRITER) 
-		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
+		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{writer}, #{content})
 	</insert>
 	
 	<select id="getList" resultType="com.demo.domain.BoardVO">
@@ -44,29 +44,28 @@
     		BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE
             FROM 
 		    (
-		    SELECT /*+INDEX_DESC(board pk_board) */
-            ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE 
-		    FROM 
-		        BOARD
+                SELECT /*+INDEX_DESC(board pk_board) */
+		        ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE 
+                FROM BOARD
 		    WHERE 
 		    ]]>
 		    
 		    <include refid="criteria"></include>
 		    
 		    <![CDATA[
-		        rownum <= #{pageNum} * #{amount}
+		        ROWNUM <= #{pageNum} * #{amount}
 		    )
-		where 
-		    rn > (#{pageNum} -1) * #{amount}
+                WHERE 
+		    RN > (#{pageNum} -1) * #{amount}
 		]]>
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(*) from board where
 		
+		SELECT COUNT(*) FROM BOARD WHERE
 		<include refid="criteria"></include>
+		BNO > 0
 		
-		bno > 0
 	</select>
 	
 	<select id="get" resultType="com.demo.domain.BoardVO" parameterType="Long">
