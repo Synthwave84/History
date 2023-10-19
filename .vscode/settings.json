@@ -1,4 +1,5 @@
 {
   "cmake.configureOnOpen": false,
-  "terminal.integrated.allowMnemonics": true
+  "terminal.integrated.allowMnemonics": true,
+  "java.compile.nullAnalysis.mode": "automatic"
 }
