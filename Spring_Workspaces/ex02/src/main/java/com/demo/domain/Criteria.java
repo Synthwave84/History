@@ -16,7 +16,8 @@ public class Criteria {
 	private int amount;
 	
 //	type 검색종류. ex) 게시글 or 작성자 같은것
-	private String type;
+//	검색종류. T C W TW TC TCW
+	private String type; 
 //	keyword 검색어
 	private String keyword;
 
@@ -28,6 +29,12 @@ public class Criteria {
 	public Criteria (int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
+	}
+//	getType() 메소드 대신 boardMapper.xml에서 사용할 메소드
+//	type; 검색종류. T C W TC TW TWC 6개중 선택
+	public String[] getTypeArr() {
+//		type이 "TWC"면, ("T","W","C")
+		return type == null? new String[] {} : type.split("");
 	}
 	
 }

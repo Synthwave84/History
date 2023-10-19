@@ -14,13 +14,15 @@ public interface BoardService {
 	
 	public List<BoardVO> getList();
 	public List<BoardVO> getListWithPaging(Criteria cri);
-	public int getTotalCount();
+	
 	
 	public BoardVO get(Long bno);
 	
 	public void modify(BoardVO board);
 	
 	public void delete(Long bno);
+	
+	public int getTotalCount(Criteria cri);
 	
 	
 }

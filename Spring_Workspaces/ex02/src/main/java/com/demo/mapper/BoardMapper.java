@@ -33,10 +33,12 @@ public interface BoardMapper {
 	public List<BoardVO> getList();
 	
 //	페이징 목록, 여러개List<BoardVO> 리턴값.
+//	pageNum,amount, Type, keyword 모두 사용
 	public List<BoardVO> getListWithPaging(Criteria cri);
 	
-//	전체 데이터 갯수 
-	public int getTotalCount();
+//	전체 데이터 갯수 (검색 포함)
+//	내부에는 type, keyword만 사용한다.
+	public int getTotalCount(Criteria cri);
 	
 //	글 삭제하기
 	

@@ -76,8 +76,10 @@ public class BoardController {
 		model.addAttribute("list" , list);
 	}
 	*/
-	
+
 //	스프링이 Criteria클래스의 기본 생성자를 호출하여, 객체를 생성해준다.
+//	Criteria cri = new Criteria();
+//	Model model = new 생성자()
 	@GetMapping("/list") 
 	public void list(Criteria cri, Model model ) {
 //		cri.toString
@@ -85,7 +87,7 @@ public class BoardController {
 		List<BoardVO> list =boardService.getListWithPaging(cri);
 		model.addAttribute("list" , list);
 //		2) 페이징 작업 - PageDTO
-		int total = boardService.getTotalCount();
+		int total = boardService.getTotalCount(cri);
 		log.info("데이터 총 갯수" + total);
 		
 		PageDTO pageDTO = new PageDTO(cri, total);
@@ -127,6 +129,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	
+
+
 	
 }
