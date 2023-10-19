@@ -160,6 +160,7 @@
   // 폼태그 참조
   let actionForm= document.getElementById("actionForm");
 
+  // <form id"actionForm"> 태그를 참조하여, 필요한 정보 사용.
   // 페이지 번호 클릭시 동작 작업.
   // <a>1</a><a>2</a><a>3</a>....
   const movePages = document.getElementsByClassName("movepage");
@@ -183,10 +184,14 @@
     move.addEventListener("click", (event) => {
       event.preventDefault();
       let bno=event.target.dataset.bno;
-      actionForm.append("<input type='hidden' name='bno' value=''" +bno+"'>" )
-      // actionForm.attr("action","/board/get");// /board/list -> board get
-      actionForm.setAttribute("action","/board/get")
-      // actionForm.submit(); 
+      
+      const newInput = document.createElement("input");
+      newInput.setAttribute("type", "hidden");
+      newInput.setAttribute("name", "bno");
+      newInput.setAttribute("value", bno);
+      actionForm.setAttribute("action","/board/get");
+      actionForm.append(newInput);
+      actionForm.submit(); 
     
     });
   });
