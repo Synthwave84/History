@@ -23,6 +23,8 @@ public interface BoardService {
 	public void delete(Long bno);
 	
 	public int getTotalCount(Criteria cri);
+	 
+
 	
 	
 }

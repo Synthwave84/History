@@ -51,6 +51,10 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO get(Long bno) {
+		
+//		조회수 증가 작업
+		boardMapper.readCount(bno);
+		
 		return boardMapper.get(bno);
 	}
 

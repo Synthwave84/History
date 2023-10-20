@@ -21,6 +21,8 @@ public interface BoardMapper {
 //	게시물 보기 또는 수정 폼= 1깨 
 	public BoardVO get(Long bno);
 	
+	public void readCount(Long bno);
+	
 //	글 수정 폼
 	public void modify(BoardVO board);
 //	글 수정하기 

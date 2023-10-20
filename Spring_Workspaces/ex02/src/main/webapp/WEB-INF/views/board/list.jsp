@@ -64,9 +64,10 @@
                     <tbody>
                         <tr>
                           <th style="width : 10%">번호</th>
-                          <th style="width : 50%">제목</th>
-                          <th style="width : 20%">작성자</th>
-                          <th style="width : 20%">등록일</th>
+                          <th style="width : 45%">제목</th>
+                          <th style="width : 15%">작성자</th>
+                          <th style="width : 15%">등록일</th>
+                          <th style="width : 15%">조회수</th>
                         </tr>
                         <!-- jstl 문법작업 -->
                         <c:forEach items="${list}" var="board"> <!-- var = boardVO class 성격이 된다. -->
@@ -75,6 +76,7 @@
                           <td><a class="move" href="#" data-bno="${board.bno}">${board.title}</a></td>
                           <td>${board.writer}</td>
                           <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd" /></td>
+                          <td>${board.viewcount}</td>
                         </tr>
                         </c:forEach>
                     </tbody>

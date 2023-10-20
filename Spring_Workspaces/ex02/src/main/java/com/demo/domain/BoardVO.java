@@ -32,5 +32,6 @@ public class BoardVO {
 //	자바.util을 선택해야한다.
 	private	Date		regdate;
 	private Date		updateddate;
+	private int		viewcount;
 	
 }

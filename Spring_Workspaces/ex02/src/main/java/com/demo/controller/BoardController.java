@@ -142,12 +142,13 @@ public class BoardController {
 //		DB 작업
 		boardService.delete(bno);
 //		검색과 페이지 정보를 이동주소를 파라미터로 사용하기 위한 작업
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
 		
-		return "redirect:/board/list";
+//		상단의rttr. 을 Criteria클래스에 만든 getListLink로 대체
+		return "redirect:/board/list"+cri.getListLink();
 	}
 	
 

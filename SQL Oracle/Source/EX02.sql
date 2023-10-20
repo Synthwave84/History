@@ -8,6 +8,7 @@ CREATE TABLE BOARD (
     WRITER      VARCHAR2(100)   NOT NULL,           -- 작성자
     REGDATE     DATE            DEFAULT SYSDATE,    -- 등록일
     UPDATEDDATE DATE            DEFAULT SYSDATE,    -- 수정일
+    VIEWCOUNT   NUMBER,          
     CONSTRAINT  PK_BOARD        PRIMARY KEY(BNO)
 );
 
@@ -33,15 +34,8 @@ CREATE SEQUENCE SEQ_BOARD;
     NOCACHE;
 */
 
-drop table BOARD;
-
-alter table BOARD;
-
 
 CREATE SEQUENCE SEQ_BOARD;
-
-
-DROP SEQUENCE SEQ_BOARD;
 
 
 
@@ -163,6 +157,13 @@ WHERE RN > (3 -1) * 5;
 
 --  테이블 전체 갯수
 SELECT COUNT(*) FROM BOARD;
+
+UPDATE BOARD SET VIEWCOUNT = 10 WHERE BNO = 3020;
+
+-- VIEWCOUNT컬럼 값을 NULL에서 0으로 작업
+UPDATE BOARD SET VIEWCOUNT = 0;
+
+COMMIT ;
 
 
 
