@@ -166,10 +166,34 @@ UPDATE BOARD SET VIEWCOUNT = 0;
 COMMIT ;
 
 
+FAILED! 
+SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE, VIEWCOUNT 
+FROM ( 
+        SELECT /*+INDEX_DESC(board pk_board) */ ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE, VIEWCOUNT 
+        FROM BOARD 
+        WHERE ( OR title like '%' || 'ㅇㅇ' || '%' ) AND ROWNUM <= 1 * 10 ) WHERE RN > (1 -1) * 10
 
+-- 신규 프로젝트
 
+CREATE TABLE SBOARD (
+  
+    IDX         NUMBER,                             -- 글번호
+    SUBJECT     VARCHAR2(100)   NOT NULL,           -- 제목
+    CONTENT     VARCHAR2(1000)  NOT NULL,           -- 내용
+    WRITER      VARCHAR2(100)   NOT NULL,           -- 작성자
+    CREATEDATE  DATE            DEFAULT SYSDATE,    -- 등록일
+    MODIFYDATE  DATE            DEFAULT SYSDATE,    -- 수정일
+    READCOUNT   NUMBER,          
+    CONSTRAINT  PK_SBOARD       PRIMARY KEY(IDX)
+);
 
+-- PRIMARY KEY 제약조건이름 PK_SBOARD로 인덱스명 PK_SBOARD생성
 
+-- 시퀀스 생성
 
+CREATE SEQUENCE SEQ_SBOARD;
 
+-- 데이터 삽입 테스트
+
+INSER INTO IDX, SUBJEC,T CONTENT, AUTHOR
 

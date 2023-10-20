@@ -44,7 +44,7 @@
 	</bean>
 	
 	<!-- service 패키지 -->
-	<context:component-scan base-package="com.demo.service" />
+	<context:component-scan base-package="com.docmall.service" />
 	<!-- mapper 패키지 --> 
-	<mybatis-spring:scan base-package="com.demo.mapper" />
+	<mybatis-spring:scan base-package="com.docmall.mapper" />
 </beans>

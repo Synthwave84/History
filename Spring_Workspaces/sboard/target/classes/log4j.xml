@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.demo.controller">
+	<logger name="com.a.b">
 		<level value="info" />
 	</logger>
 	
@@ -33,6 +33,7 @@
 	</logger>
 	
    <!-- 추가 -->
+   <!-- 시작 -->
    <!-- https://freehoon.tistory.com/113 -->
    <!-- sql log -->
    <logger name="jdbc.adult">
@@ -56,5 +57,7 @@
 		<priority value="warn" />
 		<appender-ref ref="console" />
 	</root>
+	
+	<!-- 끝 -->
 	
 </log4j:configuration>

@@ -14,7 +14,9 @@
 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM BOARD ORDER BY BNO DESC
 	</select>
 	
-	<!-- 공통된 sql구문작업 -->
+	<!--
+	 공통된 sql구문작업 검색조건 
+	-->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
@@ -69,7 +71,7 @@
 	</select>
 	
 	<select id="get" resultType="com.demo.domain.BoardVO" parameterType="Long">
-		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM 
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM  
 		BOARD WHERE BNO = #{bno}
 	</select>
 	  <update id="readCount" parameterType="Long">

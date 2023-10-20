@@ -116,14 +116,14 @@
                           <form action="/board/list" method="get">
                               <select name="type">
                                 <option selected>검색종류</option>
-                                <option value="T">제목</option>
-                                <option value="C">내용</option>
-                                <option value="W">작성자</option>
-                                <option value="TC">제목+내용</option>
-                                <option value="TW">제목+작성자</option>
-                                <option value="TCW">제목+작성자+내용</option>
+                                <option value="T" ${pagemaker.cri.type == 'T'? 'selected' : ''}>제목</option>
+                                <option value="C" ${pagemaker.cri.type == 'C'? 'selected' : ''}>내용</option>
+                                <option value="W" ${pagemaker.cri.type == 'W'? 'selected' : ''}>작성자</option>
+                                <option value="TC" ${pagemaker.cri.type == 'TC'? 'selected' : ''}>제목+내용</option>
+                                <option value="TW" ${pagemaker.cri.type == 'TW'? 'selected' : ''}>제목+작성자</option>
+                                <option value="TCW" ${pagemaker.cri.type == 'TCW'? 'selected' : ''}>제목+작성자+내용</option>
                               </select>
-                            <input type="text" name="keyword" value=""/>
+                            <input type="text" name="keyword" value="${pageMaker.cri.keyword}"/>
                             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}" />
                             <input type="hidden" name="amount" value="${pageMaker.cri.amount}" />
                             <button type="submit" class="btn btn-primary">검색</button>
@@ -139,6 +139,7 @@
                             <input type="hidden" name="amount" id ="amount" value="${pageMaker.cri.amount}" />
                             <input type="hidden" name="type" id="type" value="${pageMaker.cri.type}" />
                             <input type="hidden" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" />
+                            <input type="hidden" name="bno" id="bno" />
                           </form>
                         </div>
                       </div>
@@ -191,11 +192,20 @@
   // actionForm폼 전송
     move.addEventListener("click", (event) => {
       event.preventDefault();
+
+      // bno 제거 작업.
+      // 목록에서 제목 클릭 후 게시물 읽기에서 뒤로버튼에 의하여 목록으로 돌아옴
+      // 다시 제목을 클릭하면, bno파라미터가 추가 되기 떄문에,
+      // 기존 bno파라미터를 제거 해 주어야 한다.
+      document.getElementById("bno").remove();
+
+      // <a href='#' data-bno='게시물번호' data-name='값'
       let bno=event.target.dataset.bno;
-      
+      // 
       const newInput = document.createElement("input");
       newInput.setAttribute("type", "hidden");
       newInput.setAttribute("name", "bno");
+      newInput.setAttribute("id","bno");
       newInput.setAttribute("value", bno);
       actionForm.setAttribute("action","/board/get");
       actionForm.append(newInput);
