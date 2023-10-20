@@ -126,7 +126,12 @@
                             <input type="hidden" name="amount" value="${pageMaker.cri.amount}" />
                             <button type="submit" class="btn btn-primary">검색</button>
                           </form>
-                          <!-- [이전] 1 2 3 4 5 [다음] 페이지 이동목적으로 클릭 시 사용됨 -->
+                          <!-- 
+                          1)페이지 번호
+                          [이전] 1 2 3 4 5 [다음] 페이지 이동목적으로 클릭 시 사용됨 
+                          
+                          2) 목록에서 제목을 클릭 할 때도 동시에 사용. action="board/get"
+                          -->
                           <form id="actionForm" action="/board/list" method="get"> 
                             <input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}" />
                             <input type="hidden" name="amount" id ="amount" value="${pageMaker.cri.amount}" />
@@ -177,7 +182,8 @@
   });
 
   // 제목클릭 시 이벤트 설정 : 게시물 읽기
-
+  // <a class="move">제목</a>
+  //	 즉 제목의 수 만큼 참조하게됨.
   const moves = document.getElementsByClassName("move");
   Array.from(moves).forEach(function (move) {
   // actionForm폼 전송

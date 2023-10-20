@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.demo.domain.BoardVO;
 import com.demo.domain.Criteria;
@@ -82,7 +83,7 @@ public class BoardController {
 //	Criteria cri = new Criteria();
 //	Model model = new 생성자()
 	@GetMapping("/list") 
-	public void list(Criteria cri, Model model ) {
+	public void list(Criteria cri, Model model) {
 //		cri.toString
 		log.info("list :" + cri);
 		List<BoardVO> list =boardService.getListWithPaging(cri);
@@ -101,21 +102,34 @@ public class BoardController {
 //	상세내용
 //	게시물 읽기 :리스트에서 제목을 클릭했을 떄, 게시물 번호가 데이터를 출력
 	@GetMapping({"/get", "/modify"}) 
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("bno") Long bno, 
+			@ModelAttribute("cri") Criteria cri, Model model) {
 //		목록에서 선택한 게시물 번호
 		
 		log.info("게시물번호" + bno);
+		
+//		페이징과 검색정보
+		log.info("페이징 검색정보" + cri);
 		BoardVO board= boardService.get(bno);
 		model.addAttribute("board", board);
 	}
 //	매핑주소 /board/modify
 //	수정하기
+//	RedirectAttributes : 페이지(주소) 이동시 파라미터 정보를 제공하는 목적으로 사용.
 	@PostMapping("/modify") 
-	public String modify(BoardVO board) {
+	public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
 		log.info("수정 데이터" + board);
 //		DB저장
 		boardService.modify(board);
 		
+//		검색과 페이지 정보를 이동주소를 파라미터로 사용하기 위한 작업
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+//		list(Criteria cri, Model model)
+//		/board/list?pageNum=값&amount-값&type=값&keyword=깞
 		return "redirect:/board/list";
 	}
 	
@@ -123,10 +137,16 @@ public class BoardController {
 //	삭제하기
 	@GetMapping("/delete")
 //	리다이렉트를 이용하려면 스트링
-	public String delete(@RequestParam("bno") Long bno) {
+	public String delete(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
 		log.info("삭제된 번호" + bno);
 //		DB 작업
 		boardService.delete(bno);
+//		검색과 페이지 정보를 이동주소를 파라미터로 사용하기 위한 작업
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		return "redirect:/board/list";
 	}
 	

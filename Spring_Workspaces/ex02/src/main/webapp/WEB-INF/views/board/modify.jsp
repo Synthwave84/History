@@ -63,6 +63,10 @@
                   <div class="box-body">
                  	<div class="form-group">
                         <label for="bno">글번호</label>
+                        <input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
+                        <input type="hidden" name="amount" id="amount" value="${cri.amount}" />
+                        <input type="hidden" name="type" id="type" value="${cri.type}" />
+                        <input type="hidden" name="keyword" id="keyword" value="${cri.keyword}" />
                         <input type="text" class="form-control" name="bno" id="bno" value="${board.bno}" readonly>
                      </div>
                   <div class="form-group">
@@ -95,7 +99,9 @@
                   <div class="box-footer">
                      <button type="submit" id="btn_modify" class="btn btn-primary">저장하기</button>
                      <button type="button" id="btn_delete" class="btn btn-primary">삭제하기</button>
-                     <button type="button" id="btn_list" class="btn btn-primary">목록</button>
+                     <button type="submit" id="btn_list" class="btn btn-primary">목록</button>
+                     
+
                   </div>
              
             </div>
@@ -131,7 +137,7 @@
 
 	document.getElementById("btn_list").addEventListener("click", fn_list);
 	function fn_list() {
-		location.href = "./list"
+		location.href = "/board/list?pageNum=${cri.pageNum }"
 			if(!confirm("수정을 취소 하시겠습니까?")) return;
 		}
   </script>

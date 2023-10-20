@@ -121,8 +121,8 @@
 	
 	<script>
 
-		// <form id="curListInfo" action="" method="get">
-		let curListInfo = document.getElementById("");
+		// // <form id="curListInfo" action="" method="get"> 태그 참조
+		let curListInfo = document.getElementById("curListInfo");
 
 		// document.getElementById("btn_modify").addEventListener("click", 함수명);
 		document.getElementById("btn_modify").addEventListener("click", fn_modify);
