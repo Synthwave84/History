@@ -180,7 +180,7 @@ CREATE TABLE SBOARD (
     IDX         NUMBER,                             -- 글번호
     SUBJECT     VARCHAR2(100)   NOT NULL,           -- 제목
     CONTENT     VARCHAR2(1000)  NOT NULL,           -- 내용
-    WRITER      VARCHAR2(100)   NOT NULL,           -- 작성자
+    AUTHOR      VARCHAR2(100)   NOT NULL,           -- 작성자
     CREATEDATE  DATE            DEFAULT SYSDATE,    -- 등록일
     MODIFYDATE  DATE            DEFAULT SYSDATE,    -- 수정일
     READCOUNT   NUMBER,          
@@ -193,7 +193,9 @@ CREATE TABLE SBOARD (
 
 CREATE SEQUENCE SEQ_SBOARD;
 
+DROP SEQUENCE SEQ_SBOARD;
+DROP TABLE SBOARD;
 -- 데이터 삽입 테스트
 
-INSER INTO IDX, SUBJEC,T CONTENT, AUTHOR
-
+INSERT INTO IDX, SUBJECT, CONTENT, AUTHOR
+VALUES(SEQ_SBOARD.NEXTVAL, '테스트','스프링 게시판연습','user01');
