@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="com.demo.controller">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	
+   <!-- 추가 -->
+   <!-- https://freehoon.tistory.com/113 -->
+   <!-- sql log -->
+   <logger name="jdbc.adult">
+      <level value="warn" />
+   </logger>
+   <!-- resultset을 포함한 모든 JDBc호출정보를 로그로 기록. 매우 많은 양의 로그가 발생 -->
+   <logger name="jdbc.resultset">
+      <level value="warn" />
+   </logger>
+   <!-- 열려있는 모든 번호와 연결수립, 해제 이벤트를 기록. 즉, 연결문제를 찾아내는데 매우 유용.(Connection Pool설정) -->
+   <logger name="jdbc.connection">
+      <level value="warn" />
+   </logger>
+   
+   <logger name="jdbc.resultsettable">
+      <level value="info" />
+   </logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>
