@@ -146,3 +146,23 @@
 2023-10-23 16:08:30,683 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2023-10-23 16:08:30,684 [Worker-19: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
 2023-10-23 16:08:30,685 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-10-23 16:13:04,696 [Worker-29: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.demo:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\ex00\pom.xml.
+2023-10-23 16:13:04,790 [Worker-29: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.demo:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\ex01\pom.xml.
+2023-10-23 16:13:04,863 [Worker-29: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.demo:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\ex02\pom.xml.
+2023-10-23 16:13:08,585 [Worker-31: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-23 16:13:08,586 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2023-10-23 16:13:08,589 [Worker-31: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-23 16:13:08,589 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2023-10-23 16:13:08,842 [Worker-31: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-23 16:13:08,843 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2023-10-23 16:13:08,846 [Worker-31: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-23 16:13:08,847 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2023-10-23 16:13:09,233 [Worker-31: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-23 16:13:09,234 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2023-10-23 16:13:09,243 [Worker-31: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-23 16:13:09,244 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2023-10-23 16:16:36,520 [Worker-27: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.demo:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\ex00\pom.xml.
+2023-10-23 16:16:47,062 [Worker-32: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.demo:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\ex01\pom.xml.
+2023-10-23 16:16:48,522 [Worker-35: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.demo:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\ex02\pom.xml.
+2023-10-23 16:16:48,608 [Worker-35: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.docmall:web:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\sboard\pom.xml.
+2023-10-23 16:16:51,242 [Worker-14: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.test:web:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\test00\pom.xml.
