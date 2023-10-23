@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.docmall.domain.Criteria;
 import com.docmall.domain.PageDTO;
-import com.docmall.domain.SBoardVO;
+import com.docmall.domain.SboardVO;
 import com.docmall.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,11 +41,11 @@ public class BoardController {
 	
 //	2) 글 등록 작업
 	@PostMapping("/register")
-	public String register(SBoardVO board) {
+	public String register(SboardVO board) {
 		log.info("레지스터 등록 데이터 : " + board);
 		boardService.register(board);
 		;
-		return "redirect:/sboard/register";
+		return "redirect:/sboard/list";
 	};
 	
 //	3) 글 목록 확인 작업
@@ -55,7 +55,7 @@ public class BoardController {
 		log.info("List : " + cri);
 
 //		페이징 기능을 이용하기 위한 list 작업. 
-		List<SBoardVO> list = boardService.getListWithPage(cri);
+		List<SboardVO> list = boardService.getListWithPage(cri);
 		model.addAttribute("list", list);
 		
 //		페이지 정보를 확인하기 위한 DTO를 생성자로 호출 및 페이지 정보를 받아올 model 작업.		
@@ -70,13 +70,13 @@ public class BoardController {
 	@GetMapping({"/get","/modify"})
 	public void get (@RequestParam("idx") Long idx, 
 			@ModelAttribute("cri") Criteria cri, Model model) {
-		SBoardVO board = boardService.get(idx);
+		SboardVO board = boardService.get(idx);
 		model.addAttribute("board",board);
 	};
 	
 //	5) 수정 작업
 	@PostMapping("/modify") 
-	public String modify(SBoardVO board, Criteria cri, RedirectAttributes rttr) {
+	public String modify(SboardVO board, Criteria cri, RedirectAttributes rttr) {
 		log.info(board);
 		boardService.modify(board);
 		return "redirect:/sboard/list"+cri.getListLink();

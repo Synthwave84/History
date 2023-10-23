@@ -198,3 +198,24 @@ DAO - 데이터베이스를 접근하는 코드를 가지고 있는 클래스객
 
 servlet context > 웹 관련
 root-context > 비 웹 관련.
+
+
+- 프로젝트 시작
+  1) 데이터 베이스 담ㅈ당자가 개별 정보 제공
+    -데이터베이스 연결정보
+    -오라클 서버명
+    -계정 비번
+
+  2) 훈련생(수강생)
+    -SQL Delveloper실행
+    1) 관리자 접속 : sys, system
+    2) 계정 생성
+      CREATE USER '계정명' IDENTIFIED BY 비밀번호;
+    3) 권하부여
+      GRANT CONNECT, RESOURCE TO 계정이름;
+
+
+https://dorothy-yang.tistory.com/
+
+포폴 
+  - 데이터베이스 설계
