@@ -173,3 +173,12 @@
 2023-10-23 16:24:01,936 [Worker-37: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.docmall:web:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\History\Spring_Workspaces\sboard\pom.xml.
 2023-10-23 16:24:15,348 [Worker-38: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.docmall:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\EZEN_Portfolio\Spring\docmall\pom.xml.
 2023-10-23 16:26:44,562 [Worker-38: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.docmall:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\EZEN_Portfolio\Spring\docmall\pom.xml.
+2023-10-24 09:15:29,545 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-10-24 12:25:24,060 [Worker-36: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2023-10-24 12:25:25,665 [Worker-36: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.docmall:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\EZEN_Portfolio\Spring\docmall\pom.xml.
+2023-10-24 12:25:27,391 [Worker-36: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /docmall/src/main/java
+2023-10-24 12:25:27,392 [Worker-36: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /docmall/src/main/resources
+2023-10-24 12:25:27,392 [Worker-36: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /docmall/src/test/java
+2023-10-24 12:25:27,393 [Worker-36: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /docmall/src/test/resources
+2023-10-24 12:25:27,970 [Worker-36: Updating Maven Project] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for docmall
+2023-10-24 12:25:27,974 [Worker-36: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 3 sec
