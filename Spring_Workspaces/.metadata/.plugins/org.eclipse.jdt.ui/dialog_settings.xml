@@ -25,4 +25,8 @@
 		<item key="expanded1" value="true"/>
 		<item key="expanded2" value="true"/>
 	</section>
+	<section name="completion_proposal_size">
+	</section>
+	<section name="quick_assist_proposal_size">
+	</section>
 </section>

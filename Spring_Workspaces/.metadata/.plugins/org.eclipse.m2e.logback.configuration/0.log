@@ -182,3 +182,19 @@
 2023-10-24 12:25:27,393 [Worker-36: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /docmall/src/test/resources
 2023-10-24 12:25:27,970 [Worker-36: Updating Maven Project] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for docmall
 2023-10-24 12:25:27,974 [Worker-36: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 3 sec
+2023-10-24 13:45:17,826 [Worker-76: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2023-10-24 13:45:18,061 [Worker-76: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.docmall:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\EZEN_Portfolio\Spring\docmall\pom.xml.
+2023-10-24 13:45:18,500 [Worker-76: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /docmall/src/main/java
+2023-10-24 13:45:18,500 [Worker-76: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /docmall/src/main/resources
+2023-10-24 13:45:18,500 [Worker-76: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /docmall/src/test/java
+2023-10-24 13:45:18,500 [Worker-76: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /docmall/src/test/resources
+2023-10-24 13:45:18,691 [Worker-76: Updating Maven Project] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for docmall
+2023-10-24 13:45:18,695 [Worker-76: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2023-10-24 13:47:49,165 [Worker-84: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2023-10-24 13:47:49,344 [Worker-84: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.docmall:controller:1.0.0-BUILD-SNAPSHOT @ C:\DEV\Web1\EZEN_Portfolio\Spring\docmall\pom.xml.
+2023-10-24 13:47:49,784 [Worker-84: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /docmall/src/main/java
+2023-10-24 13:47:49,784 [Worker-84: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /docmall/src/main/resources
+2023-10-24 13:47:49,784 [Worker-84: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /docmall/src/test/java
+2023-10-24 13:47:49,785 [Worker-84: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /docmall/src/test/resources
+2023-10-24 13:47:49,986 [Worker-84: Updating Maven Project] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for docmall
+2023-10-24 13:47:49,989 [Worker-84: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
