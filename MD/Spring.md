@@ -219,3 +219,13 @@ https://dorothy-yang.tistory.com/
 
 포폴 
   - 데이터베이스 설계
+
+스프링 시큐리티
+암호화
+
+톰캣 서버가 또 시작이 안된다.
+  - Run As -> Maven Clean -> Maven Install
+근데 또안된다
+  - Server -> Tomcat LC -> Clean Tomcat Working Directory
+하지만 아직도 안된다
+  - Server -> Tomcat -> Clean.
