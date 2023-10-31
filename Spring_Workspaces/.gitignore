@@ -67,5 +67,6 @@ local.properties
 # Spring Boot Tooling
 .sts4-cache/
 email.properties
+pom.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
