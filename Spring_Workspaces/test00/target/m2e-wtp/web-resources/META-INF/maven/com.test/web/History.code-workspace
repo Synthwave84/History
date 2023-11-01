@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../../.."
+		},
+		{
+			"path": "../../../../../../../../../../EZEN"
+		},
+		{
+			"path": "../../../../../../../../../../EZEN_Portfolio"
+		}
+	],
+	"settings": {
+		"terminal.integrated.allowMnemonics": true,
+		"java.compile.nullAnalysis.mode": "automatic",
+		"liveServer.settings.multiRootWorkspaceName": "EZEN_Portfolio"
+	}
+}
