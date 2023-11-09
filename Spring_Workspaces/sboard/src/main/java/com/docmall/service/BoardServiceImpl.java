@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.docmall.domain.Criteria;
-import com.docmall.domain.SBoardVO;
+
+import com.docmall.domain.SboardVO;
 import com.docmall.mapper.BoardMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,13 @@ public class BoardServiceImpl implements BoardService {
 	
 //	1) 레지스터 등록
 	@Override
-	public void register(SBoardVO board) {
+	public void register(SboardVO board) {
 		boardMapper.register(board);
 	}
 	
 //	2) getList 등록
 	@Override
-	public List<SBoardVO> getList() {
+	public List<SboardVO> getList() {
 		
 		return boardMapper.getList();
 	}
@@ -41,20 +42,20 @@ public class BoardServiceImpl implements BoardService {
 	
 //	3) getListWithPage 등록
 	@Override
-	public List<SBoardVO> getListWithPage(Criteria cri) {
+	public List<SboardVO> getListWithPage(Criteria cri) {
 		
 		return boardMapper.getListWithPage(cri);
 	}
 
 	
 	@Override
-	public SBoardVO get(Long idx) {
+	public SboardVO get(Long idx) {
 		boardMapper.readCount(idx);
 		return boardMapper.get(idx);
 	}
 
 	@Override
-	public void modify(SBoardVO board) {
+	public void modify(SboardVO board) {
 		boardMapper.modify(board);
 		
 	}

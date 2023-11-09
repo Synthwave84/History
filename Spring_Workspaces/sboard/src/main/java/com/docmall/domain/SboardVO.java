@@ -12,7 +12,7 @@ import lombok.Data;
 
 //	1) 보낼 자료가 데이터 이므로, 데이터 화 시키는 작업이 필수로 동반 되어야 한다.
 @Data
-public class SBoardVO {
+public class SboardVO {
 	
 //	-- SBoard에서 사용할 테이블
 //

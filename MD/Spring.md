@@ -198,3 +198,39 @@ DAO - 데이터베이스를 접근하는 코드를 가지고 있는 클래스객
 
 servlet context > 웹 관련
 root-context > 비 웹 관련.
+
+
+- 프로젝트 시작
+  1) 데이터 베이스 담ㅈ당자가 개별 정보 제공
+    -데이터베이스 연결정보
+    -오라클 서버명
+    -계정 비번
+
+  2) 훈련생(수강생)
+    -SQL Delveloper실행
+    1) 관리자 접속 : sys, system
+    2) 계정 생성
+      CREATE USER '계정명' IDENTIFIED BY 비밀번호;
+    3) 권하부여
+      GRANT CONNECT, RESOURCE TO 계정이름;
+
+
+https://dorothy-yang.tistory.com/
+
+포폴 
+  - 데이터베이스 설계
+
+스프링 시큐리티
+암호화
+
+톰캣 서버가 또 시작이 안된다.
+  - Run As -> Maven Clean -> Maven Install
+근데 또안된다
+  - Server -> Tomcat LC -> Clean Tomcat Working Directory
+하지만 아직도 안된다
+  - Server -> Tomcat -> Clean.
+
+1) 자바스크립트 코드와 jsp 문법이 혼합되어 있을 경우
+  -> views폴더 하위에 파일확장자 jsp로 저장
+2) 자바스크립트 코드
+  -> resource폴더 하위에 파일확장자로 js 저장.
