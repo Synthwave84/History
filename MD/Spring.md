@@ -229,3 +229,8 @@ https://dorothy-yang.tistory.com/
   - Server -> Tomcat LC -> Clean Tomcat Working Directory
 하지만 아직도 안된다
   - Server -> Tomcat -> Clean.
+
+1) 자바스크립트 코드와 jsp 문법이 혼합되어 있을 경우
+  -> views폴더 하위에 파일확장자 jsp로 저장
+2) 자바스크립트 코드
+  -> resource폴더 하위에 파일확장자로 js 저장.
