@@ -80,8 +80,13 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
+<<<<<<< HEAD
 			<!-- 롬복 애노테이션 로그사용목적 @Log4j 충돌-->
 			<!-- <scope>runtime</scope> -->
+=======
+			<!-- 롬복 어노테이션 로그 사용목적 @Log4J 와 충돌. -->
+			<!--<scope>runtime</scope> -->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 		</dependency>
 
 		<!-- @Inject -->
@@ -92,16 +97,26 @@
 		</dependency>
 				
 		<!-- Servlet -->
+<<<<<<< HEAD
 		<!-- 
+=======
+		<!--  
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+<<<<<<< HEAD
 		 -->
 		 <!-- 서블릿 버전과 web.xml 버전을 동일하게 한다. -->
 		<dependency>
+=======
+		-->
+		<!-- 서블릿 버젼과 동일하게 한다. -->
+		 <dependency>
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
 		    <version>3.1.0</version>
@@ -120,17 +135,30 @@
 		</dependency>
 	
 		<!-- Test -->
+<<<<<<< HEAD
 		<!-- 단위테스트 도구프로그램 : JUnit -->
+=======
+		<!-- 단위 테스트 프로그램 : Junit -->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+<<<<<<< HEAD
 			<!-- <scope>test</scope> -->
 		</dependency> 
 		
 		
 		<!-- 추가 라이브러리 설정-->
 		<!-- 파일업로드 라이브러리. servlet-context.xml 에서 bean등록작업 -->	
+=======
+			<!--  <scope>test</scope> -->
+		</dependency>        
+		
+	<!-- 추가 라이브러리 -->
+		
+	<!-- 파일업로드 라이브러리. servlet-context.xml 에서 bean등록작업 -->	
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 	<dependency>
 	    <groupId>commons-fileupload</groupId>
@@ -138,7 +166,11 @@
 	    <version>1.5</version>
 	</dependency>
 
+<<<<<<< HEAD
 	<!-- 1)데이타베이스(오라클) 연동 라이브러리 -->
+=======
+	<!-- 1)데이타베이스 연동 라이브러리 -->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
 	<dependency>
 	    <groupId>com.oracle.database.jdbc</groupId>
@@ -154,7 +186,12 @@
 	    <version>2.7.4</version>
 	</dependency>
 	
+<<<<<<< HEAD
 	<!-- 스프링에서 DB를 사용하는 방법.  1)Mybatis 2)JPA -->
+=======
+	<!-- 스프링에서 DB를 사용하는 방법. -->
+	<!-- 1.Mybatis, 2.JPA -->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 	<!-- 3)Mybatis 라이브러리 -->
 	<dependency>
@@ -163,7 +200,11 @@
 	    <version>3.5.11</version>
 	</dependency>
 	
+<<<<<<< HEAD
 	<!-- 4)Srping 과 Mybatis 연결 라이브러리 -->
+=======
+	<!-- 4)Spring 과 Mybatis 연결 라이브러리 -->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 	<dependency>
 	    <groupId>org.mybatis</groupId>
@@ -187,7 +228,11 @@
 	    <version>${org.springframework-version}</version>
 	</dependency>
 	
+<<<<<<< HEAD
 	<!--  7) 단위테스트(JUnit)를 지원하는 라이브러리 -->
+=======
+	<!--  7) 단위테스트를 지원하는 라이브러리 -->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
@@ -197,9 +242,15 @@
 	</dependency>
 	
 	<!-- SQL구문 로그를 출력할 때 사용하는 라이브러리. -->
+<<<<<<< HEAD
 	<!--  log4jdbc.log4j2.properties, logback.xml 2개파일을 src/main/resources 폴더에 복사 -->
 	<!-- root-context.xml에서 연결설정을 해야 사용할 수가 있다. -->
 	<!--  개발시 SQL구문 로그를 확인하는 목적 -->
+=======
+	<!-- log4jdbc.log4j2.properties, logback.xml 2개파일을 src/main/resources 폴더에 복사 -->
+	<!-- root-context.xml에서 연결설정을 해야 사용할 수가 있다. -->
+	<!-- 개발시 SQL구문 로그를 확인하는 목적 -->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	<dependency>
 	    <groupId>org.bgee.log4jdbc-log4j2</groupId>
 	    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
@@ -214,6 +265,7 @@
 	    <artifactId>jackson-databind</artifactId>
 	    <version>2.9.4</version>
 	</dependency>
+<<<<<<< HEAD
 	
 	<!--  롬복을 스프링 툴에서 설정작업도 함께 해야한다. -->
 	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -226,6 +278,19 @@
 	
 	
 	      
+=======
+	<!-- LOMBOK -->
+	<!-- 롬복을 스프링 툴에서 설정작업도 함께 해야한다. -->
+	<dependency>
+    			<groupId>org.projectlombok</groupId>
+    			<artifactId>lombok</artifactId>
+    			<version>1.18.30</version>
+    			<scope>provided</scope>
+		</dependency>
+		
+      
+      
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	</dependencies>
     <build>
         <plugins>
