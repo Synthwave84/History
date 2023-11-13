@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.docmall.web">
+	<logger name="com.demo.controller">
 		<level value="info" />
 	</logger>
 	

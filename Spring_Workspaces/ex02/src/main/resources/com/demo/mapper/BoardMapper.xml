@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.BoardMapper">
+	
+	<!-- 글쓰기 저장 -->
+	<insert id="register" parameterType="com.demo.domain.BoardVO">
+		INSERT INTO BOARD(BNO, TITLE, content, WRITER) 
+		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<select id="getList" resultType="com.demo.domain.BoardVO">
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM BOARD ORDER BY BNO DESC
+	</select>
+	
+	<!-- 공통된 sql구문작업 : 검색조건 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	
+	</sql>
+	
+	
+	<!--  CDATA 섹션 -->
+	<select id="getListWithPaging" resultType="com.demo.domain.BoardVO" parameterType="com.demo.domain.Criteria">
+		<![CDATA[
+		select 
+    		bno, title, content, writer, regdate, updateddate, viewcount
+		from 
+		    (
+		    select /*+INDEX_DESC(board pk_board) */
+		        rownum rn, bno, title, content, writer, regdate, updateddate, viewcount 
+		    from 
+		        board
+		    where 
+		    ]]>
+		    
+		    <include refid="criteria"></include>
+		    
+		    <![CDATA[
+		        rownum <= #{pageNum} * #{amount}
+		    )
+		where 
+		    rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from board where
+		
+		<include refid="criteria"></include>
+		
+		bno > 0
+	</select>
+	
+	<select id="get" resultType="com.demo.domain.BoardVO" parameterType="Long">
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM 
+		BOARD WHERE BNO = #{bno}
+	</select>
+	
+	<update id="readCount" parameterType="Long">
+		UPDATE BOARD SET viewcount = viewcount + 1 WHERE  BNO = #{bno}
+	</update>
+	
+	<update id="modify" parameterType="com.demo.domain.BoardVO">
+		UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content}, UPDATEDDATE = SYSDATE WHERE  BNO = #{bno}
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		DELETE FROM BOARD WHERE BNO = #{bno}
+	</delete>
+	
+</mapper>  
