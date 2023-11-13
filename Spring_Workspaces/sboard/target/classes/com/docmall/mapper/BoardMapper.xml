@@ -80,7 +80,7 @@
 	
 	<!-- 읽은 수 조회 -->
 	<update id="readCount" parameterType="Long">
-       UPDATE BOARD SET READCOUNT = READCOUNT +1 WHERE BOARD_NO = #{board_no}
+       UPDATE SBOARD SET READCOUNT = READCOUNT +1 WHERE IDX = #{idx}
     </update>
 
 <!-- 5) 각 글을 읽기 위한 SQL 작업. -->
