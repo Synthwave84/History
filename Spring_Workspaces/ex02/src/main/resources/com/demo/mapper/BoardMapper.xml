@@ -7,16 +7,24 @@
 	<!-- 글쓰기 저장 -->
 	<insert id="register" parameterType="com.demo.domain.BoardVO">
 		INSERT INTO BOARD(BNO, TITLE, content, WRITER) 
+<<<<<<< HEAD
+		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
+=======
 		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{writer}, #{content})
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	</insert>
 	
 	<select id="getList" resultType="com.demo.domain.BoardVO">
 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM BOARD ORDER BY BNO DESC
 	</select>
 	
+<<<<<<< HEAD
+	<!-- 공통된 sql구문작업 : 검색조건 -->
+=======
 	<!--
 	 공통된 sql구문작업 검색조건 
 	-->
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
@@ -42,6 +50,17 @@
 	<!--  CDATA 섹션 -->
 	<select id="getListWithPaging" resultType="com.demo.domain.BoardVO" parameterType="com.demo.domain.Criteria">
 		<![CDATA[
+<<<<<<< HEAD
+		select 
+    		bno, title, content, writer, regdate, updateddate, viewcount
+		from 
+		    (
+		    select /*+INDEX_DESC(board pk_board) */
+		        rownum rn, bno, title, content, writer, regdate, updateddate, viewcount 
+		    from 
+		        board
+		    where 
+=======
 		SELECT 
     		BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE, VIEWCOUNT
             FROM 
@@ -50,19 +69,44 @@
 		        ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE, VIEWCOUNT 
                 FROM BOARD
 		    WHERE 
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 		    ]]>
 		    
 		    <include refid="criteria"></include>
 		    
 		    <![CDATA[
+<<<<<<< HEAD
+		        rownum <= #{pageNum} * #{amount}
+		    )
+		where 
+		    rn > (#{pageNum} -1) * #{amount}
+=======
 		        ROWNUM <= #{pageNum} * #{amount}
 		    )
                 WHERE 
 		    RN > (#{pageNum} -1) * #{amount}
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 		]]>
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
+<<<<<<< HEAD
+		select count(*) from board where
+		
+		<include refid="criteria"></include>
+		
+		bno > 0
+	</select>
+	
+	<select id="get" resultType="com.demo.domain.BoardVO" parameterType="Long">
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDDATE FROM 
+		BOARD WHERE BNO = #{bno}
+	</select>
+	
+	<update id="readCount" parameterType="Long">
+		UPDATE BOARD SET viewcount = viewcount + 1 WHERE  BNO = #{bno}
+	</update>
+=======
 		
 		SELECT COUNT(*) FROM BOARD WHERE
 		<include refid="criteria"></include>
@@ -77,6 +121,7 @@
 	  <update id="readCount" parameterType="Long">
        UPDATE BOARD SET VIEWCOUNT = VIEWCOUNT +1 WHERE BNO = #{bno}
     </update>
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	
 	<update id="modify" parameterType="com.demo.domain.BoardVO">
 		UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content}, UPDATEDDATE = SYSDATE WHERE  BNO = #{bno}
@@ -85,5 +130,9 @@
 	<delete id="delete" parameterType="Long">
 		DELETE FROM BOARD WHERE BNO = #{bno}
 	</delete>
+<<<<<<< HEAD
+	
+=======
 	  
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 </mapper>  

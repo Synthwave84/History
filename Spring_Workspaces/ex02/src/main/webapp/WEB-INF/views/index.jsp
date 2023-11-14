@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -18,8 +21,13 @@
     
 
     <!-- Bootstrap core CSS -->
+<<<<<<< HEAD
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    
+
+=======
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 
 
     <!-- Favicons -->
@@ -58,7 +66,11 @@
     
 <header>
   <!-- Fixed navbar -->
+<<<<<<< HEAD
+  <%@include file="/WEB-INF/views/comm/header.jsp" %>
+=======
   <%@include file="/WEB-INF/views//comm/header.jsp" %>
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 </header>
 
 <!-- Begin page content -->
@@ -66,11 +78,24 @@
   <div class="container">
     <h1 class="mt-5">게시판</h1>
     <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>main &gt; .container</code>.</p>
+<<<<<<< HEAD
+    
+=======
   
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
   </div>
 </main>
 
 <footer class="footer mt-auto py-3">
+<<<<<<< HEAD
+  <%@include file="/WEB-INF/views/comm/footer.jsp" %>
+</footer>
+<%@include file="/WEB-INF/views/comm/plug-in.jsp" %>
+      
+  </body>
+</html>
+    
+=======
   <%@include file="/WEB-INF/views//comm/footer.jsp" %>
 </footer>
 
@@ -78,3 +103,4 @@
       
   </body>
 </html>
+>>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
