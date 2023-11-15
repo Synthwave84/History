@@ -1,112 +1,369 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 23 Oct 2023 21:38:38 GMT</lastBuildDate><item><title><![CDATA[Spring Vault 3.1.0-RC1 released]]></title><link>https://spring.io/blog/2023/10/23/spring-vault-3-1-0-rc1-released</link><guid isPermaLink="true">https://spring.io/blog/2023/10/23/spring-vault-3-1-0-rc1-released</guid><dc:creator><![CDATA[Mark Paluch]]></dc:creator><pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that the Spring Vault &lt;code&gt;3.1.0-RC1&lt;/code&gt; release is available now.&lt;/p&gt;
-&lt;p&gt;Spring Vault &lt;code&gt;3.1.0-RC1&lt;/code&gt; ships with &lt;a href=&quot;https://github.com/spring-projects/spring-vault/releases/tag/3.1.0-RC1&quot;&gt;numerous enhancements&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://projects.spring.io/spring-vault/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-vault&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-vault/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-vault/reference/&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Modulith 1.1 RC1 and 1.0.2 released]]></title><link>https://spring.io/blog/2023/10/23/spring-modulith-1-1-rc1-and-1-0-2-released</link><guid isPermaLink="true">https://spring.io/blog/2023/10/23/spring-modulith-1-1-rc1-and-1-0-2-released</guid><dc:creator><![CDATA[Oliver Drotbohm]]></dc:creator><pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;It is my pleasure to announce the release of Spring Modulith 1.1 RC1 and 1.0.2. While the latter primarily ships bug fixes and upgrades to Spring Boot 3.1.5, the former packages quite a few new features, such as:&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 14 Nov 2023 19:42:32 GMT</lastBuildDate><item><title><![CDATA[This Week in Spring - November 14th, 2023]]></title><link>https://spring.io/blog/2023/11/14/this-week-in-spring-november-14th-2023</link><guid isPermaLink="true">https://spring.io/blog/2023/11/14/this-week-in-spring-november-14th-2023</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! It&apos;s November 14th, and you know what that means? NINE MORE DAYS until Spring Boot 3.2 drops (on the day of the US holiday of Thanksgiving, no less)!&lt;/p&gt;
+&lt;p&gt;Some key features include:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Upgrade to Spring Boot 3.2 RC1 / Spring Framework 6.1 RC1 &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/329&quot;&gt;GH-329&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Verification of references in code located in the application root &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/317&quot;&gt;GH-317&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@ApplicationModuleListener&lt;/code&gt; now located in &lt;code&gt;….modulith-events&lt;/code&gt; in &lt;code&gt;spring-modulith-events-api&lt;/code&gt; &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/322&quot;&gt;GH-322&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Stricter filtering of bean definitions in application module tests &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/320&quot;&gt;GH-320&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Moments&lt;/code&gt; now implements &lt;code&gt;Now&lt;/code&gt; &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/335&quot;&gt;GH-335&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;virtual threads&lt;/li&gt;
+&lt;li&gt;initial CRaC support&lt;/li&gt;
+&lt;li&gt;more sophisticated observability with Micrometerio&lt;/li&gt;
+&lt;li&gt;JdbcClient, RestClient&lt;/li&gt;
+&lt;li&gt;ActiveMQ Testcontainers/ Docker Compose support&lt;/li&gt;
+&lt;li&gt;Kotlin 1.9.0&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For more information consult the full change logs for &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/releases/tag/1.1.0-RC1&quot;&gt;1.1 RC1&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/releases/tag/1.0.2&quot;&gt;1.0.2&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 3.2.0-RC1 available now]]></title><link>https://spring.io/blog/2023/10/20/spring-boot-3-2-0-rc1-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/10/20/spring-boot-3-2-0-rc1-available-now</guid><dc:creator><![CDATA[Andy Wilkinson]]></dc:creator><pubDate>Fri, 20 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;3.2.0-RC1&lt;/code&gt; has been released and is now available from &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;https://repo.spring.io/milestone&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.2.0-RC1&quot;&gt;128 enhancements, documentation improvements, dependency upgrades, and bug fixes&lt;/a&gt;. Notable new features include:&lt;/p&gt;
+&lt;p&gt;I can&apos;t wait for the next release. I&apos;ve been playing with it for months. It builds on the strenghts of Spring Boot 3.0 and 3.1. 3.0 brought GraalVM native images, and 3.1 brought Testcontainers and Docker Compose support. This release brings with it Project Loom and CRaC support. It&apos;s never been so easy to be so scalable, fast, and productive!&lt;/p&gt;
+&lt;p&gt;Alright my friends there&apos;s a ton to get into this week so let&apos;s begin:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Support for reloading of SSL trust material when using Netty and Tomcat&lt;/li&gt;
-&lt;li&gt;Improved nested jar support&lt;/li&gt;
-&lt;li&gt;Support for configuring RabbitMQ and Apache Kafka using SSL bundles&lt;/li&gt;
+&lt;li&gt;this is super cool: &lt;a href=&quot;https://spring.io/blog/2023/11/07/ssl-hot-reload-in-spring-boot-3-2-0&quot;&gt;SSL hot reload in Spring Boot 3.2.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/11/08/spring-shell-2-1-14-3-0-9-3-1-5-and-3-2-0-m3-are-now-available&quot;&gt;Spring Shell 2.1.14, 3.0.9, 3.1.5 and 3.2.0-M3 are now available&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[&lt;a href=&quot;https://spring.io/blog/2023/11/09/a-bootiful-podcast-azul-deputy-cto-simon-ritter%5D(Azul&quot;&gt;https://spring.io/blog/2023/11/09/a-bootiful-podcast-azul-deputy-cto-simon-ritter](Azul&lt;/a&gt; Deputy CTO Simon Ritter on a Bootiful Podcast)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/blog/2023/11/07/introducing-sig-etcd/&quot;&gt;Blog: Introducing sig-etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/micrometer-metrics/micrometer/releases/tag/v1.12.0&quot;&gt;Micrometer 1.12.0 is out&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[&lt;a href=&quot;https://t.co/c8JjTT8VtH%5D(Spring&quot;&gt;https://t.co/c8JjTT8VtH](Spring&lt;/a&gt; Moduliths lead Oliver Drohtbom on the Maintainable Software Podcast talking about technical debt, architecture, and more )&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://t.co/QeJ8SWjeTr&quot;&gt;another amazing JDK with integration with CRaC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tanzu.vmware.com/spring-health-assessment&quot;&gt;unlock insights into your Spring application&apos;s health&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[&lt;a href=&quot;https://github.com/spring-cloud/stream-applications/releases/tag/v2022.0.0&quot;&gt;https://github.com/spring-cloud/stream-applications/releases/tag/v2022.0.0&lt;/a&gt; ](Spring Cloud Stream v2022.0.0 is out)&lt;/li&gt;
+&lt;li&gt;I &lt;a href=&quot;https://www.twitch.tv/javagrunt&quot;&gt;really love watching DaShaun talk software&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Azul Deputy CTO Simon Ritter]]></title><link>https://spring.io/blog/2023/11/09/a-bootiful-podcast-azul-deputy-cto-simon-ritter</link><guid isPermaLink="true">https://spring.io/blog/2023/11/09/a-bootiful-podcast-azul-deputy-cto-simon-ritter</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 09 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this week&apos;s installment I talk to Azul Deputy CTO &lt;a href=&quot;https://twitter.com/speakjava&quot;&gt;Simon Ritter (@speakjava)&lt;/a&gt;, recorded live at Devoxx Belgium 2023!&lt;/p&gt;
+&lt;iframe title=&quot;Azul Deputy CTO Simon Ritter at Devoxx Belgium 2023&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=r93rb-14f463e-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Shell 2.1.14, 3.0.9, 3.1.5 and 3.2.0-M3 are now available]]></title><link>https://spring.io/blog/2023/11/08/spring-shell-2-1-14-3-0-9-3-1-5-and-3-2-0-m3-are-now-available</link><guid isPermaLink="true">https://spring.io/blog/2023/11/08/spring-shell-2-1-14-3-0-9-3-1-5-and-3-2-0-m3-are-now-available</guid><dc:creator><![CDATA[Janne Valkealahti]]></dc:creator><pubDate>Wed, 08 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Shell &lt;code&gt;2.1.14&lt;/code&gt;, &lt;code&gt;3.0.9&lt;/code&gt;, &lt;code&gt;3.1.5&lt;/code&gt; and &lt;code&gt;3.2.0-M3&lt;/code&gt; has been released and are now available from Maven Central and Spring Repos respectively.&lt;/p&gt;
+&lt;p&gt;Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v2.1.14&quot;&gt;release notes 2.1.14&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.0.9&quot;&gt;release notes 3.0.9&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.1.5&quot;&gt;release notes 3.1.5&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.2.0-M3&quot;&gt;release notes 3.2.0-M3&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
+&lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-shell/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-shell/docs/3.1.5/docs/index.html&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - November 7th, 2023]]></title><link>https://spring.io/blog/2023/11/07/this-week-in-spring-november-7th-2023</link><guid isPermaLink="true">https://spring.io/blog/2023/11/07/this-week-in-spring-november-7th-2023</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans!&lt;/p&gt;
+&lt;p&gt;Can you believe we&apos;ve already turned the calendar page to November?  Time sure is a swift developer, deploying months as if they were minor versions in an ever-evolving application. As we adjust our clocks to fall back, waving a reluctant goodbye to daylight savings time, the encroaching evening arrives with a brisk efficiency. Yes, it&apos;s dark outside, a bit too early for my liking, if I&apos;m honest. The shortened days remind us that while we may not be in control of the celestial clock, we do have the power to harness the hours we&apos;re given. This is the perfect time to settle in, embrace the glow of our monitors, and let our creativity bloom where sunlight has waned. I&apos;m going to illuminate my IDE and let the sparks of ingenuity light up the dark.&lt;/p&gt;
+&lt;p&gt;OK, friends, we&apos;ve got a lot to cover this week, as usual, so let&apos;s get right into it!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/11/02/a-bootiful-podcast-graalvm-founder-and-oracle-vice-president-thomas&quot;&gt;A Bootiful Podcast: GraalVM founder and Oracle vice president Thomas Wuerthinger&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/11/07/ssl-hot-reload-in-spring-boot-3-2-0&quot;&gt;SSL hot reload in Spring Boot 3.2.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/11/03/spring-boot-3-2-0-rc2-available-now&quot;&gt;Spring Boot 3.2.0-RC2 available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/11/02/spring-cloud-2023-0-0-rc1-aka-leyton-is-now-available&quot;&gt;Spring Cloud 2023.0.0-RC1 (aka Leyton) Is Now Available&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tanzu.vmware.com/spring-health-assessment&quot;&gt;Spring Health Assessment | VMware Tanzu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/11/01/spring-tools-4-20-1-released&quot;&gt;Spring Tools 4.20.1 released&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/blog/2023/10/31/gateway-api-ga/&quot;&gt;Blog: Gateway API v1.0: GA Release&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/blog/2023/11/07/introducing-sig-etcd/&quot;&gt;Blog: Introducing sig-etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/blog/2023/11/03/k8s-contributor-summit-behind-the-scenes/&quot;&gt;Blog: Kubernetes Contributor Summit: Behind-the-scenes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/blog/2023/11/02/sig-architecture-production-readiness-spotlight-2023/&quot;&gt;Blog: Spotlight on SIG Architecture: Production Readiness&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.blog/2023-10-16-measuring-git-performance-with-opentelemetry/&quot;&gt;Measuring Git performance with OpenTelemetry - The GitHub Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=LlQJ2LihVYo&quot;&gt;RabbitMQ: what&apos;s coming in 3.13 (team update: 26 October, 2023)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[SSL hot reload in Spring Boot 3.2.0]]></title><link>https://spring.io/blog/2023/11/07/ssl-hot-reload-in-spring-boot-3-2-0</link><guid isPermaLink="true">https://spring.io/blog/2023/11/07/ssl-hot-reload-in-spring-boot-3-2-0</guid><dc:creator><![CDATA[Moritz Halbritter]]></dc:creator><pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In Spring Boot 3.2.0, we&apos;re adding the ability for embedded web servers to hot-reload SSL certificates and keys. That means you can rotate your SSL trust material without restarting your application. Hot reloading is supported for Tomcat and Netty embedded web servers.&lt;/p&gt;
+&lt;p&gt;Let&apos;s see that in action!&lt;/p&gt;
+&lt;p&gt;First, we&apos;re going to create our SSL private key and matching certificate using OpenSSL:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;mkdir certs
+cd certs
+openssl req -x509 -subj &quot;/CN=demo-cert-1&quot; -keyout demo.key -out demo.crt -sha256 -days 365 -nodes -newkey ed25519 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This creates a private key stored in &lt;code&gt;certs/demo.key&lt;/code&gt; and a matching (self-signed) certificate with the common name &quot;demo-cert-1&quot; in &lt;code&gt;certs/demo.crt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now we&apos;re creating a new Spring Boot 3.2.0 application, using the &quot;Spring Web&quot; dependency, which uses the Tomcat web server by default, using our favorite website &lt;a href=&quot;https://start.spring.io/#!type=gradle-project&amp;#x26;language=java&amp;#x26;platformVersion=3.2.0-RC2&amp;#x26;packaging=jar&amp;#x26;jvmVersion=17&amp;#x26;groupId=com.example&amp;#x26;artifactId=ssl-hot-reload&amp;#x26;name=ssl-hot-reload&amp;#x26;description=Demo%20project%20for%20Spring%20Boot&amp;#x26;packageName=com.example.ssl-hot-reload&amp;#x26;dependencies=web&quot;&gt;start.spring.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the application configuration, we&apos;re adding the following bits:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;spring.ssl.bundle.pem:
+  demo:
+    reload-on-update: true
+    keystore:    
+      certificate: &quot;certs/demo.crt&quot;
+      private-key: &quot;certs/demo.key&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This configures an &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.ssl&quot;&gt;SSL bundle&lt;/a&gt; with the name &quot;demo&quot; and our generated certificate and private key. The &lt;code&gt;reload-on-update: true&lt;/code&gt; configuration instructs Spring Boot to watch the files in the background and trigger a reload if they change.&lt;/p&gt;
+&lt;p&gt;Now we&apos;re configuring the web server to use that bundle and to accept connections on port 8443:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;server.ssl.bundle: &quot;demo&quot;
+server.port: 8443
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let&apos;s also add a simple controller which responds with a plain &quot;Hello World&quot;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@RestController
+class DemoController {
+    @GetMapping(path = &quot;/&quot;, produces = MediaType.TEXT_PLAIN_VALUE)
+    String helloWorld() {
+        return &quot;Hello World&quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we&apos;re starting the application, we see something like this in the logs, which confirms it started on port 8443 using HTTPS.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;INFO 82407 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8443 (https)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can make our first request with curl:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ curl --insecure https://localhost:8443/
+Hello World%
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hooray, it works!
+We had to pass &lt;code&gt;--insecure&lt;/code&gt; because the SSL certificate is self-signed and not trusted by curl.&lt;/p&gt;
+&lt;p&gt;Let&apos;s switch curl to verbose mode to get some information about the SSL handshake that happened:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ curl --verbose --insecure https://localhost:8443/
+*   Trying 127.0.0.1:8443...
+* Connected to localhost (127.0.0.1) port 8443 (#0)
+* ALPN: offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN: server did not agree on a protocol. Uses default.
+* Server certificate:
+*  subject: CN=demo-cert-1
+*  start date: Nov  2 09:22:53 2023 GMT
+*  expire date: Nov  1 09:22:53 2024 GMT
+*  issuer: CN=demo-cert-1
+*  SSL certificate verify result: self-signed certificate (18), continuing anyway.
+* using HTTP/1.x
+&gt; GET / HTTP/1.1
+&gt; Host: localhost:8443
+&gt; User-Agent: curl/8.0.1
+&gt; Accept: */*
+&gt; 
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+&amp;#x3C; HTTP/1.1 200 
+&amp;#x3C; Content-Type: text/plain;charset=UTF-8
+&amp;#x3C; Content-Length: 11
+&amp;#x3C; Date: Thu, 02 Nov 2023 09:33:37 GMT
+&amp;#x3C; 
+* Connection #0 to host localhost left intact
+Hello World
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the line &lt;code&gt;subject: CN=demo-cert-1&lt;/code&gt; you can see that the common name of the certificate is &quot;demo-cert-1&quot;, which will be important later.&lt;/p&gt;
+&lt;p&gt;Let&apos;s try the hot reload by generating a new private key and certificate with OpenSSL, overwriting the old files:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd certs
+openssl req -x509 -subj &quot;/CN=demo-cert-2&quot; -keyout demo.key -out demo.crt -sha256 -days 365 -nodes -newkey ed25519
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This time, our certificate has the common name &quot;demo-cert-2&quot;.&lt;/p&gt;
+&lt;p&gt;After some time, you&apos;ll see something like this in the logs:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;INFO 83162 --- [-bundle-watcher] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [/home/xxx/.keystore] using alias [tomcat] with trust store [null]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a complicated way of saying that Tomcat has reloaded the private key and certificate.&lt;/p&gt;
+&lt;p&gt;We can now verify with curl that the new certificate is used:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ curl --verbose --insecure https://localhost:8443/
+*   Trying 127.0.0.1:8443...
+* Connected to localhost (127.0.0.1) port 8443 (#0)
+* ALPN: offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN: server did not agree on a protocol. Uses default.
+* Server certificate:
+*  subject: CN=demo-cert-2
+*  start date: Nov  2 09:37:46 2023 GMT
+*  expire date: Nov  1 09:37:46 2024 GMT
+*  issuer: CN=demo-cert-2
+*  SSL certificate verify result: self-signed certificate (18), continuing anyway.
+* using HTTP/1.x
+&gt; GET / HTTP/1.1
+&gt; Host: localhost:8443
+&gt; User-Agent: curl/8.0.1
+&gt; Accept: */*
+&gt; 
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+&amp;#x3C; HTTP/1.1 200 
+&amp;#x3C; Content-Type: text/plain;charset=UTF-8
+&amp;#x3C; Content-Length: 11
+&amp;#x3C; Date: Thu, 02 Nov 2023 09:39:47 GMT
+&amp;#x3C; 
+* Connection #0 to host localhost left intact
+Hello World
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;subject: CN=demo-cert-2&lt;/code&gt; line verifies that the new certificate is used.
+Hooray, great success!&lt;/p&gt;
+&lt;p&gt;To recap: We&apos;ve created an SSL private key and certificate, and then we configured Spring Boot to use it and watch for changes.
+When the private key and certificate change, Spring Boot reloads them, and they will be used without restarting the application.
+Isn&apos;t that cool?!&lt;/p&gt;
+&lt;p&gt;By the way, if you&apos;re wondering what happens to already existing connections: they will continue to use the old certificate, but all new connections will use the new certificate.&lt;/p&gt;
+&lt;p&gt;We hope that this feature simplifies your operations.
+You can give it a try by testing &lt;a href=&quot;https://start.spring.io/#!type=gradle-project&amp;#x26;language=java&amp;#x26;platformVersion=3.2.0-RC2&amp;#x26;packaging=jar&amp;#x26;jvmVersion=17&amp;#x26;groupId=com.example&amp;#x26;artifactId=ssl-hot-reload&amp;#x26;name=ssl-hot-reload&amp;#x26;description=Demo%20project%20for%20Spring%20Boot&amp;#x26;packageName=com.example.ssl-hot-reload&amp;#x26;dependencies=web&quot;&gt;Spring Boot 3.2.0-RC2&lt;/a&gt;.
+If you have enhancement ideas or found a bug, please don&apos;t hesitate and open an issue on &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;our tracker&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Modulith 1.1 RC2 released]]></title><link>https://spring.io/blog/2023/11/03/spring-modulith-1-1-rc2-release</link><guid isPermaLink="true">https://spring.io/blog/2023/11/03/spring-modulith-1-1-rc2-release</guid><dc:creator><![CDATA[Oliver Drotbohm]]></dc:creator><pubDate>Fri, 03 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I am happy to announce the availability of Spring Modulith 1.1 RC2. We took the chance to incorporate feedback from the community to tweak a few internals of features newly introduced in the 1.1 generation. We have also managed to sneak a few new ones into the release:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Support for AWS SNS / SQS in event externalization (contributed by &lt;a href=&quot;https://github.com/maciejwalkowiak&quot;&gt;Maciej Walkowiak&lt;/a&gt;) &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/344&quot;&gt;GH-344&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Allowing to define a listener identifier via &lt;code&gt;@ApplicationModuleListener&lt;/code&gt; &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/346&quot;&gt;GH-346&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Re-instantiated, general compatibility with Spring Boot 3.1 and Framework 6.0 &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/357&quot;&gt;GH-357&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Upgrade to Spring Boot 3.2 RC2 &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/issues/354&quot;&gt;GH-354&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.2.0-RC1-Release-Notes&quot;&gt;release notes&lt;/a&gt; for more details and upgrade instructions.&lt;/p&gt;
+&lt;p&gt;Find the full release &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/releases/tag/1.1.0-RC2&quot;&gt;change log&lt;/a&gt; on GitHub. We are looking forward to your feedback and the 1.1 GA release currently scheduled for end of November.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 3.2.0-RC2 available now]]></title><link>https://spring.io/blog/2023/11/03/spring-boot-3-2-0-rc2-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/11/03/spring-boot-3-2-0-rc2-available-now</guid><dc:creator><![CDATA[Phil Webb]]></dc:creator><pubDate>Fri, 03 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;3.2.0-RC2&lt;/code&gt; has been released and is now available from &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;https://repo.spring.io/milestone&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.2.0-RC2&quot;&gt;69 enhancements, documentation improvements, dependency upgrades, and bug fixes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This release attempts to fix a few issues that were found with RC1. Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.2.0-RC2-Release-Notes&quot;&gt;release notes&lt;/a&gt; for more details and upgrade instructions.&lt;/p&gt;
 &lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
 &lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
 &lt;p&gt;If you&apos;re interested in helping out, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution&quot;&gt;&quot;ideal for contribution&quot; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-boot&quot;&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.2.0-RC1/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: VMware vice president Betty Junod]]></title><link>https://spring.io/blog/2023/10/19/a-bootiful-podcast-vmware-vice-president-betty-junod</link><guid isPermaLink="true">https://spring.io/blog/2023/10/19/a-bootiful-podcast-vmware-vice-president-betty-junod</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 19 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment Josh Long talks to VMware vice president &lt;a href=&quot;https://twitter.com/BettyJunod&quot;&gt;Betty Junod&lt;/a&gt; about VMware, its amazing ecosystem, and so much more.&lt;/p&gt;
-&lt;iframe title=&quot;VMware Vice President Betty Junod&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=cyh8i-14d65f4-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 3.1.5 available now]]></title><link>https://spring.io/blog/2023/10/19/spring-boot-3-1-5-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/10/19/spring-boot-3-1-5-available-now</guid><dc:creator><![CDATA[Moritz Halbritter]]></dc:creator><pubDate>Thu, 19 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;3.1.5&lt;/code&gt; has been released and is now available from Maven Central.&lt;/p&gt;
-&lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.1.5&quot;&gt;62 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
-&lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&apos;re interested in helping out, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution&quot;&gt;&quot;ideal for contribution&quot; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-boot&quot;&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.1.5/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 3.0.12 available now]]></title><link>https://spring.io/blog/2023/10/19/spring-boot-3-0-12-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/10/19/spring-boot-3-0-12-available-now</guid><dc:creator><![CDATA[Moritz Halbritter]]></dc:creator><pubDate>Thu, 19 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;3.0.12&lt;/code&gt; has been released and is now available from Maven Central.&lt;/p&gt;
-&lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.0.12&quot;&gt;48 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
-&lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&apos;re interested in helping out, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution&quot;&gt;&quot;ideal for contribution&quot; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-boot&quot;&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.0.12/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 2.7.17 available now]]></title><link>https://spring.io/blog/2023/10/19/spring-boot-2-7-17-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/10/19/spring-boot-2-7-17-available-now</guid><dc:creator><![CDATA[Andy Wilkinson]]></dc:creator><pubDate>Thu, 19 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;2.7.17&lt;/code&gt; has been released and is now available from Maven Central.&lt;/p&gt;
-&lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v2.7.17&quot;&gt;32 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
-&lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&apos;re interested in helping out, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution&quot;&gt;&quot;ideal for contribution&quot; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-boot&quot;&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/2.7.17/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Security 5.8.8, 6.0.8, 6.1.5 and 6.2.0-RC2 released]]></title><link>https://spring.io/blog/2023/10/18/spring-security-6-2-0-rc2-released</link><guid isPermaLink="true">https://spring.io/blog/2023/10/18/spring-security-6-2-0-rc2-released</guid><dc:creator><![CDATA[Steve Riesenberg]]></dc:creator><pubDate>Wed, 18 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that the Spring Security &lt;code&gt;5.8.8&lt;/code&gt;, &lt;code&gt;6.0.8&lt;/code&gt;, &lt;code&gt;6.1.5&lt;/code&gt; and &lt;code&gt;6.2.0-RC2&lt;/code&gt; versions are available now.&lt;/p&gt;
-&lt;p&gt;Please refer to the &lt;a href=&quot;https://github.com/spring-projects/spring-security/releases&quot;&gt;releases page&lt;/a&gt; for more detail on what is included in each release. In particular, you can review the release notes for each milestone that will make up the &lt;code&gt;6.2.0&lt;/code&gt; release (&lt;a href=&quot;https://github.com/spring-projects/spring-security/releases/tag/6.2.0-M1&quot;&gt;&lt;code&gt;6.2.0-M1&lt;/code&gt;&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-security/releases/tag/6.2.0-M2&quot;&gt;&lt;code&gt;6.2.0-M2&lt;/code&gt;&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-security/releases/tag/6.2.0-M3&quot;&gt;&lt;code&gt;6.2.0-M3&lt;/code&gt;&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-security/releases/tag/6.2.0-RC1&quot;&gt;&lt;code&gt;6.2.0-RC1&lt;/code&gt;&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-security/releases/tag/6.2.0-RC2&quot;&gt;&lt;code&gt;6.2.0-RC2&lt;/code&gt;&lt;/a&gt;) next month.&lt;/p&gt;
-&lt;p&gt;We encourage you to take the latest release candidate for a spin and provide any feedback you have! Some notable changes available in the 6.2 release candidate include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Add with() method to apply SecurityConfigurerAdapter &lt;a href=&quot;https://github.com/spring-projects/spring-security/pull/13432&quot;&gt;#13432&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Automatically enable .cors() if CorsConfigurationSource bean is present &lt;a href=&quot;https://github.com/spring-projects/spring-security/issues/5011&quot;&gt;#5011&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Simplify configuration of OAuth2 Client component model &lt;a href=&quot;https://github.com/spring-projects/spring-security/pull/13587&quot;&gt;#13587&lt;/a&gt; (&lt;a href=&quot;https://spring.io/blog/2023/08/22/tackling-the-oauth2-client-component-model-in-spring-security/&quot;&gt;blog post&lt;/a&gt;, &lt;a href=&quot;https://docs.spring.io/spring-security/reference/6.2-SNAPSHOT/servlet/oauth2/index.html&quot;&gt;docs&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Add OIDC Back-channel Logout Support &lt;a href=&quot;https://github.com/spring-projects/spring-security/issues/7845&quot;&gt;#7845&lt;/a&gt; (&lt;a href=&quot;https://docs.spring.io/spring-security/reference/6.2-SNAPSHOT/reactive/oauth2/login/logout.html#configure-provider-initiated-oidc-logout&quot;&gt;docs&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Test coverage for virtual threads &lt;a href=&quot;https://github.com/spring-projects/spring-security/issues/12790&quot;&gt;#12790&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-security/issues/12791&quot;&gt;#12791&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Add servlet pattern support to AuthorizeHttpRequests &lt;a href=&quot;https://github.com/spring-projects/spring-security/pull/13857&quot;&gt;#13857&lt;/a&gt; (&lt;a href=&quot;https://docs.spring.io/spring-security/reference/6.2-SNAPSHOT/servlet/authorization/authorize-http-requests.html#match-by-mvc&quot;&gt;docs&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To update your project to use the release candidate for Gradle builds, add the following to &lt;code&gt;build.gradle&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-groovy&quot;&gt;ext[&apos;spring-security.version&apos;] = &apos;6.2.0-RC2&apos;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.2.0-RC2/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: GraalVM founder and Oracle vice president Thomas Wuerthinger]]></title><link>https://spring.io/blog/2023/11/02/a-bootiful-podcast-graalvm-founder-and-oracle-vice-president-thomas</link><guid isPermaLink="true">https://spring.io/blog/2023/11/02/a-bootiful-podcast-graalvm-founder-and-oracle-vice-president-thomas</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 02 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment Josh Long talks to Oracle vice president Thomas Wuerthinger about the project he created and leads, GraalVM. This was recorded live from Devoxx Belgium 2023!&lt;/p&gt;
+&lt;iframe title=&quot;GraalVM founder and Oracle vice president Thomas Wuerthinger&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=pbhvy-14ea9c7-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Cloud 2023.0.0-RC1 (aka Leyton) Is Now Available]]></title><link>https://spring.io/blog/2023/11/02/spring-cloud-2023-0-0-rc1-aka-leyton-is-now-available</link><guid isPermaLink="true">https://spring.io/blog/2023/11/02/spring-cloud-2023-0-0-rc1-aka-leyton-is-now-available</guid><dc:creator><![CDATA[Ryan Baxter]]></dc:creator><pubDate>Thu, 02 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the community, I am pleased to announce that the Release Candidate 1 (RC1) of the &lt;a href=&quot;https://cloud.spring.io&quot;&gt;Spring Cloud 2023.0.0&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href=&quot;https://repo.spring.io/milestone/&quot;&gt;Spring Milestone&lt;/a&gt; repository. You can check out the 2023.0.0 &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2023.0.0-Release-Notes&quot;&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;notable-changes-in-the-202300-release-train&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#notable-changes-in-the-202300-release-train&quot; aria-label=&quot;notable changes in the 202300 release train permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Notable Changes in the 2023.0.0 Release Train&lt;/h2&gt;
+&lt;p&gt;This release is based upon Spring Boot 3.2.0-RC1.&lt;/p&gt;
+&lt;p&gt;You can find a complete list of issues addressed in this release by viewing &lt;a href=&quot;https://github.com/orgs/spring-cloud/projects/130/views/1&quot;&gt;the release project&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;spring-cloud-stream&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-stream&quot; aria-label=&quot;spring cloud stream permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Stream&lt;/h3&gt;
+&lt;p&gt;All the notable changes introduced in Spring Cloud Stream &lt;code&gt;4.1.0-RC1&lt;/code&gt; can be found &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/milestone/90?closed=1&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The following modules were updated as part of 2023.0.0-RC1:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Module&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;th&gt;Issues&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Vault&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-vault/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Zookeeper&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-zookeeper/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Starter Build&lt;/td&gt;
+&lt;td&gt;2023.0.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-starter-build/releases/tag/v2023.0.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Consul&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-consul/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Gateway&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Bus&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-bus/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Stream&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Function&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Config&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Build&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-build/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Openfeign&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-openfeign/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Commons&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-commons/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Netflix&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-netflix/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Kubernetes&lt;/td&gt;
+&lt;td&gt;3.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-kubernetes/releases/tag/v3.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Task&lt;/td&gt;
+&lt;td&gt;3.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-task/releases/tag/v3.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Circuitbreaker&lt;/td&gt;
+&lt;td&gt;3.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-circuitbreaker/releases/tag/v3.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Contract&lt;/td&gt;
+&lt;td&gt;4.1.0-RC1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-contract/releases/tag/v4.1.0-RC1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As always, we welcome feedback on &lt;a href=&quot;https://github.com/spring-cloud/&quot;&gt;GitHub&lt;/a&gt;, on &lt;a href=&quot;https://gitter.im/spring-cloud/spring-cloud&quot;&gt;Gitter&lt;/a&gt;, on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-cloud&quot;&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href=&quot;https://twitter.com/SpringCloud&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get started with Maven with a BOM (dependency management only):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+    &amp;#x3C;repositories&gt;
+        &amp;#x3C;repository&gt;
+            &amp;#x3C;id&gt;spring-milestones&amp;#x3C;/id&gt;
+            &amp;#x3C;name&gt;Spring Milestones&amp;#x3C;/name&gt;
+            &amp;#x3C;url&gt;https://repo.spring.io/milestone&amp;#x3C;/url&gt;
+            &amp;#x3C;snapshots&gt;
+                &amp;#x3C;enabled&gt;false&amp;#x3C;/enabled&gt;
+            &amp;#x3C;/snapshots&gt;
+        &amp;#x3C;/repository&gt;
+    &amp;#x3C;/repositories&gt;
+&amp;#x3C;dependencyManagement&gt;
+    &amp;#x3C;dependencies&gt;
+        &amp;#x3C;dependency&gt;
+            &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+            &amp;#x3C;artifactId&gt;spring-cloud-dependencies&amp;#x3C;/artifactId&gt;
+            &amp;#x3C;version&gt;2023.0.0-RC1&amp;#x3C;/version&gt;
+            &amp;#x3C;type&gt;pom&amp;#x3C;/type&gt;
+            &amp;#x3C;scope&gt;import&amp;#x3C;/scope&gt;
+        &amp;#x3C;/dependency&gt;
+    &amp;#x3C;/dependencies&gt;
+&amp;#x3C;/dependencyManagement&gt;
+&amp;#x3C;dependencies&gt;
+    &amp;#x3C;dependency&gt;
+        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+        &amp;#x3C;artifactId&gt;spring-cloud-starter-config&amp;#x3C;/artifactId&gt;
+    &amp;#x3C;/dependency&gt;
+    &amp;#x3C;dependency&gt;
+        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+        &amp;#x3C;artifactId&gt;spring-cloud-starter-netflix-eureka-client&amp;#x3C;/artifactId&gt;
+    &amp;#x3C;/dependency&gt;
+    ...
+&amp;#x3C;/dependencies&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or with Gradle:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;buildscript {
+dependencies {
+classpath &quot;io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE&quot;
+}
+}
 
 repositories {
-    ...
-    maven { url &apos;https://repo.spring.io/milestone&apos; }
+maven {
+url &apos;https://repo.spring.io/milestone&apos;
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Or for Maven builds, add the following to &lt;code&gt;pom.xml&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;properties&gt;
-  &amp;#x3C;spring-security.version&gt;6.2.0-RC2&amp;#x3C;/spring-security.version&gt;
-&amp;#x3C;/properties&gt;
-&amp;#x3C;repositories&gt;
-  ...
-  &amp;#x3C;repository&gt;
-    &amp;#x3C;id&gt;spring-milestones&amp;#x3C;/id&gt;
-    &amp;#x3C;name&gt;Spring Milestones&amp;#x3C;/name&gt;
-    &amp;#x3C;url&gt;https://repo.spring.io/milestone&amp;#x3C;/url&gt;
-    &amp;#x3C;snapshots&gt;
-      &amp;#x3C;enabled&gt;false&amp;#x3C;/enabled&gt;
-    &amp;#x3C;/snapshots&gt;
-  &amp;#x3C;/repository&gt;
-&amp;#x3C;/repositories&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Spring Security &lt;code&gt;6.2.0-RC2&lt;/code&gt; requires Spring Framework &lt;code&gt;6.1.0-RC1&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;support&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#support&quot; aria-label=&quot;support permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href=&quot;#support&quot;&gt;&lt;/a&gt;Support&lt;/h2&gt;
-&lt;p&gt;As always, we look forward to hearing your &lt;a href=&quot;https://github.com/spring-projects/spring-security/issues&quot;&gt;feedback on GitHub&lt;/a&gt; and your &lt;a href=&quot;https://stackoverflow.com&quot;&gt;questions on StackOverflow&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://projects.spring.io/spring-security/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-security&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-security/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-security/reference/&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Batch 5.1 RC1 is out!]]></title><link>https://spring.io/blog/2023/10/18/spring-batch-5-1-rc1-is-out</link><guid isPermaLink="true">https://spring.io/blog/2023/10/18/spring-batch-5-1-rc1-is-out</guid><dc:creator><![CDATA[Mahmoud Ben Hassine]]></dc:creator><pubDate>Wed, 18 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I am pleased to announce that the first release candidate of Spring Batch 5.1 is now available from our milestone repository.&lt;/p&gt;
-&lt;p&gt;The main theme of this release is improving the getting started experience of our users. This blog post walks you through the main improvements:&lt;/p&gt;
+}
+
+apply plugin: &quot;io.spring.dependency-management&quot;
+
+dependencyManagement {
+imports {
+mavenBom &apos;org.springframework.cloud:spring-cloud-dependencies:2023.0.0-RC1&apos;
+}
+}
+
+dependencies {
+compile &apos;org.springframework.cloud:spring-cloud-starter-config&apos;
+compile &apos;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&apos;
+...
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[Spring Tools 4.20.1 released]]></title><link>https://spring.io/blog/2023/11/01/spring-tools-4-20-1-released</link><guid isPermaLink="true">https://spring.io/blog/2023/11/01/spring-tools-4-20-1-released</guid><dc:creator><![CDATA[Martin Lippert]]></dc:creator><pubDate>Wed, 01 Nov 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+&lt;p&gt;I am happy to announce the 4.20.1 release of the Spring Tools 4 for Eclipse, Visual Studio Code, and Theia.&lt;/p&gt;
+&lt;h4 id=&quot;important-highlights&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#important-highlights&quot; aria-label=&quot;important highlights permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;important highlights&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;Updated getting started guides&lt;/li&gt;
-&lt;li&gt;Revamped samples&lt;/li&gt;
-&lt;li&gt;Enhanced issue reporting guide&lt;/li&gt;
-&lt;li&gt;Dependencies upgrades&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;(Spring Boot)&lt;/em&gt; Completions for Spring Properties show up 10 times faster initially (as fast as on the consecutive invocations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;(Spring Boot)&lt;/em&gt; Various performance optimizations around symbols scanning and Java reconciling&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;(Eclipse)&lt;/em&gt; Early access builds available for upcoming Eclipse 2023-12 release&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For the complete list of changes, please check the &lt;a href=&quot;https://github.com/spring-projects/spring-batch/releases/tag/v5.1.0-RC1&quot;&gt;release notes&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;updated-getting-started-guides&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#updated-getting-started-guides&quot; aria-label=&quot;updated getting started guides permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Updated getting started guides&lt;/h2&gt;
-&lt;p&gt;The &lt;a href=&quot;https://spring.io/guides/gs/batch-processing/&quot;&gt;Getting started guide&lt;/a&gt; has been around for a long time and served well as a showcase of how to use Spring Batch with Spring Boot. However, not all our users are Spring Boot users, and one of the frequent asks is to provide the same getting started experience with plain Spring Batch.&lt;/p&gt;
-&lt;p&gt;For this reason, we introduced a new &lt;a href=&quot;https://github.com/spring-projects/spring-batch#two-minutes-tutorial&quot;&gt;Two minutes tutorial&lt;/a&gt; with a step-by-step guide to create a Spring Batch project and implement a simple &quot;Hello world&quot;  job. This should improve the getting started experience for non Boot users. That said, the current Spring Boot based guide has been updated to the latest Spring Boot 3 version to show how to use the new features in Spring Batch 5 like Java Records support.&lt;/p&gt;
-&lt;h2 id=&quot;revamped-samples&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#revamped-samples&quot; aria-label=&quot;revamped samples permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Revamped samples&lt;/h2&gt;
-&lt;p&gt;In this release, we have reworked all the code examples in our samples suite. Samples are now organized by feature in separate packages. This makes it easier for you to understand and learn about specific features in Spring Batch. The main &lt;code&gt;README&lt;/code&gt; file includes a table that shows available samples and the features they cover: &lt;a href=&quot;https://github.com/spring-projects/spring-batch/tree/main/spring-batch-samples&quot;&gt;Spring Batch Samples&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Moreover, each sample has now its own &lt;code&gt;README&lt;/code&gt; file that explains the sample in details and provides the instructions to run it. Samples can now be run as unit tests from an IDE or from the command line, to get a &quot;clone and run&quot; experience. With the new structure in place, you are literally two commands away from having a running Spring Batch sample in your local environment!&lt;/p&gt;
-&lt;p&gt;Finally, most samples are now implemented in two Spring configuration styles: Java configuration style and XML configuration style. This makes it easier for you to compare both configuration styles and help you when migrating XML configurations to Java configurations.&lt;/p&gt;
-&lt;h2 id=&quot;enhanced-issue-reporting-guide&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#enhanced-issue-reporting-guide&quot; aria-label=&quot;enhanced issue reporting guide permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Enhanced issue reporting guide&lt;/h2&gt;
-&lt;p&gt;Just like having a good user experience when tying out a new project or contributing to an existing project is important, we believe that having a good experience when reporting issues is also important. For this reason, and as part of the &quot;Improving the Getting Started Experience&quot; theme, we have reworked the issue reporting process to provide a step-by-step guide on how to report issues: &lt;a href=&quot;https://github.com/spring-projects/spring-batch/blob/main/ISSUE_REPORTING.md&quot;&gt;Issue Reporting Guide&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The new guide includes a project template with a minimal complete verifiable example that works with an embedded datasource. This template is a starting point for you to edit as needed in order to reproduce an issue. The guide also provides a Docker + TestContainers template for issues that involve non embeddable databases like PostgreSQL or MySQL.&lt;/p&gt;
-&lt;h2 id=&quot;dependencies-upgrades&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#dependencies-upgrades&quot; aria-label=&quot;dependencies upgrades permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Dependencies upgrades&lt;/h2&gt;
-&lt;p&gt;This milestone release upgrades Spring dependencies to the following versions:&lt;/p&gt;
+&lt;p&gt;Detailed changes can be found in the release notes: &lt;a href=&quot;https://github.com/spring-projects/sts4/releases/tag/4.20.1.RELEASE&quot;&gt;https://github.com/spring-projects/sts4/releases/tag/4.20.1.RELEASE&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;downloads&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#downloads&quot; aria-label=&quot;downloads permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;downloads&lt;/h4&gt;
+&lt;p&gt;To download the distribution for Eclipse and find links to the marketplace entries for Visual Studio Code and Theia, please go visit:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Spring Framework 6.1.0-RC1&lt;/li&gt;
-&lt;li&gt;Spring Integration 6.2.0-RC1&lt;/li&gt;
-&lt;li&gt;Spring Data 3.2.0-RC1&lt;/li&gt;
-&lt;li&gt;Spring LDAP 3.2.0-RC1&lt;/li&gt;
-&lt;li&gt;Spring AMQP 3.1.0-RC1&lt;/li&gt;
-&lt;li&gt;Spring Kafka 3.1.0-RC1&lt;/li&gt;
-&lt;li&gt;Micrometer 1.12.0-RC1&lt;/li&gt;
+&lt;li&gt;Spring Tools 4: &lt;a href=&quot;https://spring.io/tools/&quot;&gt;https://spring.io/tools/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;whats-next&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#whats-next&quot; aria-label=&quot;whats next permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;What&apos;s next?&lt;/h2&gt;
-&lt;h3 id=&quot;share-your-feedback&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#share-your-feedback&quot; aria-label=&quot;share your feedback permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Share your feedback!&lt;/h3&gt;
-&lt;p&gt;First, I would like to thank all contributors who had a role in this release! You can try Spring Batch 5.1.0-RC1 with Spring Boot 3.2.0-RC1. We are planning to release Spring Batch 5.1 GA later this November 2023.&lt;/p&gt;
-&lt;p&gt;We look forward to your feedback on &lt;a href=&quot;https://github.com/spring-projects/spring-batch/issues&quot;&gt;Github Issues&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-batch/discussions&quot;&gt;Github Discussions&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/springbatch&quot;&gt;Twitter&lt;/a&gt;, and &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-batch&quot;&gt;StackOverflow&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;upgrade-to-spring-batch-5&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#upgrade-to-spring-batch-5&quot; aria-label=&quot;upgrade to spring batch 5 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Upgrade to Spring Batch 5&lt;/h3&gt;
-&lt;p&gt;I would like to remind our users that Spring Batch 4.3.x will be out of OSS support on November, 18th 2023. Please consider upgrading your applications to Spring Batch 5 at your earliest convenience. You can find the migration guide to v5 &lt;a href=&quot;https://github.com/spring-projects/spring-batch/wiki/Spring-Batch-5.0-Migration-Guide&quot;&gt;here&lt;/a&gt;. Feel free to reach out to the Spring Batch team on Github if you need help on migrating your existing applications to Spring Batch 5!&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-batch&quot;&gt;Spring Batch Home&lt;/a&gt;|&lt;a href=&quot;https://github.com/spring-projects/spring-batch&quot;&gt;Source on Github&lt;/a&gt;|&lt;a href=&quot;https://docs.spring.io/spring-batch/docs/5.1.0-RC1/reference/html/index.html&quot;&gt;Reference documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Authorization Server 1.2.0-RC1 available now]]></title><link>https://spring.io/blog/2023/10/18/spring-authorization-server-1-2-0-rc1-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/10/18/spring-authorization-server-1-2-0-rc1-available-now</guid><dc:creator><![CDATA[Joe Grandja]]></dc:creator><pubDate>Wed, 18 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, it is my pleasure to announce the release of Spring Authorization Server 1.2.0-RC1.&lt;/p&gt;
-&lt;p&gt;See the &lt;a href=&quot;https://github.com/spring-projects/spring-authorization-server/releases/tag/1.2.0-RC1&quot;&gt;release notes&lt;/a&gt; for complete details.&lt;/p&gt;
-&lt;p&gt;To get started using Spring Authorization Server, see the &lt;a href=&quot;https://docs.spring.io/spring-authorization-server/reference/getting-started.html&quot;&gt;Getting Started&lt;/a&gt; chapter of the reference documentation and the &lt;a href=&quot;https://github.com/spring-projects/spring-authorization-server/tree/main/samples&quot;&gt;samples&lt;/a&gt; to become familiar with setup and configuration.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-authorization-server&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-authorization-server/issues&quot;&gt;GitHub Issues&lt;/a&gt; | &lt;a href=&quot;https://github.com/orgs/spring-projects/projects/8/views/21&quot;&gt;Project Board&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;Spring Tools 4.21.0 is scheduled to be released in mid December 2023.&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;</content:encoded></item></channel></rss>
