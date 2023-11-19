@@ -7,3 +7,5 @@ Spring_Workspaces/.metadata/.plugins/com.genuitec.eclipse.monitor/myeclipse-usag
 Spring_Workspaces/sboard/.classpath
 Spring_Workspaces/sboard/.factorypath
 Spring_Workspaces/sboard/.settings/org.eclipse.jdt.apt.core.prefs
+Spring_Workspaces/sboard/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+Spring_Workspaces/sboard/target/m2e-wtp/web-resources/META-INF/maven/com.docmall/web/pom.properties
