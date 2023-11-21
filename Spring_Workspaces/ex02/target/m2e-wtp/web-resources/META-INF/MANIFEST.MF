@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: Stella
-=======
-Built-By: i7F-21
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
+Built-By: USER
 Build-Jdk: 1.8.0_271
 Created-By: Maven Integration for Eclipse
 

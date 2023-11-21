@@ -1,90 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-<<<<<<< HEAD
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-=======
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-<<<<<<< HEAD
-		
-	<!-- 데이타베이스 연결정보및 관련설정 작업 -->
-	<!-- HicariCP 라이브러리를 이용한 연결정보설정 -->
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<!-- 서버 배포용 -->
-		<!-- 
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		 -->
-		<!-- 개발용 -->
-		<!-- log4j sql 로그설정을 사용하기위한 연동구문. -->
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" /> 
-		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" />
-		
-		<!-- 공통 -->
-		<property name="username" value="ora_user"></property>
-		<property name="password" value="1234"></property>
-	</bean>	
-	
-=======
-	
-	<!-- 데이터베이스 연결정보 및 관련 설정 작업. -->
-	<!-- HikariCP 라이브러리를 이용한 연결정보 -->
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<!-- 배포용 -->
-		<!-->
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		-->
-		
-		<!-- 개발용 -->
-		<!-- log4j 로그설정을 사용하기 위한 연동 구문 -->
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" /> 
-      	<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" />  
-		
-		<!-- 공용 -->
-		<property name="username" value="ora_user"></property>
-		<property name="password" value="1234"></property>
-	</bean>
-		
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
-		<constructor-arg ref="hikariConfig"></constructor-arg>
-	</bean>
-	
-<<<<<<< HEAD
-	<!-- mybatis-spring, mybatis 라이브러리를 이용한 설정작업 -->
-=======
-	<!-- mybatis 라이브러리를 이용한 설정작업 -->
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	
-	<!-- service 패키지 -->
-	<context:component-scan base-package="com.demo.service" />
-<<<<<<< HEAD
-	<!-- mapper 패키지 -->
-	<mybatis-spring:scan base-package="com.demo.mapper"/>
-		
-=======
-	<!-- mapper 패키지 --> 
-	<mybatis-spring:scan base-package="com.demo.mapper" />
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   
+   <!-- 데이터베이스 연결정보 및 관련 설정 작업. /pon.xml/ hikariCP 연동작업 -->
+   <!-- HikariCP 라이브러리를 이용한 연결정보 -->
+   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+   
+   	<!-- 서버에 배포시 사용 -->
+   	<!--
+      <property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+      <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	 -->
+	   
+	  <!-- 개발용 -->
+      <!-- log4j sql 로그설정을 사용하기위한 연동구문 -->
+      <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" /> 
+      <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" />
+      
+      <!-- 공통 -->
+      <property name="username" value="ora_user"></property>
+      <property name="password" value="0000"></property>
+   </bean>
+      
+   <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+      <constructor-arg ref="hikariConfig"></constructor-arg>
+   </bean>
+   
+   <!-- mybatis 라이브러리를 이용한 설정작업 -->
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+   <!-- Service 패키지 추가 -->
+   <context:component-scan base-package="com.demo.service" />
+   
+   <!-- Mapper 패키지 추가 -->
+   <mybatis-spring:scan base-package="com.demo.mapper" />
+   
 </beans>

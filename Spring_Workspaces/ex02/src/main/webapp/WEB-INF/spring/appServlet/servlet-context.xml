@@ -20,12 +20,8 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-<<<<<<< HEAD
 	
-	<!-- 스프링프로젝트 생성시 자동추가 -->
-=======
-	<!-- 프로젝트생성시 자동 생성 -->
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
+	<!-- 스프링 MVC 프로젝트 생성시 자동 추가 -->
 	<context:component-scan base-package="com.demo.controller" />
 	
 	

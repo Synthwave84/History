@@ -18,7 +18,7 @@
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
-	</logger>
+	</logger>	
 	
 	<logger name="org.springframework.beans">
 		<level value="info" />
@@ -32,30 +32,9 @@
 		<level value="info" />
 	</logger>
 
-	<!-- 추가 -->
-	<!-- https://freehoon.tistory.com/113-->
-  	<!-- sql log -->
-  	<logger name="jdbc.adult">
-      <level value="info" />
-   	</logger>
-   	
-   	<!-- resultset을 포함한 모든 JDBc호출정보를 로그로 기록. 매우 많은 양의 로그가 발생 -->
-   	<logger name="jdbc.resultset">
-      <level value="info" />
-   	</logger>
-   	
-   <!-- 열려있는 모든 번호와 연결수립, 해제 이벤트를 기록. 즉, 연결문제를 찾아내는데 매우 유용.(Connection Pool설정) -->
-   	<logger name="jdbc.connection">
-      <level value="info" />
-   	</logger>
-   
-   <logger name="jdbc.resultsettable">
-      <level value="info" />
-   </logger>
-   
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

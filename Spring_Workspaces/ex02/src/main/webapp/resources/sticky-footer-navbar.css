@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
@@ -17,8 +19,4 @@ main > .container {
 
 code {
   font-size: 80%;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409

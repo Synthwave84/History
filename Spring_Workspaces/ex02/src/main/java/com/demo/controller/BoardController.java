@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -21,269 +19,142 @@ import com.demo.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-<<<<<<< HEAD
-// 게시판의 기능에 사용할 URL매핑주소를 구성요소로 하는 컨트롤러기능의 클래스.
-// BoardController에서는 BoardServiceImpl의 메서드를 호출한다.
+// 게시판의 기능에 사용할 URL 매핑주소를 구성요소로 하는 컨트롤러 기능의 클래스.
+// BoardController에서는 BoardServiceImpl를 호출
 /*
- servlet-context.xml 파일
- <context:component-scan base-package="com.demo.controller" /> 자동추가됨. 
+ servlet-context.xml 파일에
+ 	<context:component-scan base-package="com.demo.controller" />
+ 위 구문이 자동으로 추가된다.
  */
-// pom.xml 파일에서 <groupId>log4j</groupId>위치에서  <scope>runtime</scope> 주석처리해야 @Log4j 를 사용가능해짐.
-@Log4j // log객체지원 해줌.
+
+// pom.xml 파일에서 <groupId>log4j</groupId> 위치에서 <scope>runtime</scope> 를 주석처리해야 @Log4j 를 사용 가능하다.
+@Log4j // log객체를 지원해준다.
 @Controller // servlet-context.xml 파일에
-@RequestMapping("/board/*") // views폴더 밑에 board 생성
+@RequestMapping("/board/*") // board가 상위 폴더로 존재해야 한다.
 @RequiredArgsConstructor
 public class BoardController {
-
-	private final BoardService boardService;
 	
+	// 다형성을 위해 부모클래스를 이용했다.
+	private final BoardService boardService;
 	/*
-=======
-//	게시판의 기능에 사용할 URL매핑주소를 구성요소로 하는 컨트롤러 기능의 클래스.
-//	BoardController에서는 BoardServiceImpl의 메소드를 호출한다.
+	 @RequiredArgsConstructor 사용시 자동으로 this를 사용해 주입한다.
+	 
+	    private final BoardService boardService;
 
-//	servlet-context.xml 파일내에
-//	<context:component-scan base-package="com.demo.controller" /> 생성
-//	pom.XML 파일에서 <groupid>log4j</groupid>라인의 <scope>runtime</scope> 주석처리
-//	log객체 지원을 해준다.
-@Log4j
-@Controller
-@RequiredArgsConstructor
-@RequestMapping("/board/*")
-public class BoardController {
-	private final BoardService boardService;
-	
-	/* <<롬복이 대신 처리
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-	public BoardController(BoardService boardService) {
-		this.boardService = boardService;
-	}
+	    public BoardController(BoardService boardService) {
+	        this.boardService = boardService;
+	    }
 	*/
 	
-<<<<<<< HEAD
-	//매핑주소   /board/register
-	//글쓰기 폼
-=======
-//	매핑주소 = /board/register
-//	글쓰기 폼
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-	@GetMapping("/register")
-	public void register() {
-		log.info("called register...");
-	}
 	
-<<<<<<< HEAD
-	//매핑주소   /board/register
-	//글쓰기저장.  jsp파일이 필요없다.
-	@PostMapping("/register")
-	public String register(BoardVO board) {
+		// 저장버튼 클릭 후 클쓰기 저장
+		@GetMapping("/register") // board.toString();
+		public void register() {
+			log.info("called register...");
+		}
 		
-		log.info("게시판 입력데이타: " + board); // board.toString()
-		//db저장.  
+		@PostMapping("/register")
+		public String register(BoardVO board) {
+			
+			log.info(board);
+			
+			// db 저장
+			boardService.register(board);
+			/*
+			 1) BoardMapper interface와 BoardMapper
+			 2) BoardService interface와 BoardService
+			 */
+			return "redirect:/board/list"; // 주소는 절대경로를 모두 적어주어야 한다.
+		}
+
+		
+	
+		// 매핑주소  /board/list
+		// 게시판 목록작업
+		// Model : jsp에 데이터(DB)를 출력하고자 할 때 사용
+//		@GetMapping("/list")
+//		public void list(Model model) {
+//			List<BoardVO> list = boardService.getList();
+//			model.addAttribute("list", list); // JSP 작업 진행
+//		}
+		
+		// 스프링이 Criteria 클래스의 기본생성자를 호출하여, 객체를 생성해준다.
 		/*
-		 1)BoardMapper인터페이스와 BoardMapper.xml 작업
-		 2)BoardService인터페이스와 BoardServiceImple 작업 
+		 일반 자바 문법에서는 매개변수에 값을 주어야 하지만, 스프링이 작업을 자동으로 해준다.
+		 Criteria cri = new Criteria();
+		 Model model = new 생성자();
 		 */
-		boardService.register(board);
+		@GetMapping("/list")
+		public void list(Criteria cri, Model model) {
+			log.info("list : " + cri); // cri.toString()
+			// Criteria(pageNum=1, amount=10, type=null, keyword=null)
+			
+			// 1) 페이지에 보여줄 목록데이터
+			List<BoardVO> list = boardService.getListWithPaging(cri);
+			model.addAttribute("list", list);
+			
+			// 2) 페이징기능 PageDTO 구성
+			int total = boardService.getTotalCount(cri); // 테이블의 데이터 전체 갯수
+			
+			log.info("데이터 총갯수" + total);
+			
+			PageDTO pageDTO = new PageDTO(cri, total);
+			model.addAttribute("pageMaker", pageDTO);
+			
+			log.info("페이징 정보" + pageDTO);
+		}
 		
+		// 매핑주소 /board/get?bno=게시물번호
+		// 테이블의 primary key 해당하는 값을 넘겨주어야 한다.
+		// 상세 내용(게시물 읽기) : list에서 제목을 클릭했을 때 게시물번호에 데이터를 출력
+		@GetMapping({"/get", "/modify"})
+		public void get(@RequestParam("bno") long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+			// @ModelAttribute : addAttribute와 유사한 어노테이션으로 매개변수의 정보를 JSP에서 사용할 수 있게 해준다.
+			
+			// 목록에서 선택한 게시물번호 확인
+			log.info("게시물번호 : " + bno);
+			
+			// 페이징과 검색정보
+			log.info("페이징과 검색정보" + cri);
+			
+			BoardVO getBno = boardService.get(bno);
+			model.addAttribute("getBno", getBno);
+		}
 		
-		return "redirect:/board/list"; // 주소는 절대경로
-	}
-	
-	//매핑주소   /board/list
-	// 목록
-	// Model model : list.jsp파일에 데이터(대부분 DB)를 출력하고자 할때
-	/*
-	@GetMapping("/list")
-	public void list(Model model) {
-		// 서비스 메서드 호출
-		List<BoardVO> list = boardService.getList();
-		model.addAttribute("list", list);  // jsp작업진행
-	}
-	*/
-	
-	// 스프링이 Criteria클래스의 기본생성자를 호출하여, 객체를 생성해준다.
-	// Criteria cri = new Criteria(); this(1, 10)
-	// Model model = new 생성자()
-	@GetMapping("/list")
-	public void list(Criteria cri, Model model) {
+		// RedirectAttributes : 페이지(주소) 이동시 파라미터 정보를 제공하는 목적으로 사용
+		// 수정하기 (DB 작업후 다른 주소로 이동하려면 String type으로 설정한다.)
+		@PostMapping("/modify")
+		public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
+			
+			log.info("수정데이터 : " + board);
+			log.info("Criteria" + cri);
+			// db 저장
+			boardService.modify(board);
+			
+			// 검색과 페이지정보를 이동주소(/board/list)의 파라미터로 사용하기 위한 작업
+//			rttr.addAttribute("pageNum", cri.getPageNum());
+//			rttr.addAttribute("Amount", cri.getAmount());
+//			rttr.addAttribute("Type", cri.getType());
+//			rttr.addAttribute("Keyword", cri.getKeyword());
+			
+			// /board/list?pageNum=값&amount=10&Type=값&keyword=값
+			return "redirect:/board/list" + cri.getListLink(); // list(Criteria cri, Model model)
+		}
 		
-		log.info("list: " + cri); // cri.toString()
-		// Criteria(pageNum=1, amount=10, type=null, keyword=null)
+		// 게시물삭제
+		@GetMapping("/delete")
+		public String delete(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
+			log.info("삭제할 번호 " + bno);
+			
+			//db 작업
+			boardService.delete(bno);
+			
+//			rttr.addAttribute("pageNum", cri.getPageNum());
+//			rttr.addAttribute("Amount", cri.getAmount());
+//			rttr.addAttribute("Type", cri.getType());
+//			rttr.addAttribute("Keyword", cri.getKeyword());
+			
+			return "redirect:/board/list" + cri.getListLink();
+		}
 		
-		//1)목록 데이타 - List<BoardVO>
-		List<BoardVO> list = boardService.getListWithPaging(cri);
-		model.addAttribute("list", list);
-		
-		//2)페이징기능 - PageDTO 
-		int total = boardService.getTotalCount(cri); // 테이블의 데이타 전체개수
-		
-		log.info("데이타 총개수: " + total);
-=======
-//	매핑 주소 /board/register
-//	저장버튼 클릭 후 글쓰기 저장
-//	괄호 주소는 달라도 괜찮다. 
-	@PostMapping("/register")
-	public String register(BoardVO board) {
-//		board.toString()이 호출된다.
-		log.info("게시판 입력 데이터 :" + board);
-//		DB저장 작업
-		/*
-		1)BoardMapper 인터페이스와 BoardMapper.xml작업이 먼저.
-		2)BoardService인터페이스와 BoardServiceImpl 작업.
-		
-		*/
-//		JSP파일의 유무로 리턴 정해짐
-		boardService.register(board);
-//		주소는 절대경로
-		return "redirect:/board/list";
-	}
-	
-//	목록 /board/list
-//	필수적으로 파라미터값은 모델 을 사용해야한다.
-//	Model model = JSP파일에 데이터(대부분의 경우 DB)를 출력 하고자 할 때.
-	/*
-	@GetMapping("/list") 
-	public void list(Model model) {
-//		서비스 메소드 호출
-		List<BoardVO> list =boardService.getList();
-		model.addAttribute("list" , list);
-	}
-	*/
-
-//	스프링이 Criteria클래스의 기본 생성자를 호출하여, 객체를 생성해준다.
-//	Criteria cri = new Criteria();
-//	Model model = new 생성자()
-	@GetMapping("/list") 
-	public void list(Criteria cri, Model model) {
-//		cri.toString
-		log.info("list :" + cri);
-		List<BoardVO> list =boardService.getListWithPaging(cri);
-		model.addAttribute("list" , list);
-//		2) 페이징 작업 - PageDTO
-		int total = boardService.getTotalCount(cri);
-		log.info("데이터 총 갯수" + total);
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-		
-		PageDTO pageDTO = new PageDTO(cri, total);
-		model.addAttribute("pageMaker", pageDTO);
-		
-<<<<<<< HEAD
-		// 페이징정보: PageDTO(startPage=1, endPage=10, prev=false, next=true, total=2048, cri=Criteria(pageNum=1, amount=10, type=null, keyword=null))
-		log.info("페이징정보: " + pageDTO);
-	}
-	
-	//매핑주소 /board/get?bno=게시물번호
-	//게시물읽기: 리스트에서 제목을 클릭했을 때 , 게시물번호에 데이타를 출력
-	//수정폼
-	@GetMapping({"/get", "/modify"})
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri,  Model model) {
-		//목록에서 선택한 게시물번호
-		log.info("게시물번호: " + bno);
-		
-		//페이징과검색정보
-		log.info("페이징과검색정보: " + cri);
-		
-		BoardVO board = boardService.get(bno);
-		model.addAttribute("board", board);
-	}
-	
-	//매핑주소  /board/modify
-	//수정하기
-	// RedirectAttributes : 페이지(주소) 이동시 파라미터 정보를 제공하는 목적으로 사용
-	@PostMapping("/modify")
-	public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
-		
-		log.info("수정 데이타: " + board);
-		log.info("Criteria: " + cri);
-		//db저장.
-		
-		boardService.modify(board);
-		
-		//검색과페이지정보를 이동주소(/board/list)의 파라미터로 사용하기위한 작업
-=======
-		log.info("페이징 정보" + pageDTO);
-	}
-	
-//	매핑주소
-//	상세내용
-//	게시물 읽기 :리스트에서 제목을 클릭했을 떄, 게시물 번호가 데이터를 출력
-	@GetMapping({"/get", "/modify"}) 
-	public void get(@RequestParam("bno") Long bno, 
-			@ModelAttribute("cri") Criteria cri, Model model) {
-//		목록에서 선택한 게시물 번호
-		
-		log.info("게시물번호" + bno);
-		
-//		페이징과 검색정보
-		log.info("페이징 검색정보" + cri);
-		BoardVO board= boardService.get(bno);
-		model.addAttribute("board", board);
-	}
-//	매핑주소 /board/modify
-//	수정하기
-//	RedirectAttributes : 페이지(주소) 이동시 파라미터 정보를 제공하는 목적으로 사용.
-	@PostMapping("/modify") 
-	public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
-		log.info("수정 데이터" + board);
-//		DB저장
-		boardService.modify(board);
-		
-//		검색과 페이지 정보를 이동주소를 파라미터로 사용하기 위한 작업
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
-		
-<<<<<<< HEAD
-		// /board/list?pageNum=값&amount=값&type=값&keyword=값
-		return "redirect:/board/list"; // list(Criteria cri, Model model)
-	}
-	
-	//매핑주소   /board/delete
-	//삭제하기
-	@GetMapping("/delete")
-	public String delete(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
-		
-		log.info("삭제할 번호: " + bno);
-		
-		//db작업
-		boardService.delete(bno);
-		
-		//검색과페이지정보를 이동주소(/board/list)의 파라미터로 사용하기위한 작업
-=======
-//		list(Criteria cri, Model model)
-//		/board/list?pageNum=값&amount-값&type=값&keyword=깞
-		return "redirect:/board/list";
-	}
-	
-//	매핑주소 /board/delete
-//	삭제하기
-	@GetMapping("/delete")
-//	리다이렉트를 이용하려면 스트링
-	public String delete(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
-		log.info("삭제된 번호" + bno);
-//		DB 작업
-		boardService.delete(bno);
-//		검색과 페이지 정보를 이동주소를 파라미터로 사용하기 위한 작업
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
-		
-<<<<<<< HEAD
-		return "redirect:/board/list" + cri.getListLink();
-	}
-	
-=======
-//		상단의rttr. 을 Criteria클래스에 만든 getListLink로 대체
-		return "redirect:/board/list"+cri.getListLink();
-	}
-	
-
-
->>>>>>> 967ebdd261254dcf2b4a04c05b4622a31c2ee409
-	
 }
