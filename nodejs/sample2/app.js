@@ -1,8 +1,10 @@
 // 라이브러리 설정.
 const express = require('express')
+const multer = require('multer')
 const app = express()
 
 const ejs = require('ejs') // jsp와 유사한 뷰 템플릿
+const moment = require('moment')
 const port = 3000
 
 const mysql = require('mysql2')
@@ -49,22 +51,20 @@ app.get('/write', (req, res) => {
 
 // 게시판 글쓰기 저장
 app.post('/writePro', (req, res) => {
-    // console.log("writePro");
-    console.log(req.body);
+	// console.log("writePro");
+	console.log(req.body);
 
-    const title = req.body.title;
-    const writer = req.body.writer;
-    const content = req.body.content;
+	const title = req.body.title;
+	const writer = req.body.writer;
+	const content = req.body.content;
 
-    var sql = `insert into board(title, content, writer) values(?, ?, ?)`;
-    var values = [title, content, writer];
+	var sql = `insert into board(title, content, writer) values(?, ?, ?)`;
+	var values = [title, content, writer];
 
-    conn.query(sql, values, function(err, result){
-        // 예외처리
-        if(err) throw err;
-        console.log("데이터 삽입")
-        res.send("<script>alert('게시글 등록됨!');location.href='/list';</script>")
-    })
+	conn.query(sql, values, function(err, result){
+			if(err) throw err;
+			console.log("데이터 삽입" + result.length)
+	})
 })
 
 // 게시판 목록
@@ -82,7 +82,40 @@ app.get('/list', (req,res) => {
 
 // 게시글 조회
 app.get("/get", (req,res) => {
+  var bno = req.query.bno;
+  var sql = `select bno, content, title, writer, regdate from board where bno = ${bno}`
+	conn.query(sql, function(err, result) {
+		if(err) throw err;
+		res.render("get",{data: result[0]})
+	})
+})
 
+// 게시글 수정폼
+app.get("/modify", (req,res) => {
+  var bno = req.query.bno;
+  var sql = `select bno, content, title, writer, regdate from board where bno = ${bno}`
+	conn.query(sql, function(err, result) {
+		if(err) throw err;
+		res.render("modify",{data: result[0]})
+	})
+})
+
+// 게시글 수정
+// 게시판 수정하기
+app.post("/modifyPro", (req, res) => {
+  // console.log("수정하기", req.body);
+
+  const bno = req.body.bno;
+  const title = req.body.title;
+  const content = req.body.content;
+  
+  var sql = `update board set title=?, content=? where bno=?`
+  var values = [title, content, bno]
+
+  conn.query(sql, values, function(err, result) {
+    if(err) throw err;
+    res.send("<script>alert('게시물이 수정됨'); location.href='/list';</script>")
+  })
 })
 
 // 게시글 삭제
@@ -95,6 +128,11 @@ app.get("/delete", (req,res) => {
 
         res.send("<script>alert('ㅇㅇ삭제함 ㅋ');location.href='list';</script>")
     })
+})
+
+// 파일 업로드
+app.get("/up_write", (req,res) => {
+	res.render("up_write")
 })
 // nodejs기반으로 서버를 실행시켜주는 구문.
 app.listen(port, () => {
