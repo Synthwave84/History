@@ -240,3 +240,16 @@ HTTP 오류 코드 = 500 = 값은 들어왔으나, 스프링에서 에러발생.
 
 Handlebar :자바스크립트 탬플릿 엔진
 -> 서버에서 보내온 JSON 형태의 데이터를 사용하여 작업을 편히 할 수 있는 특징
+
+웹 요청방식
+- Get > select문
+- Post > Insert update delete문
+- put/ patch > update
+- delete > delete
+
+REST API 개발방법론
+- CRUD
+  Create
+  Read
+  Update
+  Delete
