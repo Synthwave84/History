@@ -1,70 +1,55 @@
 <%-include('header.ejs') %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sticky-footer-navbar/">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-</style>
-<title>Document</title>
-</head>
-<body>
-  <!-- Begin page content -->
+
+<!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
-  <div class="container">
-    <section>
-      <div class="row"> 
-        
-        <div class="col-md-12">
-          <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title mt-5">Get</h3>
+    <div class="container">
+      <section>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="box box-primary">
+                      <div class="box-header with-border">
+                          <h3 class="box-title mt-5">Get</h3>
+                      </div>
+                      
+                          <div class="box-body">
+                              <div class="form-group">
+                                  <label for="bno">Bno</label>
+                                  <input type="text" class="form-control" name="bno" id="bno" value="<%=data.bno %>" readonly>
+                              </div>
+                              <div class="form-group">
+                                  <label for="title">Title</label>
+                                  <input type="text" class="form-control" name="title" id="title" value="<%=data.title %>" readonly>
+                              </div>
+                              <div class="form-group">
+                                  <label for="writer">Writer</label>
+                                  <input type="text" class="form-control" name="writer" id="writer" value="<%=data.writer %>" readonly>
+                              </div>
+                              <div class="form-group">
+                                  <label>Content</label>
+                                  <textarea class="form-control" rows="3" name="content" readonly><%=data.content %></textarea>
+                              </div>
+                              <div class="form-group">
+                                  <label for="regdate">regdate</label>
+                                  <input type="text" class="form-control" name="regdate" id="regdate" value='<%=data.regdate %>' readonly>
+                              </div>
+                          </div>
+                          
+                          <div class="box-footer">
+                           <a href="/modify?bno=<%=data.bno%>" id="btn_modify" class="btn btn-primary">Modify</a>
+                          <button type="button" id="btn_delete" class="btn btn-primary">Delete</button>
+                          <a href="/list" class="btn btn-primary">List</a>
+                          </div>
+  
+                  </div>
+              </div>
           </div>
-        
-          <div class="box-body">
-            <div class="form-group">
-              <label for="idx">글번호</label>
-              <input type="text" class="form-control" name="bno" id="bno" value="<%=data.bno %>" readonly>
-            </div>
-            <div class="form-group">
-              <label for="subject">제목</label>
-              <input type="text" class="form-control" name="title" id="title" value="<%=data.title %>" readonly>
-            </div>
-            <div class="form-group">
-              <label for="subject">작성자</label>
-              <input type="text" class="form-control" name="writer" id="writer" value="<%=data.writer %>" readonly>
-            </div>
-            <div class="form-group">
-              <label>내용</label>
-              <textarea class="form-control" rows="3" name="content" value="<%=data.content %>" readonly></textarea>
-            </div>
-            <div class="form-group">
-              <label for="regdate">등록일</label>
-              <input type="text" class="form-control" name="regdate" id="regdate" value="<%=data.regdate %>" readonly>
-            </div>
-          </div>
-          <a href="./modify?bno=<%=data.bno%>" id="btn_goto" class="btn btn-primary">수정</a>
-					<a href="./list" id="btn_list" class="btn btn-primary">목록</a>
-        </div>	
-        </div>
-      </div>
-    </section>
-  </div>
-</main>
-</body>
-</html>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.6/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+      
+  </body>
+</html>  

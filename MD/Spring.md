@@ -253,3 +253,23 @@ REST API 개발방법론
   Read
   Update
   Delete
+
+
+-Spring legacy project
+  -> spring mvc project
+  view : jsp 기본제공
+
+-spring starter project
+ -> spring boot project
+ view : thymeleaf 기본권장
+        jsp권장 안함. 설정작업을 통하여 설정 가능.
+
+  -> 설정파일 : xml 파일 사용안함.
+  -> Bean 설정 : Java Class파일로 Bean작업.
+  application.properties 파일로 설정
+    위의 파일을 변형하여, application.yml로 확장자 변경 사용도 한다.
+DemomallApplication : 프로젝트명 + Application
+
+패키징
+War > 따로 톰캣 필요
+JAR > 내장 톰캣 제공 : 톰캣서버 등록작업이 필요하지 않음.
