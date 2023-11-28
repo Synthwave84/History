@@ -1,6 +1,9 @@
 const express = require('express')
+const session = require("express-session")
 const multer = require('multer')
 const path = require('path')
+const bcrypt = require('bcrypt')
+
 
 // 변수에 업로드 관련설정정보 저장
 var storage = multer.diskStorage({
@@ -21,7 +24,7 @@ var storage = multer.diskStorage({
     limits : {fileSize: 5 * 1024 * 1024} // 5mb제한
 });
 
-// 업로드 관련설정작업
+// 상품 사진 업로드 관련설정작업
 var upload = multer({storage : storage})
 
 
@@ -37,7 +40,7 @@ const port = 3000
 // const conn = mysql.createConnection(dbconfig)   // mysql연결객체 생성
 
 const conn = require('./config/dbconn.js')
-console.log('데이타베이스 연결 성공')
+console.log('데이터베이스 연결 성공')
 
 
 // req.body 속성을 사용해서 클라이언트 정보를 확인할 때 사용.
@@ -49,6 +52,9 @@ app.set("view engine", "ejs");
 app.set('views', './views')
 
 
+// 클라이언트에서 정송한 json 정보를 parsiong 하기 위한 작업
+app.use(express.json())
+
 app.use(bodyparser.urlencoded({extended: false}))
 
 // 클라이언트 파일(*.css, 이미지파일, *.js 등)
@@ -57,6 +63,19 @@ app.use(express.static(__dirname + '/public'))
 // 업로드 폴더 경로
 app.use('/upload', express.static(__dirname + '/upload'));
 
+// 세션 설정
+app.use(session({ secret: 'sdafd', cookie: {maxAge :60000, resave:true, saveUninitialized:true}}))
+
+app.use((req,res,next) => {
+    res.locals.m_id = "";
+    res.locals.m_name = "";
+
+    if(req.session.meminfo) {
+        res.locals.m_id = req.session.meminfo.m_id;
+        res.locals.m_name= req.session.meminfo.m_name;
+    }
+    next();
+})
 
 
 
@@ -83,6 +102,107 @@ app.get('/testB', (req, res) => {
 // 게시판글쓰기
 app.get('/write', (req, res) => {
     res.render('write') // write.ejs
+})
+
+app.get('/join', (req,res) => {
+    res.render('join')
+})
+
+app.post('/join_ok', (req, res) => {
+    // console.log("writePro");
+    // console.log(req.body);
+
+    const m_id = req.body.m_id;
+    const m_name = req.body.m_name;
+    const m_pwd = req.body.m_pwd;
+    const m_zipcode = req.body.m_zipcode;
+    const m_addr = req.body.m_addr;
+    const m_addrdetail = req.body.m_addrdetail;
+
+
+    const saltrounds = 10;
+    bcrypt.hash(m_pwd, saltrounds, (err, hashedPw) =>{
+        if(err) {
+            res.status(500).json({msg : 'fail'});
+        } else {
+            var sql = `insert into meminfo(m_id,m_name,m_pwd,m_zipcode,m_addr,m_addrdetail ) values(?,?,?,?,?,?)`
+            var values = [m_id, m_name, hashedPw, m_zipcode, m_addr, m_addrdetail]
+
+            conn.query(sql, values, function(err, result) {
+                if(err) {
+                    res.status(500).json({msg : 'fail'})
+                }else {
+                    res.status(200).json({msg: 'success'})
+                }            
+            })
+        }
+    })
+    // conn.query(sql, values, function(err, result) {
+    //     if(err) throw err;
+    //     console.log("데이터 삽입")
+    //     res.send("<script>alert('회원정보 등록됨');location.href='/login';</script>")
+    //     // res.redirect('/list');
+   
+}) 
+
+
+    // 아이디 중복 체크
+    app.post('/idcheck', (req,res) => {
+        const m_id = req.body.m_id;
+
+        var sql = `select m_id from meminfo where m_id = '${m_id}'`
+
+        conn.query(sql, function(err, result) {
+            if(err) throw err;
+
+            if(result.length == 0) {
+                res.status(200).json({msg : 'yes'})
+            } else {
+                res.status(200).json({msg : 'no'})
+            }
+        })
+    })
+
+
+app.get('/login', (req,res) => {
+    res.render('login')
+})
+
+// 로그인 인증 : 세션정보를 저장하는 방식(1.메모리, 2. 파일 3. db(mySQL) 세션테이블생성)
+app.post('/login_pro', (req,res) => {
+    // const m_id = req.body.m_id;
+    // const m_pw = req.body.m_pw;
+
+    const {m_id, m_pwd} = req.body;
+
+    var sql =`select * from meminfo where m_id='${m_id}'`
+    
+    conn.query(sql, function (err, result) {
+        if(err) throw err;
+        if(result.length == 0) {
+            res.send("<script>alert('아이디 확인 요망'); location.href='/login'</script> ")
+        }else{
+            // 아이디가 일치 된 경우
+
+            // 비밀번호 일치여부 확인
+            bcrypt.compare(m_pwd, result[0].m_pwd, (bcryptErr, bcryptResult) => {
+                if(bcryptErr || !bcryptResult) {
+                    res.send("<script>alert('비밀번호 확인 요망'); location.href='/login'</script>")
+                }else {
+                    // 회원정보 출력
+                    console.log("meminfo", result[0]);
+                    req.session.meminfo = result[0];
+                    res.send("<script>alert('로그인성공'); location.href='/'</script> ")
+                }
+            })
+        }
+    })
+})
+
+// 로그아웃
+app.get('/logout', (req,res) => {
+    req.session.meminfo =null;
+    res.send("<script>alert('로그아웃됨')</script> location.href='/'")
 })
 
 //게시판글쓰기 저장

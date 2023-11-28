@@ -27,3 +27,5 @@ Spring_Workspaces/Servers/Tomcat v9.0 Server at localhost-config/server.xml
 Spring_Workspaces/test00/target/classes/log4j.xml
 Spring_Workspaces/test00/target/test-classes/log4j.xml
 Spring_Workspaces/Servers/Tomcat v9.0 Server at localhost-config/server.xml
+Spring_Workspaces/ex02/target/m2e-wtp/web-resources/META-INF/maven/com.demo/controller/pom.properties
+Spring_Workspaces/sboard/target/m2e-wtp/web-resources/META-INF/maven/com.docmall/web/pom.properties
