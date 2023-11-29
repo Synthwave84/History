@@ -1,0 +1,74 @@
+<%-include('header.ejs') %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>로그인 페이지</title>
+
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  </head>
+  <body>
+    
+<div class="container">
+  <div class="text-left">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+  
+      <h3>로그인</h3>
+        <form role="form" id="loginForm" method="post" action="/login_pro">
+        <div class="box-body">
+          <div class="form-group row">
+            <label for="mbsp_id" class="col-2">아이디</label>
+              <div class="col-5">
+                <input type="text" class="form-control" name="m_id" id="m_id" placeholder="아이디 입력">
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="mbsp_id" class="col-2">비밀번호</label>
+              <div class="col-5">
+                <input type="password" class="form-control" name="m_pwd" id="m_pwd" placeholder="비밀번호 입력">
+              </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" id="loginForm">로그인</button>
+              <a href="/member/find_id">아이디 찾기</a>
+              <a href="/member/find_pw">비밀번호 찾기</a>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+ 
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.6/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
