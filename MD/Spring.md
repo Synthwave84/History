@@ -273,3 +273,11 @@ DemomallApplication : 프로젝트명 + Application
 패키징
 War > 따로 톰캣 필요
 JAR > 내장 톰캣 제공 : 톰캣서버 등록작업이 필요하지 않음.
+
+스프링 보안기능 
+  - 스프링 인터셉터
+  - 스프링 시큐리티
+
+DB연동
+  - mybatis : sql구문을 직접 사용
+  - jpa : sql구문을 직접 사용하지 않고 java 문법으로만 사용
