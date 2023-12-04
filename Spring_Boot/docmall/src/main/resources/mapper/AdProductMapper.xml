@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.docmall.demo.mapper.AdProductMapper">
+
+	<insert id="pro_insert" parameterType="com.docmall.demo.domain.ProductVO">
+	
+		INSERT INTO
+			PRODUCT_TBL(PRO_NUM, CG_CODE, PRO_NAME, PRO_PRICE, PRO_DISCOUNT, PRO_PUBLISHER, PRO_CONTENT, PRO_UP_FOLDER, PRO_IMG, PRO_AMOUNT, PRO_BUY)
+		VALUES
+			(SEQ_PRODUCT_TBL.nextval, #{cg_code}, #{pro_name},#{pro_price},#{pro_discount},#{pro_publisher},#{pro_content},#{pro_up_folder},#{pro_img},#{pro_amount},#{pro_buy})
+	
+	</insert>
+	
+	<!-- 공통된 sql구문작업 : 검색조건 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+                            PRO_NAME like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'C'.toString()">
+                            PRO_NUM	 like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'P'.toString()">
+							PRO_PUBLISHER like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	
+	</sql>
+	
+	
+	<!--  CDATA 섹션 -->
+	<select id="pro_list" resultType="com.docmall.demo.domain.ProductVO" parameterType="com.docmall.demo.dto.Criteria">
+		<![CDATA[
+		select 
+    		PRO_NUM, CG_CODE, PRO_NAME, PRO_PRICE, PRO_DISCOUNT, PRO_PUBLISHER, PRO_CONTENT, PRO_UP_FOLDER, PRO_IMG, PRO_AMOUNT, PRO_BUY, PRO_DATE, PRO_UPDATEDATE
+		from 
+		    (
+		    select /*+INDEX_DESC(PRODUCT_TBL pk_pro_num) */
+		        rownum rn, PRO_NUM, CG_CODE, PRO_NAME, PRO_PRICE, PRO_DISCOUNT, PRO_PUBLISHER, PRO_CONTENT, PRO_UP_FOLDER, PRO_IMG, PRO_AMOUNT, PRO_BUY, PRO_DATE, PRO_UPDATEDATE
+		    from 
+		        PRODUCT_TBL
+		    where 
+		    ]]>
+		    
+		    <include refid="criteria"></include>
+		    
+		    <![CDATA[
+		        rownum <= #{pageNum} * #{amount}
+		    )
+		where 
+		    rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from PRODUCT_TBL where
+		
+		<include refid="criteria"></include>
+		
+		PRO_NUM > 0
+	</select>
+	
+	<!-- 체크상품 수정작업 -->
+	<update id="pro_checked_modify1" parameterType="Map">
+	
+		UPDATE 
+			PRODUCT_TBL 
+		SET 
+			PRO_PRICE = #{pro_price}, 
+			PRO_BUY = #{pro_buy} 
+		WHERE 
+			PRO_NUM = #{pro_num}
+	
+	</update>
+	
+	<update id="pro_checked_modify2">
+	
+		<foreach collection="list" item="item" open="declare begin" separator=";" close="; end;">
+		
+			UPDATE 
+				PRODUCT_TBL 
+			SET 
+				PRO_PRICE = #{item.pro_price}, 
+				PRO_BUY = #{item.pro_buy} 
+			WHERE 
+				PRO_NUM = #{item.pro_num}
+		
+		</foreach>
+	
+	
+	</update>
+	
+
+	<select id="pro_edit" resultType="com.docmall.demo.domain.ProductVO" parameterType="Integer">
+	
+		SELECT 
+			pro_num, cg_code, pro_name, pro_price, pro_discount, pro_publisher, pro_content, pro_up_folder, pro_img, pro_amount, pro_buy, pro_date, pro_updatedate
+		FROM 
+			PRODUCT_TBL 
+		WHERE 
+			pro_num = #{pro_num}
+	
+	</select>
+	
+	<!-- 상품수정 -->
+	<update id="pro_edit_ok" parameterType="com.docmall.demo.domain.ProductVO">
+	
+		UPDATE 
+			PRODUCT_TBL 
+		SET 
+			cg_code = #{cg_code}, PRO_NAME =  #{pro_name}, PRO_PRICE =  #{pro_price}, PRO_DISCOUNT =  #{pro_discount}, PRO_PUBLISHER = #{pro_publisher}, PRO_CONTENT = #{pro_content}, 
+    		PRO_UP_FOLDER =  #{pro_up_folder}, PRO_IMG =  #{pro_img}, PRO_AMOUNT =  #{pro_amount}, PRO_BUY =  #{pro_buy}, PRO_UPDATEDATE = SYSDATE
+		WHERE 
+			PRO_NUM =  #{pro_num}
+	
+	</update>
+	
+	<delete id="pro_delete" parameterType="Integer">
+	
+		DELETE FROM
+			PRODUCT_TBL
+		WHERE 
+			PRO_NUM =  #{pro_num}	
+	
+	</delete>
+
+</mapper>  

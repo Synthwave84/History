@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.docmall.demo.mapper.AdOrderMapper">
+
+<!-- 
+	공통된 SQL 구문작업 : 검색조건 
+	검색기능을 사용하지 않으면 
+
+-->
+
+<sql id="criteria">
+    <!-- prefixOverrides : 실행될 쿼리의 <trim> 문 안에 쿼리 가장 앞에 해당하는 문자들이 있으면 자동으로 지워준다 -->
+    <!-- 복합검색이 필요하지 않으면, foreach문이 필요가 없다. -->
+       <trim prefix="(" suffix=") AND" prefixOverrides="OR">
+          <foreach collection="cri.typeArr" item="type"><!-- getType() 동작 -->
+             <trim prefix="OR">
+                <choose>
+                   <when test="cri.type == 'N'.toString()">
+                      ORD_NAME like '%' || #{cri.keyword} || '%'
+                   </when>
+                   <when test="cri.type == 'C'.toString()">
+                      ORD_CODE like '%' || #{cri.keyword} || '%'
+                   </when>
+                </choose>
+             </trim>
+          </foreach>
+       </trim>
+    </sql>
+    
+    <sql id="period">
+    	<if test="start_date != null and !start_date.equals('')">
+    	<![CDATA[
+    		ORD_REGDATE >= TO_DATE(#{start_date})
+    		AND
+    		ORD_REGDATE < TO_DATE(#{end_date}) + 1 AND
+    	
+    	]]>
+    	
+    	</if>
+    </sql>
+    
+    <!-- CDATA section -->
+    <select id="order_list" resultType="com.docmall.demo.domain.OrderVO" parameterType="com.docmall.demo.dto.Criteria">
+      <![CDATA[
+      SELECT
+        ORD_CODE,
+        MBSP_ID,
+        ORD_NAME,
+        ORD_ZIPCODE,
+        ORD_ADDR_BASIC,
+        ORD_ADDR_DETAIL,
+        ORD_TEL,
+        ORD_PRICE,
+        ORD_REGDATE,
+        ORD_STATUS,
+        PAYMENT_STATUS
+      FROM (
+            SELECT /*+INDEX_DESC(ORDER_TBL PK_ORDER_TBL) */
+               ROWNUM RN, 
+                ORD_CODE,
+                MBSP_ID,
+                ORD_NAME,
+                ORD_ZIPCODE,
+                ORD_ADDR_BASIC,
+                ORD_ADDR_DETAIL,
+                ORD_TEL,
+                ORD_PRICE,
+                ORD_REGDATE,
+                ORD_STATUS,
+                PAYMENT_STATUS
+            FROM 
+               ORDER_TBL
+            WHERE
+            ]]>
+            <!-- refid : reference id -->
+            <include refid="criteria"></include>
+            <include refid="period"></include>
+            
+            <![CDATA[
+            ROWNUM <= #{cri.pageNum} * #{cri.amount}
+          )
+      WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
+      ]]>
+    </select>
+    
+    <select id="getTotalCount" resultType="int">
+       SELECT COUNT(*) FROM ORDER_TBL WHERE
+       <!-- 검색에 대한 정보가 들어온다 -->
+       <include refid="criteria"></include>
+       <include refid="period"></include>
+       <!-- 검색을 사용하지 않으면  -->
+       ORD_CODE > 0
+    </select>
+	<select id="orderDetailInfo1" parameterType="Long" resultType="com.docmall.demo.domain.OrderDetailInfoVO">
+		SELECT  
+		
+			OT.ORD_CODE, 
+		    OT.PRO_NUM, 
+		    OT.DT_AMOUNT, 
+	             
+	           P.PRO_NAME, 
+	           P.PRO_PRICE* OT.DT_AMOUNT AS ORD_PRICE,
+	           P.PRO_UP_FOLDER, 
+	           P.PRO_IMG
+		FROM 
+		        ORDETAIL_TBL OT , 
+		        PRODUCT_TBL P
+		WHERE 
+		    	OT.PRO_NUM = P.PRO_NUM
+		AND 
+		    	OT.ORD_CODE = #{ord_code}
+	</select>
+	
+	<select id="orderDetailInfo2" parameterType="Long" resultMap="orderDetailProductMap">
+		SELECT  
+		
+			OT.ORD_CODE, 
+		    OT.PRO_NUM, 
+		    OT.DT_AMOUNT, 
+	             
+	           P.PRO_NAME, 
+	           P.PRO_PRICE* OT.DT_AMOUNT AS ORD_PRICE,
+	           P.PRO_UP_FOLDER, 
+	           P.PRO_IMG
+		FROM 
+		        ORDETAIL_TBL OT , 
+		        PRODUCT_TBL P
+		WHERE 
+		    	OT.PRO_NUM = P.PRO_NUM
+		AND 
+		    	OT.ORD_CODE = #{ord_code}
+	</select>
+	
+	<resultMap type="com.docmall.demo.domain.OrderDetailProductVO" id="orderDetailProductMap">
+		<!-- 내부 필드명이 들어온다 -->
+		<collection property="orderDetailVO" resultMap="orderDetailMap"></collection>
+		<collection property="productVO" resultMap="productMap"></collection>
+	</resultMap>
+	
+	<!-- OrderDetailVO필드에서 필요한 정보 -->
+	<!-- resultMap : 테이블의 컬럼명과 클래스의 필드명이 다를떄 서로 매핑해주기 위해 사용한다.-->
+	<resultMap type="com.docmall.demo.domain.OrderDetailVO" id="orderDetailMap">
+		<id property="ord_code" column="ord_code"/>
+		<id property="pro_num" column="pro_num"/>
+		<result property="dt_amount" column="dt_amount"/>
+		<result property="dt_price" column="dt_price"/>
+	</resultMap>
+	
+	<resultMap type="com.docmall.demo.domain.ProductVO" id="productMap">
+		<id property="pro_num" column="pro_num"/>
+		<result property="pro_name" column="pro_name"/>
+		<result property="pro_price" column="pro_price"/>
+		<result property="pro_discount" column="pro_publisher"/>
+		<result property="pro_content" column="pro_content"/>
+		<result property="pro_up_folder" column="pro_up_folder"/>
+		<result property="pro_img" column="pro_img"/>
+		<result property="pro_amount" column="pro_amount"/>
+		<result property="pro_date" column="pro_date"/>
+		<result property="pro_updatedate" column="pro_updatedate"></result>
+	</resultMap>
+	
+	<delete id="order_product_delete" parameterType="map">
+		DELETE FROM
+			ORDETAIL_TBL
+		WHERE
+			ORD_CODE = #{ord_code} AND PRO_NUM = #{pro_num}
+	</delete>
+
+</mapper>

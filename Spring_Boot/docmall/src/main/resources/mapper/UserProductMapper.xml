@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.docmall.demo.mapper.UserProductMapper">
+
+	<!--  CDATA 섹션 -->
+	<select id="pro_list" resultType="com.docmall.demo.domain.ProductVO" parameterType="map">
+		<![CDATA[
+		select 
+    		PRO_NUM, CG_CODE, PRO_NAME, PRO_PRICE, PRO_DISCOUNT, PRO_PUBLISHER, PRO_CONTENT, PRO_UP_FOLDER, PRO_IMG, PRO_AMOUNT, PRO_BUY, PRO_DATE, PRO_UPDATEDATE
+		from 
+		    (
+		    select /*+INDEX_DESC(PRODUCT_TBL pk_pro_num) */
+		        rownum rn, PRO_NUM, CG_CODE, PRO_NAME, PRO_PRICE, PRO_DISCOUNT, PRO_PUBLISHER, PRO_CONTENT, PRO_UP_FOLDER, PRO_IMG, PRO_AMOUNT, PRO_BUY, PRO_DATE, PRO_UPDATEDATE
+		    from 
+		        PRODUCT_TBL
+		    where 
+		    
+		    	CG_CODE = #{cg_code}
+		    	and    
+		        rownum <= #{cri.pageNum} * #{cri.amount}
+		    )
+		where 
+		    rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select 
+			count(*) 
+		from 
+			PRODUCT_TBL 
+		where
+			CG_CODE = #{cg_code}
+	</select>
+	
+	<select id="pro_detail" parameterType="Integer" resultType="com.docmall.demo.domain.ProductVO">
+	
+		select 
+			PRO_NUM, CG_CODE, PRO_NAME, PRO_PRICE, PRO_DISCOUNT, PRO_PUBLISHER, PRO_CONTENT, PRO_UP_FOLDER, PRO_IMG, PRO_AMOUNT, PRO_BUY, PRO_DATE, PRO_UPDATEDATE 
+		from 
+			PRODUCT_TBL 
+		where
+			PRO_NUM = #{pro_num}
+	
+	
+	</select>
+	
+
+</mapper>  

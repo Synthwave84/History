@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.docmall.demo.mapper.OrderMapper">
+
+	<select id="getOrderSeq" resultType="int">
+	
+		SELECT SEQ_ORD_CODE.NEXTVAL FROM DUAL
+	
+	</select>
+	
+	<insert id="order_insert" parameterType="com.docmall.demo.domain.OrderVO">
+	
+		INSERT INTO 
+			ORDER_TBL(ord_code, mbsp_id, ord_name, ord_zipcode, ord_addr_basic, ord_addr_detail, ord_tel, ord_price, ord_regdate, ord_status, payment_status)
+		VALUES
+			(#{ord_code}, #{mbsp_id}, #{ord_name}, #{ord_zipcode}, #{ord_addr_basic}, #{ord_addr_detail}, #{ord_tel}, #{ord_price}, sysdate, #{ord_status}, #{payment_status})
+			
+	</insert>
+	
+	<insert id="order_detail_insert" parameterType="map">
+	
+		INSERT INTO 
+			ORDETAIL_TBL(ord_code, pro_num, dt_amount, dt_price)
+		SELECT 
+			#{ord_code}, c.pro_num, c.cart_amount , p.pro_price
+		FROM 
+			CART_TBL c inner join PRODUCT_TBL p on c.pro_num = p.pro_num
+		WHERE 
+			MBSP_ID = #{mbsp_id}
+	
+	</insert>
+	
+	<delete id="cart_del" parameterType="String">
+	
+		DELETE FROM
+			CART_TBL
+		WHERE
+			MBSP_ID = #{mbsp_id}
+			
+	</delete>
+	
+	<insert id="payment_insert" parameterType="com.docmall.demo.domain.PaymentVO">
+	
+		INSERT INTO 
+			PAYMENT(PAY_CODE, ORD_CODE, MBSP_ID, PAY_METHOD, PAY_DATE, PAY_TOT_PRICE
+			
+			<if test="pay_nobank_price != null and pay_nobank_price !=''">
+			, PAY_NOBANK_PRICE, PAY_NOBANK_USER, PAY_NOBANK, PAY_MEMO, PAY_BANKACCOUNT
+			</if>
+			)
+		VALUES
+			(SEQ_PAYMENT_CODE.NEXTVAL,#{ord_code}, #{mbsp_id}, #{pay_method}, sysdate, #{pay_tot_price} 
+			
+			<if test="pay_nobank_price != null and pay_nobank_price !=''">
+				,#{pay_nobank_price}, #{pay_nobank_user}, #{pay_nobank}, #{pay_memo}, #{pay_bankaccount}
+			</if>
+			)
+	
+	</insert>
+	
+
+</mapper>  

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.docmall.demo.mapper.AdminMapper">
+
+	<select id="admin_ok" parameterType="String" resultType="com.docmall.demo.domain.AdminVO">
+	
+		SELECT 
+			ADMIN_ID, ADMIN_PW, ADMIN_VISIT_DATE 
+		FROM 
+			ADMIN_TBL 
+		WHERE 
+			ADMIN_ID = #{admin_id}
+	
+	</select>
+	
+	<update id="login_date" parameterType="String">
+	
+		UPDATE
+			ADMIN_TBL
+		SET
+			ADMIN_VISIT_DATE = sysdate
+		WHERE 
+			ADMIN_ID = #{admin_id}			
+		
+	</update>
+	
+
+</mapper>  

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.docmall.demo.mapper.AdCategoryMapper">
+
+	<select id="getFirstCategoryList" resultType="com.docmall.demo.domain.CategoryVO">
+	
+		SELECT 
+			CG_CODE,
+			CG_PRTCODE,
+			CG_NAME 
+		FROM 
+			CATEGORY_TBL 
+		WHERE 
+			CG_PRTCODE IS NULL
+		
+	</select>
+	
+	<select id="getSecondCategoryList" parameterType="Integer" resultType="com.docmall.demo.domain.CategoryVO">
+		
+		SELECT 
+			CG_CODE, CG_PRTCODE, CG_NAME 
+		FROM 
+			CATEGORY_TBL 
+		WHERE 
+			CG_PRTCODE = #{cg_prtcode}
+	
+	</select>
+	
+	<!-- 상품테이블의 2차카테고리코드의 1차카테고리 정보 -->
+	<select id="get" parameterType="Integer" resultType="com.docmall.demo.domain.CategoryVO">
+	
+		SELECT 
+			cg_code, cg_prtcode, cg_name 
+		FROM 
+			CATEGORY_TBL 
+		WHERE cg_code = #{cg_code}
+	
+	</select>
+	
+
+</mapper>  
